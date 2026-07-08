@@ -31,9 +31,21 @@ jobs:
       - name: Test
         run: echo "Test Passed"
 
+      - name: Package Release
+        shell: pwsh
+        run: |
+          $sourceDir = "ReleaseCandidate"
+          $zipPath = Join-Path $PWD "ReleaseCandidate.zip"
+          if (Test-Path $zipPath) {
+            Remove-Item $zipPath -Force
+          }
+          Compress-Archive -Path (Join-Path $sourceDir "*") -DestinationPath $zipPath -Force
+          Write-Host "Created $zipPath"
+
       - name: Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          files: DevOps/DevOpsDemo/ReleaseCandidate/**
+          files: DevOps/DevOpsDemo/ReleaseCandidate.zip
           fail_on_unmatched_files: true
+          overwrite_files: true
