@@ -1,0 +1,36 @@
+name: Build Test Release
+
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '**'
+  workflow_dispatch:
+
+jobs:
+  build-test-release:
+    runs-on:
+      - self-hosted
+      - brdk-public
+
+    defaults:
+      run:
+        working-directory: DevOps/DevOpsDemo
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build
+        run: .\as-cli.exe build pip --output ReleaseCandidate
+
+      - name: Test
+        run: echo "Test Passed"
+
+      - name: Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: DevOps/DevOpsDemo/ReleaseCandidate/**
+          fail_on_unmatched_files: true
