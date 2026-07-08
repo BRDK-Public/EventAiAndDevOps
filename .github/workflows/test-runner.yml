@@ -1,0 +1,15 @@
+
+name: Test Runner
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on:
+        - self-hosted
+        - brdk-public
+
+    steps:
+      - name: Echo message
+        run: echo "Hello from BRDK-Public self-hosted runner!"
