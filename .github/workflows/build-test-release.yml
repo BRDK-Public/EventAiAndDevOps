@@ -98,9 +98,29 @@ jobs:
           fail_on_unmatched_files: true
           overwrite_files: true
 
-      - name: Notify Release Server
+      - name: Publish to FTPserver
         if: startsWith(github.ref, 'refs/tags/') && steps.release_check.outputs.exists != 'true'
         shell: pwsh
         run: |
-          $tag = "${env:GITHUB_REF_NAME}"
-          Invoke-RestMethod -Method Post -Uri "http://localhost:8080/update?tag=$tag"
+          $source = "ReleaseCandidate"
+          # Fixed machine path the FTP server serves - NOT the runner's
+          # ephemeral _work checkout, so the served files persist between runs.
+          $dest = "C:\ReleaseServer\FTPserver"
+          $marker = "arnbcfg.xml"
+
+          # Wipe the current FTP root
+          if (Test-Path $dest) {
+            Get-ChildItem -Path $dest -Force | Remove-Item -Recurse -Force
+          } else {
+            New-Item -ItemType Directory -Path $dest -Force | Out-Null
+          }
+
+          # Copy everything EXCEPT the marker file first...
+          Get-ChildItem -Path $source -Force | Where-Object { $_.Name -ne $marker } | ForEach-Object {
+            Copy-Item -Path $_.FullName -Destination $dest -Recurse -Force
+          }
+
+          # ...then the marker file LAST, so the PLC only sees the new version
+          # once every other file is already in place.
+          Copy-Item -Path (Join-Path $source $marker) -Destination $dest -Force
+          Write-Host "Published $source -> $dest ($marker copied last)"

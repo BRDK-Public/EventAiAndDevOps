@@ -1,17 +1,14 @@
-A seperate service that downloads the newest release from a Github Repo and publish it on a FTP server. A PLC can then download the PLC itself.
+A simple FTP server that exposes the newest release so a PLC can download the update itself.
 
 ## How it works
 
-This is event-driven, not polling. The `build-test-release.yml` workflow, right after it
-publishes a GitHub Release, sends an HTTP request to this service telling it which tag was
-just released. The service then:
+The `build-test-release.yml` workflow builds the project and, on a tag push, copies the
+result from `ReleaseCandidate/` into the fixed folder `C:\ReleaseServer\FTPserver` -
+writing `arnbcfg.xml` **last**, since that's the file the PLC checks to detect a new
+version. This guarantees the PLC never sees a half-updated directory.
 
-1. Downloads `Update-<tag>.zip` from the GitHub release into [`NewestRelease/`](NewestRelease).
-2. Extracts it, wipes [`FTPserver/`](FTPserver) and repopulates it with the new files -
-   writing `arnbcfg.xml` **last**, since that's the file the PLC checks to detect a new
-   version. This guarantees the PLC never sees a half-updated directory.
-3. Serves [`FTPserver/`](FTPserver) over FTP (user `update` / password `update`, hardcoded
-   for this demo) so the PLC can download the new files.
+This service simply serves that folder over FTP (user `update` / password `update`,
+hardcoded for this demo) so the PLC can download the new files.
 
 ## Running
 
@@ -21,21 +18,28 @@ python release_server.py
 ```
 
 Binding to FTP port 21 requires an elevated (Administrator) PowerShell terminal on Windows.
-Leave the script running in the foreground during the demo - it logs every step (HTTP
-trigger received, download progress, extraction, FTP activity).
 
 ### Configuration (environment variables, all optional)
 
 | Variable | Default | Purpose |
 | --- | --- | --- |
-| `GITHUB_OWNER` | `BRDK-Public` | Repo owner used to build the release download URL |
-| `GITHUB_REPO` | `EventAiAndDevOps` | Repo name used to build the release download URL |
-| `GITHUB_TOKEN` | _(none)_ | Optional auth token for the download request |
-| `RELEASE_SERVER_HTTP_PORT` | `8080` | Port for the update-trigger HTTP endpoint |
-| `RELEASE_SERVER_FTP_PORT` | `21` | Port for the anonymous FTP server |
+| `RELEASE_SERVER_FTP_ROOT` | `C:\ReleaseServer\FTPserver` | Folder served over FTP |
+| `RELEASE_SERVER_FTP_PORT` | `21` | FTP port |
 
-### Manually triggering an update
+## Auto-start on boot
+
+Register the FTP server as a Scheduled Task that runs at startup. Run once in an
+**Administrator** PowerShell:
 
 ```powershell
-curl -X POST "http://localhost:8080/update?tag=v0.0.4"
+$py = (Get-Command python).Source
+$script = "C:\projects\EventAiAndDevOps\DevOps\DevOpsDemo\ReleaseServer\release_server.py"
+$action    = New-ScheduledTaskAction -Execute $py -Argument "`"$script`"" -WorkingDirectory (Split-Path $script)
+$trigger   = New-ScheduledTaskTrigger -AtStartup
+$principal = New-ScheduledTaskPrincipal -UserId "SYSTEM" -RunLevel Highest
+$settings  = New-ScheduledTaskSettingsSet -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 1) -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
+Register-ScheduledTask -TaskName "ReleaseServerFTP" -Action $action -Trigger $trigger -Principal $principal -Settings $settings -Force
+Start-ScheduledTask -TaskName "ReleaseServerFTP"
 ```
+
+Remove it later with `Unregister-ScheduledTask -TaskName "ReleaseServerFTP"`.
