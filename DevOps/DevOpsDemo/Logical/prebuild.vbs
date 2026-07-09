@@ -183,17 +183,18 @@ end if
 ' Helper functions
 ''''''''''''''''''''
 Function revInfoWriteVar(file, varName, strLength, value)
+    sanitizedValue = strClean(value)
     comment = ""
-    If Len(value) >= strLength Then
+    If Len(sanitizedValue) >= strLength Then
         If strLength < 3 Then
             str = "Error, strLength set to less than 3 in script"
             strLength = 80
         Else
-            comment = " (*Result was limited due to string length, full value: '" & value & "'*)"
-            str = Left(value, strLength - 3) & "..."
+            comment = " (*Result was limited due to string length, full value: '" & sanitizedValue & "'*)"
+            str = Left(sanitizedValue, strLength - 3) & "..."
         End If
     Else
-        str = value
+        str = sanitizedValue
     End if
     file.WriteLine("	" & varName & " : STRING[" & strLength & "] := '" & str & "';" & comment)
 End Function
@@ -213,9 +214,9 @@ Function runCommand(command)
         Wend
         Select Case WshShellExec.Status
             Case WshFinished
-                runCommand = strClean(WshShellExec.StdOut.ReadLine)
+                runCommand = strClean(WshShellExec.StdOut.ReadAll)
             Case WshFailed
-                runCommand = "Error: " & strClean(WshShellExec.StdErr.ReadLine)
+                runCommand = "Error: " & strClean(WshShellExec.StdErr.ReadAll)
         End Select
     end if
 End Function
@@ -290,8 +291,18 @@ Function writeValueToXml(filename, namespace, xpath, attributeName, attributeVal
 End Function
 
 Function strClean(strtoclean)
-    ' remove ' from string
-    outputStr = Replace(strtoclean, "'", "")
+    If IsNull(strtoclean) Then
+        strClean = ""
+        Exit Function
+    End If
+
+    outputStr = CStr(strtoclean)
+    ' Replace line breaks and tabs with spaces so generated IEC strings remain valid
+    outputStr = Replace(outputStr, vbCr, " ")
+    outputStr = Replace(outputStr, vbLf, " ")
+    outputStr = Replace(outputStr, vbTab, " ")
+    ' Escape single quotes for IEC string literals
+    outputStr = Replace(outputStr, "'", "''")
     ' trim
     outputStr = Trim(outputStr)
     strClean = outputStr
