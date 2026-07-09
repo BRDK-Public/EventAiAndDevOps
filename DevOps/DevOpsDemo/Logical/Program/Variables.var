@@ -1,0 +1,5 @@
+VAR
+	local2 : USINT;
+	local1 : USINT;
+	counter : USINT;
+END_VAR

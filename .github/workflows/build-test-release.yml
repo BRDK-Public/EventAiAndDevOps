@@ -68,3 +68,10 @@ jobs:
           files: DevOps/DevOpsDemo/Update-*.zip
           fail_on_unmatched_files: true
           overwrite_files: true
+
+      - name: Notify Release Server
+        if: startsWith(github.ref, 'refs/tags/') && steps.release_check.outputs.exists != 'true'
+        shell: pwsh
+        run: |
+          $tag = "${env:GITHUB_REF_NAME}"
+          Invoke-RestMethod -Method Post -Uri "http://localhost:8080/update?tag=$tag"
