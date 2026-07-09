@@ -1,0 +1,7 @@
+VAR
+	DevLink_0 : DevLink;
+	MpBackupCore_0 : MpBackupCore;
+	New_Variable : USINT;
+	state : UINT;
+	paramsDevlink : STRING[255];
+END_VAR
