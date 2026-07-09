@@ -303,6 +303,9 @@ Function strClean(strtoclean)
     outputStr = Replace(outputStr, vbTab, " ")
     ' Escape single quotes for IEC string literals
     outputStr = Replace(outputStr, "'", "''")
+    ' Some Windows build accounts expose a trailing dollar sign (for example BUILDSERVER$),
+    ' which can break Automation Studio build generation in this context. Replace it with an underscore.
+    outputStr = Replace(outputStr, "$", "_")
     ' trim
     outputStr = Trim(outputStr)
     strClean = outputStr
