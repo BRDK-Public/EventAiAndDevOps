@@ -19,11 +19,11 @@
 		<CompatibleCpuCode></CompatibleCpuCode>
 		<OrderNo>X20CP0484</OrderNo>
 		<ArType>AR Embedded</ArType>
-		<ConfigVersion>1.0.0</ConfigVersion>
+		<ConfigVersion>0.0.8</ConfigVersion>
 		<PartitionInfos>
-			<Part1>33554432</Part1>
-			<Part2>63015836</Part2>
-			<Part3>14734888</Part3>
+			<Part1>103587853</Part1>
+			<Part2>138411309</Part2>
+			<Part3>17423676</Part3>
 			<Part4>104857600</Part4>
 		</PartitionInfos>
 	</Info>

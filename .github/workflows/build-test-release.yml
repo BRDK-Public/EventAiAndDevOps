@@ -22,6 +22,35 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
+      - name: Update hardware config version
+        shell: pwsh
+        run: |
+          $tagName = "${env:GITHUB_REF_NAME}"
+          $version = if ($tagName -match '^v\.(.+)$') { $matches[1] } else { $tagName }
+          $hardwarePath = "Physical/Config1/Hardware.hw"
+
+          [xml]$hardware = Get-Content -Path $hardwarePath
+          $ns = New-Object System.Xml.XmlNamespaceManager($hardware.NameTable)
+          $ns.AddNamespace("h", $hardware.DocumentElement.NamespaceURI)
+
+          $module = $hardware.SelectSingleNode("//h:Module[@Name='X20CP0484']", $ns)
+          if (-not $module) {
+            throw "Module X20CP0484 not found in $hardwarePath"
+          }
+
+          $parameter = $module.SelectSingleNode("./h:Parameter[@ID='ConfigVersion']", $ns)
+          if ($parameter) {
+            $parameter.SetAttribute("Value", $version)
+          } else {
+            $newParameter = $hardware.CreateElement("Parameter", $hardware.DocumentElement.NamespaceURI)
+            $newParameter.SetAttribute("ID", "ConfigVersion")
+            $newParameter.SetAttribute("Value", $version)
+            [void]$module.AppendChild($newParameter)
+          }
+
+          $hardware.Save($hardwarePath)
+          Write-Host "Updated ConfigVersion to $version from tag $tagName"
+
       - name: Build
         run: .\as-cli.exe build pip --output ReleaseCandidate
 

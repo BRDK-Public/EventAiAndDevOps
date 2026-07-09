@@ -2,12 +2,12 @@ VAR CONSTANT
 	project : STRING[80] := 'DevOpsDemo';
 	buildConfiguration : STRING[80] := 'Config1';
 	branchName : STRING[80] := 'main';
-	tag : STRING[80] := 'v.0.0.6';
-	revision : STRING[80] := 'v.0.0.6';
-	revisionDate : STRING[80] := '2026-07-09 13:19:50 +0200';
+	tag : STRING[80] := 'v.0.0.8';
+	revision : STRING[80] := 'v.0.0.8';
+	revisionDate : STRING[80] := '2026-07-09 14:29:30 +0200';
 	revisionAuthor : STRING[80] := 'BRGLOBAL\andersenm';
-	uncommittedChanges : STRING[80] := '3 files changed, 76 insertions(+), 67 deletions(-)';
-	buildDate : STRING[80] := '2026-07-09 13:49:56';
+	uncommittedChanges : STRING[80] := '8 files changed, 11 insertions(+), 11 deletions(-)';
+	buildDate : STRING[80] := '2026-07-09 14:49:14';
 	builder : STRING[80] := 'andersenm';
-	commitID : STRING[80] := '271a67b4a5b3d593610122029357ec0c39300bd6';
+	commitID : STRING[80] := '339a48961d3d928df5c8bdbde3b97f66f9d33a30';
 END_VAR

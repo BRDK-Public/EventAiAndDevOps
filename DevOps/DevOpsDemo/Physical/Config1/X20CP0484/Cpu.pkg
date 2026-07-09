@@ -19,7 +19,7 @@
   </Objects>
   <Configuration ModuleId="X20CP0484">
     <AutomationRuntime Version="6.7.5" />
-    <Build GccVersion="11.3.0" PreBuildStep="cscript &quot;$(AS_PROJECT_PATH)\Logical\prebuild.vbs&quot; &quot;$(AS_PROJECT_PATH)&quot; &quot;$(AS_PROJECT_NAME)&quot; &quot;$(AS_CONFIGURATION)&quot; &quot;$(AS_USER_NAME)&quot;" />
+    <Build GccVersion="11.3.0" />
     <DefaultTargetMemory Tasks="UserROM" />
     <TaskClasses DefaultTaskClass="Cyclic1" />
     <Transfer AddToUserPart="False" AllowDowngrade="False" AllowInitialTransfer="False" AllowPartitioning="False" ExecuteInitExitProgram="True" ForceInitialTransfer="False" IgnoreVersion="True" KeepNonVolatileMemory="False" PreserveVariableValues="False" ProjectConsistent="False" RebootDuringTransfer="True" TargetIdentificationType="Always" TryToBootInRunMode="False" UserFilesIgnoreDifference="True" />

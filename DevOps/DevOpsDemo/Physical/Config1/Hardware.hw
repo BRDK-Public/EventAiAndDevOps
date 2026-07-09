@@ -10,7 +10,7 @@
       <Parameter ID="ActivateSnmp" Value="2"/>
     </Connector>
     <Parameter ID="ConfigurationID" Value="DevOpsDemo_Config1"/>
-    <Parameter ID="ConfigVersion" Value="0.0.6"/>
+    <Parameter ID="ConfigVersion" Value="0.0.8"/>
     <Parameter ID="UserPartitionSize" Value="100"/>
     <Parameter ID="TimerDeviceType" Value="SWIOTIMER"/>
     <Parameter ID="CyclicTaskClassCount" Value="3"/>
