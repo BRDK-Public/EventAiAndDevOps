@@ -57,6 +57,10 @@ GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 HTTP_PORT = int(os.environ.get("RELEASE_SERVER_HTTP_PORT", "8080"))
 FTP_PORT = int(os.environ.get("RELEASE_SERVER_FTP_PORT", "21"))
 
+# Hardcoded demo credentials - not for production use.
+FTP_USERNAME = "update"
+FTP_PASSWORD = "update"
+
 VERSION_MARKER_FILE = "arnbcfg.xml"
 
 logging.basicConfig(
@@ -237,14 +241,19 @@ def start_ftp_server() -> FTPServer:
     FTP_ROOT_DIR.mkdir(parents=True, exist_ok=True)
 
     authorizer = DummyAuthorizer()
-    authorizer.add_anonymous(str(FTP_ROOT_DIR), perm="elradfmwMT")
+    authorizer.add_user(FTP_USERNAME, FTP_PASSWORD, str(FTP_ROOT_DIR), perm="elradfmwMT")
 
     handler = FTPHandler
     handler.authorizer = authorizer
     handler.banner = "EventAiAndDevOps ReleaseServer FTP ready."
 
     server = FTPServer(("0.0.0.0", FTP_PORT), handler)
-    log.info("FTP server serving %s on 0.0.0.0:%d (anonymous, read+write)", FTP_ROOT_DIR, FTP_PORT)
+    log.info(
+        "FTP server serving %s on 0.0.0.0:%d (user=%s, read+write)",
+        FTP_ROOT_DIR,
+        FTP_PORT,
+        FTP_USERNAME,
+    )
     return server
 
 

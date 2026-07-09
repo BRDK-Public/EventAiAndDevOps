@@ -10,8 +10,8 @@ just released. The service then:
 2. Extracts it, wipes [`FTPserver/`](FTPserver) and repopulates it with the new files -
    writing `arnbcfg.xml` **last**, since that's the file the PLC checks to detect a new
    version. This guarantees the PLC never sees a half-updated directory.
-3. Serves [`FTPserver/`](FTPserver) over anonymous FTP (read + write) so the PLC can
-   download the new files.
+3. Serves [`FTPserver/`](FTPserver) over FTP (user `update` / password `update`, hardcoded
+   for this demo) so the PLC can download the new files.
 
 ## Running
 
