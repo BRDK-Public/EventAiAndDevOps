@@ -32,7 +32,6 @@ class AsCli:
         self.exe = Path(os.environ.get("AS_CLI_PATH", DEFAULT_AS_CLI))
         self.project = Path(os.environ.get("AS_PROJECT", DEFAULT_PROJECT))
         self.timeout = int(os.environ.get("AS_CLI_TIMEOUT_SECONDS", "120"))
-        self.hmi_task = os.environ.get("AS_HMI_TASK", "HmiCtrl")
 
         if not self.exe.exists():
             raise AssertionError(f"AS CLI was not found at {self.exe}. Set AS_CLI_PATH to override it.")
@@ -85,17 +84,6 @@ class AsCli:
         if task:
             args.extend(["--task", task])
         self.run(*args)
-
-    def hmi_read(self, name: str) -> Any:
-        return self.read_var(name, task=self.hmi_task)
-
-    def hmi_write(self, name: str, value: Any) -> None:
-        self.write_var(name, value, task=self.hmi_task)
-
-    def issue_hmi_command(self, module_index: int, command: int) -> None:
-        self.hmi_write("hmi.emIdx", module_index)
-        self.hmi_write("hmi.command.command", command)
-        self.hmi_write("hmi.command.executeCmd", 1)
 
     def wait_until(self, description: str, predicate, timeout: float = 30.0, interval: float = 0.25) -> Any:
         deadline = time.monotonic() + timeout
@@ -172,10 +160,6 @@ def as_int(value: Any) -> int:
     if ":" in text:
         text = text.rsplit(":", 1)[1].strip()
     return int(text, 0)
-
-
-def as_text(value: Any) -> str:
-    return str(value).strip().strip('"').strip("\x00")
 
 
 def collect_log_entries(payload: Any) -> list[Any]:
