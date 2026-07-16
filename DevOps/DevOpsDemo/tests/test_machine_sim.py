@@ -35,12 +35,19 @@ def test_runtime_logbook_has_no_errors(as_cli: AsCli, simulator):
     assert entries == [], f"Runtime logbook contains error entries: {entries!r}\n{result.text}"
 
 
+def test_program_local2_is_two(as_cli: AsCli, simulator):
+    value = as_cli.read_var("local2", task="Program")
+    assert as_int(value) == 2, f"Program.local2 expected 2, got {value!r}"
+
+'''
+@pytest.mark.skip(reason="State-machine behavior is specific to the other project; kept as inspiration.")
 def test_reset_start_puts_all_modules_in_execute(as_cli: AsCli, simulator):
     ensure_root_execute(as_cli)
     modules = wait_for_all_modules_in_state(as_cli, "EXECUTE")
     assert modules, "No modules were published through hmi.moduleDataProvider."
 
 
+@pytest.mark.skip(reason="State-machine behavior is specific to the other project; kept as inspiration.")
 def test_abort_module_then_clear_ends_stopped(as_cli: AsCli, simulator):
     require_gantry_cnc_program()
     ensure_root_execute(as_cli)
@@ -54,6 +61,7 @@ def test_abort_module_then_clear_ends_stopped(as_cli: AsCli, simulator):
     wait_for_root_state(as_cli, STATE_STOPPED)
 
 
+@pytest.mark.skip(reason="State-machine behavior is specific to the other project; kept as inspiration.")
 def test_reset_start_again_then_stop_ends_stopped(as_cli: AsCli, simulator):
     require_gantry_cnc_program()
     ensure_root_execute(as_cli)
@@ -62,7 +70,7 @@ def test_reset_start_again_then_stop_ends_stopped(as_cli: AsCli, simulator):
     root_index = module_index_by_name(as_cli, ROOT_MODULE)
     as_cli.issue_hmi_command(root_index, CMD_STOP)
     wait_for_root_state(as_cli, STATE_STOPPED)
-
+'''
 
 def ensure_root_execute(as_cli: AsCli) -> None:
     root_index = module_index_by_name(as_cli, ROOT_MODULE)

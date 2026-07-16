@@ -1,0 +1,9 @@
+VAR
+	DevLink_0 : DevLink;
+	state : UINT;
+	paramsDevlink : STRING[255];
+	device : STRING[80];
+	ArProjectGetPackageInfo_0 : ArProjectGetPackageInfo;
+	ArProjectInstallPackage_0 : ArProjectInstallPackage;
+	ArProjectGetInfo_0 : ArProjectGetInfo;
+END_VAR

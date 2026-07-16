@@ -10,8 +10,8 @@ from typing import Any, Iterable
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_AS_CLI = PROJECT_ROOT / ".github" / "skills" / "as-cli" / "as-cli.exe"
-DEFAULT_PROJECT = PROJECT_ROOT / "Avantpak.apj"
+DEFAULT_AS_CLI = PROJECT_ROOT / "as-cli.exe"
+DEFAULT_PROJECT = PROJECT_ROOT / "DevOpsDemo.apj"
 
 
 @dataclass(frozen=True)

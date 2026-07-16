@@ -7,7 +7,6 @@
   <Motion RestartAcoposParameter="true" RestartInitParameter="true" />
   <Variables DefaultInitValue="0" DefaultRetain="false" DefaultVolatile="true" />
   <TechnologyPackages>
-    <mappServices Version="6.7.1" />
     <mappView Version="6.7.0" />
     <OpcUaCs Version="6.7.0" />
   </TechnologyPackages>
