@@ -12,7 +12,20 @@ ACTION producing:
 			em.Command.StateComplete := TRUE;
 		
 		STATE_RESETTING:			
-			em.Command.StateComplete := TRUE;
+			CASE em.SubState OF
+				
+				0:
+					Axis.Power := TRUE;
+				
+					IF Axis.PowerOn THEN
+						em.SubState := 10;
+					END_IF
+				
+				10:
+					em.Command.StateComplete := TRUE;
+				
+			END_CASE
+			
 			
 		STATE_IDLE:
 			em.StateInfo := 'in state idle';
@@ -26,8 +39,23 @@ ACTION producing:
 		STATE_EXECUTE:
 			em.StateInfo := 'in state execute';
 			
+			CASE em.SubState OF
+				
+				0:
+					// Example usage.
+					Axis.MoveAdditive := TRUE;
+					Parameters.Distance := 100.0; // 100mm
+					IF Axis.MoveDone THEN
+						Axis.MoveAdditive := FALSE;
+						em.SubState := 10;
+					END_IF
+				
+				10:
+					// no code yet
+				
+			END_CASE
 			em.Command.StateComplete := TRUE;
-		
+
 		STATE_ABORTING:
 			em.StateInfo := 'in state aborting';
 			em.Command.StateComplete := TRUE;

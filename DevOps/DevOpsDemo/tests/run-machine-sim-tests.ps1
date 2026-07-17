@@ -25,7 +25,7 @@ param(
 $stoppedState = 2
 $executeState = 6
 $abortedState = 9
-$stateTimeoutSeconds = if ($env:EM_STATE_TIMEOUT_SECONDS) { [double]$env:EM_STATE_TIMEOUT_SECONDS } elseif ($env:PACKML_STATE_TIMEOUT_SECONDS) { [double]$env:PACKML_STATE_TIMEOUT_SECONDS } else { 4.0 }
+$stateTimeoutSeconds = if ($env:EM_STATE_TIMEOUT_SECONDS) { [double]$env:EM_STATE_TIMEOUT_SECONDS } elseif ($env:PACKML_STATE_TIMEOUT_SECONDS) { [double]$env:PACKML_STATE_TIMEOUT_SECONDS } else { 10.0 }
 $moduleTasks = @('Main', 'EM_Infeed', 'EM_Filler', 'EM_Capper', 'EM_Outfeed')
 
 $script:results = New-Object System.Collections.Generic.List[object]

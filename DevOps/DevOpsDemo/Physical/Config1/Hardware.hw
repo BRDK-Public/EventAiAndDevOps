@@ -1,6 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?AutomationStudio WorkingVersion="6.7" FileVersion="4.9"?>
 <Hardware xmlns="http://br-automation.co.at/AS/Hardware">
+  <Module Name="8EI8X8MWT10.xxxx-1" Type="8EI8X8MWT10.xxxx-1" Version="2.4.1.0" NodeNumber="1">
+    <Connection Connector="PLK1" TargetModule="X20CP0484" TargetConnector="IF3">
+      <Cable Type="PowerlinkCable" Length="10" Version="1.0.0.3" />
+    </Connection>
+    <Parameter ID="InterfaceType" Location="DriveConfiguration/Encoder/EncoderX41" Value="EnDat" />
+    <Parameter ID="InterfaceType" Location="DriveConfiguration/Encoder/EncoderX42" Value="EnDat" />
+    <Parameter ID="InterfaceType" Location="DriveConfiguration/Encoder/EncoderX43" Value="EnDat" />
+    <Parameter ID="AxisReference" Location="DriveConfiguration/Channel[1]/RealAxis" Value="gAxis_Infeed" />
+    <Parameter ID="AxisReference" Location="DriveConfiguration/Channel[2]/RealAxis" Value="gAxis_Capper" />
+    <Parameter ID="AxisReference" Location="DriveConfiguration/Channel[3]/RealAxis" Value="gAxis_Outfeed" />
+  </Module>
   <Module Name="X20BB62" Type="X20BB62" Version="1.3.0.0" />
   <Module Name="X20CP0484" Type="X20CP0484" Version="1.9.0.0">
     <Connection Connector="SL" TargetModule="X20BB62" TargetConnector="SL1" />
@@ -10,6 +21,9 @@
       <Parameter ID="InternetAddress" Value="192.168.1.199" />
       <Parameter ID="SubnetMask" Value="255.255.255.0" />
       <Parameter ID="ActivateSnmp" Value="2" />
+    </Connector>
+    <Connector Name="IF3">
+      <Parameter ID="CycleTime" Value="1000" />
     </Connector>
     <Parameter ID="ConfigurationID" Value="DevOpsDemo_Config1" />
     <Parameter ID="ConfigVersion" Value="0.0.9" />
