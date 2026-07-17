@@ -14,7 +14,6 @@
     <Parameter ID="ConfigurationID" Value="DevOpsDemo_Config1" />
     <Parameter ID="ConfigVersion" Value="0.0.9" />
     <Parameter ID="UserPartitionSize" Value="250" />
-    <Parameter ID="Simulation" Value="1" />
     <Parameter ID="SimulationModeOpcUa" Value="off" />
     <Parameter ID="TimerDeviceType" Value="SWIOTIMER" />
     <Parameter ID="CyclicTaskClassCount" Value="3" />

@@ -1,3 +1,4 @@
 VAR
 	em : {REDUND_UNREPLICABLE} EquipmentModule;
+	hmi : hmi_typ;
 END_VAR

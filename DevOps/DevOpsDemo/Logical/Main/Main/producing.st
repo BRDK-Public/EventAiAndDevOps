@@ -9,6 +9,11 @@ ACTION producing:
 		
 		STATE_STOPPED:
 			em.StateInfo := 'in state stopped';
+			
+			IF hmi.startMachine THEN
+				hmi.startMachine := FALSE;
+				em.Command.Reset := TRUE;
+			END_IF
 			em.Command.StateComplete := TRUE;
 		
 		STATE_RESETTING:			
@@ -27,6 +32,11 @@ ACTION producing:
 			em.StateInfo := 'in state execute';
 			
 			em.Command.StateComplete := TRUE;
+			
+			IF hmi.stopMachine THEN
+				hmi.stopMachine := FALSE;
+				em.Command.Stop := TRUE;
+			END_IF
 		
 		STATE_ABORTING:
 			em.StateInfo := 'in state aborting';
@@ -34,6 +44,11 @@ ACTION producing:
 			
 		STATE_ABORTED:
 			em.StateInfo := 'in state aborted';
+			
+			IF hmi.clearMachine THEN
+				hmi.clearMachine := FALSE;
+				em.Command.Clear := TRUE;
+			END_IF
 			em.Command.StateComplete := TRUE;
 		
 		STATE_CLEARING:
@@ -45,4 +60,9 @@ ACTION producing:
 		
 	END_CASE
  
+	IF hmi.abortMachine THEN
+		hmi.abortMachine := FALSE;
+		em.Command.Abort := TRUE;
+	END_IF
+	
 END_ACTION
