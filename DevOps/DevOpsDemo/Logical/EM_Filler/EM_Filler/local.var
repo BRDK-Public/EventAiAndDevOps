@@ -1,3 +1,5 @@
 VAR
 	em : {REDUND_UNREPLICABLE} EquipmentModule;
+	hw : hw_typ;
+	TON_0 : TON;
 END_VAR

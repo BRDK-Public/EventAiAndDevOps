@@ -2,6 +2,8 @@
 <?AutomationStudio FileVersion="4.9"?>
 <Package xmlns="http://br-automation.co.at/AS/Package">
   <Objects>
-    <Object Type="Program" Language="IEC">EM_Outfeed</Object>
+    <Object Type="Program" Language="IEC">EM_Conveyor</Object>
+    <Object Type="File">global.var</Object>
+    <Object Type="File">global.typ</Object>
   </Objects>
 </Package>

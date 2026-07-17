@@ -3,5 +3,7 @@
 <Package xmlns="http://br-automation.co.at/AS/Package">
   <Objects>
     <Object Type="Program" Language="IEC">EM_Filler</Object>
+    <Object Type="File">global.var</Object>
+    <Object Type="File">global.typ</Object>
   </Objects>
 </Package>

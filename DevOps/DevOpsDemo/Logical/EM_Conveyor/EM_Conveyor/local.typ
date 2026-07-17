@@ -1,6 +1,6 @@
 
 TYPE
 	hw_typ : 	STRUCT 
-		do_fillBottle : BOOL;
+		di_bottleReady : BOOL;
 	END_STRUCT;
 END_TYPE

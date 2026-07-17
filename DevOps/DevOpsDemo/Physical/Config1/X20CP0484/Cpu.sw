@@ -3,10 +3,9 @@
 <SwConfiguration CpuAddress="" xmlns="http://br-automation.co.at/AS/SwConfiguration">
   <TaskClass Name="Cyclic#1">
     <Task Name="Main" Source="Main.Main.prg" Memory="UserROM" Language="IEC" Debugging="true" />
-    <Task Name="EM_Infeed" Source="EM_Infeed.EM_Infeed.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+    <Task Name="EM_Conveyo" Source="EM_Conveyor.EM_Conveyor.prg" Memory="UserROM" Language="IEC" Debugging="true" />
     <Task Name="EM_Filler" Source="EM_Filler.EM_Filler.prg" Memory="UserROM" Language="IEC" Debugging="true" />
     <Task Name="EM_Capper" Source="EM_Capper.EM_Capper.prg" Memory="UserROM" Language="IEC" Debugging="true" />
-    <Task Name="EM_Outfeed" Source="EM_Outfeed.EM_Outfeed.prg" Memory="UserROM" Language="IEC" Debugging="true" />
   </TaskClass>
   <TaskClass Name="Cyclic#2" />
   <TaskClass Name="Cyclic#3">
@@ -44,5 +43,6 @@
     <LibraryObject Name="MpAxis" Source="Libraries.MpAxis.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="McAcpAx" Source="Libraries.McAcpAx.lby" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="McAcpPar" Source="Libraries.McAcpPar.lby" Memory="UserROM" Language="Binary" Debugging="true" />
+    <LibraryObject Name="standard" Source="Libraries.standard.lby" Memory="UserROM" Language="Binary" Debugging="true" />
   </Libraries>
 </SwConfiguration>

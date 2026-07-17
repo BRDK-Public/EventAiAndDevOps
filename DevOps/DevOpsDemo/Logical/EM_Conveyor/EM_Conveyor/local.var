@@ -2,4 +2,5 @@ VAR
 	em : {REDUND_UNREPLICABLE} EquipmentModule;
 	Axis : MpAxisBasic;
 	Parameters : MpAxisBasicParType;
+	hw : hw_typ;
 END_VAR

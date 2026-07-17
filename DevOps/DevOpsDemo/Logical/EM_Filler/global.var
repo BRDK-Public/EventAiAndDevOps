@@ -1,0 +1,3 @@
+VAR
+	gFillerInterface : gFillerInterface_typ;
+END_VAR

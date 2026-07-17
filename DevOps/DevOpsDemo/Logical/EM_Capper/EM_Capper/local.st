@@ -4,6 +4,9 @@ PROGRAM _INIT
 	em.Setup.Name := 'EM_Capper';
 	em.Setup.ParentName := 'Main';
 	
+	Parameters.Acceleration := 5000;
+	Parameters.Deceleration := 5000;
+	
 END_PROGRAM
 
 PROGRAM _CYCLIC

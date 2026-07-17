@@ -8,7 +8,6 @@ ACTION producing:
 			em.Command.StateComplete := TRUE;
 		
 		STATE_RESETTING:			
-			
 			CASE em.SubState OF
 				
 				0:
@@ -35,8 +34,6 @@ ACTION producing:
 				
 			END_CASE
 			
-			gCapperInterface.status.ready := FALSE;
-			em.Command.StateComplete := TRUE;
 			
 		STATE_IDLE:
 			em.StateInfo := 'in state idle';
@@ -49,42 +46,50 @@ ACTION producing:
 			
 		STATE_EXECUTE:
 			
+			
 			CASE em.SubState OF
 				
 				0:
-					em.StateInfo := 'Ready. Waiting for command';
-					
-					IF gCapperInterface.cmd.startStation THEN
+					em.StateInfo := 'Waiting for bottle';
+					IF hw.di_bottleReady THEN
 						em.SubState := 10;
 					END_IF
-					gCapperInterface.status.ready := em.SubState=0;
 				
 				10:
-					em.StateInfo := 'Wait for capping (move 360.0 degrees)';
-					
-					Axis.MoveAdditive := TRUE;
-					Parameters.Distance := 360.0;
-					Parameters.Velocity := 1200;
-					
-					IF Axis.MoveDone THEN
-						Axis.MoveAdditive := FALSE;
-						gCapperInterface.status.stationDone := TRUE;
+					IF gFillerInterface.status.ready AND gCapperInterface.status.ready THEN
 						em.SubState := 20;
 					END_IF
 					
 				20:
-					em.StateInfo := 'Wait for command to be false';
-					
-					IF NOT gCapperInterface.cmd.startStation THEN
-						gCapperInterface.status.stationDone := FALSE;
+					em.StateInfo := 'Index conveyor';
+				
+					Axis.MoveAdditive := TRUE;
+					Parameters.Velocity := 400.0;
+					Parameters.Distance := 100.0;
+				
+					IF Axis.MoveDone THEN
+						Axis.MoveAdditive := FALSE;
+						em.SubState := 30;
+					END_IF
+				
+				30:
+					em.StateInfo := 'Wait for stations to finish';
+				
+					gFillerInterface.cmd.startStation := TRUE;
+					gCapperInterface.cmd.startStation := TRUE;
+				
+					IF gFillerInterface.status.stationDone AND gCapperInterface.status.stationDone THEN
+						gFillerInterface.cmd.startStation := FALSE;
+						gCapperInterface.cmd.startStation := FALSE;
 						em.SubState := 0;
 					END_IF
-						
+				
+					
+					
 				
 			END_CASE
-			
 			em.Command.StateComplete := TRUE;
-		
+
 		STATE_STOPPING,STATE_ABORTING:
 			em.StateInfo := 'in state aborting/stopping';
 			Axis.Power := FALSE;

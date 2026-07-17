@@ -1,0 +1,3 @@
+VAR
+	gConveyorInterface : gConveyorInterface_typ;
+END_VAR

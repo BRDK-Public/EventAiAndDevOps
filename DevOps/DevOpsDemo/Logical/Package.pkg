@@ -7,10 +7,9 @@
     <Object Type="Package" Description="Global libraries">Libraries</Object>
     <Object Type="Package">RevInfo</Object>
     <Object Type="Package">Main</Object>
-    <Object Type="Package">EM_Infeed</Object>
+    <Object Type="Package">EM_Conveyor</Object>
     <Object Type="Package">EM_Filler</Object>
     <Object Type="Package">EM_Capper</Object>
-    <Object Type="Package">EM_Outfeed</Object>
     <Object Type="Package">Services</Object>
   </Objects>
 </Package>
