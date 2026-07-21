@@ -3,4 +3,6 @@ VAR
 	Axis : MpAxisBasic;
 	Parameters : MpAxisBasicParType;
 	hw : hw_typ;
+	productionCycleCount : UDINT;
+	simulateAxisError : BOOL;
 END_VAR

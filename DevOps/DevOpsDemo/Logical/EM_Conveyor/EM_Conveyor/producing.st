@@ -81,6 +81,7 @@ ACTION producing:
 					IF gFillerInterface.status.stationDone AND gCapperInterface.status.stationDone THEN
 						gFillerInterface.cmd.startStation := FALSE;
 						gCapperInterface.cmd.startStation := FALSE;
+						productionCycleCount := productionCycleCount + 1;
 						em.SubState := 0;
 					END_IF
 				

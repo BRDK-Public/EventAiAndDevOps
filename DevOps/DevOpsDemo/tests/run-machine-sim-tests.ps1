@@ -5,7 +5,7 @@
 
 .DESCRIPTION
     Builds and starts DevOpsDemo in ARsim, connects through as-cli, then verifies
-    the runtime logbook, initial state, and reset/stop state flow.
+    the runtime logbook, initial state, and simulator lifecycle.
 
 .PARAMETER SkipSimBuild
     Reuse an already-running simulator instead of building and starting ARsim.
@@ -145,7 +145,11 @@ function Invoke-CliStreamed {
         if ($stderrPending) { Write-Host ('      | ' + $stderrPending) }
         Write-Host "`r      Build process finished.           "
         $process.Refresh()
-        return [int]$process.ExitCode
+        $output = (Get-Content -LiteralPath $stdoutPath -Raw -ErrorAction SilentlyContinue) + (Get-Content -LiteralPath $stderrPath -Raw -ErrorAction SilentlyContinue)
+        return [pscustomobject]@{
+            Exit = [int]$process.ExitCode
+            Failed = $output -match '(?im)Status:\s*FAILED|Build failed with \d+\s+error|^\s*ERROR:'
+        }
     }
     finally {
         Remove-Item $stdoutPath, $stderrPath -Force -ErrorAction SilentlyContinue
@@ -153,7 +157,11 @@ function Invoke-CliStreamed {
 }
 
 function Test-Step {
-    param([string]$Name, [scriptblock]$Body)
+    param(
+        [string]$Name,
+        [scriptblock]$Body,
+        [switch]$StopOnFailure
+    )
 
     try {
         $result = & $Body
@@ -166,6 +174,7 @@ function Test-Step {
         $script:results.Add([pscustomobject]@{ Name = $Name; Ok = $false; Detail = $message })
         Write-Host ('  FAIL  ' + $Name) -ForegroundColor Red
         if ($message) { Write-Host ('        ' + ($message -replace "`n", "`n        ")) -ForegroundColor DarkGray }
+        if ($StopOnFailure) { throw }
     }
 }
 
@@ -285,6 +294,13 @@ function Get-SimulatorState {
     return [string](Get-FirstPropertyValue -InputObject $data -Names @('state', 'State'))
 }
 
+function Get-SimulatorRunning {
+    $result = Invoke-Cli -CliArgs @('sim', 'status') -TimeoutMs 30000
+    if ($result.Exit -ne 0) { return $false }
+    $data = Get-FirstPropertyValue -InputObject $result.Json -Names @('data', 'Data')
+    return [bool](Get-FirstPropertyValue -InputObject $data -Names @('running', 'Running'))
+}
+
 function Wait-Until {
     param(
         [string]$Description,
@@ -350,10 +366,66 @@ function Wait-ForAllModulesInState {
     }
 }
 
+function Ensure-MachineStopped {
+    foreach ($commandName in @('hmi.startMachine', 'hmi.stopMachine', 'hmi.abortMachine', 'hmi.clearMachine')) {
+        $reset = Invoke-Cli -CliArgs @('var', 'write', $commandName, '--value', '0', '--task', 'Main')
+        if ($reset.Exit -ne 0) { throw "Initial machine command reset for $commandName failed with $($reset.Exit): $($reset.Out)" }
+    }
+
+    for ($attempt = 1; $attempt -le 3; $attempt++) {
+        $states = Get-ModuleStates
+        $allStopped = $true
+        $hasAborted = $false
+        foreach ($task in $moduleTasks) {
+            if ($states[$task] -ne $stoppedState) { $allStopped = $false }
+            if ($states[$task] -eq $abortedState) { $hasAborted = $true }
+        }
+        if (-not $allStopped) {
+            $commandName = if ($hasAborted) { 'hmi.clearMachine' } else { 'hmi.stopMachine' }
+            $command = Invoke-Cli -CliArgs @('var', 'write', $commandName, '--value', '1', '--task', 'Main')
+            if ($command.Exit -ne 0) { throw "Initial machine $commandName command failed with $($command.Exit): $($command.Out)" }
+        }
+
+        Wait-ForAllModulesInState -ExpectedState $stoppedState | Out-Null
+        $resetStart = Invoke-Cli -CliArgs @('var', 'write', 'hmi.startMachine', '--value', '0', '--task', 'Main')
+        if ($resetStart.Exit -ne 0) { throw "Initial machine command reset for hmi.startMachine failed with $($resetStart.Exit): $($resetStart.Out)" }
+        Start-Sleep -Milliseconds 500
+
+        $settledStates = Get-ModuleStates
+        $settled = $true
+        foreach ($task in $moduleTasks) {
+            if ($settledStates[$task] -ne $stoppedState) { $settled = $false }
+        }
+        if ($settled) { return }
+    }
+
+    throw 'Machine did not remain stopped after three stop attempts.'
+}
+
 function Wait-ArSimRunning {
     return Wait-Until -Description 'ARsim to report RUN' -TimeoutSeconds 60 -IntervalMilliseconds 1000 -Predicate {
         (Get-SimulatorState).ToUpperInvariant() -eq 'RUN'
     }
+}
+
+function Wait-ArSimStopped {
+    Wait-Until -Description 'ARsim to stop' -TimeoutSeconds 60 -IntervalMilliseconds 1000 -Predicate {
+        -not (Get-SimulatorRunning)
+    } | Out-Null
+}
+
+function Stop-Simulator {
+    $status = Invoke-Cli -CliArgs @('sim', 'status') -TimeoutMs 30000
+    $data = Get-FirstPropertyValue -InputObject $status.Json -Names @('data', 'Data')
+    $running = [bool](Get-FirstPropertyValue -InputObject $data -Names @('running', 'Running'))
+    if ($running) {
+        $stop = Invoke-Cli -CliArgs @('sim', 'stop') -TimeoutMs 60000
+        if ($stop.Exit -ne 0) { Write-Warning "ARsim stop failed with $($stop.Exit): $($stop.Out)" }
+        else { Wait-ArSimStopped }
+    }
+
+    $disable = Invoke-Cli -CliArgs @('sim', 'disable', '--no-clean') -TimeoutMs 180000
+    if ($disable.Exit -ne 0) { Write-Warning "Simulation disable failed with $($disable.Exit): $($disable.Out)" }
 }
 
 function Connect-IfReady {
@@ -379,11 +451,14 @@ Write-Host '================================='
 
 try {
     if (-not $SkipSimBuild) {
-        Invoke-Cli -CliArgs @('sim', 'enable', '--no-start') -TimeoutMs 180000 | Out-Null
+        $enable = Invoke-Cli -CliArgs @('sim', 'enable', '--no-start', '--no-clean') -TimeoutMs 180000
+        if ($enable.Exit -ne 0) { throw "Simulation enable failed with $($enable.Exit): $($enable.Out)" }
 
-        Test-Step 'simulator build has no errors' {
-            $exit = Invoke-CliStreamed -CliArgs @('build', 'sim', '--filter', 'errors') -TimeoutMs 600000
-            if ($exit -ne 0) { throw "build sim failed with exit $exit" }
+        Test-Step 'simulator build has no errors' -StopOnFailure {
+            $build = Invoke-CliStreamed -CliArgs @('build', 'sim', '--filter', 'errors') -TimeoutMs 600000
+            if ($build.Exit -ne 0 -or $build.Failed) {
+                throw "build sim failed with exit $($build.Exit)."
+            }
         }
     }
 
@@ -405,11 +480,13 @@ try {
         }
     }
 
+    Test-Step 'PackML state machine ready' -StopOnFailure {
+        Assert-PlcConnected
+        Wait-ForAllModulesInState -ExpectedState $stoppedState | Out-Null   # If all stopped, then the machine is ready to start.
+    }
+
     Test-Step 'PackML start and stop flow' {
         Assert-PlcConnected
-
-        # Check that all modules are in the stopped state before starting the machine
-        Wait-ForAllModulesInState -ExpectedState $stoppedState | Out-Null
 
         $start = Invoke-Cli -CliArgs @('var', 'write', 'hmi.startMachine', '--value', '1', '--task', 'Main')
         if ($start.Exit -ne 0) { throw "Start command failed with $($start.Exit): $($start.Out)" }
@@ -439,6 +516,44 @@ try {
             Wait-ForAllModulesInState -ExpectedState $stoppedState | Out-Null
         }
 
+    Test-Step 'Test Conveyor Axis alarm and clear it' {
+        Assert-PlcConnected
+        Wait-ForAllModulesInState -ExpectedState $stoppedState | Out-Null
+
+        $start = Invoke-Cli -CliArgs @('var', 'write', 'hmi.startMachine', '--value', '1', '--task', 'Main')
+        if ($start.Exit -ne 0) { throw "Start command failed with $($start.Exit): $($start.Out)" }
+        Wait-ForAllModulesInState -ExpectedState $executeState | Out-Null
+
+        $trigger = Invoke-Cli -CliArgs @('var', 'write', 'simulateAxisError', '--value', '1', '--task', 'EM_Conveyo')
+        if ($trigger.Exit -ne 0) { throw "Conveyor axis alarm trigger failed with $($trigger.Exit): $($trigger.Out)" }
+        Wait-ForAllModulesInState -ExpectedState $abortedState | Out-Null
+
+        $clearAlarm = Invoke-Cli -CliArgs @('var', 'write', 'simulateAxisError', '--value', '0', '--task', 'EM_Conveyo')
+        if ($clearAlarm.Exit -ne 0) { throw "Conveyor axis alarm clear failed with $($clearAlarm.Exit): $($clearAlarm.Out)" }
+        $clear = Invoke-Cli -CliArgs @('var', 'write', 'hmi.clearMachine', '--value', '1', '--task', 'Main')
+        if ($clear.Exit -ne 0) { throw "Clear command failed with $($clear.Exit): $($clear.Out)" }
+        Wait-ForAllModulesInState -ExpectedState $stoppedState | Out-Null
+    }
+
+    Test-Step 'Test Capper Axis alarm and clear it' {
+        Assert-PlcConnected
+        Wait-ForAllModulesInState -ExpectedState $stoppedState | Out-Null
+
+        $start = Invoke-Cli -CliArgs @('var', 'write', 'hmi.startMachine', '--value', '1', '--task', 'Main')
+        if ($start.Exit -ne 0) { throw "Start command failed with $($start.Exit): $($start.Out)" }
+        Wait-ForAllModulesInState -ExpectedState $executeState | Out-Null
+
+        $trigger = Invoke-Cli -CliArgs @('var', 'write', 'simulateAxisError', '--value', '1', '--task', 'EM_Capper')
+        if ($trigger.Exit -ne 0) { throw "Capper axis alarm trigger failed with $($trigger.Exit): $($trigger.Out)" }
+        Wait-ForAllModulesInState -ExpectedState $abortedState | Out-Null
+
+        $clearAlarm = Invoke-Cli -CliArgs @('var', 'write', 'simulateAxisError', '--value', '0', '--task', 'EM_Capper')
+        if ($clearAlarm.Exit -ne 0) { throw "Capper axis alarm clear failed with $($clearAlarm.Exit): $($clearAlarm.Out)" }
+        $clear = Invoke-Cli -CliArgs @('var', 'write', 'hmi.clearMachine', '--value', '1', '--task', 'Main')
+        if ($clear.Exit -ne 0) { throw "Clear command failed with $($clear.Exit): $($clear.Out)" }
+        Wait-ForAllModulesInState -ExpectedState $stoppedState | Out-Null
+    }
+
     Test-Step 'runtime logbook has no errors after all tests' {
         Assert-PlcConnected
         $result = Invoke-Cli -CliArgs @('logbook', 'read', '--count', '100', '--level', 'error')
@@ -457,7 +572,7 @@ finally {
         Invoke-Cli -CliArgs @('plc', 'disconnect') -TimeoutMs 30000 | Out-Null
     }
     if (-not $KeepAlive -and $env:AS_KEEP_SIM -ne '1') {
-        Invoke-Cli -CliArgs @('sim', 'disable') -TimeoutMs 180000 | Out-Null
+        Stop-Simulator
     }
 }
 
