@@ -367,11 +367,13 @@ function Wait-ForAllModulesInState {
 }
 
 function Ensure-MachineStopped {
+    # Reset all machine commands. They can be left in a non-zero state if the previous test failed or was aborted.
     foreach ($commandName in @('hmi.startMachine', 'hmi.stopMachine', 'hmi.abortMachine', 'hmi.clearMachine')) {
         $reset = Invoke-Cli -CliArgs @('var', 'write', $commandName, '--value', '0', '--task', 'Main')
         if ($reset.Exit -ne 0) { throw "Initial machine command reset for $commandName failed with $($reset.Exit): $($reset.Out)" }
     }
 
+    # If not stopped try 3 attempts to stop it. Clear if aborted.
     for ($attempt = 1; $attempt -le 3; $attempt++) {
         $states = Get-ModuleStates
         $allStopped = $true
@@ -387,8 +389,7 @@ function Ensure-MachineStopped {
         }
 
         Wait-ForAllModulesInState -ExpectedState $stoppedState | Out-Null
-        $resetStart = Invoke-Cli -CliArgs @('var', 'write', 'hmi.startMachine', '--value', '0', '--task', 'Main')
-        if ($resetStart.Exit -ne 0) { throw "Initial machine command reset for hmi.startMachine failed with $($resetStart.Exit): $($resetStart.Out)" }
+
         Start-Sleep -Milliseconds 500
 
         $settledStates = Get-ModuleStates
@@ -482,11 +483,12 @@ try {
 
     Test-Step 'PackML state machine ready' -StopOnFailure {
         Assert-PlcConnected
-        Wait-ForAllModulesInState -ExpectedState $stoppedState | Out-Null   # If all stopped, then the machine is ready to start.
+        Ensure-MachineStopped
     }
 
     Test-Step 'PackML start and stop flow' {
         Assert-PlcConnected
+        Ensure-MachineStopped
 
         $start = Invoke-Cli -CliArgs @('var', 'write', 'hmi.startMachine', '--value', '1', '--task', 'Main')
         if ($start.Exit -ne 0) { throw "Start command failed with $($start.Exit): $($start.Out)" }
@@ -494,14 +496,12 @@ try {
 
         $stop = Invoke-Cli -CliArgs @('var', 'write', 'hmi.stopMachine', '--value', '1', '--task', 'Main')
         if ($stop.Exit -ne 0) { throw "Stop command failed with $($stop.Exit): $($stop.Out)" }
-        Wait-ForAllModulesInState -ExpectedState $stoppedState | Out-Null
+        Ensure-MachineStopped
     }
 
     Test-Step 'PackML start,abort and clear flow' {
             Assert-PlcConnected
-
-            # Check that all modules are in the stopped state before starting the machine
-            Wait-ForAllModulesInState -ExpectedState $stoppedState | Out-Null
+            Ensure-MachineStopped
 
             $start = Invoke-Cli -CliArgs @('var', 'write', 'hmi.startMachine', '--value', '1', '--task', 'Main')
             if ($start.Exit -ne 0) { throw "Start command failed with $($start.Exit): $($start.Out)" }
@@ -513,12 +513,12 @@ try {
 
             $clear = Invoke-Cli -CliArgs @('var', 'write', 'hmi.clearMachine', '--value', '1', '--task', 'Main')
             if ($clear.Exit -ne 0) { throw "Clear command failed with $($clear.Exit): $($clear.Out)" }
-            Wait-ForAllModulesInState -ExpectedState $stoppedState | Out-Null
+            Ensure-MachineStopped
         }
 
     Test-Step 'Test Conveyor Axis alarm and clear it' {
         Assert-PlcConnected
-        Wait-ForAllModulesInState -ExpectedState $stoppedState | Out-Null
+        Ensure-MachineStopped
 
         $start = Invoke-Cli -CliArgs @('var', 'write', 'hmi.startMachine', '--value', '1', '--task', 'Main')
         if ($start.Exit -ne 0) { throw "Start command failed with $($start.Exit): $($start.Out)" }
@@ -532,12 +532,12 @@ try {
         if ($clearAlarm.Exit -ne 0) { throw "Conveyor axis alarm clear failed with $($clearAlarm.Exit): $($clearAlarm.Out)" }
         $clear = Invoke-Cli -CliArgs @('var', 'write', 'hmi.clearMachine', '--value', '1', '--task', 'Main')
         if ($clear.Exit -ne 0) { throw "Clear command failed with $($clear.Exit): $($clear.Out)" }
-        Wait-ForAllModulesInState -ExpectedState $stoppedState | Out-Null
+        Ensure-MachineStopped
     }
 
     Test-Step 'Test Capper Axis alarm and clear it' {
         Assert-PlcConnected
-        Wait-ForAllModulesInState -ExpectedState $stoppedState | Out-Null
+        Ensure-MachineStopped
 
         $start = Invoke-Cli -CliArgs @('var', 'write', 'hmi.startMachine', '--value', '1', '--task', 'Main')
         if ($start.Exit -ne 0) { throw "Start command failed with $($start.Exit): $($start.Out)" }
@@ -551,7 +551,7 @@ try {
         if ($clearAlarm.Exit -ne 0) { throw "Capper axis alarm clear failed with $($clearAlarm.Exit): $($clearAlarm.Out)" }
         $clear = Invoke-Cli -CliArgs @('var', 'write', 'hmi.clearMachine', '--value', '1', '--task', 'Main')
         if ($clear.Exit -ne 0) { throw "Clear command failed with $($clear.Exit): $($clear.Out)" }
-        Wait-ForAllModulesInState -ExpectedState $stoppedState | Out-Null
+        Ensure-MachineStopped
     }
 
     Test-Step 'runtime logbook has no errors after all tests' {
