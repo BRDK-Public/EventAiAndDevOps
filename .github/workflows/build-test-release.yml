@@ -33,9 +33,9 @@ jobs:
           $ns = New-Object System.Xml.XmlNamespaceManager($hardware.NameTable)
           $ns.AddNamespace("h", $hardware.DocumentElement.NamespaceURI)
 
-          $module = $hardware.SelectSingleNode("//h:Module[@Name='X20CP0484']", $ns)
+          $module = $hardware.SelectSingleNode("//h:Module[@Name='X20CP1686X']", $ns)
           if (-not $module) {
-            throw "Module X20CP0484 not found in $hardwarePath"
+            throw "Module X20CP1686X not found in $hardwarePath"
           }
 
           $parameter = $module.SelectSingleNode("./h:Parameter[@ID='ConfigVersion']", $ns)
