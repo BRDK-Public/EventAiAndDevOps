@@ -63,11 +63,33 @@ function Invoke-Cli {
     )
 
     $arguments = @('--project', $ProjectPath, '--timeout', "$TimeoutMs", '--format', 'json') + $CliArgs
-    $out = (& $AsCliPath @arguments 2>&1 | Out-String)
-    return [pscustomobject]@{
-        Exit = $LASTEXITCODE
-        Out = $out.Trim()
-        Json = ConvertFrom-CliJson -Text $out
+    $argumentText = ($arguments | ForEach-Object { ConvertTo-ProcessArgument -Argument $_ }) -join ' '
+    $stdoutPath = [System.IO.Path]::GetTempFileName()
+    $stderrPath = [System.IO.Path]::GetTempFileName()
+    $process = $null
+
+    try {
+        $process = Start-Process -FilePath $AsCliPath -ArgumentList $argumentText -RedirectStandardOutput $stdoutPath -RedirectStandardError $stderrPath -NoNewWindow -PassThru
+        if (-not $process.WaitForExit($TimeoutMs)) {
+            Stop-Process -Id $process.Id -Force -ErrorAction SilentlyContinue
+            $timedOutOutput = (Get-Content -LiteralPath $stdoutPath -Raw -ErrorAction SilentlyContinue) + (Get-Content -LiteralPath $stderrPath -Raw -ErrorAction SilentlyContinue)
+            return [pscustomobject]@{
+                Exit = 124
+                Out = ("as-cli timed out after {0} ms. {1}" -f $TimeoutMs, $timedOutOutput).Trim()
+                Json = $null
+            }
+        }
+
+        $process.Refresh()
+        $out = (Get-Content -LiteralPath $stdoutPath -Raw -ErrorAction SilentlyContinue) + (Get-Content -LiteralPath $stderrPath -Raw -ErrorAction SilentlyContinue)
+        return [pscustomobject]@{
+            Exit = [int]$process.ExitCode
+            Out = $out.Trim()
+            Json = ConvertFrom-CliJson -Text $out
+        }
+    }
+    finally {
+        Remove-Item $stdoutPath, $stderrPath -Force -ErrorAction SilentlyContinue
     }
 }
 
@@ -416,6 +438,7 @@ function Wait-ArSimStopped {
 }
 
 function Stop-Simulator {
+    Write-Host '      Stopping ARsim...'
     $status = Invoke-Cli -CliArgs @('sim', 'status') -TimeoutMs 30000
     $data = Get-FirstPropertyValue -InputObject $status.Json -Names @('data', 'Data')
     $running = [bool](Get-FirstPropertyValue -InputObject $data -Names @('running', 'Running'))
@@ -425,6 +448,7 @@ function Stop-Simulator {
         else { Wait-ArSimStopped }
     }
 
+    Write-Host '      Disabling simulation...'
     $disable = Invoke-Cli -CliArgs @('sim', 'disable', '--no-clean') -TimeoutMs 180000
     if ($disable.Exit -ne 0) { Write-Warning "Simulation disable failed with $($disable.Exit): $($disable.Out)" }
 }
@@ -467,7 +491,12 @@ try {
         Wait-ArSimRunning | Out-Null
     }
 
+    # Connect to ARsim and wait for PVI to be started
     Test-Step 'PLC connects to ARsim' {
+        # Restart works both if PVI is already running or not yet started 
+        # (NOTE: if PVI started with elevated privileges, this will need to run in a terminal with elevated privileges as well)
+        $restartPvi = Invoke-Cli -CliArgs @('pvi', 'restart') -TimeoutMs 20000
+        if ($restartPvi.Exit -ne 0) { throw "PVI restart failed with $($restartPvi.Exit): $($restartPvi.Out)" }
         Wait-Until -Description 'PVI PLC connection to ARsim' -TimeoutSeconds 60 -IntervalMilliseconds 1000 -Predicate { Connect-IfReady } | Out-Null
     }
 

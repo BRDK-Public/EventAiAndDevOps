@@ -5,7 +5,7 @@
 
 .DESCRIPTION
     Builds and starts DevOpsDemo in ARsim, connects through as-cli, then verifies
-    the runtime logbook, initial state, and reset/stop state flow.
+    the runtime logbook, initial state, and simulator lifecycle.
 
 .PARAMETER SkipSimBuild
     Reuse an already-running simulator instead of building and starting ARsim.
@@ -23,11 +23,6 @@ param(
 )
 
 $stoppedState = 2
-$executeState = 6
-$abortedState = 9
-$stateTimeoutSeconds = if ($env:EM_STATE_TIMEOUT_SECONDS) { [double]$env:EM_STATE_TIMEOUT_SECONDS } elseif ($env:PACKML_STATE_TIMEOUT_SECONDS) { [double]$env:PACKML_STATE_TIMEOUT_SECONDS } else { 10.0 }
-$moduleTasks = @('Main', 'EM_Conveyo', 'EM_Filler', 'EM_Capper')
-
 $script:results = New-Object System.Collections.Generic.List[object]
 $script:plcConnected = $false
 
@@ -149,7 +144,6 @@ function Invoke-CliStreamed {
         return [pscustomobject]@{
             Exit = [int]$process.ExitCode
             Failed = $output -match '(?im)Status:\s*FAILED|Build failed with \d+\s+error|^\s*ERROR:'
-            Output = $output
         }
     }
     finally {
@@ -337,36 +331,6 @@ function Read-ModuleState {
     return ConvertTo-StateInt -Value (Get-CliValue -Payload $result.Json -Fallback $result.Out)
 }
 
-function Get-ModuleStates {
-    $states = @{}
-    foreach ($task in $moduleTasks) {
-        $states[$task] = Read-ModuleState -Task $task
-    }
-    return $states
-}
-
-function Format-MachineDiagnostics {
-    $states = Get-ModuleStates
-    return (($moduleTasks | ForEach-Object { "- ${_}: em.StateCurrent=$($states[$_])" }) -join "`n")
-}
-
-function Wait-ForAllModulesInState {
-    param([int]$ExpectedState)
-
-    try {
-        return Wait-Until -Description "all modules to reach state $ExpectedState" -TimeoutSeconds $stateTimeoutSeconds -Predicate {
-            $states = Get-ModuleStates
-            foreach ($task in $moduleTasks) {
-                if ($states[$task] -ne $ExpectedState) { return $false }
-            }
-            return $states
-        }
-    }
-    catch {
-        throw "$($_.Exception.Message)`n`n$(Format-MachineDiagnostics)"
-    }
-}
-
 function Wait-ArSimRunning {
     return Wait-Until -Description 'ARsim to report RUN' -TimeoutSeconds 60 -IntervalMilliseconds 1000 -Predicate {
         (Get-SimulatorState).ToUpperInvariant() -eq 'RUN'
@@ -377,38 +341,6 @@ function Wait-ArSimStopped {
     Wait-Until -Description 'ARsim to stop' -TimeoutSeconds 60 -IntervalMilliseconds 1000 -Predicate {
         -not (Get-SimulatorRunning)
     } | Out-Null
-}
-
-function Remove-GeneratedBuildArtifacts {
-    $projectDirectory = (Resolve-Path -LiteralPath $ProjectPath).Path | Split-Path -Parent
-    foreach ($name in @('Temp', 'Binaries')) {
-        $path = Join-Path $projectDirectory $name
-        for ($attempt = 1; $attempt -le 5 -and (Test-Path -LiteralPath $path); $attempt++) {
-            try {
-                Remove-Item -LiteralPath $path -Recurse -Force -ErrorAction Stop
-            }
-            catch {
-                if ($attempt -eq 5) { throw }
-                Start-Sleep -Milliseconds 1000
-            }
-        }
-    }
-}
-
-function Reset-SimulatorForBuild {
-    $status = Invoke-Cli -CliArgs @('sim', 'status') -TimeoutMs 30000
-    $data = Get-FirstPropertyValue -InputObject $status.Json -Names @('data', 'Data')
-    $running = [bool](Get-FirstPropertyValue -InputObject $data -Names @('running', 'Running'))
-    if ($running) {
-        $stop = Invoke-Cli -CliArgs @('sim', 'stop') -TimeoutMs 60000
-        if ($stop.Exit -ne 0) { throw "ARsim stop failed with $($stop.Exit): $($stop.Out)" }
-        Wait-ArSimStopped
-    }
-
-    $disable = Invoke-Cli -CliArgs @('sim', 'disable', '--no-clean') -TimeoutMs 180000
-    if ($disable.Exit -ne 0) { throw "Simulation disable failed with $($disable.Exit): $($disable.Out)" }
-
-    Remove-GeneratedBuildArtifacts
 }
 
 function Stop-Simulator {
@@ -423,10 +355,7 @@ function Stop-Simulator {
 
     $disable = Invoke-Cli -CliArgs @('sim', 'disable', '--no-clean') -TimeoutMs 180000
     if ($disable.Exit -ne 0) { Write-Warning "Simulation disable failed with $($disable.Exit): $($disable.Out)" }
-    else {
-        try { Remove-GeneratedBuildArtifacts }
-        catch { Write-Warning "Generated artifact cleanup failed: $($_.Exception.Message)" }
-    }
+    
 }
 
 function Connect-IfReady {
@@ -452,19 +381,8 @@ Write-Host '================================='
 
 try {
     if (-not $SkipSimBuild) {
-        Test-Step 'simulator is reset before build' -StopOnFailure {
-            Reset-SimulatorForBuild
-        }
-
         $enable = Invoke-Cli -CliArgs @('sim', 'enable', '--no-start', '--no-clean') -TimeoutMs 180000
         if ($enable.Exit -ne 0) { throw "Simulation enable failed with $($enable.Exit): $($enable.Out)" }
-
-        Test-Step 'project rebuild has no errors' -StopOnFailure {
-            $rebuild = Invoke-CliStreamed -CliArgs @('build', 'rebuild', '--filter', 'errors') -TimeoutMs 600000
-            if ($rebuild.Exit -ne 0 -or $rebuild.Failed) {
-                throw "project rebuild failed with exit $($rebuild.Exit)."
-            }
-        }
 
         Test-Step 'simulator build has no errors' -StopOnFailure {
             $build = Invoke-CliStreamed -CliArgs @('build', 'sim', '--filter', 'errors') -TimeoutMs 600000

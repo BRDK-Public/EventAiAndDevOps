@@ -83,16 +83,18 @@ try {
         $iteration++
         Write-Host "`n=== Stability iteration $iteration started at $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') ===" -ForegroundColor Cyan
 
-        $process = Start-Process -FilePath $powerShellPath `
-            -ArgumentList $argumentText `
-            -WorkingDirectory $PSScriptRoot `
-            -NoNewWindow `
-            -PassThru `
-            -Wait
+        Push-Location -LiteralPath $PSScriptRoot
+        try {
+            & $powerShellPath @childArguments
+            $exitCode = $LASTEXITCODE
+        }
+        finally {
+            Pop-Location
+        }
 
-        if ($process.ExitCode -ne 0) {
-            Write-Host "=== Stability stopped: iteration $iteration failed with exit code $($process.ExitCode) ===" -ForegroundColor Red
-            exit $process.ExitCode
+        if ($exitCode -ne 0) {
+            Write-Host "=== Stability stopped: iteration $iteration failed with exit code $exitCode ===" -ForegroundColor Red
+            exit $exitCode
         }
 
         Write-Host "=== Stability iteration $iteration passed at $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') ===" -ForegroundColor Green
