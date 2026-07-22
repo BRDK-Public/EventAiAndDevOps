@@ -144,20 +144,13 @@ function Invoke-CliStreamed {
     $stderrOffset = 0
     $stdoutPending = ''
     $stderrPending = ''
-    $spinner = @('|', '/', '-', '\')
-    $spinnerIndex = 0
     $process = $null
 
     try {
         $process = Start-Process -FilePath $AsCliPath -ArgumentList $argumentText -RedirectStandardOutput $stdoutPath -RedirectStandardError $stderrPath -NoNewWindow -PassThru
-        Write-Host '      Build is running ' -NoNewline
         while (-not $process.HasExited) {
-            $wroteOutput = Read-RedirectedOutput -Path $stdoutPath -Offset ([ref]$stdoutOffset) -Pending ([ref]$stdoutPending)
-            $wroteOutput = (Read-RedirectedOutput -Path $stderrPath -Offset ([ref]$stderrOffset) -Pending ([ref]$stderrPending)) -or $wroteOutput
-            if (-not $wroteOutput) {
-                Write-Host ("`r      Build is running {0}" -f $spinner[$spinnerIndex]) -NoNewline
-                $spinnerIndex = ($spinnerIndex + 1) % $spinner.Count
-            }
+            Read-RedirectedOutput -Path $stdoutPath -Offset ([ref]$stdoutOffset) -Pending ([ref]$stdoutPending) | Out-Null
+            Read-RedirectedOutput -Path $stderrPath -Offset ([ref]$stderrOffset) -Pending ([ref]$stderrPending) | Out-Null
             Start-Sleep -Milliseconds 250
         }
 
@@ -165,7 +158,7 @@ function Invoke-CliStreamed {
         Read-RedirectedOutput -Path $stderrPath -Offset ([ref]$stderrOffset) -Pending ([ref]$stderrPending) | Out-Null
         if ($stdoutPending) { Write-Host ('      | ' + $stdoutPending) }
         if ($stderrPending) { Write-Host ('      | ' + $stderrPending) }
-        Write-Host "`r      Build process finished.           "
+        Write-Host '      Build process finished.'
         $process.Refresh()
         $output = (Get-Content -LiteralPath $stdoutPath -Raw -ErrorAction SilentlyContinue) + (Get-Content -LiteralPath $stderrPath -Raw -ErrorAction SilentlyContinue)
         return [pscustomobject]@{
