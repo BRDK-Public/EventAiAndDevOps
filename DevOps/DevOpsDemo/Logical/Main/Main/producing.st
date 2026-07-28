@@ -31,12 +31,11 @@ ACTION producing:
 		STATE_EXECUTE:
 			em.StateInfo := 'in state execute';
 			
-			em.Command.StateComplete := TRUE;
-			
 			IF hmi.stopMachine THEN
 				hmi.stopMachine := FALSE;
 				em.Command.Stop := TRUE;
 			END_IF
+			em.Command.StateComplete := TRUE;
 		
 		STATE_ABORTING:
 			em.StateInfo := 'in state aborting';
@@ -47,7 +46,7 @@ ACTION producing:
 			
 			IF hmi.clearMachine THEN
 				hmi.clearMachine := FALSE;
-				em.Command.Clear := TRUE;
+				em.Command.Clear := hw.di_EstopOK;
 			END_IF
 			em.Command.StateComplete := TRUE;
 		

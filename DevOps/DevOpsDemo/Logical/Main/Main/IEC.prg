@@ -6,6 +6,7 @@
     <File>producing.st</File>
     <File>alarm.st</File>
     <File>modules.st</File>
+    <File>simulation.st</File>
     <File Description="Local data types" Private="true">local.typ</File>
     <File Description="Local variables" Private="true">local.var</File>
   </Files>

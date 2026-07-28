@@ -18,6 +18,7 @@ PROGRAM _CYCLIC
 	
 	alarm;
 	modules;
+	simulation;
 	
 END_PROGRAM
 

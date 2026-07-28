@@ -61,18 +61,25 @@ ACTION producing:
 					END_IF
 					
 				20:
-					em.StateInfo := 'Index conveyor';
+					em.StateInfo := 'Start conveyor and wait for bottle to leave photosensor';
 				
 					Axis.MoveAdditive := TRUE;
 					Parameters.Velocity := 400.0;
 					Parameters.Distance := 100.0;
-				
-					IF Axis.MoveDone THEN
-						Axis.MoveAdditive := FALSE;
+					
+					IF NOT hw.di_bottleReady THEN
 						em.SubState := 30;
 					END_IF
-				
+
 				30:
+					em.StateInfo := 'Wait for axis movement to finish';
+
+					IF Axis.MoveDone THEN
+						Axis.MoveAdditive := FALSE;
+						em.SubState := 40;
+					END_IF
+
+				40:
 					em.StateInfo := 'Wait for stations to finish';
 				
 					gFillerInterface.cmd.startStation := TRUE;

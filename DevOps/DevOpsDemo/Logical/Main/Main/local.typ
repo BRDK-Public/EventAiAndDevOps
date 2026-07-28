@@ -6,4 +6,7 @@ TYPE
 		abortMachine : BOOL;
 		clearMachine : BOOL;
 	END_STRUCT;
+	hw_typ : 	STRUCT 
+		di_EstopOK : BOOL;
+	END_STRUCT;
 END_TYPE

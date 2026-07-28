@@ -1,3 +1,4 @@
 VAR
 	gVar : USINT;
+	gIsSimulation : BOOL;
 END_VAR

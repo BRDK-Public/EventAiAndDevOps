@@ -53,7 +53,7 @@ jobs:
 
       - name: E2E Tests
         shell: pwsh
-        run: .\tests\run-machine-sim-tests.ps1
+        run: .\tests\run-integration-tests.ps1
 
       - name: Create Project Installation package (PIP)
         if: success()
