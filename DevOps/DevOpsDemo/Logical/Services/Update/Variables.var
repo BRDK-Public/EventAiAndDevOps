@@ -2,7 +2,7 @@ VAR
 	DevLink_0 : DevLink;
 	state : UINT;
 	paramsDevlink : STRING[255];
-	device : STRING[80];
+	deviceUpdateServer : STRING[80];
 	ArProjectGetPackageInfo_0 : ArProjectGetPackageInfo;
 	ArProjectInstallPackage_0 : ArProjectInstallPackage;
 	ArProjectGetInfo_0 : ArProjectGetInfo;
@@ -10,4 +10,7 @@ VAR
 	UpdateSoftware : BOOL;
 	UpdateReady : BOOL;
 	UpdateVersion : {REDUND_UNREPLICABLE} STRING[32];
+	deviceLocal : STRING[80];
+	DirCopy_0 : DirCopy;
+	FileCopy_0 : FileCopy;
 END_VAR
