@@ -15,9 +15,6 @@
   <Module Name="X20CP1686X" Type="X20CP1686X" Version="1.10.0.0">
     <Connector Name="IF2">
       <Parameter ID="ActivateDevice" Value="1" />
-      <Parameter ID="Mode" Value="Manual" />
-      <Parameter ID="InternetAddress" Value="192.168.1.199" />
-      <Parameter ID="SubnetMask" Value="255.255.255.0" />
       <Parameter ID="ActivateSnmp" Value="2" />
     </Connector>
     <Connector Name="IF3">
@@ -26,6 +23,7 @@
     <Parameter ID="ConfigurationID" Value="DevOpsDemo_Config1" />
     <Parameter ID="ConfigVersion" Value="0.0.9" />
     <Parameter ID="UserPartitionSize" Value="250" />
+    <Parameter ID="AutomaticTransferOfUserfiles" Value="on" />
     <Parameter ID="SimulationModeOpcUa" Value="off" />
     <Parameter ID="TimerDeviceType" Value="EPLX2X" />
     <Parameter ID="TimerDevice" Value="X20CP1686X.IF3" />

@@ -11,5 +11,6 @@
     <Object Type="Package">EM_Filler</Object>
     <Object Type="Package">EM_Capper</Object>
     <Object Type="Package">Services</Object>
+    <Object Type="Package">userfiles</Object>
   </Objects>
 </Package>
