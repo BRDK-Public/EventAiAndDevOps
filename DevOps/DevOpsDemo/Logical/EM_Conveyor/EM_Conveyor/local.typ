@@ -5,6 +5,8 @@ TYPE
 	END_STRUCT;
 	sim_typ : 	STRUCT 
 		produce100Bottles : BOOL;
+		produce100BottlesWithAxisFault : BOOL;
+		axisFaultInjected : BOOL;
 		lastCycleCount : UDINT;
 	END_STRUCT;
 END_TYPE

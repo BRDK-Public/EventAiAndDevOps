@@ -638,6 +638,81 @@ try {
         Wait-ForAllModulesInState -ExpectedState $stoppedState | Out-Null
     }
 
+    Test-Step '100-bottle batch survives conveyor axis fault and recovery' {
+        $r = Invoke-Cli -CliArgs @('var', 'read', 'productionCycleCount', '--task', 'EM_Conveyo')
+        if ($r.Exit -ne 0) { throw "var read productionCycleCount failed with $($r.Exit): $($r.Out)" }
+        $counterBefore = [uint16]$r.Json.data.value
+        $expectedCounter = [uint16]($counterBefore + 100)
+
+        Write-Host '        Batch started | target: 100 bottles' -ForegroundColor DarkGray
+
+        $w = Invoke-Cli -CliArgs @('var', 'write', 'hmi.startMachine', '--value', 'true', '--task', 'Main')
+        if ($w.Exit -ne 0) { throw "Start command failed with $($w.Exit): $($w.Out)" }
+        Wait-ForAllModulesInState -ExpectedState $executeState | Out-Null
+
+        $w = Invoke-Cli -CliArgs @('var', 'write', 'sim.produce100BottlesWithAxisFault', '--value', 'true', '--task', 'EM_Conveyo')
+        if ($w.Exit -ne 0) { throw "Faulted batch command failed with $($w.Exit): $($w.Out)" }
+
+        Wait-Until -Description 'sim.axisFaultInjected to become true' -TimeoutSeconds ($stateTimeoutSeconds * 10) -IntervalMilliseconds 250 -Predicate {
+            $r = Invoke-Cli -CliArgs @('var', 'read', 'sim.axisFaultInjected', '--task', 'EM_Conveyo')
+            if ($r.Exit -ne 0) { throw "var read sim.axisFaultInjected failed with $($r.Exit): $($r.Out)" }
+            $actual = Get-CliValue -Payload $r.Json -Fallback $r.Out
+            return "$actual".Trim('"').ToLowerInvariant() -in @('1', 'true')
+        } | Out-Null
+        Wait-ForAllModulesInState -ExpectedState $abortedState | Out-Null
+
+        $r = Invoke-Cli -CliArgs @('var', 'read', 'productionCycleCount', '--task', 'EM_Conveyo')
+        if ($r.Exit -ne 0) { throw "var read productionCycleCount failed with $($r.Exit): $($r.Out)" }
+        $counterAtAbort = [uint16]$r.Json.data.value
+        if ($counterAtAbort -lt ($counterBefore + 25) -or $counterAtAbort -ge $expectedCounter) {
+            throw "Fault was injected outside the expected batch window (baseline $counterBefore, aborted at $counterAtAbort)"
+        }
+        Write-Host ('        Fault injected at {0}/100 | machine aborted' -f ($counterAtAbort - $counterBefore)) -ForegroundColor DarkGray
+
+        Start-Sleep -Seconds 1
+        $r = Invoke-Cli -CliArgs @('var', 'read', 'productionCycleCount', '--task', 'EM_Conveyo')
+        if ($r.Exit -ne 0) { throw "var read productionCycleCount failed with $($r.Exit): $($r.Out)" }
+        if ([uint16]$r.Json.data.value -ne $counterAtAbort) {
+            throw "productionCycleCount changed while the machine was aborted"
+        }
+        Write-Host ('        Counter held at {0}/100 while aborted' -f ($counterAtAbort - $counterBefore)) -ForegroundColor DarkGray
+
+        $w = Invoke-Cli -CliArgs @('var', 'write', 'simulateAxisError', '--value', 'false', '--task', 'EM_Conveyo')
+        if ($w.Exit -ne 0) { throw "Conveyor axis fault clear failed with $($w.Exit): $($w.Out)" }
+        $w = Invoke-Cli -CliArgs @('var', 'write', 'hmi.clearMachine', '--value', 'true', '--task', 'Main')
+        if ($w.Exit -ne 0) { throw "Clear command failed with $($w.Exit): $($w.Out)" }
+        Wait-ForAllModulesInState -ExpectedState $stoppedState | Out-Null
+
+        $w = Invoke-Cli -CliArgs @('var', 'write', 'hmi.startMachine', '--value', 'true', '--task', 'Main')
+        if ($w.Exit -ne 0) { throw "Restart command failed with $($w.Exit): $($w.Out)" }
+        Wait-ForAllModulesInState -ExpectedState $executeState | Out-Null
+        Write-Host '        Fault cleared | production recovered' -ForegroundColor DarkGray
+
+        Wait-Until -Description "faulted batch to reach $expectedCounter" -TimeoutSeconds ($stateTimeoutSeconds * 10) -IntervalMilliseconds 250 -Predicate {
+            $r = Invoke-Cli -CliArgs @('var', 'read', 'productionCycleCount', '--task', 'EM_Conveyo')
+            if ($r.Exit -ne 0) { throw "var read productionCycleCount failed with $($r.Exit): $($r.Out)" }
+            return [uint16]$r.Json.data.value -ge $expectedCounter
+        } | Out-Null
+
+        $r = Invoke-Cli -CliArgs @('var', 'read', 'productionCycleCount', '--task', 'EM_Conveyo')
+        if ($r.Exit -ne 0) { throw "var read productionCycleCount failed with $($r.Exit): $($r.Out)" }
+        if ([uint16]$r.Json.data.value -ne $expectedCounter) {
+            throw "Recovered batch count mismatch (expected $expectedCounter, got $($r.Json.data.value))"
+        }
+        Write-Host '        Batch complete | 100/100 bottles' -ForegroundColor DarkGray
+
+        $r = Invoke-Cli -CliArgs @('var', 'read', 'sim.produce100BottlesWithAxisFault', '--task', 'EM_Conveyo')
+        if ($r.Exit -ne 0) { throw "var read sim.produce100BottlesWithAxisFault failed with $($r.Exit): $($r.Out)" }
+        $actual = Get-CliValue -Payload $r.Json -Fallback $r.Out
+        if ("$actual".Trim('"').ToLowerInvariant() -notin @('0', 'false')) {
+            throw "sim.produce100BottlesWithAxisFault did not reset after batch completion"
+        }
+
+        $w = Invoke-Cli -CliArgs @('var', 'write', 'hmi.stopMachine', '--value', 'true', '--task', 'Main')
+        if ($w.Exit -ne 0) { throw "Stop command failed with $($w.Exit): $($w.Out)" }
+        Wait-ForAllModulesInState -ExpectedState $stoppedState | Out-Null
+    }
+
     Test-Step 'runtime logbook has no errors after all tests' {
         $r = Invoke-Cli -CliArgs @('logbook', 'read', '--count', '10', '--level', 'error')
         if ($r.Exit -ne 0) { throw "logbook read failed with $($r.Exit): $($r.Out)" }
