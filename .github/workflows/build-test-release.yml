@@ -94,15 +94,7 @@ jobs:
               }
             }
 
-      - name: Release
-        if: success() && startsWith(github.ref, 'refs/tags/') && steps.release_check.outputs.exists != 'true'
-        uses: softprops/action-gh-release@v2
-        with:
-          files: DevOps/DevOpsDemo/Update-*.zip
-          fail_on_unmatched_files: true
-          overwrite_files: true
-
-      - name: Publish to FTPserver
+      - name: Publish to Update Server
         if: success() && startsWith(github.ref, 'refs/tags/') && steps.release_check.outputs.exists != 'true'
         shell: pwsh
         run: |
@@ -128,3 +120,11 @@ jobs:
           # once every other file is already in place.
           Copy-Item -Path (Join-Path $source $marker) -Destination $dest -Force
           Write-Host "Published $source -> $dest ($marker copied last)"
+
+      - name: Release
+        if: success() && startsWith(github.ref, 'refs/tags/') && steps.release_check.outputs.exists != 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: DevOps/DevOpsDemo/Update-*.zip
+          fail_on_unmatched_files: true
+          overwrite_files: true
