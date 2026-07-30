@@ -1,3 +1,19 @@
+
+name: Test Runner
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on:
+        - self-hosted
+        - brdk-public
+
+    steps:
+      - name: Echo message
+        run: echo "Hello from BRDK-Public self-hosted runner!"
+
       - name: Diagnose and restart RDP
         shell: pwsh
         run: |
@@ -13,3 +29,6 @@
             Select-Object -First 30 TimeCreated, Id, LevelDisplayName, Message |
             Format-List
           Restart-Service TermService -Force
+
+      
+
