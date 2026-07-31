@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<BootSettings>
-	<Target>
-		<PIPCONFIG Path="Default_X20CPx68x/pipconfig.xml" />
-	</Target>
-	<Station Node="default">
-		<Include Name="Default_X20CPx68x_RemoteInstall/RemoteInstall.xml" />
-	</Station>
-</BootSettings>

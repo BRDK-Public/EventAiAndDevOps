@@ -57,7 +57,7 @@ jobs:
 
       - name: Create Project Installation package (PIP)
         if: success()
-        run: .\as-cli.exe build pip --output ReleaseCandidate
+        run: .\as-cli.exe build pip -o ReleaseCandidate --reboot true --ignore-version --execute-ei true --allow-partitioning false
 
       - name: Package Release
         if: success()

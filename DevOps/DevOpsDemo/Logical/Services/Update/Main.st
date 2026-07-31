@@ -62,6 +62,8 @@ PROGRAM _CYCLIC
 				state := 20;
 			ELSIF UpdateSoftware THEN
 				UpdateSoftware := FALSE;
+				TON_0.IN := FALSE;
+				TON_0();
 				
 				IF UpdateReady THEN
 					state := 50;
@@ -114,6 +116,17 @@ PROGRAM _CYCLIC
 			END_IF
 			
 		30:
+			TON_0.IN := TRUE;
+			TON_0.PT  := T#5s;
+			TON_0();
+			
+			IF TON_0.Q THEN
+				TON_0.IN := FALSE;
+				TON_0();
+				state := 35;
+			END_IF
+			
+		35:
 			// Download update (directory)
 			DirCopy_0.enable := TRUE;
 			DirCopy_0.pDestDev := ADR(deviceLocal);
@@ -162,9 +175,11 @@ PROGRAM _CYCLIC
 			
 			IF ArProjectInstallPackage_0.Done THEN
 				ArProjectInstallPackage_0.Execute := FALSE;
+				ArProjectInstallPackage_0();
 				state := 60;
 			ELSIF ArProjectInstallPackage_0.Error THEN
 				ArProjectInstallPackage_0.Execute := FALSE;
+				ArProjectInstallPackage_0();
 				state := 10;
 			END_IF
 			
