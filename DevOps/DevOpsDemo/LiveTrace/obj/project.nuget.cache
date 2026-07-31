@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "GxWuZgPlElE=",
+  "success": true,
+  "projectFilePath": "/home/runner/work/EventAiAndDevOps/EventAiAndDevOps/DevOps/DevOpsDemo/LiveTrace/LiveTrace.csproj",
+  "expectedPackageFiles": [
+    "/tmp/codeql-scratch-20c3f50bf42f7724/dbs/csharp/working/packages/microsoft.netcore.app.ref/8.0.29/microsoft.netcore.app.ref.8.0.29.nupkg.sha512",
+    "/tmp/codeql-scratch-20c3f50bf42f7724/dbs/csharp/working/packages/microsoft.windowsdesktop.app.ref/8.0.29/microsoft.windowsdesktop.app.ref.8.0.29.nupkg.sha512",
+    "/tmp/codeql-scratch-20c3f50bf42f7724/dbs/csharp/working/packages/microsoft.aspnetcore.app.ref/8.0.29/microsoft.aspnetcore.app.ref.8.0.29.nupkg.sha512",
+    "/tmp/codeql-scratch-20c3f50bf42f7724/dbs/csharp/working/packages/microsoft.netcore.app.host.linux-x64/8.0.29/microsoft.netcore.app.host.linux-x64.8.0.29.nupkg.sha512"
+  ],
+  "logs": []
+}
