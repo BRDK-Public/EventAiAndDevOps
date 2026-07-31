@@ -48,8 +48,11 @@ public partial class MainWindow : Window
             await RunCliAsync("plc", "connect", "--ip", PlcIpTextBox.Text.Trim());
 
             _watchCancellation = new CancellationTokenSource();
-            _watchProcess = StartCli("var", "watch-start", .. variables, "--task", TaskTextBox.Text.Trim(),
-                "--refresh", refresh.ToString(CultureInfo.InvariantCulture), "--follow");
+            var watchArguments = new List<string> { "var", "watch-start" };
+            watchArguments.AddRange(variables);
+            watchArguments.AddRange(["--task", TaskTextBox.Text.Trim(), "--refresh",
+                refresh.ToString(CultureInfo.InvariantCulture), "--follow"]);
+            _watchProcess = StartCli([.. watchArguments]);
             ToggleButton.Content = "Stop trace";
             StatusTextBlock.Text = $"Watching {variables.Length} variable(s).";
             _ = ReadWatchOutputAsync(_watchProcess, _watchCancellation.Token);
@@ -203,13 +206,14 @@ public partial class MainWindow : Window
         foreach (var argument in arguments)
             startInfo.ArgumentList.Add(argument);
         startInfo.ArgumentList.Add("--project");
-        startInfo.ArgumentList.Add(Path.Combine(ProjectDirectory(), "DevOpsDemo.apj"));
+        startInfo.ArgumentList.Add(System.IO.Path.Combine(ProjectDirectory(), "DevOpsDemo.apj"));
         startInfo.ArgumentList.Add("--format");
         startInfo.ArgumentList.Add("json");
     }
 
-    private static string ProjectDirectory() => Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", ".."));
-    private static string CliPath() => Path.Combine(ProjectDirectory(), "as-cli.exe");
+    private static string ProjectDirectory() => System.IO.Path.GetFullPath(
+        System.IO.Path.Combine(AppContext.BaseDirectory, "..", "..", "..", ".."));
+    private static string CliPath() => System.IO.Path.Combine(ProjectDirectory(), "as-cli.exe");
 
     private void ValuesGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
