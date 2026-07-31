@@ -60,8 +60,8 @@ PROGRAM _CYCLIC
 				TON_0();
 				UpdateReady := FALSE;
 				state := 20;
-			ELSIF UpdateSoftware THEN
-				UpdateSoftware := FALSE;
+			ELSIF hmi.updateSoftware THEN
+				hmi.updateSoftware := FALSE;
 				TON_0.IN := FALSE;
 				TON_0();
 				
@@ -159,7 +159,7 @@ PROGRAM _CYCLIC
 			IF FileCopy_0.status = ERR_OK THEN
 				FileCopy_0.enable := FALSE;
 				FileCopy_0();
-				state := 50;
+				state := 10;
 			ELSIF FileCopy_0.status <> ERR_FUB_BUSY THEN
 				FileCopy_0.enable := FALSE;
 				FileCopy_0();

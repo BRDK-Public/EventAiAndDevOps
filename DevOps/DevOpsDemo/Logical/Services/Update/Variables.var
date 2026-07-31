@@ -7,7 +7,6 @@ VAR
 	ArProjectInstallPackage_0 : ArProjectInstallPackage;
 	ArProjectGetInfo_0 : ArProjectGetInfo;
 	TON_0 : TON;
-	UpdateSoftware : BOOL;
 	UpdateReady : BOOL;
 	UpdateVersion : {REDUND_UNREPLICABLE} STRING[32];
 	deviceLocal : STRING[80];
