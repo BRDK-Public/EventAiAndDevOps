@@ -13,4 +13,10 @@ VAR
 	deviceLocal : STRING[80];
 	DirCopy_0 : DirCopy;
 	FileCopy_0 : FileCopy;
+	FileDelete_0 : FileDelete;
+	FileInfo_0 : FileInfo;
+	FileCreate_0 : FileCreate;
+	FileInfoData_0 : fiFILE_INFO;
+	UpdateVersionOnPLC : STRING[32];
+	hmi : hmi_typ;
 END_VAR
