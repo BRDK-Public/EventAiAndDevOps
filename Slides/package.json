@@ -1,0 +1,17 @@
+{
+  "name": "agentic-engineering-slides",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev --open",
+    "build": "slidev build",
+    "export": "slidev export --output agentic-engineering.pdf"
+  },
+  "devDependencies": {
+    "@iconify-json/mdi": "latest",
+    "@slidev/cli": "latest",
+    "@slidev/theme-default": "latest",
+    "playwright-chromium": "latest",
+    "vue": "latest"
+  }
+}
