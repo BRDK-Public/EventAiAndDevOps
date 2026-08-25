@@ -19,6 +19,22 @@ npm run build
 
 The static site is written to `dist/`.
 
+## GitHub Pages
+
+The repository includes a GitHub Actions workflow at `.github/workflows/deploy-slides.yml` that builds and publishes this deck as a static GitHub Pages site. It runs for pushes to the `DevOps` branch that change `Slides/`, and can also be started manually from the Actions tab.
+
+Before the first deployment, set **Settings > Pages > Build and deployment > Source** to **GitHub Actions**. The published deck will be available at:
+
+```text
+https://brdk-public.github.io/EventAiAndDevOps/
+```
+
+The workflow builds with the repository base path and hash routing, so slide navigation and asset URLs work from the GitHub Pages subdirectory. To reproduce that build locally:
+
+```powershell
+npm run build -- --base /EventAiAndDevOps/ --router-mode hash
+```
+
 ## Export
 
 ```powershell
