@@ -30,12 +30,24 @@ withDefaults(defineProps<{
       </div>
 
       <div class="belt-wrap">
+        <div class="station-track">
+          <div class="station filler-station">
+            <span>FILLER</span>
+            <b>{{ state === 'fault' ? 'HOLD' : state === 'recovered' ? 'DONE' : 'READY' }}</b>
+            <i></i>
+          </div>
+          <div class="station capper-station">
+            <span>CAPPER</span>
+            <b>{{ state === 'fault' ? 'HOLD' : state === 'recovered' ? 'DONE' : 'READY' }}</b>
+            <i></i>
+          </div>
+        </div>
         <div class="bottles">
           <div
             v-for="bottleIndex in 10"
             :key="bottleIndex"
             class="bottle"
-            :class="{ counted: bottleIndex <= 6 }"
+            :class="{ counted: state === 'recovered' || bottleIndex <= 6 }"
           >
             <i></i>
           </div>
@@ -154,7 +166,78 @@ withDefaults(defineProps<{
 }
 
 .belt-wrap {
+  position: relative;
   min-width: 0;
+}
+
+.station-track {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  height: 39px;
+  margin-bottom: 9px;
+}
+
+.station {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  min-width: 0;
+  padding: 0 9px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-top: 3px solid #7b878d;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.station.capper-station {
+  border-color: rgba(255, 122, 0, 0.62);
+}
+
+.station::after {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 1px;
+  height: 9px;
+  content: '';
+  background: #8c969b;
+}
+
+.station span,
+.station b {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.station span {
+  overflow: hidden;
+  color: #bdc5c9;
+  font-size: 7px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.station b {
+  color: #ff7a00;
+  font-size: 7px;
+  font-weight: 600;
+}
+
+.station i {
+  position: absolute;
+  right: 9px;
+  bottom: 6px;
+  left: 9px;
+  height: 2px;
+  background: rgba(255, 122, 0, 0.34);
+}
+
+.is-fault .station i {
+  background: rgba(255, 122, 0, 0.72);
+}
+
+.is-recovered .station i {
+  background: rgba(69, 169, 107, 0.72);
 }
 
 .bottles {
@@ -298,6 +381,67 @@ withDefaults(defineProps<{
 
 .compact .conveyor-stage {
   min-height: 120px;
+  grid-template-columns: 60px 1fr 88px;
+  gap: 10px;
+  padding: 13px 14px 15px;
+}
+
+.compact .conveyor-header {
+  height: 42px;
+  padding: 0 14px;
+}
+
+.compact .station-track {
+  gap: 6px;
+  height: 31px;
+  margin-bottom: 7px;
+}
+
+.compact .station {
+  padding: 0 6px;
+  border-top-width: 2px;
+}
+
+.compact .station span,
+.compact .station b {
+  font-size: 6px;
+}
+
+.compact .station::after {
+  bottom: -8px;
+  height: 7px;
+}
+
+.compact .station i {
+  right: 6px;
+  bottom: 4px;
+  left: 6px;
+}
+
+.compact .bottles {
+  height: 57px;
+}
+
+.compact .bottle {
+  width: 17px;
+  height: 43px;
+}
+
+.compact .bottle::before {
+  top: -7px;
+  left: 4px;
+  width: 6px;
+  height: 7px;
+}
+
+.compact .counter-panel {
+  min-height: 82px;
+  padding: 11px;
+}
+
+.compact .counter-panel b {
+  margin-top: 7px;
+  font-size: 23px;
 }
 
 @keyframes belt-motion {
