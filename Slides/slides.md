@@ -1510,8 +1510,60 @@ layout: default
 class: devops-tooling dark-slide
 ---
 
-<!--
+<div class="kicker">WORKSHOP 02 · DEVOPS · 03 MIN</div>
 
+<div class="delivery-heading">
+  <div>
+    <h1>Continuous<br><span class="accent">Integration</span></h1>
+    <p>Every change is built and checked while it is still small.</p>
+  </div>
+  <div class="delivery-definition-mark"><span>CI</span><small>FAST FEEDBACK<br>BEFORE RELEASE</small></div>
+</div>
+
+<div class="delivery-flow ci-flow" aria-label="Continuous Integration stages">
+  <section class="delivery-flow-stage is-code" aria-label="Code">
+    <span class="delivery-flow-number">01</span>
+    <mdi-source-commit />
+    <b>CODE</b>
+    <small>change is versioned</small>
+  </section>
+  <div class="delivery-flow-arrow" v-click="1" aria-hidden="true"><mdi-arrow-right /></div>
+  <section class="delivery-flow-stage is-ci" v-click="1" aria-label="Build">
+    <span class="delivery-flow-number">02</span>
+    <mdi-hammer-wrench />
+    <b>BUILD</b>
+    <small>repeatable output</small>
+  </section>
+  <div class="delivery-flow-arrow" v-click="2" aria-hidden="true"><mdi-arrow-right /></div>
+  <section class="delivery-flow-stage is-ci" v-click="2" aria-label="Test">
+    <span class="delivery-flow-number">03</span>
+    <mdi-test-tube />
+    <b>TEST</b>
+    <small>expected behavior</small>
+  </section>
+  <div class="delivery-flow-arrow" v-click="3" aria-hidden="true"><mdi-arrow-right /></div>
+  <section class="delivery-flow-stage is-verify" v-click="3" aria-label="Verify">
+    <span class="delivery-flow-number">04</span>
+    <mdi-shield-check-outline />
+    <b>VERIFY</b>
+    <small>evidence recorded</small>
+  </section>
+</div>
+
+<div class="delivery-footer" v-click="3">
+  <div class="delivery-footer-label"><mdi-check-circle-outline /><span>CI QUESTION</span></div>
+  <strong>Does this change still behave as expected?</strong>
+  <small>Fast feedback keeps the change easy to understand and easy to fix.</small>
+</div>
+
+<div class="slide-id">W2 · 33</div>
+
+<!--
+Continuous Integration means that each change meets the same build and test process. The goal is not to make every change perfect before it moves. The goal is to find problems while the change is still small enough to understand.
+
+The engineer creates and versions the change. The pipeline produces a repeatable output, runs the expected checks, and records evidence. A green result does not replace engineering judgment, but it gives the engineer something objective to review.
+
+Transition: Once software is verified, how do we move it toward a controlled release?
 -->
 
 ---
@@ -1519,8 +1571,74 @@ layout: default
 class: where-agentic-fits dark-slide
 ---
 
-<!--
+<div class="kicker">WORKSHOP 02 · DEVOPS · 03 MIN</div>
 
+<div class="delivery-heading">
+  <div>
+    <h1>Continuous<br><span class="accent">Delivery</span></h1>
+    <p>Verified software becomes a traceable candidate for controlled release.</p>
+  </div>
+  <div class="delivery-definition-mark"><span>CD</span><small>READY TO RELEASE<br>WHEN APPROVED</small></div>
+</div>
+
+<div class="delivery-handoff" v-click="1">
+  <mdi-check-circle-outline />
+  <span>FROM CI</span>
+  <strong>VERIFIED ARTIFACT</strong>
+  <small>same bits, named and traceable</small>
+</div>
+
+<div class="delivery-flow cd-flow" aria-label="Continuous Delivery stages">
+  <section class="delivery-flow-stage is-package">
+    <span class="delivery-flow-number">05</span>
+    <mdi-package-variant-closed />
+    <b>PACKAGE</b>
+    <small>traceable artifact</small>
+  </section>
+  <div class="delivery-flow-arrow" v-click="1" aria-hidden="true"><mdi-arrow-right /></div>
+  <section class="delivery-flow-stage is-cd" v-click="1">
+    <span class="delivery-flow-number">06</span>
+    <mdi-clipboard-check-outline />
+    <b>RELEASE CANDIDATE</b>
+    <small>ready for decision</small>
+  </section>
+  <div class="delivery-gate-slot" v-click="2">
+    <div class="delivery-gate-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+    <div class="delivery-gate">
+      <mdi-account-check-outline />
+      <span>HUMAN GATE</span>
+      <b>release decision</b>
+    </div>
+  </div>
+  <section class="delivery-flow-stage is-deploy" v-click="3">
+    <span class="delivery-flow-number">07</span>
+    <mdi-upload-network-outline />
+    <b>DEPLOY</b>
+    <small>controlled target</small>
+  </section>
+  <div class="delivery-flow-arrow" v-click="4" aria-hidden="true"><mdi-arrow-right /></div>
+  <section class="delivery-flow-stage is-monitor" v-click="4">
+    <span class="delivery-flow-number">08</span>
+    <mdi-chart-timeline-variant-shimmer />
+    <b>MONITOR</b>
+    <small>feeds the next change</small>
+  </section>
+</div>
+
+<div class="delivery-footer" v-click="4">
+  <div class="delivery-footer-label"><mdi-shield-check-outline /><span>CD QUESTION</span></div>
+  <strong>Can we move this verified artifact safely to its target?</strong>
+  <small>Automation prepares the release; people own the decision.</small>
+</div>
+
+<div class="slide-id">W2 · 34</div>
+
+<!--
+Continuous Delivery begins with the verified result from Continuous Integration. The pipeline packages that result so it can be identified, reproduced, and moved without rebuilding it by hand.
+
+The release candidate is ready, but ready does not mean automatic. A human release decision remains visible between the candidate and the deployment target. After deployment, monitoring tells us what happened in the real environment and provides feedback for the next change.
+
+Transition: CI and CD are most useful when we see them as one connected delivery flow.
 -->
 
 ---
@@ -1528,8 +1646,108 @@ layout: default
 class: devops-pipeline dark-slide
 ---
 
-<!--
+<div class="kicker">WORKSHOP 02 · DEVOPS · 05 MIN</div>
 
+<div class="delivery-heading combined-heading">
+  <div>
+    <h1>CI/CD<br><span class="accent">putting it together</span></h1>
+    <p>CI makes changes trustworthy. CD makes verified software releasable.</p>
+  </div>
+  <div class="delivery-principle"><span>ONE SYSTEM</span><strong>ENGINEER CREATES THE CHANGE.<br>PIPELINE EXECUTES THE PROCESS.</strong></div>
+</div>
+
+<div class="delivery-combined-flow" aria-label="The combined DevOps delivery flow">
+  <section class="delivery-region ci-region" aria-label="Continuous Integration">
+    <div class="delivery-region-heading"><span>CONTINUOUS INTEGRATION</span><small>make the change trustworthy</small></div>
+    <div class="delivery-region-flow ci-region-flow">
+      <section class="delivery-flow-stage is-code">
+        <span class="delivery-flow-number">01</span>
+        <mdi-source-commit />
+        <b>CODE</b>
+        <small>engineer creates</small>
+      </section>
+      <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+      <section class="delivery-flow-stage is-ci">
+        <span class="delivery-flow-number">02</span>
+        <mdi-hammer-wrench />
+        <b>BUILD</b>
+        <small>repeatable output</small>
+      </section>
+      <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+      <section class="delivery-flow-stage is-ci">
+        <span class="delivery-flow-number">03</span>
+        <mdi-test-tube />
+        <b>TEST</b>
+        <small>expected behavior</small>
+      </section>
+      <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+      <section class="delivery-flow-stage is-verify">
+        <span class="delivery-flow-number">04</span>
+        <mdi-shield-check-outline />
+        <b>VERIFY</b>
+        <small>evidence recorded</small>
+      </section>
+    </div>
+  </section>
+
+  <div class="delivery-combined-handoff" v-click="1" aria-hidden="true">
+    <span>VERIFIED SOFTWARE<br>BECOMES A<br>RELEASE CANDIDATE</span>
+    <mdi-arrow-right />
+  </div>
+
+  <section class="delivery-region cd-region" v-click="1" aria-label="Continuous Delivery">
+    <div class="delivery-region-heading"><span>CONTINUOUS DELIVERY</span><small>move it with control</small></div>
+    <div class="delivery-region-flow cd-region-flow">
+      <section class="delivery-flow-stage is-package">
+        <span class="delivery-flow-number">05</span>
+        <mdi-package-variant-closed />
+        <b>PACKAGE</b>
+        <small>traceable artifact</small>
+      </section>
+      <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+      <section class="delivery-flow-stage is-cd">
+        <span class="delivery-flow-number">06</span>
+        <mdi-clipboard-check-outline />
+        <b>RELEASE</b>
+        <small>ready for decision</small>
+      </section>
+      <div class="delivery-approval-slot" v-click="2">
+        <mdi-arrow-right class="delivery-approval-arrow" aria-hidden="true" />
+        <div class="delivery-inline-gate">
+          <mdi-account-check-outline />
+          <span>RELEASE DECISION</span>
+        </div>
+      </div>
+      <section class="delivery-flow-stage is-deploy" v-click="2">
+        <span class="delivery-flow-number">07</span>
+        <mdi-upload-network-outline />
+        <b>DEPLOY</b>
+        <small>controlled target</small>
+      </section>
+      <div class="delivery-flow-arrow" v-click="3" aria-hidden="true"><mdi-arrow-right /></div>
+      <section class="delivery-flow-stage is-monitor" v-click="3">
+        <span class="delivery-flow-number">08</span>
+        <mdi-chart-timeline-variant-shimmer />
+        <b>MONITOR</b>
+        <small>feeds the next change</small>
+      </section>
+    </div>
+  </section>
+</div>
+
+<div class="delivery-feedback" v-click="3">
+  <div class="delivery-footer-label"><mdi-chart-timeline-variant-shimmer /><span>FEEDBACK LOOP</span></div>
+  <strong>Monitor what happened. Feed the next change.</strong>
+</div>
+
+<div class="slide-id">W2 · 35</div>
+
+<!--
+This is the whole delivery flow in one picture. Continuous Integration takes the engineer's change through build, test, and verification. Continuous Delivery takes the verified result through packaging, release, deployment, and monitoring.
+
+The handoff matters: the pipeline does not silently rebuild a different version. It moves a named artifact forward. The release decision is deliberately visible, because controlled delivery still needs human context and accountability.
+
+Monitoring closes the loop. What happens in the target environment becomes evidence for the next change, so delivery is not a one-way copy operation but a repeatable engineering system.
 -->
 
 ---
