@@ -709,26 +709,15 @@ class: demo-slide dark-slide as-cli-slide
 # AS-CLI:<br><span class="accent">action + observation</span>
 
 <div class="demo-steps">
-  <div v-click><span>01</span><b>INSPECT</b><small>project + configuration</small></div>
-  <div v-click><span>02</span><b>BUILD</b><small>declared target</small></div>
-  <div v-click><span>03</span><b>SIMULATE</b><small>start controlled ARsim</small></div>
-  <div v-click><span>04</span><b>CONNECT</b><small>PVI observation channel</small></div>
-  <div v-click><span>05</span><b>READ</b><small>variables + logbook</small></div>
-  <div v-click><span>06</span><b>PACKAGE</b><small>artifacts + evidence</small></div>
+  <div v-click><span>01</span><b>SIMULATE</b><small>output: running</small></div>
+  <div v-click><span>02</span><b>BUILD</b><small>5 warnings · 0 errors</small></div>
+  <div v-click><span>03</span><b>READ PV</b><small>bottleCount → 42 UINT</small></div>
+  <div v-click><span>04</span><b>WRITE PV</b><small>main.reset → completed</small></div>
+  <div v-click><span>05</span><b>READ LOGBOOK</b><small>arsyslog → messages</small></div>
+  <div v-click><span>06</span><b>CREATE PIP</b><small>config ID → artifact</small></div>
 </div>
 
-<div class="evidence-terminal">
-  <div class="terminal-title"><i></i><i></i><i></i><span>AS-CLI · CONTROLLED OBSERVATION</span><small>EVENT VERSION TO CONFIRM</small></div>
-  <div class="terminal-body">
-    <div v-click><span class="time">09:41:02</span><span class="op">[AS-CLI]</span><b>project inspect --configuration ARsim</b><em class="ok">JSON</em></div>
-    <div v-click><span class="time">09:41:18</span><span class="op">[AS-CLI]</span><b>build --target ARsim</b><em class="ok">PASS</em></div>
-    <div v-click><span class="time">09:41:46</span><span class="op">[AS-CLI]</span><b>arsim start --profile controlled</b><em class="ok">READY</em></div>
-    <div v-click><span class="time">09:42:05</span><span class="op">[AS-CLI]</span><b>pvi connect --target ARsim</b><em class="ok">CONNECTED</em></div>
-    <div v-click><span class="time">09:42:21</span><span class="op">[AS-CLI]</span><b>var read Batch.Counter</b><em class="ok">42</em></div>
-    <div v-click><span class="time">09:42:37</span><span class="op">[AS-CLI]</span><b>logbook read --severity warning,error</b><em class="ok">CAPTURED</em></div>
-  </div>
-  <div class="terminal-footer">MCP GIVES KNOWLEDGE · AS-CLI GIVES CONTROLLED ACTION + OBSERVATION</div>
-</div>
+<TerminalCli />
 
 <div class="evidence-boundary" v-click>
   <mdi-information-outline /> Show only operations verified with the event build. Keep physical-target access and <strong>online writes</strong> outside this demo.
@@ -1041,26 +1030,7 @@ class: planning-slide dark-slide
 
 # Three workflows<br><span class="accent">everyone needs</span>
 
-<div class="request-card" v-click>
-  <span>THE SHARED PATTERN</span>
-  <b>Human intent.<br>Agent action.<br>Human evaluation.</b>
-  <small>HITL · AFK · HITL</small>
-</div>
-
-<div class="question-field">
-  <div v-click><span>01 · HITL</span>Idea / bug → specification → issues</div>
-  <div v-click><span>02 · AFK</span>Plan → implement → review → test → candidate</div>
-  <div v-click><span>03 · HITL</span>Evaluate the evidence → PR decision</div>
-  <div v-click><span>04</span>Human owns intent and priorities</div>
-  <div v-click><span>05</span>Agents own bounded implementation</div>
-  <div v-click><span>06</span>Gates return facts, not confidence</div>
-</div>
-
-<div class="plan-purpose" v-click>
-  <div><mdi-account-voice /><span>HITL</span><b>decide intent</b></div>
-  <div><mdi-robot-outline /><span>AFK</span><b>run the loop</b></div>
-  <div class="not-purpose"><mdi-account-check-outline /><span>HITL</span><b>accept the result</b></div>
-</div>
+<AgentWorkflow />
 
 <div class="slide-id">W13 · 24</div>
 
