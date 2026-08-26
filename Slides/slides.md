@@ -1365,7 +1365,7 @@ layout: default
 class: why-devops-slide dark-slide
 ---
 
-<div class="kicker">WORKSHOP 02 · WHY DEVOPS? · 04 MIN</div>
+<div class="kicker">WORKSHOP 02 · WHY DEVOPS?</div>
 
 # Why <span class="accent">DevOps?</span>
 
@@ -1376,7 +1376,7 @@ class: why-devops-slide dark-slide
     <ul>
       <li>Generates code faster</li>
       <li>Makes automated tests easier to create</li>
-      <li>Accelerates development work</li>
+      <li>Turns ideas into prototypes quickly</li>
     </ul>
   </section>
 
@@ -1398,13 +1398,12 @@ class: why-devops-slide dark-slide
   </section>
 </div>
 
-<div class="why-devops-support">
-  <div><mdi-console-line /><div><span>SHARED TOOLS + WORKFLOWS</span><b>including <span class="why-devops-command">as-cli</span></b></div></div>
-  <div><mdi-account-check-outline /><div><span>GROWING CUSTOMER DEMAND</span><b>reliable software updates</b></div></div>
-</div>
+<br />
+<br />
+<br />
+<br />
 
 <div class="why-devops-takeaway">
-  <span>THE TAKEAWAY</span>
   <strong>AI helps us create software faster. DevOps helps us deliver it safely.</strong>
 </div>
 
@@ -1415,9 +1414,131 @@ Remember: Agentic Engineering accelerates software creation; it does not make th
 
 Walk left to right. AI can generate code and tests faster. DevOps adds the build, test, quality, deployment, and feedback controls needed to deliver the result reliably.
 
-Mention the two supporting reasons: shared tools and workflows, including as-cli, and growing customer demand for reliable software updates.
+"If AI helps us create ten times more software changes, we need a system that can verify, test, and deliver ten times more changes as well. That's where DevOps comes in."
 
 Keep the claim bounded. DevOps provides controls and evidence for delivery; it does not replace engineering judgment, safety validation, or release accountability.
+-->
+
+---
+layout: default
+class: old-way-slide dark-slide
+---
+
+<div class="kicker">WORKSHOP 02 · THE OLD WAY · 04 MIN</div>
+
+# Why <span class="accent">change?</span>
+
+<div class="old-way-flow" aria-label="The old manual delivery flow">
+  <div class="old-way-step">
+    <span class="old-way-number">01</span>
+    <mdi-account-hard-hat-outline />
+    <b>ENGINEER</b>
+  </div>
+  <div class="old-way-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <div class="old-way-step">
+    <span class="old-way-number">02</span>
+    <mdi-file-edit-outline />
+    <b>CODE CHANGE</b>
+  </div>
+  <div class="old-way-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <div class="old-way-step">
+    <span class="old-way-number">03</span>
+    <mdi-hammer-wrench />
+    <b>BUILD<br>MANUALLY</b>
+  </div>
+  <div class="old-way-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <div class="old-way-step">
+    <span class="old-way-number">04</span>
+    <mdi-folder-multiple-outline />
+    <b>COPY FILES<br>AROUND</b>
+  </div>
+  <div class="old-way-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <div class="old-way-step">
+    <span class="old-way-number">05</span>
+    <mdi-test-tube />
+    <b>RUN TESTS<br>MANUALLY (IF ANY)</b>
+  </div>
+  <div class="old-way-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <div class="old-way-step">
+    <span class="old-way-number">06</span>
+    <mdi-package-variant-closed-check />
+    <b>DEPLOY<br>MANUALLY</b>
+  </div>
+  <div class="old-way-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <div class="old-way-step warning">
+    <span class="old-way-number">07</span>
+    <mdi-help-circle-outline />
+    <b>HOPE NOTHING<br>BROKE</b>
+  </div>
+</div>
+
+<div class="old-way-pain">
+  <div class="old-way-pain-label"><span>PAIN POINTS</span><b>MANUAL DELIVERY CREATES BLIND SPOTS</b></div>
+  <ul>
+    <li><mdi-hammer-wrench /><span>Manual build steps</span></li>
+    <li><mdi-monitor-multiple /><span>Different PC configurations</span></li>
+    <li><mdi-test-tube-empty /><span>Missing tests</span></li>
+    <li><mdi-undo-variant /><span>Difficult rollbacks</span></li>
+    <li><mdi-help-circle-outline /><span>Hard to know what was deployed</span></li>
+  </ul>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<div class="old-way-takeaway">
+  <blockquote>As software creation accelerates (due to AI), delivery must become more systematic and automated.</blockquote>
+</div>
+
+<div class="slide-id">W2 · 32</div>
+
+<!--
+"Traditionally, many software delivery activities have been manual. An engineer makes a change, builds locally, runs a few checks, maybe copies files to a test system, and eventually deploys the result."
+
+"That works when changes are infrequent. But Agentic Engineering changes the equation. If we can generate code, tests, and prototypes much faster, we can also expect more changes, more experiments, and more iterations."
+
+"At that point, the bottleneck is no longer creating software. The bottleneck becomes verifying and delivering it consistently."
+
+"That's why, as software creation accelerates, delivery must become more systematic and automated."
+-->
+
+---
+layout: default
+class: devops-tooling dark-slide
+---
+
+<!--
+
+-->
+
+---
+layout: default
+class: where-agentic-fits dark-slide
+---
+
+<!--
+
+-->
+
+---
+layout: default
+class: devops-pipeline dark-slide
+---
+
+<!--
+
+-->
+
+---
+layout: default
+class: example-orange-juice-machine dark-slide
+---
+
+<!--
+
 -->
 
 ---
@@ -2092,4 +2213,23 @@ Reveal the four adoption steps, then give pairs two minutes to fill in the workf
 Close with the guardrails: bounded, reversible, measurable, and human-approved. The workshop ends here; questions and lunch follow at 12.15.
 
 Status: General adoption guidance and illustrative examples.
+-->
+
+---
+layout: default
+class: working-in-progress dark-slide
+---
+
+<!--
+Make an ending slide about "what we are working on" (Robust docker image, Package Manager).
+Maybe use wording like OT does not become IT in a year.
+-->
+
+---
+layout: default
+class: Questions dark-slide
+---
+
+<!--
+Questions
 -->
