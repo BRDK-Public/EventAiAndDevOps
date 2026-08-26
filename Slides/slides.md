@@ -166,37 +166,28 @@ class: dark-slide
   <div class="signal-pulse"></div>
   <p>DevOps gives agents rails.<br><strong>Agents make the rails more useful.</strong></p>
 </div>
-
 <div class="slide-id">I3 · 04</div>
 
 <!--
 DevOps og Agentic Engineering har forskellig control flow, men de har brug for den samme platform.
-
 DevOps udfører en kendt sekvens: checkout, build, test, package og publish. En agent er nyttig, når næste handling afhænger af feedback: Hvilken fil er relevant? Hvorfor fejlede build? Hvilken ændring bør prøves nu?
 
 Begge kræver versionsstyring, en ren build, kontrollerede targets, strukturerede diagnostics, objektive assertions og sporbar evidence. Uden DevOps-fundament kan agenten producere ændringer hurtigere, men organisationen kan ikke styre eller bevise kvaliteten.
-
-Transition: For at forstå arkitekturen skal vi skelne mellem model, agent og harness.
 -->
 
 ---
 layout: default
-class: stack-slide dark-slide
 ---
 
 <div class="kicker">DEFINITION · 04 MIN</div>
 
-# What is an<br><span class="accent">agent?</span>
-
 <div class="layer-stack">
   <div class="stack-layer harness-layer" v-click>
     <div class="layer-index">03</div>
-    <div class="layer-title">HARNESS</div>
     <div class="layer-job">Context · tools · permissions · logs</div>
     <mdi-message-processing-outline />
   </div>
   <div class="stack-layer platform-layer" v-click>
-    <div class="layer-index">02</div>
     <div class="layer-title">AGENT</div>
     <div class="layer-job">Goal · chooses actions · observes results</div>
     <mdi-source-pull />
@@ -210,28 +201,21 @@ class: stack-slide dark-slide
 </div>
 
 <div class="record-rail" v-click>
-  <mdi-database-check-outline />
-  <span>AN AGENT IS A MODEL IN A HARNESS</span>
   <small>WITH A GOAL, TOOLS AND FEEDBACK</small>
 </div>
 
 <div class="slide-id">I4 · 05</div>
-
 <!--
 Modellen alene har ingen adgang til Automation Studio, et project, en PLC eller en logbook. Den kan kun arbejde med den context, den får.
 
 Agenten opstår, når modellen kan vælge et tool, kalde det, se resultatet og beslutte næste trin. Harnesset er miljøet rundt om agenten: context, tools, permissions, logging, handoffs, budgets og approvals.
-
 Git er versionsstyringen. GitHub eller Azure DevOps lægger samarbejde ovenpå med issues, pull requests og CI/CD. Repository, issue, commit, pull request og testresultat er de holdbare artefakter. En chatsamtale er ikke system of record.
-
 Transition: Hvorfor er dette sket hurtigere i IT end i OT?
 -->
-
 ---
 layout: default
 class: process-slide
 ---
-
 <div class="kicker">FOUNDATION · 04 MIN</div>
 
 # IT + OT are<br><span class="accent">converging</span>
@@ -241,12 +225,10 @@ class: process-slide
     <div class="step-icon"><mdi-source-branch /></div>
     <span>01</span><b>Git</b><small>visible + reversible</small>
   </div>
-  <div class="track-arrow" v-click><mdi-arrow-right /></div>
   <div class="track-step" v-click>
     <div class="step-icon"><mdi-hammer-wrench /></div>
     <span>02</span><b>Repeatable build</b><small>reproducible result</small>
   </div>
-  <div class="track-arrow" v-click><mdi-arrow-right /></div>
   <div class="track-step" v-click>
     <div class="step-icon"><mdi-test-tube /></div>
     <span>03</span><b>Automated test</b><small>objective feedback</small>
@@ -257,27 +239,23 @@ class: process-slide
     <span>04</span><b>Reviewable release</b><small>evidence + approval</small>
   </div>
 </div>
-
 <div class="amplifier-band" v-click>
   <div class="amp-label"><mdi-auto-fix /> AI</div>
   <div class="amp-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="amp-copy">amplifies the engineering system <strong>around it</strong></div>
-</div>
+  </div>
 
 <div class="margin-note">SOFTWARE MOVED FIRST BECAUSE ITS FEEDBACK LOOP BECAME<br>CHEAP, VISIBLE, AND REVERSIBLE.</div>
 
 <div class="slide-id">I5 · 06</div>
-
 <!--
 IT er ikke foran, fordi softwareudviklere er klogere. Kode og configuration er tekst, Git gør ændringer diffable og reversible, APIs og CLIs gør handlinger scriptbare, og CI giver hurtig feedback.
 
 OT har yderligere udfordringer: fysiske konsekvenser, lange livscyklusser, hardware- og versionsafhængigheder, motion, safety og mindre standardiseret feedback.
-
 IT og OT konvergerer nu, fordi flere automation-artifacts bliver inspectable, flere operationer bliver scriptbare, og simulation og diagnostics kan indgå i et feedback-loop.
 
 Transition: Det vigtigste hul er forskellen mellem at generere kode og at verificere engineering.
 -->
-
 ---
 layout: default
 class: feedback-slide dark-slide
@@ -576,7 +554,6 @@ class: bridge-slide dark-slide
 <!--
 Agentic Bridge er ikke én stor agent og ikke én ny model. Det er en samling af grænseflader og byggesten.
 
-Instructions og skills fortæller agenten, hvordan et Automation Studio-projekt bør behandles. MCP giver adgang til relevant og versionspassende B&R-viden. AS-CLI giver et kommandobaseret interface til udvalgte Automation Studio-handlinger og observationer.
 
 Kombinationen er vigtig: Viden uden handling giver en informeret rådgiver. Handling uden kontekst kan være farligt. Kontekst, værktøjer og feedback i en kontrolleret proces giver engineering.
 
@@ -1185,7 +1162,6 @@ class: demo-slide dark-slide
 
 <!--
 Planneren vælger næste ready issue, vurderer afhængigheder og opretter en isoleret branch eller worktree. Implementeren ændrer kun det godkendte scope, tilføjer relevante tests og returnerer assumptions og evidence.
-
 Reviewer-agenten arbejder fra frisk context og kontrollerer intent, invariants, customer instructions, generated artifacts, test quality, security og unexpected scope. Den er ikke en deterministic oracle.
 
 Test runneren kører i et rent, kontrolleret miljø: relevante configurations, regression suite, targeted tests, ARsim/PVI hvor det gælder, warning comparison og provenance.
@@ -1324,7 +1300,7 @@ class: devops-cover ai-workshop-cover dark-slide
 
 # DevOps in<br><span class="accent">industry</span>
 
-<p class="devops-cover-copy">From one command contract to a traceable release.</p>
+<p class="devops-cover-copy">What, why and how to get started with B&R</p>
 
 <div class="devops-spine" v-motion :initial="{ opacity: 0, y: 18 }" :enter="{ opacity: 1, y: 0, transition: { delay: 300 } }">
   <div><span>01</span><b>VERSION</b><small>known inputs</small></div>
@@ -1334,12 +1310,6 @@ class: devops-cover ai-workshop-cover dark-slide
   <div><span>03</span><b>TEST</b><small>behavioral evidence</small></div>
   <i></i>
   <div><span>04</span><b>RELEASE</b><small>reviewable change</small></div>
-</div>
-
-<div class="audience-checkin" v-click>
-  <span>THE SECOND SESSION</span>
-  <b>Make engineering changes<br>repeatable and reviewable.</b>
-  <small>VERSION · BUILD · TEST · RELEASE · PROVENANCE</small>
 </div>
 
 <div class="slide-id">D2 · 30</div>
@@ -1354,51 +1324,130 @@ Transition: Først ser vi på, hvordan én ændring bevæger sig gennem en repro
 
 ---
 layout: default
-class: workshop-objectives-slide dark-slide
+class: devops-intro-slide dark-slide
 ---
 
 <div class="status-badge general">GENERAL PRINCIPLE</div>
-<div class="kicker">WORKSHOP 02 · START HERE · 07 MIN</div>
+<div class="kicker">WORKSHOP 02 · ORIENTATION · 04 MIN</div>
 
-# What should become<br><span class="accent">repeatable?</span>
+# What is<br><span class="accent">DevOps?</span>
 
-<div class="objective-rail">
-  <div v-click><span>01</span><b>VERSION</b><small>known inputs</small></div>
-  <i v-click></i>
-  <div v-click><span>02</span><b>BUILD</b><small>repeatable output</small></div>
-  <i v-click></i>
-  <div v-click><span>03</span><b>TEST</b><small>machine behavior</small></div>
-  <i v-click></i>
-  <div v-click><span>04</span><b>EVIDENCE</b><small>decision material</small></div>
-  <i v-click></i>
-  <div v-click><span>05</span><b>RELEASE</b><small>controlled handoff</small></div>
+<div class="devops-intro-lead">
+  <span>DEVELOPMENT + OPERATIONS</span>
 </div>
 
-<div class="room-checkin" v-click>
-  <span>CHECK IN WITH THE ROOM</span>
-  <b>Which engineering workflow still depends on one person?</b>
-  <small>SHOW OF HANDS · THEN 60 SECONDS IN PAIRS</small>
+<div class="devops-loop" aria-label="The DevOps loop">
+  <div class="devops-loop-stage development">
+    <span class="devops-stage-number">01</span>
+    <b>DEVELOPMENT</b>
+    <ul>
+      <li>Plan and code a change</li>
+      <li>Build the application</li>
+      <li>Test the expected behavior</li>
+    </ul>
+  </div>
+  <div class="devops-loop-connector">
+    <img class="devops-inf-logo" src="/DevOpsInfLogo.png" alt="DevOps infinity loop">
+    <b>CONTINUOUS<br>FEEDBACK</b>
+  </div>
+  <div class="devops-loop-stage operations">
+    <span class="devops-stage-number">02</span>
+    <b>OPERATIONS</b>
+    <ul>
+      <li>Release and deploy</li>
+      <li>Operate the machine</li>
+      <li>Monitor real behavior</li>
+    </ul>
+  </div>
 </div>
 
-<div class="audience-signal-grid">
-  <div v-click><mdi-code-braces-box /><span>PLC / MACHINE SOFTWARE</span></div>
-  <div v-click><mdi-hammer-wrench /><span>BUILD / CONFIGURE</span></div>
-  <div v-click><mdi-test-tube /><span>TEST / DIAGNOSE</span></div>
-  <div v-click><mdi-account-check-outline /><span>APPROVE / RELEASE</span></div>
+<br />
+<br />
+<br />
+
+<div class="devops-beyond">
+  <div class="devops-beyond-label"><span>OTHER DISCIPLINES</span><b>NOT COVERED TODAY</b></div>
+  <ul aria-label="DevOps disciplines not covered today">
+    <li>Automated Setup (IaC)</li>
+    <li>Security / DevSecOps</li>
+    <li>Issue reporting</li>
+    <li>Team culture &amp; collaboration</li>
+    <li>Coding Standards</li>
+    <li>Documentation</li>
+  </ul>
+</div>
+
+<div class="devops-intro-note">DevOps covers many practices and disciplines.
+Today we focus on the software delivery flow: <strong>Code → Build → Test → Deploy.</strong></div>
+
+<div class="slide-id">W2 · 31</div>
+<!--
+Title: What is DevOps
+Development and Operations
+DevOps can be MANY things.
+We will not cover everything today
+We will focus on CI/CD pipeline and how it can be done with B&R ecosystem
+Visualization idea: Standard DevOps infinity symbol with a lot of DevOps related words floating around and then mark those with bold we will focus on
+-->
+
+---
+layout: default
+class: why-devops-slide dark-slide
+---
+
+<div class="kicker">WORKSHOP 02 · WHY DEVOPS? · 04 MIN</div>
+
+# Why <span class="accent">DevOps?</span>
+
+<div class="why-devops-flow" aria-label="Agentic Engineering connected to DevOps">
+  <section class="why-devops-panel agentic">
+    <div class="why-devops-panel-label">01 · ACCELERATE CREATION</div>
+    <div class="why-devops-panel-title"><mdi-robot-outline /><b>AGENTIC ENGINEERING</b></div>
+    <ul>
+      <li>Generates code faster</li>
+      <li>Makes automated tests easier to create</li>
+      <li>Accelerates development work</li>
+    </ul>
+  </section>
+
+  <div class="why-devops-bridge" aria-label="Needs guardrails">
+    <span class="why-devops-bridge-line"></span>
+    <div class="why-devops-bridge-core"><mdi-shield-check-outline /><b>NEEDS<br>GUARDRAILS</b></div>
+    <span class="why-devops-bridge-line"></span>
+  </div>
+
+  <section class="why-devops-panel devops">
+    <div class="why-devops-panel-label">02 · DELIVER RELIABLY</div>
+    <div class="why-devops-panel-title"><mdi-source-branch /><b>DEVOPS</b></div>
+    <div class="why-devops-practices">
+      <div><mdi-hammer-wrench /><span>AUTOMATED BUILD + TEST</span></div>
+      <div><mdi-shield-check-outline /><span>QUALITY CHECKS</span></div>
+      <div><mdi-source-branch /><span>CONTROLLED DEPLOYMENT</span></div>
+      <div><mdi-chart-timeline-variant-shimmer /><span>CONTINUOUS FEEDBACK</span></div>
+    </div>
+  </section>
+</div>
+
+<div class="why-devops-support">
+  <div><mdi-console-line /><div><span>SHARED TOOLS + WORKFLOWS</span><b>including <span class="why-devops-command">as-cli</span></b></div></div>
+  <div><mdi-account-check-outline /><div><span>GROWING CUSTOMER DEMAND</span><b>reliable software updates</b></div></div>
+</div>
+
+<div class="why-devops-takeaway">
+  <span>THE TAKEAWAY</span>
+  <strong>AI helps us create software faster. DevOps helps us deliver it safely.</strong>
 </div>
 
 <div class="slide-id">W2 · 31</div>
 
 <!--
-Remember: DevOps starts with one bounded industrial workflow that the room wants to make repeatable and reviewable.
+Remember: Agentic Engineering accelerates software creation; it does not make the result reliable by itself.
 
-Ask for a show of hands: who works with PLC or machine software, who builds or configures, who tests or diagnoses, and who approves or releases? Then give pairs 60 seconds to name one workflow that currently depends on a specific person.
+Walk left to right. AI can generate code and tests faster. DevOps adds the build, test, quality, deployment, and feedback controls needed to deliver the result reliably.
 
-Reveal the five stages from left to right. Invite two or three short examples, but do not solve them yet. We will use the chain as a lens for the rest of the workshop.
+Mention the two supporting reasons: shared tools and workflows, including as-cli, and growing customer demand for reliable software updates.
 
-Transition: DevOps is a family of practices, not one product or one tool.
-
-Status: General workshop framing. No B&R product capability is being claimed.
+Keep the claim bounded. DevOps provides controls and evidence for delivery; it does not replace engineering judgment, safety validation, or release accountability.
 -->
 
 ---
