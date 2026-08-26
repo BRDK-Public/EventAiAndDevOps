@@ -1,5 +1,11 @@
 <script setup lang="ts">
-withDefaults(defineProps<{
+import { onMounted, onUnmounted, ref, watch } from 'vue'
+
+const LOOP_DURATION_SECONDS = 9
+const BOTTLE_COUNT = 5
+const COUNTER_STEP_MS = (LOOP_DURATION_SECONDS * 1000) / BOTTLE_COUNT
+
+const props = withDefaults(defineProps<{
   state?: 'running' | 'fault' | 'recovered'
   count?: number
   compact?: boolean
@@ -7,6 +13,44 @@ withDefaults(defineProps<{
   state: 'running',
   count: 42,
   compact: false,
+})
+
+const displayCount = ref(props.count)
+let counterTimer: ReturnType<typeof setInterval> | undefined
+
+const bottleStyle = (bottleIndex: number): Record<string, string> => ({
+  '--bottle-delay': `${-((bottleIndex - 1) * LOOP_DURATION_SECONDS / BOTTLE_COUNT)}s`,
+})
+
+const advanceCounter = () => {
+  if (props.state !== 'running') return
+  displayCount.value = displayCount.value >= 100 ? 0 : displayCount.value + 1
+}
+
+const stopCounter = () => {
+  if (!counterTimer) return
+  clearInterval(counterTimer)
+  counterTimer = undefined
+}
+
+const startCounter = () => {
+  stopCounter()
+  if (props.state === 'running') {
+    counterTimer = setInterval(advanceCounter, COUNTER_STEP_MS)
+  }
+}
+
+onMounted(startCounter)
+onUnmounted(stopCounter)
+
+watch(() => props.count, (value) => {
+  displayCount.value = value
+})
+
+watch(() => props.state, (value) => {
+  displayCount.value = props.count
+  if (value === 'running') startCounter()
+  else stopCounter()
 })
 </script>
 
@@ -30,14 +74,27 @@ withDefaults(defineProps<{
       </div>
 
       <div class="belt-wrap">
+        <div class="station-track">
+          <div class="station filler-station">
+            <span>FILLER</span>
+            <b>{{ state === 'fault' ? 'HOLD' : state === 'recovered' ? 'DONE' : 'FILL' }}</b>
+            <i></i>
+          </div>
+          <div class="station capper-station">
+            <span>CAPPER</span>
+            <b>{{ state === 'fault' ? 'HOLD' : state === 'recovered' ? 'DONE' : 'CAP' }}</b>
+            <i></i>
+          </div>
+        </div>
         <div class="bottles">
           <div
-            v-for="bottleIndex in 10"
+            v-for="bottleIndex in BOTTLE_COUNT"
             :key="bottleIndex"
             class="bottle"
-            :class="{ counted: bottleIndex <= 6 }"
+            :style="bottleStyle(bottleIndex)"
           >
-            <i></i>
+            <i class="bottle-liquid"></i>
+            <i class="bottle-cap"></i>
           </div>
         </div>
         <div class="belt"><i v-for="rollerIndex in 16" :key="rollerIndex"></i></div>
@@ -45,7 +102,7 @@ withDefaults(defineProps<{
 
       <div class="counter-panel">
         <span>PRODUCTION</span>
-        <b>{{ String(count).padStart(3, '0') }}</b>
+        <b>{{ String(displayCount).padStart(3, '0') }}</b>
         <small>/ 100</small>
       </div>
     </div>
@@ -154,56 +211,164 @@ withDefaults(defineProps<{
 }
 
 .belt-wrap {
+  position: relative;
   min-width: 0;
 }
 
+.station-track {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  height: 39px;
+  margin-bottom: 9px;
+}
+
+.station {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  min-width: 0;
+  padding: 0 9px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-top: 3px solid #7b878d;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.station:first-child {
+  border-right: 0;
+}
+
+.station.capper-station {
+  border-color: rgba(255, 122, 0, 0.62);
+  border-left-color: rgba(255, 122, 0, 0.62);
+}
+
+.station::after {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 1px;
+  height: 9px;
+  content: '';
+  background: #8c969b;
+}
+
+.station span,
+.station b {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.station span {
+  overflow: hidden;
+  color: #bdc5c9;
+  font-size: 7px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.station b {
+  color: #ff7a00;
+  font-size: 7px;
+  font-weight: 600;
+}
+
+.station i {
+  position: absolute;
+  right: 9px;
+  bottom: 6px;
+  left: 9px;
+  height: 2px;
+  background: rgba(255, 122, 0, 0.34);
+}
+
+.is-fault .station i {
+  background: rgba(255, 122, 0, 0.72);
+}
+
+.is-recovered .station i {
+  background: rgba(69, 169, 107, 0.72);
+}
+
 .bottles {
-  display: flex;
-  align-items: end;
-  justify-content: space-around;
+  position: relative;
   height: 74px;
-  padding: 0 8px;
 }
 
 .bottle {
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  --bottle-half-width: 11px;
+  --bottle-infeed: 30px;
   width: 21px;
   height: 54px;
   border: 2px solid #929ba1;
   border-radius: 5px 5px 3px 3px;
   background: rgba(255, 255, 255, 0.06);
+  animation: bottle-flow 9s linear infinite;
+  animation-delay: var(--bottle-delay);
+  animation-play-state: paused;
 }
 
 .bottle::before {
   position: absolute;
   top: -9px;
-  left: 5px;
+  left: 50%;
   width: 7px;
   height: 9px;
   border: 2px solid #929ba1;
   border-bottom: 0;
   content: '';
+  transform: translateX(-50%);
 }
 
-.bottle i {
+.bottle-liquid {
   position: absolute;
   right: 2px;
   bottom: 2px;
   left: 2px;
-  height: 14px;
+  height: 0;
   background: rgba(255, 122, 0, 0.25);
+  animation: liquid-fill 9s linear infinite;
+  animation-delay: var(--bottle-delay);
+  animation-play-state: paused;
 }
 
-.bottle.counted {
-  border-color: #f7f8f8;
+.bottle-cap {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  width: 12px;
+  height: 4px;
+  border: 1px solid #ff7a00;
+  background: #ff7a00;
+  opacity: 0;
+  animation: cap-appear 9s linear infinite;
+  animation-delay: var(--bottle-delay);
+  animation-play-state: paused;
+  transform: translateX(-50%);
 }
 
-.bottle.counted i {
+.bottle-liquid {
   background: #ff7a00;
 }
 
-.is-running .bottles {
-  animation: belt-motion 3s linear infinite;
+.is-running .bottle,
+.is-running .bottle-liquid,
+.is-running .bottle-cap {
+  animation-play-state: running;
+}
+
+.is-recovered .bottle-liquid {
+  height: 76%;
+  background: #ff7a00;
+  animation: none;
+}
+
+.is-recovered .bottle-cap {
+  opacity: 1;
+  animation: none;
 }
 
 .belt {
@@ -298,12 +463,90 @@ withDefaults(defineProps<{
 
 .compact .conveyor-stage {
   min-height: 120px;
+  grid-template-columns: 60px 1fr 88px;
+  gap: 10px;
+  padding: 13px 14px 15px;
 }
 
-@keyframes belt-motion {
-  0% { transform: translateX(-5px); }
-  50% { transform: translateX(5px); }
-  100% { transform: translateX(-5px); }
+.compact .conveyor-header {
+  height: 42px;
+  padding: 0 14px;
+}
+
+.compact .station-track {
+  gap: 0;
+  height: 31px;
+  margin-bottom: 7px;
+}
+
+.compact .station {
+  padding: 0 6px;
+  border-top-width: 2px;
+}
+
+.compact .station span,
+.compact .station b {
+  font-size: 6px;
+}
+
+.compact .station::after {
+  bottom: -8px;
+  height: 7px;
+}
+
+.compact .station i {
+  right: 6px;
+  bottom: 4px;
+  left: 6px;
+}
+
+.compact .bottles {
+  height: 57px;
+}
+
+.compact .bottle {
+  --bottle-half-width: 8.5px;
+  --bottle-infeed: 24px;
+  width: 17px;
+  height: 43px;
+}
+
+.compact .bottle::before {
+  top: -7px;
+  left: 50%;
+  width: 6px;
+  height: 7px;
+}
+
+.compact .bottle-cap {
+  top: -11px;
+}
+
+.compact .counter-panel {
+  min-height: 82px;
+  padding: 11px;
+}
+
+.compact .counter-panel b {
+  margin-top: 7px;
+  font-size: 23px;
+}
+
+@keyframes bottle-flow {
+  0%, 10% { left: calc(0px - var(--bottle-infeed)); }
+  22%, 39% { left: calc(25% - var(--bottle-half-width)); }
+  58%, 69% { left: calc(75% - var(--bottle-half-width)); }
+  100% { left: calc(100% + var(--bottle-half-width)); }
+}
+
+@keyframes liquid-fill {
+  0%, 21% { height: 0; }
+  37%, 100% { height: 76%; }
+}
+
+@keyframes cap-appear {
+  0%, 61% { opacity: 0; transform: translateX(-50%) scale(0.7); }
+  64%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
 }
 
 @keyframes fault-pulse {
