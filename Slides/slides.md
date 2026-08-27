@@ -56,6 +56,60 @@ Målet er, at I går herfra med en realistisk måde at komme i gang på. Først 
 
 ---
 layout: default
+class: reference-slide welcome-reference
+---
+
+# Welcome!
+
+<div class="welcome-grid">
+  <div class="reference-photo welcome-photo-foodtruck"><img src="/welcome-foodtruck.jpg" alt="Foodtruck at the event"></div>
+  <div class="reference-copy welcome-copy-feedback">
+    <h2>Feedback</h2>
+    <p>We value your feedback. Please complete the survey at the end of the day.</p>
+  </div>
+  <div class="reference-photo welcome-photo-audience"><img src="/welcome-audience.jpeg" alt="Audience at the event"></div>
+  <div class="reference-copy welcome-copy-stay">
+    <h2>Stay afterward</h2>
+    <p>The event officially ends at 13:00, but you are welcome to stay if you have additional questions.</p>
+  </div>
+  <div class="reference-copy welcome-copy-lunch">
+    <h2>Lunch</h2>
+    <p>Foodtruck from Original Pita will be ready with lunch at 12.15.</p>
+  </div>
+  <div class="reference-photo welcome-photo-collaboration"><img src="/welcome-collaboration.jpeg" alt="People collaborating"></div>
+  <div class="reference-copy welcome-copy-slides">
+    <h2>Slides</h2>
+    <p>All slides will be available after the event. Complete the survey to receive a link.</p>
+  </div>
+  <div class="reference-photo welcome-photo-networking"><img src="/welcome-networking.jpg" alt="People networking at the event"></div>
+</div>
+
+<img class="reference-brand" src="/br-logo.svg" alt="B&R Industrial Automation">
+
+---
+layout: default
+class: reference-slide events-reference
+---
+
+# Upcoming Events<br><span class="accent">2026</span>
+
+<div class="event-grid">
+  <article class="event-card">
+    <img src="/upcoming-adaptive.jpeg" alt="Adaptive automation robot and conveyor">
+    <h2>Passion4AdaptiveAutomationDays 2026</h2>
+    <p>Date: 6.-7. October 2026<br>Location: Orange Point, Malmö Sweden</p>
+  </article>
+  <article class="event-card">
+    <img src="/upcoming-rugged.png" alt="Rugged automation controller in a field">
+    <h2>Passion4RuggedAutomationDays 2026</h2>
+    <p>Date: 10.-11. November 2026<br>Location: Orange Point, Malmö Sweden</p>
+  </article>
+</div>
+
+<img class="reference-brand" src="/br-logo.svg" alt="B&R Industrial Automation">
+
+---
+layout: default
 class: agenda-slide dark-slide
 ---
 
@@ -327,42 +381,42 @@ class: process-slide
 
 # IT + OT are<br><span class="accent">converging</span>
 
-<img class="it-ot-image" src="/it-ot.png" alt="IT and OT convergence">
+<img class="it-ot-figure" src="/it-ot.png" alt="IT and OT convergence">
 
-<div class="devops-track">
-  <div class="track-step" v-click>
-    <div class="step-icon"><mdi-source-branch /></div>
-    <span>01</span><b>Git</b><small>visible + reversible</small>
+<div class="it-stack-strip" v-click role="img" aria-label="IT engineering tools and agent protocols">
+  <span class="it-stack-logo vscode" title="Visual Studio Code"><simple-icons-visualstudiocode aria-hidden="true" /></span>
+  <span class="it-stack-logo git" title="Git"><simple-icons-git aria-hidden="true" /></span>
+  <span class="it-stack-logo github" title="GitHub"><simple-icons-github aria-hidden="true" /></span>
+  <span class="it-stack-logo docker" title="Docker"><simple-icons-docker aria-hidden="true" /></span>
+  <span class="it-stack-logo copilot" title="GitHub Copilot"><simple-icons-githubcopilot aria-hidden="true" /></span>
+  <span class="it-stack-logo claude" title="Claude Code"><simple-icons-claudecode aria-hidden="true" /></span>
+  <img class="it-stack-mcp" src="/mcp-logo-custom.svg" alt="Model Context Protocol">
+</div>
+
+<div class="it-ot-body">
+  <div class="it-ot-messages">
+    <div v-click><span>01</span><b>IT and Agentic Engineering are <strong>emerging fast</strong></b></div>
+    <div v-click><span>02</span><b>Competences are <strong>converging</strong> but solutions are <strong> diverging</strong></b></div>
+    <div v-click><span>03</span><b>Only an <strong>open Automation Platform</strong> will support a unified future</b></div>
   </div>
-  <div class="track-step" v-click>
-    <div class="step-icon"><mdi-hammer-wrench /></div>
-    <span>02</span><b>Repeatable build</b><small>reproducible result</small>
-  </div>
-  <div class="track-step" v-click>
-    <div class="step-icon"><mdi-test-tube /></div>
-    <span>03</span><b>Automated test</b><small>objective feedback</small>
-  </div>
-  <div class="track-arrow" v-click><mdi-arrow-right /></div>
-  <div class="track-step" v-click>
-    <div class="step-icon"><mdi-shield-check-outline /></div>
-    <span>04</span><b>Reviewable release</b><small>evidence + approval</small>
+
+  <div class="it-ot-platform" v-click>
+    <img class="as-logo" src="/as-logo.png" alt="Automation Studio">
+    <div class="as-labels">
+      <span>No binaries</span>
+      <span>Only text</span>
+    </div>
   </div>
 </div>
-<div class="amplifier-band" v-click>
-  <div class="amp-label"><mdi-auto-fix /> AI</div>
-  <div class="amp-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-  <div class="amp-copy">amplifies the engineering system <strong>around it</strong></div>
-  </div>
-
-<div class="margin-note">SOFTWARE MOVED FIRST BECAUSE ITS FEEDBACK LOOP BECAME<br>CHEAP, VISIBLE, AND REVERSIBLE.</div>
 
 <div class="slide-id">I6 · 07</div>
 
 <!--
-IT er ikke foran, fordi softwareudviklere er klogere. Kode og configuration er tekst, Git gør ændringer diffable og reversible, APIs og CLIs gør handlinger scriptbare, og CI giver hurtig feedback.
+IT og OT har talt om konvergens i mange år. Det, der fik os til at konvergere, er punkterne på sliden: kode og configuration er tekst, Git gør ændringer synlige og reversible, builds kan gentages, tests kan automatiseres, og releases kan reviewes med dokumenteret evidence.
 
-OT har yderligere udfordringer: fysiske konsekvenser, lange livscyklusser, hardware- og versionsafhængigheder, motion, safety og mindre standardiseret feedback.
-IT og OT konvergerer nu, fordi flere automation-artifacts bliver inspectable, flere operationer bliver scriptbare, og simulation og diagnostics kan indgå i et feedback-loop.
+Men efter AI er IT begyndt at sprinte fra OT igen. IT har allerede værktøjer og kontekst som en naturlig del af udviklingsmiljøet: repositories, APIs, CLIs, CI og diagnostics. Modeller og agenter kan derfor hurtigt kobles på et eksisterende feedback-loop.
+
+I OT skal vi i højere grad selv udvikle de tilsvarende værktøjer og den kontekst, som AI kan arbejde med. OT har desuden fysiske konsekvenser, lange livscyklusser, hardware- og versionsafhængigheder, motion, safety og mindre standardiseret feedback. Derfor er opgaven ikke kun at få AI ind i OT, men at gøre OT lige så inspectable, scriptable og feedback-drevet.
 
 Transition: Det vigtigste hul er forskellen mellem at generere kode og at verificere engineering.
 -->
@@ -375,31 +429,14 @@ class: feedback-slide dark-slide
 
 # Close the industrial<br><span class="accent">engineering loop</span>
 
-<div class="industrial-loop">
-  <div class="industrial-node source" v-click><mdi-file-code-outline /><span>SOURCE</span></div>
-  <div class="industrial-arrow" v-click><mdi-arrow-right /></div>
-  <div class="industrial-node" v-click><mdi-hammer-wrench /><span>BUILD</span></div>
-  <div class="industrial-arrow" v-click><mdi-arrow-right /></div>
-  <div class="industrial-node" v-click><mdi-monitor-dashboard /><span>ARSIM / TEST</span></div>
-  <div class="industrial-arrow" v-click><mdi-arrow-right /></div>
-  <div class="industrial-node" v-click><mdi-chart-timeline-variant-shimmer /><span>VARIABLES + LOGBOOK</span></div>
-  <div class="industrial-arrow" v-click><mdi-arrow-right /></div>
-  <div class="industrial-node evidence" v-click><mdi-shield-check-outline /><span>EVIDENCE</span></div>
-</div>
-
-<div class="loop-backline" v-click><i></i><span>feedback drives the next bounded action</span><mdi-arrow-up-left /></div>
-
-<div class="workflow-agent-compare">
-  <div v-click><span>DEVOPS</span><b>runs a known loop</b><small>deterministic sequence</small></div>
-  <div v-click><span>AGENT</span><b>chooses the next action</b><small>from bounded feedback</small></div>
-</div>
-
-<div class="contract-note" v-click>ONE COMMAND CONTRACT · ENGINEER · TEST · PIPELINE · AGENT</div>
+<AutomationStudioAgent />
 
 <div class="slide-id">I7 · 08</div>
 
 <!--
-Et agentforslag er først værdifuldt, når vi kan lukke loopet. Projektet skal kunne bygges reproducerbart. Vi skal kunne starte en kontrolleret simulation, stimulere en tilstand, observere variable og logbook og sammenligne resultatet med et krav.
+Et agentforslag er først værdifuldt, når vi kan lukke loopet. Før loopet kan handle, skal det have domænekontekst: projektstruktur, produkt- og versionsviden, regler og intent. Projektet skal derefter kunne bygges reproducerbart. Vi skal kunne starte en kontrolleret simulation, stimulere en tilstand, observere variable og logbook og sammenligne resultatet med et krav.
+
+På sliden ses guardrails via instructions og skills, derefter research via AS-HELP, BR-COMMUNITY, firmware-noter og den cloud-baserede AS-COPILOT MCP. Automation Studio læser og skriver kode gennem Main.st-editoren, mens AS-CLI bygger, simulerer, læser variable og læser logbook.
 
 DevOps udfører en kendt sekvens deterministisk. Agenten vælger næste afgrænsede handling ud fra feedback. Det er derfor vigtigt, at det samme command contract kan anvendes af en engineer, en test, en pipeline og en agent.
 

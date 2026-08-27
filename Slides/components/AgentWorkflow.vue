@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, ref } from 'vue'
+import { computed, ref } from 'vue'
 
 type LaneKind = 'human' | 'agent'
 
@@ -79,7 +79,7 @@ type WorkflowDefinition = {
   feedbackLoop?: WorkflowFeedback
 }
 
-const laneHeight = 42
+const laneHeight = 56
 const delegationHeaderHeight = 14
 const subagentLaneHeight = 20
 const routeNodeClearance = 11
@@ -385,9 +385,7 @@ const workflows: WorkflowDefinition[] = [
 const activeWorkflowId = ref('specification')
 const collapsedSubagents = ref<Record<string, boolean>>({})
 const currentStageIndex = ref(0)
-const isRunning = ref(false)
 const isDetailOpen = ref(false)
-let playbackTimer: ReturnType<typeof setInterval> | undefined
 
 const activeWorkflow = computed(() => workflows.find(workflow => workflow.id === activeWorkflowId.value) ?? workflows[0])
 const lanes = computed(() => activeWorkflow.value.lanes)
@@ -396,7 +394,6 @@ const columnCount = computed(() => stages.value.length)
 const workflowContentHeight = computed(() => lanes.value.reduce((height, lane) => height + laneHeight + delegationHeightForLane(lane.id), 0))
 const workflowTrackHeight = computed(() => workflowContentHeight.value + (activeWorkflow.value.feedbackLoop ? feedbackGutter : 0))
 const selectedStage = computed(() => stages.value[currentStageIndex.value] ?? stages.value[0])
-const progress = computed(() => (currentStageIndex.value / (stages.value.length - 1)) * 100)
 const loopDestinations = computed(() => activeWorkflow.value.loops.filter((loop, loopIndex, loops) => loops.findIndex(candidate => candidate.to === loop.to) === loopIndex))
 
 function stagesForLane(laneId: string) {
@@ -459,7 +456,6 @@ function stageState(index: number) {
 }
 
 function selectStage(index: number) {
-  stopPlayback()
   currentStageIndex.value = index
 }
 
@@ -470,7 +466,6 @@ function openStageDetail(index: number) {
 
 function switchWorkflow(workflowId: string) {
   if (workflowId === activeWorkflowId.value) return
-  stopPlayback()
   isDetailOpen.value = false
   activeWorkflowId.value = workflowId
   currentStageIndex.value = 0
@@ -482,38 +477,6 @@ function closeDetail() {
 
 function handleKeydown(event: KeyboardEvent) {
   if (event.key === 'Escape') closeDetail()
-}
-
-function stopPlayback() {
-  isRunning.value = false
-  if (playbackTimer) {
-    clearInterval(playbackTimer)
-    playbackTimer = undefined
-  }
-}
-
-function advanceWorkflow() {
-  if (currentStageIndex.value >= stages.value.length - 1) {
-    stopPlayback()
-    return
-  }
-  currentStageIndex.value += 1
-}
-
-function startPlayback() {
-  if (currentStageIndex.value >= stages.value.length - 1) currentStageIndex.value = 0
-  isRunning.value = true
-  playbackTimer = setInterval(advanceWorkflow, 1200)
-}
-
-function togglePlayback() {
-  if (isRunning.value) stopPlayback()
-  else startPlayback()
-}
-
-function resetWorkflow() {
-  stopPlayback()
-  currentStageIndex.value = 0
 }
 
 function routeStyle(stageIndex: number, part: 'horizontal' | 'vertical') {
@@ -660,7 +623,6 @@ function feedbackLoopIsActive() {
   return activeWorkflow.value.feedbackLoop?.from.includes(currentStageIndex.value) ?? false
 }
 
-onBeforeUnmount(stopPlayback)
 </script>
 
 <template>
@@ -670,29 +632,6 @@ onBeforeUnmount(stopPlayback)
     :aria-label="activeWorkflow.title"
     @keydown="handleKeydown"
   >
-    <header class="workflow-head">
-      <div class="workflow-ident">
-        <span>{{ activeWorkflow.code }} / TRACE 01</span>
-        <b>{{ activeWorkflow.title }}</b>
-      </div>
-      <div class="workflow-head-actions">
-        <span class="workflow-live" :class="{ 'is-playing': isRunning }">
-          <i aria-hidden="true"></i>
-          {{ isRunning ? 'PLAYING' : `STEP ${String(currentStageIndex + 1).padStart(2, '0')} / ${String(stages.length).padStart(2, '0')}` }}
-        </span>
-        <button
-          class="workflow-button"
-          type="button"
-          :aria-label="isRunning ? 'Pause workflow' : 'Run workflow'"
-          @click.stop="togglePlayback"
-        >
-          <span aria-hidden="true">{{ isRunning ? '||' : '>' }}</span>
-          {{ isRunning ? 'PAUSE' : currentStageIndex === stages.length - 1 ? 'REPLAY' : 'RUN LOOP' }}
-        </button>
-        <button class="workflow-reset" type="button" aria-label="Reset workflow" @click.stop="resetWorkflow">RESET</button>
-      </div>
-    </header>
-
     <nav class="workflow-switcher" aria-label="Choose workflow">
       <button
         v-for="workflow in workflows"
@@ -735,7 +674,10 @@ onBeforeUnmount(stopPlayback)
       <template v-for="lane in lanes" :key="lane.id">
         <div class="workflow-lane">
           <div class="lane-identity" :class="`is-${lane.kind}`">
-          <span class="lane-avatar" aria-hidden="true">{{ lane.kind === 'human' ? 'H' : 'AI' }}</span>
+          <span class="lane-avatar" aria-hidden="true">
+            <mdi-account-outline v-if="lane.kind === 'human'" />
+            <mdi-robot-outline v-else />
+          </span>
             <span class="lane-identity-content">
               <span class="lane-main"><b>{{ lane.label }}</b><small>{{ lane.sublabel }}</small></span>
             </span>
@@ -754,7 +696,10 @@ onBeforeUnmount(stopPlayback)
                 :aria-current="stage.index === currentStageIndex ? 'step' : undefined"
                 @click.stop="openStageDetail(stage.index)"
               >
-                <span class="node-dot" aria-hidden="true"><i></i></span>
+                <span class="node-dot" aria-hidden="true">
+                  <mdi-robot-outline v-if="stage.owner === 'AGENT'" />
+                  <i v-else></i>
+                </span>
               </button>
             </div>
           </div>
@@ -788,7 +733,7 @@ onBeforeUnmount(stopPlayback)
               class="workflow-subagent-lane"
             >
               <div class="subagent-lane-identity">
-                <i aria-hidden="true"></i>
+                <mdi-robot-outline aria-hidden="true" />
                 <span><b>{{ agent.name }}</b><small>{{ agent.task }}</small></span>
               </div>
               <div class="subagent-lane-track">
@@ -896,21 +841,6 @@ onBeforeUnmount(stopPlayback)
         </g>
       </svg>
     </div>
-
-    <footer class="workflow-inspector">
-      <div class="inspector-stage">
-        <span class="inspector-index">{{ String(selectedStage.index + 1).padStart(2, '0') }}</span>
-        <div>
-          <small>{{ selectedStage.owner }} · {{ selectedStage.model }}</small>
-          <b>{{ selectedStage.label }}</b>
-        </div>
-      </div>
-      <p>{{ selectedStage.description }}</p>
-      <div class="inspector-evidence">
-        <span>OUTPUT</span><b>{{ selectedStage.evidence }}</b><i>&gt;</i><span>{{ selectedStage.handoff }}</span>
-      </div>
-      <div class="workflow-progress" aria-hidden="true"><i :style="{ width: `${progress}%` }"></i></div>
-    </footer>
 
     <div v-if="isDetailOpen" class="workflow-modal-backdrop" @click.self.stop="closeDetail">
       <article
@@ -1165,8 +1095,8 @@ onBeforeUnmount(stopPlayback)
   --workflow-human: #84cf8a;
   --workflow-agent: #9c7cff;
   --workflow-highlight: #ff7a00;
-  --identity-width: 158px;
-  --lane-size: 42px;
+  --identity-width: 190px;
+  --lane-size: 56px;
   --delegation-header-height: 14px;
   --subagent-lane-height: 20px;
   --subagent-indent: 12px;
@@ -1184,34 +1114,23 @@ onBeforeUnmount(stopPlayback)
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
-.workflow-head {
-  display: flex;
-  min-height: 45px;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 0 14px;
-  border-bottom: 1px solid var(--workflow-line);
-  background: #171a1c;
-}
-
 .workflow-switcher {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
-  min-height: 54px;
-  padding: 6px 14px;
+  min-height: 74px;
+  padding: 8px 14px;
   border-bottom: 1px solid var(--workflow-line);
   background: rgba(255, 255, 255, 0.035);
 }
 
 .workflow-tab {
   display: grid;
-  grid-template-columns: 27px 1fr;
+  grid-template-columns: 34px 1fr;
   min-width: 0;
   align-items: center;
-  gap: 8px;
-  padding: 0 10px;
+  gap: 10px;
+  padding: 0 12px;
   border: 1px solid rgba(255, 255, 255, 0.11);
   border-left: 3px solid transparent;
   color: #aab3b7;
@@ -1236,7 +1155,7 @@ onBeforeUnmount(stopPlayback)
 
 .workflow-tab-index {
   color: var(--workflow-highlight);
-  font: 600 13px/1 'IBM Plex Mono', monospace;
+  font: 600 17px/1 'IBM Plex Mono', monospace;
 }
 
 .workflow-tab-copy,
@@ -1256,24 +1175,19 @@ onBeforeUnmount(stopPlayback)
 
 .workflow-tab-copy b {
   color: inherit;
-  font: 600 8px/1 'IBM Plex Mono', monospace;
+  font: 600 11px/1 'IBM Plex Mono', monospace;
 }
 
 .workflow-tab-copy small {
   margin-top: 5px;
   color: var(--workflow-muted);
-  font: 500 7px/1 'IBM Plex Mono', monospace;
+  font: 500 9px/1 'IBM Plex Mono', monospace;
 }
 
 .workflow-tab.is-selected .workflow-tab-copy small {
   color: #d4a77f;
 }
 
-.workflow-ident span,
-.workflow-ident b,
-.workflow-live,
-.workflow-button,
-.workflow-reset,
 .workflow-ownership,
 .workflow-columns,
 .lane-identity,
@@ -1283,97 +1197,15 @@ onBeforeUnmount(stopPlayback)
   font-family: 'IBM Plex Mono', monospace;
 }
 
-.workflow-ident span,
-.workflow-ident b {
-  display: block;
-}
-
-.workflow-ident span {
-  color: var(--workflow-muted);
-  font-size: 7px;
-  line-height: 1;
-}
-
-.workflow-ident b {
-  margin-top: 5px;
-  color: #edf0f1;
-  font-size: 10px;
-  line-height: 1;
-}
-
-.workflow-head-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.workflow-live {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--workflow-muted);
-  font-size: 7px;
-  line-height: 1;
-}
-
-.workflow-live i {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--workflow-highlight);
-}
-
-.workflow-live.is-playing i {
-  animation: workflow-pulse 900ms ease-in-out infinite;
-}
-
-.workflow-button,
-.workflow-reset {
-  min-height: 24px;
-  padding: 0 8px;
-  border: 1px solid rgba(255, 122, 0, 0.62);
-  color: var(--workflow-highlight);
-  background: transparent;
-  cursor: pointer;
-  font-size: 7px;
-  line-height: 1;
-}
-
-.workflow-button {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(255, 122, 0, 0.1);
-}
-
-.workflow-button span {
-  font-size: 10px;
-}
-
-.workflow-reset {
-  border-color: rgba(255, 255, 255, 0.22);
-  color: #9da6ab;
-}
-
-.workflow-button:hover,
-.workflow-button:focus-visible,
-.workflow-reset:hover,
-.workflow-reset:focus-visible {
-  outline: none;
-  border-color: var(--workflow-highlight);
-  color: #fff;
-  background: rgba(255, 122, 0, 0.2);
-}
-
 .workflow-ownership {
   display: grid;
   grid-template-columns: 1fr 18px 1fr 18px 1fr;
   align-items: center;
   gap: 8px;
-  min-height: 26px;
+  min-height: 36px;
   padding: 0 16px 0 calc(var(--identity-width) + 16px);
   color: var(--workflow-muted);
-  font-size: 6px;
+  font-size: 9px;
   letter-spacing: 0.06em;
   text-align: center;
 }
@@ -1392,7 +1224,7 @@ onBeforeUnmount(stopPlayback)
   display: grid;
   grid-template-columns: var(--identity-width) repeat(var(--column-count), minmax(0, 1fr));
   align-items: end;
-  min-height: 28px;
+  min-height: 48px;
   padding: 0 14px;
   border-bottom: 1px solid var(--workflow-line);
   background: rgba(255, 255, 255, 0.025);
@@ -1401,7 +1233,7 @@ onBeforeUnmount(stopPlayback)
 .workflow-columns > button {
   display: grid;
   min-width: 0;
-  height: 28px;
+  height: 48px;
   padding: 0;
   align-content: center;
   justify-items: center;
@@ -1422,19 +1254,22 @@ onBeforeUnmount(stopPlayback)
 .workflow-columns small {
   display: block;
   font-family: 'IBM Plex Mono', monospace;
-  line-height: 1;
+  line-height: 1.1;
 }
 
 .workflow-columns span {
-  color: #687278;
-  font-size: 6px;
+  margin-bottom: 4px;
+  color: #9da7ac;
+  font-size: 9px;
+  font-weight: 600;
 }
 
 .workflow-columns small {
   max-width: 100%;
   overflow: hidden;
-  color: #8b959a;
-  font-size: 6px;
+  color: #e1e6e8;
+  font-size: 11px;
+  font-weight: 700;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -1469,22 +1304,26 @@ onBeforeUnmount(stopPlayback)
   display: flex;
   min-width: 0;
   align-items: center;
-  gap: 8px;
-  padding-right: 10px;
+  gap: 10px;
+  padding-right: 12px;
   border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .lane-avatar {
   display: grid;
-  width: 22px;
-  height: 22px;
+  width: 30px;
+  height: 30px;
   flex: none;
   place-items: center;
   border: 1px solid currentColor;
   color: var(--workflow-human);
   background: rgba(132, 207, 138, 0.09);
-  font-size: 7px;
   line-height: 1;
+}
+
+.lane-avatar svg {
+  width: 19px;
+  height: 19px;
 }
 
 .lane-identity.is-human .lane-avatar {
@@ -1492,7 +1331,7 @@ onBeforeUnmount(stopPlayback)
 }
 
 .lane-identity.is-agent .lane-avatar {
-  border-radius: 5px;
+  border-radius: 4px;
   color: var(--workflow-agent);
   background: rgba(156, 124, 255, 0.1);
 }
@@ -1506,7 +1345,7 @@ onBeforeUnmount(stopPlayback)
 
 .lane-identity b {
   color: #c7cdd0;
-  font-size: 7px;
+  font-size: 10px;
   font-weight: 600;
   line-height: 1;
 }
@@ -1515,7 +1354,7 @@ onBeforeUnmount(stopPlayback)
   overflow: hidden;
   margin-top: 4px;
   color: #6d787e;
-  font-size: 6px;
+  font-size: 9px;
   line-height: 1;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1683,21 +1522,18 @@ onBeforeUnmount(stopPlayback)
   background: rgba(0, 0, 0, 0.08);
 }
 
-.subagent-lane-identity > i {
+.subagent-lane-identity > svg {
   display: block;
-  width: 4px;
-  height: 4px;
+  width: 12px;
+  height: 12px;
   flex: none;
-  border: 1px solid var(--workflow-agent);
-  border-radius: 50%;
-  background: rgba(156, 124, 255, 0.18);
-  transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+  color: var(--workflow-agent);
+  transition: color 180ms ease, filter 180ms ease;
 }
 
-.workflow-subagent-stack.is-active .subagent-lane-identity > i {
-  border-color: var(--workflow-highlight);
-  background: rgba(255, 122, 0, 0.28);
-  box-shadow: 0 0 5px rgba(255, 122, 0, 0.55);
+.workflow-subagent-stack.is-active .subagent-lane-identity > svg {
+  color: var(--workflow-highlight);
+  filter: drop-shadow(0 0 4px rgba(255, 122, 0, 0.55));
 }
 
 .subagent-lane-identity > span {
@@ -1883,19 +1719,28 @@ onBeforeUnmount(stopPlayback)
   top: 50%;
   left: 50%;
   display: grid;
-  width: 17px;
-  height: 17px;
+  width: 30px;
+  height: 30px;
   place-items: center;
   border: 2px solid var(--workflow-agent);
-  border-radius: 50%;
+  border-radius: 4px;
   background: #181126;
   box-shadow: 0 0 0 4px rgba(156, 124, 255, 0.08);
   transform: translate(-50%, -50%);
   transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
 }
 
+.node-dot > svg {
+  width: 20px;
+  height: 20px;
+  color: var(--workflow-agent);
+}
+
 .stage-node.is-human .node-dot {
+  width: 22px;
+  height: 22px;
   border-color: var(--workflow-human);
+  border-radius: 50%;
   background: #122116;
   box-shadow: 0 0 0 4px rgba(132, 207, 138, 0.08);
 }
@@ -1989,6 +1834,10 @@ onBeforeUnmount(stopPlayback)
 .stage-node.is-active.is-agent .node-dot {
   border-color: var(--workflow-highlight);
   background: #26180d;
+}
+
+.stage-node.is-active.is-agent .node-dot > svg {
+  color: var(--workflow-highlight);
 }
 
 .stage-node.is-active.is-agent .node-dot i {
