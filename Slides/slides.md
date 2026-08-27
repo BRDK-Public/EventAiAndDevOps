@@ -63,7 +63,7 @@ class: agenda-slide dark-slide
 
 <div class="agenda-layout">
   <div class="agenda-intro" v-motion :initial="{ opacity: 0, x: -24 }" :enter="{ opacity: 1, x: 0 }">
-    <h1>One morning.<br><span class="accent">A shared workflow.</span></h1>
+    <h1>AI & DevOps<br><span class="accent">A shared vision.</span></h1>
     <p class="agenda-lead">A practical path from why this matters to how we build trustworthy agentic workflows for industrial engineering.</p>
     <div class="agenda-event-mark">
       <span>03</span>
@@ -110,7 +110,7 @@ class: light-grid
 
 <div class="kicker">WHY THIS EVENT · 04 MIN</div>
 
-# You have not<br><span class="accent">missed the moment.</span>
+# Just another<br><span class="accent">AI Event?</span>
 
 <div class="split-verdicts">
   <div class="verdict no" v-click>
@@ -123,12 +123,12 @@ class: light-grid
     <div class="verdict-head"><mdi-check-circle-outline /> WHAT WE WILL TELL YOU</div>
     <div class="verdict-row"><b>Industrial AI is</b><span>still emerging</span></div>
     <div class="verdict-row"><b>Results depend on</b><span>context and process</span></div>
-    <div class="verdict-row"><b>Start with one</b><span>bounded workflow</span></div>
+    <div class="verdict-row"><b>How to get started</b><span>in your own team</span></div>
   </div>
 </div>
 
 <div class="bottom-statement" v-click>
-  Industrial automation is early enough to <strong>shape the right foundations.</strong>
+  We don't have all the answers. <strong>Please keep the discussion ongoing!</strong>
 </div>
 
 <div class="slide-id">I2 · 03</div>
@@ -140,26 +140,65 @@ Problemet er, at man sjældent får hele regnestykket med. Man hører ikke altid
 
 Sådan skal det ikke være i dag. AI i automationsbranchen er stadig nyt. I har ikke sovet i timen, men tidspunktet er godt til at begynde systematisk. Vi viser både det, der virker nu, og det, der stadig kræver jeres egen kontekst, proces og ansvar.
 
+	- Why are we having this event?
+		- Inform our customers about new and existing possibilities with AI and DevOps on the B&R platform. 
+		- Give insight into our work and future direction on the topics
+		- Have good discussions and feedback from you. Please ask questions during the presentations.
+
 Transition: Lad os se på, hvordan DevOps og Agentic Engineering supplerer hinanden.
 -->
 
 ---
 layout: default
-class: dark-slide
+class: dark-slide loop-slide
 ---
 
 <div class="kicker">COMPLEMENTARY SYSTEMS · 03 MIN</div>
 
 # DevOps + Agentic<br><span class="accent">Engineering</span>
 
-<div class="maturity-line">
-  <div class="maturity-stage done" v-click><span>01</span><b>DevOps</b><small>version · build · test</small></div>
-  <div class="maturity-link" v-click></div>
-  <div class="maturity-stage done" v-click><span>02</span><b>Agent</b><small>context · action · observe</small></div>
-  <div class="maturity-link" v-click></div>
-  <div class="maturity-stage active" v-click><span>03</span><b>Shared feedback</b><small>application says what happened</small></div>
-  <div class="maturity-link dashed" v-click></div>
-  <div class="maturity-stage next" v-click><span>04</span><b>Engineering</b><small>prove · approve · improve</small></div>
+<div class="loop-compare">
+  <div class="loop-linear" v-click>
+    <div class="loop-bars">
+      <span>Plan</span><i></i>
+      <span>Design</span><i></i>
+      <span>Build</span><i></i>
+      <span>Test</span><i></i>
+      <span>Deploy</span><i></i>
+      <span>Maintain</span>
+    </div>
+    <p><b>Traditional DevOps stages.</b> Every step is handled manually</p>
+  </div>
+
+  <div class="loop-cycle" v-click>
+    <svg viewBox="0 0 300 300">
+      <defs>
+        <marker id="loopArrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 z" fill="var(--br-orange)" />
+        </marker>
+      </defs>
+      <g class="loop-arrows" fill="none" stroke="var(--br-orange)" stroke-width="3" stroke-linecap="round" marker-end="url(#loopArrow)">
+        <path d="M189.3 41.9 A115 115 0 0 1 223.9 61.9" />
+        <path d="M263.2 130 A115 115 0 0 1 263.2 170" />
+        <path d="M223.9 238.1 A115 115 0 0 1 189.3 258.1" />
+        <path d="M110.7 258.1 A115 115 0 0 1 76.1 238.1" />
+        <path d="M36.7 170 A115 115 0 0 1 36.7 130" />
+        <path d="M76.1 61.9 A115 115 0 0 1 110.7 41.9" />
+      </g>
+      <circle class="loop-hub" cx="150" cy="150" r="56" />
+      <text class="loop-hub-label" x="150" y="145">Agent</text>
+      <text class="loop-hub-sub" x="150" y="166">Workflows</text>
+      <g class="loop-node">
+        <circle cx="150" cy="35" r="31" /><text x="150" y="39">Plan</text>
+        <circle cx="249.6" cy="92.5" r="31" /><text x="249.6" y="96.5">Design</text>
+        <circle cx="249.6" cy="207.5" r="31" /><text x="249.6" y="211.5">Build</text>
+        <circle cx="150" cy="265" r="31" /><text x="150" y="269">Test</text>
+        <circle cx="50.4" cy="207.5" r="31" /><text x="50.4" y="211.5">Deploy</text>
+        <circle cx="50.4" cy="92.5" r="31" /><text x="50.4" y="96.5">Maintain</text>
+      </g>
+    </svg>
+    <p><b>AI-native DevOps.</b> Humans above the loop instigating, directing and governing.</p>
+  </div>
 </div>
 
 <div class="signal-callout" v-click>
@@ -181,6 +220,57 @@ Transition: For at forstå arkitekturen skal vi skelne mellem model, agent og ha
 
 ---
 layout: default
+class: dark-slide cycletime-slide
+---
+
+<div class="kicker">CYCLE TIME · 03 MIN</div>
+
+# Where the time<br><span class="accent">actually goes</span>
+
+<div class="cycle-block" v-click>
+  <p class="cycle-head"><b>Without DevOps</b> — no safety net, a variable cost lands after release</p>
+  <div class="cycle-track track-nodevops">
+    <span>Plan</span>
+    <span>Design</span>
+    <span class="hot">Build</span>
+    <span>Deploy</span>
+    <span class="bad">Bugfix</span>
+  </div>
+</div>
+
+<div class="cycle-block" v-click>
+  <p class="cycle-head"><b>DevOps before AI</b> — every stage runs at human speed</p>
+  <div class="cycle-track track-before">
+    <span>Plan</span>
+    <span>Design</span>
+    <span class="hot">Build</span>
+    <span>Test</span>
+    <span>Deploy</span>
+    <span>Maintain</span>
+    <em>reclaimed</em>
+  </div>
+</div>
+
+<CycleTradeoff v-click />
+
+<div class="slide-id">I4 · 05</div>
+
+<!--
+Pointen her er ikke, at faserne forsvinder. De er der stadig - plan, design, build, test, deploy, maintain.
+
+Øverst: uden DevOps. Man springer hurtigt over plan og design, bygger længe, og der er ingen test. Regningen kommer efter release som bugfix - den dyreste form for arbejde, fordi den rammer kunden.
+
+I midten: med DevOps på plads. Test og maintain koster tid, men bugfix-halen forsvinder, og der er allerede cycle time vundet.
+
+Nederst: med agenter oveni. Build bliver til en brøkdel. Men kravafklaring, review og release-beslutning ligger stadig hos jer. De bliver faktisk vigtigere, fordi de nu er det, der bestemmer kvaliteten.
+
+Den frigjorte tid er ikke gratis gevinst - den skal investeres i bedre kontekst, bedre tests og bedre beslutninger.
+
+Transition: For at forstå arkitekturen skal vi skelne mellem model, agent og harness.
+-->
+
+---
+layout: default
 class: stack-slide dark-slide
 ---
 
@@ -188,34 +278,43 @@ class: stack-slide dark-slide
 
 # What is an<br><span class="accent">agent?</span>
 
-<div class="layer-stack">
-  <div class="stack-layer harness-layer" v-click>
-    <div class="layer-index">03</div>
-    <div class="layer-title">HARNESS</div>
-    <div class="layer-job">Context · tools · permissions · logs</div>
-    <mdi-message-processing-outline />
-  </div>
-  <div class="stack-layer platform-layer" v-click>
-    <div class="layer-index">02</div>
-    <div class="layer-title">AGENT</div>
-    <div class="layer-job">Goal · chooses actions · observes results</div>
-    <mdi-source-pull />
-  </div>
-  <div class="stack-layer git-layer" v-click>
-    <div class="layer-index">01</div>
-    <div class="layer-title">MODEL</div>
-    <div class="layer-job">Patterns · reasoning · next-step prediction</div>
-    <mdi-source-commit />
+<div class="agent-nest">
+  <div class="agent-box">
+    <span class="nest-tag">AGENT</span>
+    <div class="harness-grid">
+      <span v-click>instructions</span>
+      <span v-click>context</span>
+      <span v-click>tools</span>
+      <span v-click>memory</span>
+      <div class="model-core">
+        <b>LLM</b>
+        <small>patterns · reasoning</small>
+      </div>
+      <span v-click>permissions</span>
+      <span v-click>logs</span>
+      <span v-click>feedback</span>
+      <span v-click>approvals</span>
+    </div>
+    <p class="harness-note" v-click>
+      <span>Everything around the model is the <b>harness</b></span>
+      <span class="harness-logos" role="img" aria-label="GitHub Copilot, Claude Code, Codex and Cursor">
+        <span class="harness-logo copilot" title="GitHub Copilot"><simple-icons-githubcopilot aria-hidden="true" /></span>
+        <span class="harness-logo claude" title="Claude Code"><simple-icons-claudecode aria-hidden="true" /></span>
+        <span class="harness-logo codex" title="Codex"><simple-icons-openai aria-hidden="true" /></span>
+        <span class="harness-logo cursor" title="Cursor"><simple-icons-cursor aria-hidden="true" /></span>
+      </span>
+    </p>
   </div>
 </div>
 
 <div class="record-rail" v-click>
-  <mdi-database-check-outline />
+  <mdi-robot-outline />
   <span>AN AGENT IS A MODEL IN A HARNESS</span>
-  <small>WITH A GOAL, TOOLS AND FEEDBACK</small>
+  <small>THINKING, PLANNING & ACTING</small>
 </div>
 
-<div class="slide-id">I4 · 05</div>
+
+<div class="slide-id">I5 · 06</div>
 
 <!--
 Modellen alene har ingen adgang til Automation Studio, et project, en PLC eller en logbook. Den kan kun arbejde med den context, den får.
@@ -235,6 +334,8 @@ class: process-slide
 <div class="kicker">FOUNDATION · 04 MIN</div>
 
 # IT + OT are<br><span class="accent">converging</span>
+
+<img class="it-ot-image" src="/it-ot.png" alt="IT and OT convergence">
 
 <div class="devops-track">
   <div class="track-step" v-click>
@@ -266,7 +367,7 @@ class: process-slide
 
 <div class="margin-note">SOFTWARE MOVED FIRST BECAUSE ITS FEEDBACK LOOP BECAME<br>CHEAP, VISIBLE, AND REVERSIBLE.</div>
 
-<div class="slide-id">I5 · 06</div>
+<div class="slide-id">I6 · 07</div>
 
 <!--
 IT er ikke foran, fordi softwareudviklere er klogere. Kode og configuration er tekst, Git gør ændringer diffable og reversible, APIs og CLIs gør handlinger scriptbare, og CI giver hurtig feedback.
@@ -308,7 +409,7 @@ class: feedback-slide dark-slide
 
 <div class="contract-note" v-click>ONE COMMAND CONTRACT · ENGINEER · TEST · PIPELINE · AGENT</div>
 
-<div class="slide-id">I6 · 07</div>
+<div class="slide-id">I7 · 08</div>
 
 <!--
 Et agentforslag er først værdifuldt, når vi kan lukke loopet. Projektet skal kunne bygges reproducerbart. Vi skal kunne starte en kontrolleret simulation, stimulere en tilstand, observere variable og logbook og sammenligne resultatet med et krav.
@@ -354,7 +455,7 @@ class: agent-loop-slide
   <div class="loop-return"><mdi-arrow-u-left-top /> repeat / stop</div>
 </div>
 
-<div class="slide-id">I7 · 08</div>
+<div class="slide-id">I8 · 09</div>
 
 <!--
 Vi startede med et enkelt spørgsmål: Kan en stærk model hjælpe med Structured Text og et Automation Studio-projekt?
@@ -402,7 +503,7 @@ class: strategy-slide
   <strong>repeatable engineering value</strong><i>+</i><strong>portable automation capability</strong>
 </div>
 
-<div class="slide-id">I8 · 09</div>
+<div class="slide-id">I9 · 10</div>
 
 <!--
 Nogle leverandører vælger en vertikalt integreret løsning. Det kan give en enkel brugeroplevelse, og det er et legitimt valg.
@@ -436,7 +537,7 @@ class: takeaway-slide
   </div>
 </div>
 
-<div class="slide-id">I9 · 10</div>
+<div class="slide-id">I10 · 11</div>
 
 <!--
 En agent er en ny abstraktion i softwareudviklingen. Hver gang vi er flyttet op - fra assembler til compiler, libraries og frameworks - er interfaces, architecture, test og debugging blevet vigtigere.
@@ -446,46 +547,6 @@ Agentic Engineering gør implementation billigere. Den besparelse kan omsættes 
 Stabil viden skal flyttes fra enkelte personers hukommelse til ejede workflows, instructions, tests og dokumentation. Eksperten er stadig nødvendig, men kan bruge mere tid på de beslutninger, hvor ekspertisen skaber mest værdi.
 
 Transition: I workshoppen ser vi derfor ikke på en smartere chat. Vi ser på workflowen rundt om den.
--->
-
----
-layout: default
-class: workshop-cover dark-slide
----
-
-<div class="part-label">PART 2 · AGENTIC ENGINEERING WORKSHOP · 60 MIN</div>
-
-# Challenge: warnings<br><span class="accent">into governed work</span>
-
-<p class="requirement-copy" v-click>
-  Turn build warnings and runtime logbook findings into <strong>classified</strong>,<br>
-  <strong>owned</strong>, behavior-preserving work with reviewable evidence.
-</p>
-
-<div class="devops-spine" v-click>
-  <div><span>01</span><b>COLLECT</b><small>baseline findings</small></div>
-  <i></i>
-  <div><span>02</span><b>CLASSIFY</b><small>cause · owner · risk</small></div>
-  <i></i>
-  <div><span>03</span><b>REMEDIATE</b><small>isolated change</small></div>
-  <i></i>
-  <div><span>04</span><b>PROVE</b><small>regression evidence</small></div>
-</div>
-
-<div class="audience-checkin" v-click>
-  <span>THE STARTING POINT</span>
-  <b>An existing brownfield project.<br>Intended machine behavior must remain unchanged.</b>
-  <small>BUILD WARNINGS · RUNTIME LOGBOOK · VERSIONED PROJECT · REVIEWABLE PR</small>
-</div>
-
-<div class="slide-id">I10 · 11</div>
-
-<!--
-Vi følger et brownfield-eksempel: Projektet har build warnings og runtime findings i logbook. Opgaven er ikke bare at få et grønt skærmbillede. Vi skal forstå hvert finding, bevare den tilsigtede machine behavior og producere en reviewbar ændring med evidens.
-
-Først registrerer vi baseline. Hvad er nyt, og hvad var allerede accepteret? Hvilke configurations er påvirket? Er finding i customer source, generated code, vendor library eller configuration?
-
-Transition: Først gør vi workflowen til den centrale enhed.
 -->
 
 ---
@@ -531,6 +592,56 @@ Den er et levende engineering-system. Den skal versionsstyres, måles, vedligeho
 
 ---
 layout: default
+class: maturity-compare-slide dark-slide
+---
+
+<div class="kicker">WORKSHOP 01 · THE PREMISE · 03 MIN</div>
+
+# Why this is not<br><span class="accent">vibe coding</span>
+
+<div class="maturity-compare">
+  <div class="vibe-panel" v-click>
+    <div class="panel-label"><mdi-flask-outline /> VIBE CODING</div>
+    <div class="maturity-flow"><span>INTENT</span><mdi-arrow-right /><span class="plausible">PLAUSIBLE OUTPUT</span></div>
+    <div class="compare-rows">
+      <p><b>Context</b><span>lives in chat</span></p>
+      <p><b>Feedback</b><span>manual trial + error</span></p>
+      <p><b>Review</b><span>every generated line</span></p>
+      <p><b>Verdict</b><span>"it looks right"</span></p>
+    </div>
+    <small>EXCELLENT FOR EXPLORATION</small>
+  </div>
+  <div class="engineering-panel" v-click>
+    <div class="panel-label"><mdi-shield-check-outline /> AGENTIC ENGINEERING</div>
+    <div class="maturity-flow"><span>SPEC</span><mdi-arrow-right /><span>ACTION</span><mdi-arrow-right /><span class="evidence">EVIDENCE</span></div>
+    <div class="compare-rows">
+      <p><b>Context</b><span>versioned / retrieved</span></p>
+      <p><b>Feedback</b><span>automated gates</span></p>
+      <p><b>Review</b><span>evidence + decisions</span></p>
+      <p><b>Verdict</b><span>criteria demonstrated</span></p>
+    </div>
+    <small>FOR CONTROLLED PRODUCT WORK</small>
+  </div>
+</div>
+
+<div class="machine-verdict" v-click>
+  On a machine, <strong>"it looks right" is not an acceptance criterion.</strong>
+</div>
+
+<div class="slide-id">W1 · 13</div>
+
+<!--
+Vibe coding kan være effektivt til learning og prototypes. Problemet opstår, når conversational confidence bliver forvekslet med production control.
+
+Agentic Engineering kan bruge præcis den samme model. Forskellen er workflowen: durable context, controlled tools, objective checks, traceable changes og accountable approval.
+
+På en maskine er "det ser rigtigt ud" ikke et acceptkriterium.
+
+Start workshoppen med forskellen mellem plausibelt output og dokumenteret engineering. Gå derefter videre til workflowen, der gør ændringer synlige, testbare og kontrollerede.
+-->
+
+---
+layout: default
 class: bridge-slide dark-slide
 ---
 
@@ -571,7 +682,7 @@ class: bridge-slide dark-slide
   <span>CONTEXT</span><i>+</i><span>TOOLS</span><i>+</i><span>FEEDBACK</span><b>= WORKFLOW</b>
 </div>
 
-<div class="slide-id">W2 · 13</div>
+<div class="slide-id">W2 · 14</div>
 
 <!--
 Agentic Bridge er ikke én stor agent og ikke én ny model. Det er en samling af grænseflader og byggesten.
@@ -611,7 +722,7 @@ class: assets-slide
   If it touches reality, make it a <strong>tool with a clear contract.</strong>
 </div>
 
-<div class="slide-id">W3 · 14</div>
+<div class="slide-id">W3 · 15</div>
 
 <!--
 Context er de fakta, modellen skal bruge til den aktuelle opgave. En instruction er en kort regel, der skal gælde inden for sit scope. En skill er en genbrugelig flertrinsprocedure. Et tool er den eksekverbare grænseflade, der læser, ændrer eller verificerer noget.
@@ -657,7 +768,7 @@ class: llm-slide
   <div v-click><span>04</span>DECIDE NEXT ACTION</div>
 </div>
 
-<div class="slide-id">W4 · 15</div>
+<div class="slide-id">W4 · 16</div>
 
 <!--
 MCP er en standardforbindelse mellem harnesset og eksterne data eller tools. Det er ikke en model og ikke en database. Det er protokol-laget, der gør capabilities discoverable.
@@ -709,7 +820,7 @@ class: br-role-slide
 </div>
 
 <div class="status-caution">STATUS LABELS: RECONFIRM BEFORE EVENT</div>
-<div class="slide-id">W5 · 16</div>
+<div class="slide-id">W5 · 17</div>
 
 <!--
 Community MCPs viser, hvor hurtigt specialiseret knowledge kan forbindes til et agent workflow.
@@ -746,7 +857,7 @@ class: demo-slide dark-slide as-cli-slide
   <mdi-information-outline /> Show only operations verified with the event build. Keep physical-target access and <strong>online writes</strong> outside this demo.
 </div>
 
-<div class="slide-id">W6 · 17</div>
+<div class="slide-id">W6 · 18</div>
 
 <!--
 AS-CLI er action- og observation-laget. Et command-line interface kan bruges af en engineer, et script, en automatisk test, en CI-pipeline og en agent.
@@ -796,7 +907,7 @@ class: context-slide dark-slide
   <span>CONTEXT</span><i>+</i><span>TOOLS</span><i>+</i><span>EVALUATIONS</span><mdi-arrow-right /><strong>MEASURED GAP?</strong><mdi-arrow-right /><b>THEN CONSIDER FINE-TUNING</b>
 </div>
 
-<div class="slide-id">W7 · 18</div>
+<div class="slide-id">W7 · 19</div>
 
 <!--
 Model choice er en policy- og routingbeslutning, ikke et religionsvalg. En billig model kan være god til classification eller simple implementation tasks. En stærkere reasoning-model kan være relevant til architecture og review. Local models kan være relevante ved særlige data- eller latency-krav.
@@ -839,7 +950,7 @@ class: context-window-slide dark-slide
 
 <div class="measurement-note" v-click>NO UNIVERSAL TOKEN THRESHOLD · MEASURE YOUR MODEL + HARNESS</div>
 
-<div class="slide-id">W8 · 19</div>
+<div class="slide-id">W8 · 20</div>
 
 <!--
 Forestil jer, at en dygtig ny kollega møder ind til hver opgave, men uden hukommelse om gårsdagens samtale. Agenten har et context window med instructions, chat, filer, tool results og sit eget svar.
@@ -895,7 +1006,7 @@ class: enforcement-slide
   <span>CONTEXT</span><i>+</i><span>ACTION</span><i>+</i><span>EVIDENCE</span><i>+</i><span>ACCOUNTABILITY</span><b>= AGENTIC ENGINEERING</b>
 </div>
 
-<div class="slide-id">W9 · 20</div>
+<div class="slide-id">W9 · 21</div>
 
 <!--
 Instructions og guardrails styrer en probabilistisk model. De er vigtige, men de er adfærdsvejledning - ikke enforcement.
@@ -905,55 +1016,6 @@ Deterministiske tools kører uafhængigt af agentens opmærksomhed: compiler, sc
 Pull requesten samler requirement, diff, testresultater, assumptions, unresolved risk og reproduktionskommandoer. Build, static checks og behavior tests blokerer. En kompetent person accepterer de strategiske valg og release.
 -->
 
----
-layout: default
-class: maturity-compare-slide
----
-
-<div class="kicker">ENGINEERING MATURITY · 03 MIN</div>
-
-# Vibe coding vs<br><span class="accent">Agentic Engineering</span>
-
-<div class="maturity-compare">
-  <div class="vibe-panel" v-click>
-    <div class="panel-label"><mdi-flask-outline /> VIBE CODING</div>
-    <div class="maturity-flow"><span>INTENT</span><mdi-arrow-right /><span class="plausible">PLAUSIBLE OUTPUT</span></div>
-    <div class="compare-rows">
-      <p><b>Context</b><span>lives in chat</span></p>
-      <p><b>Feedback</b><span>manual trial + error</span></p>
-      <p><b>Review</b><span>every generated line</span></p>
-      <p><b>Verdict</b><span>"it looks right"</span></p>
-    </div>
-    <small>EXCELLENT FOR EXPLORATION</small>
-  </div>
-  <div class="engineering-panel" v-click>
-    <div class="panel-label"><mdi-shield-check-outline /> AGENTIC ENGINEERING</div>
-    <div class="maturity-flow"><span>SPEC</span><mdi-arrow-right /><span>ACTION</span><mdi-arrow-right /><span class="evidence">EVIDENCE</span></div>
-    <div class="compare-rows">
-      <p><b>Context</b><span>versioned / retrieved</span></p>
-      <p><b>Feedback</b><span>automated gates</span></p>
-      <p><b>Review</b><span>evidence + decisions</span></p>
-      <p><b>Verdict</b><span>criteria demonstrated</span></p>
-    </div>
-    <small>FOR CONTROLLED PRODUCT WORK</small>
-  </div>
-</div>
-
-<div class="machine-verdict" v-click>
-  On a machine, <strong>"it looks right" is not an acceptance criterion.</strong>
-</div>
-
-<div class="slide-id">W10 · 21</div>
-
-<!--
-Vibe coding kan være effektivt til learning og prototypes. Problemet opstår, når conversational confidence bliver forvekslet med production control.
-
-Agentic Engineering kan bruge præcis den samme model. Forskellen er workflowen: durable context, controlled tools, objective checks, traceable changes og accountable approval.
-
-På en maskine er "det ser rigtigt ud" ikke et acceptkriterium.
--->
-
----
 layout: default
 class: accountability-slide dark-slide
 ---
