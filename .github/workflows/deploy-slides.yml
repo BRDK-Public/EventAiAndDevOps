@@ -3,7 +3,7 @@ name: Deploy Slides to GitHub Pages
 on:
   push:
     branches:
-      - DevOps
+      - main
     paths:
       - Slides/**
       - .github/workflows/deploy-slides.yml

@@ -21,7 +21,7 @@ The static site is written to `dist/`.
 
 ## GitHub Pages
 
-The repository includes a GitHub Actions workflow at `.github/workflows/deploy-slides.yml` that builds and publishes this deck as a static GitHub Pages site. It runs for pushes to the `DevOps` branch that change `Slides/`, and can also be started manually from the Actions tab.
+The repository includes a GitHub Actions workflow at `.github/workflows/deploy-slides.yml` that builds and publishes this deck as a static GitHub Pages site. It runs for pushes to the `main` branch that change `Slides/`, and can also be started manually from the Actions tab.
 
 Before the first deployment, set **Settings > Pages > Build and deployment > Source** to **GitHub Actions**. The published deck will be available at:
 

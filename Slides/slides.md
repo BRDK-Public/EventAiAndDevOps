@@ -205,17 +205,13 @@ class: dark-slide loop-slide
   <div class="signal-pulse"></div>
   <p>DevOps gives agents rails.<br><strong>Agents make the rails more useful.</strong></p>
 </div>
-
 <div class="slide-id">I3 · 04</div>
 
 <!--
 DevOps og Agentic Engineering har forskellig control flow, men de har brug for den samme platform.
-
 DevOps udfører en kendt sekvens: checkout, build, test, package og publish. En agent er nyttig, når næste handling afhænger af feedback: Hvilken fil er relevant? Hvorfor fejlede build? Hvilken ændring bør prøves nu?
 
 Begge kræver versionsstyring, en ren build, kontrollerede targets, strukturerede diagnostics, objektive assertions og sporbar evidence. Uden DevOps-fundament kan agenten producere ændringer hurtigere, men organisationen kan ikke styre eller bevise kvaliteten.
-
-Transition: For at forstå arkitekturen skal vi skelne mellem model, agent og harness.
 -->
 
 ---
@@ -320,17 +316,13 @@ class: stack-slide dark-slide
 Modellen alene har ingen adgang til Automation Studio, et project, en PLC eller en logbook. Den kan kun arbejde med den context, den får.
 
 Agenten opstår, når modellen kan vælge et tool, kalde det, se resultatet og beslutte næste trin. Harnesset er miljøet rundt om agenten: context, tools, permissions, logging, handoffs, budgets og approvals.
-
 Git er versionsstyringen. GitHub eller Azure DevOps lægger samarbejde ovenpå med issues, pull requests og CI/CD. Repository, issue, commit, pull request og testresultat er de holdbare artefakter. En chatsamtale er ikke system of record.
-
 Transition: Hvorfor er dette sket hurtigere i IT end i OT?
 -->
-
 ---
 layout: default
 class: process-slide
 ---
-
 <div class="kicker">FOUNDATION · 04 MIN</div>
 
 # IT + OT are<br><span class="accent">converging</span>
@@ -342,12 +334,10 @@ class: process-slide
     <div class="step-icon"><mdi-source-branch /></div>
     <span>01</span><b>Git</b><small>visible + reversible</small>
   </div>
-  <div class="track-arrow" v-click><mdi-arrow-right /></div>
   <div class="track-step" v-click>
     <div class="step-icon"><mdi-hammer-wrench /></div>
     <span>02</span><b>Repeatable build</b><small>reproducible result</small>
   </div>
-  <div class="track-arrow" v-click><mdi-arrow-right /></div>
   <div class="track-step" v-click>
     <div class="step-icon"><mdi-test-tube /></div>
     <span>03</span><b>Automated test</b><small>objective feedback</small>
@@ -358,12 +348,11 @@ class: process-slide
     <span>04</span><b>Reviewable release</b><small>evidence + approval</small>
   </div>
 </div>
-
 <div class="amplifier-band" v-click>
   <div class="amp-label"><mdi-auto-fix /> AI</div>
   <div class="amp-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <div class="amp-copy">amplifies the engineering system <strong>around it</strong></div>
-</div>
+  </div>
 
 <div class="margin-note">SOFTWARE MOVED FIRST BECAUSE ITS FEEDBACK LOOP BECAME<br>CHEAP, VISIBLE, AND REVERSIBLE.</div>
 
@@ -373,12 +362,10 @@ class: process-slide
 IT er ikke foran, fordi softwareudviklere er klogere. Kode og configuration er tekst, Git gør ændringer diffable og reversible, APIs og CLIs gør handlinger scriptbare, og CI giver hurtig feedback.
 
 OT har yderligere udfordringer: fysiske konsekvenser, lange livscyklusser, hardware- og versionsafhængigheder, motion, safety og mindre standardiseret feedback.
-
 IT og OT konvergerer nu, fordi flere automation-artifacts bliver inspectable, flere operationer bliver scriptbare, og simulation og diagnostics kan indgå i et feedback-loop.
 
 Transition: Det vigtigste hul er forskellen mellem at generere kode og at verificere engineering.
 -->
-
 ---
 layout: default
 class: feedback-slide dark-slide
@@ -687,7 +674,6 @@ class: bridge-slide dark-slide
 <!--
 Agentic Bridge er ikke én stor agent og ikke én ny model. Det er en samling af grænseflader og byggesten.
 
-Instructions og skills fortæller agenten, hvordan et Automation Studio-projekt bør behandles. MCP giver adgang til relevant og versionspassende B&R-viden. AS-CLI giver et kommandobaseret interface til udvalgte Automation Studio-handlinger og observationer.
 
 Kombinationen er vigtig: Viden uden handling giver en informeret rådgiver. Handling uden kontekst kan være farligt. Kontekst, værktøjer og feedback i en kontrolleret proces giver engineering.
 
@@ -1217,7 +1203,6 @@ class: demo-slide dark-slide
 
 <!--
 Planneren vælger næste ready issue, vurderer afhængigheder og opretter en isoleret branch eller worktree. Implementeren ændrer kun det godkendte scope, tilføjer relevante tests og returnerer assumptions og evidence.
-
 Reviewer-agenten arbejder fra frisk context og kontrollerer intent, invariants, customer instructions, generated artifacts, test quality, security og unexpected scope. Den er ikke en deterministic oracle.
 
 Test runneren kører i et rent, kontrolleret miljø: relevante configurations, regression suite, targeted tests, ARsim/PVI hvor det gælder, warning comparison og provenance.
@@ -1356,7 +1341,7 @@ class: devops-cover ai-workshop-cover dark-slide
 
 # DevOps in<br><span class="accent">industry</span>
 
-<p class="devops-cover-copy">From one command contract to a traceable release.</p>
+<p class="devops-cover-copy">What, why and how to get started with B&R</p>
 
 <div class="devops-spine" v-motion :initial="{ opacity: 0, y: 18 }" :enter="{ opacity: 1, y: 0, transition: { delay: 300 } }">
   <div><span>01</span><b>VERSION</b><small>known inputs</small></div>
@@ -1366,12 +1351,6 @@ class: devops-cover ai-workshop-cover dark-slide
   <div><span>03</span><b>TEST</b><small>behavioral evidence</small></div>
   <i></i>
   <div><span>04</span><b>RELEASE</b><small>reviewable change</small></div>
-</div>
-
-<div class="audience-checkin" v-click>
-  <span>THE SECOND SESSION</span>
-  <b>Make engineering changes<br>repeatable and reviewable.</b>
-  <small>VERSION · BUILD · TEST · RELEASE · PROVENANCE</small>
 </div>
 
 <div class="slide-id">D2 · 30</div>
@@ -1386,51 +1365,469 @@ Transition: Først ser vi på, hvordan én ændring bevæger sig gennem en repro
 
 ---
 layout: default
-class: workshop-objectives-slide dark-slide
+class: devops-intro-slide dark-slide
 ---
 
 <div class="status-badge general">GENERAL PRINCIPLE</div>
-<div class="kicker">WORKSHOP 02 · START HERE · 07 MIN</div>
+<div class="kicker">WORKSHOP 02 · ORIENTATION · 04 MIN</div>
 
-# What should become<br><span class="accent">repeatable?</span>
+# What is<br><span class="accent">DevOps?</span>
 
-<div class="objective-rail">
-  <div v-click><span>01</span><b>VERSION</b><small>known inputs</small></div>
-  <i v-click></i>
-  <div v-click><span>02</span><b>BUILD</b><small>repeatable output</small></div>
-  <i v-click></i>
-  <div v-click><span>03</span><b>TEST</b><small>machine behavior</small></div>
-  <i v-click></i>
-  <div v-click><span>04</span><b>EVIDENCE</b><small>decision material</small></div>
-  <i v-click></i>
-  <div v-click><span>05</span><b>RELEASE</b><small>controlled handoff</small></div>
+<div class="devops-intro-lead">
+  <span>DEVELOPMENT + OPERATIONS</span>
 </div>
 
-<div class="room-checkin" v-click>
-  <span>CHECK IN WITH THE ROOM</span>
-  <b>Which engineering workflow still depends on one person?</b>
-  <small>SHOW OF HANDS · THEN 60 SECONDS IN PAIRS</small>
+<div class="devops-loop" aria-label="The DevOps loop">
+  <div class="devops-loop-stage development">
+    <span class="devops-stage-number">01</span>
+    <b>DEVELOPMENT</b>
+    <ul>
+      <li>Plan and code a change</li>
+      <li>Build the application</li>
+      <li>Test the expected behavior</li>
+    </ul>
+  </div>
+  <div class="devops-loop-connector">
+    <img class="devops-inf-logo" src="/DevOpsInfLogo.png" alt="DevOps infinity loop">
+    <b>CONTINUOUS<br>FEEDBACK</b>
+  </div>
+  <div class="devops-loop-stage operations">
+    <span class="devops-stage-number">02</span>
+    <b>OPERATIONS</b>
+    <ul>
+      <li>Release and deploy</li>
+      <li>Operate the machine</li>
+      <li>Monitor real behavior</li>
+    </ul>
+  </div>
 </div>
 
-<div class="audience-signal-grid">
-  <div v-click><mdi-code-braces-box /><span>PLC / MACHINE SOFTWARE</span></div>
-  <div v-click><mdi-hammer-wrench /><span>BUILD / CONFIGURE</span></div>
-  <div v-click><mdi-test-tube /><span>TEST / DIAGNOSE</span></div>
-  <div v-click><mdi-account-check-outline /><span>APPROVE / RELEASE</span></div>
+<br />
+<br />
+<br />
+
+<div class="devops-beyond">
+  <div class="devops-beyond-label"><span>OTHER DISCIPLINES</span><b>NOT COVERED TODAY</b></div>
+  <ul aria-label="DevOps disciplines not covered today">
+    <li>Automated Setup (IaC)</li>
+    <li>Security / DevSecOps</li>
+    <li>Issue reporting</li>
+    <li>Team culture &amp; collaboration</li>
+    <li>Coding Standards</li>
+    <li>Documentation</li>
+  </ul>
 </div>
+
+<div class="devops-intro-note">DevOps covers many practices and disciplines.
+Today we focus on the software delivery flow: <strong>Code → Build → Test → Deploy.</strong></div>
 
 <div class="slide-id">W2 · 31</div>
+<!--
+Title: What is DevOps
+Development and Operations
+DevOps can be MANY things.
+We will not cover everything today
+We will focus on CI/CD pipeline and how it can be done with B&R ecosystem
+Visualization idea: Standard DevOps infinity symbol with a lot of DevOps related words floating around and then mark those with bold we will focus on
+-->
+
+---
+layout: default
+class: why-devops-slide dark-slide
+---
+
+<div class="kicker">WORKSHOP 02 · WHY DEVOPS?</div>
+
+# Why <span class="accent">DevOps?</span>
+
+<div class="why-devops-flow" aria-label="Agentic Engineering connected to DevOps">
+  <section class="why-devops-panel agentic">
+    <div class="why-devops-panel-label">01 · ACCELERATE CREATION</div>
+    <div class="why-devops-panel-title"><mdi-robot-outline /><b>AGENTIC ENGINEERING</b></div>
+    <ul>
+      <li>Generates code faster</li>
+      <li>Makes automated tests easier to create</li>
+      <li>Turns ideas into prototypes quickly</li>
+    </ul>
+  </section>
+
+  <div class="why-devops-bridge" aria-label="Needs guardrails">
+    <span class="why-devops-bridge-line"></span>
+    <div class="why-devops-bridge-core"><mdi-shield-check-outline /><b>NEEDS<br>GUARDRAILS</b></div>
+    <span class="why-devops-bridge-line"></span>
+  </div>
+
+  <section class="why-devops-panel devops">
+    <div class="why-devops-panel-label">02 · DELIVER RELIABLY</div>
+    <div class="why-devops-panel-title"><mdi-source-branch /><b>DEVOPS</b></div>
+    <div class="why-devops-practices">
+      <div><mdi-hammer-wrench /><span>AUTOMATED BUILD + TEST</span></div>
+      <div><mdi-shield-check-outline /><span>QUALITY CHECKS</span></div>
+      <div><mdi-source-branch /><span>CONTROLLED DEPLOYMENT</span></div>
+      <div><mdi-chart-timeline-variant-shimmer /><span>CONTINUOUS FEEDBACK</span></div>
+    </div>
+  </section>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+
+<div class="why-devops-takeaway">
+  <strong>AI helps us create software faster. DevOps helps us deliver it safely.</strong>
+</div>
+
+<div class="slide-id">W2 · 32</div>
 
 <!--
-Remember: DevOps starts with one bounded industrial workflow that the room wants to make repeatable and reviewable.
+Remember: Agentic Engineering accelerates software creation; it does not make the result reliable by itself.
 
-Ask for a show of hands: who works with PLC or machine software, who builds or configures, who tests or diagnoses, and who approves or releases? Then give pairs 60 seconds to name one workflow that currently depends on a specific person.
+Walk left to right. AI can generate code and tests faster. DevOps adds the build, test, quality, deployment, and feedback controls needed to deliver the result reliably.
 
-Reveal the five stages from left to right. Invite two or three short examples, but do not solve them yet. We will use the chain as a lens for the rest of the workshop.
+"If AI helps us create ten times more software changes, we need a system that can verify, test, and deliver ten times more changes as well. That's where DevOps comes in."
 
-Transition: DevOps is a family of practices, not one product or one tool.
+Keep the claim bounded. DevOps provides controls and evidence for delivery; it does not replace engineering judgment, safety validation, or release accountability.
+-->
 
-Status: General workshop framing. No B&R product capability is being claimed.
+---
+layout: default
+class: old-way-slide dark-slide
+---
+
+<div class="kicker">WORKSHOP 02 · THE OLD WAY · 04 MIN</div>
+
+# Why <span class="accent">change?</span>
+
+<div class="old-way-flow" aria-label="The old manual delivery flow">
+  <div class="old-way-step">
+    <span class="old-way-number">01</span>
+    <mdi-account-hard-hat-outline />
+    <b>ENGINEER</b>
+  </div>
+  <div class="old-way-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <div class="old-way-step">
+    <span class="old-way-number">02</span>
+    <mdi-file-edit-outline />
+    <b>CODE CHANGE</b>
+  </div>
+  <div class="old-way-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <div class="old-way-step">
+    <span class="old-way-number">03</span>
+    <mdi-hammer-wrench />
+    <b>BUILD<br>MANUALLY</b>
+  </div>
+  <div class="old-way-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <div class="old-way-step">
+    <span class="old-way-number">04</span>
+    <mdi-folder-multiple-outline />
+    <b>COPY FILES<br>AROUND</b>
+  </div>
+  <div class="old-way-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <div class="old-way-step">
+    <span class="old-way-number">05</span>
+    <mdi-test-tube />
+    <b>RUN TESTS<br>MANUALLY (IF ANY)</b>
+  </div>
+  <div class="old-way-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <div class="old-way-step">
+    <span class="old-way-number">06</span>
+    <mdi-package-variant-closed-check />
+    <b>DEPLOY<br>MANUALLY</b>
+  </div>
+  <div class="old-way-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <div class="old-way-step warning">
+    <span class="old-way-number">07</span>
+    <mdi-help-circle-outline />
+    <b>HOPE NOTHING<br>BROKE</b>
+  </div>
+</div>
+
+<div class="old-way-pain">
+  <div class="old-way-pain-label"><span>PAIN POINTS</span><b>MANUAL DELIVERY CREATES BLIND SPOTS</b></div>
+  <ul>
+    <li><mdi-hammer-wrench /><span>Manual build steps</span></li>
+    <li><mdi-monitor-multiple /><span>Different PC configurations</span></li>
+    <li><mdi-test-tube-empty /><span>Missing tests</span></li>
+    <li><mdi-undo-variant /><span>Difficult rollbacks</span></li>
+    <li><mdi-help-circle-outline /><span>Hard to know what was deployed</span></li>
+  </ul>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<div class="old-way-takeaway">
+  <blockquote>As software creation accelerates (due to AI), delivery must become more systematic and automated.</blockquote>
+</div>
+
+<div class="slide-id">W2 · 33</div>
+
+<!--
+"Traditionally, many software delivery activities have been manual. An engineer makes a change, builds locally, runs a few checks, maybe copies files to a test system, and eventually deploys the result."
+
+"That works when changes are infrequent. But Agentic Engineering changes the equation. If we can generate code, tests, and prototypes much faster, we can also expect more changes, more experiments, and more iterations."
+
+"At that point, the bottleneck is no longer creating software. The bottleneck becomes verifying and delivering it consistently."
+
+"That's why, as software creation accelerates, delivery must become more systematic and automated."
+-->
+
+---
+layout: default
+class: devops-tooling dark-slide
+---
+
+<div class="kicker">WORKSHOP 02 · DEVOPS · 03 MIN</div>
+
+<div class="delivery-heading">
+  <div>
+    <h1>Continuous<br><span class="accent">Integration</span></h1>
+    <p>Every change is built and checked while it is still small.</p>
+  </div>
+  <div class="delivery-definition-mark"><span>CI</span><small>FAST FEEDBACK<br>BEFORE RELEASE</small></div>
+</div>
+
+<div class="delivery-flow ci-flow" aria-label="Continuous Integration stages">
+  <section class="delivery-flow-stage is-code" aria-label="Code">
+    <span class="delivery-flow-number">01</span>
+    <mdi-source-commit />
+    <b>CODE</b>
+    <small>change is versioned</small>
+  </section>
+  <div class="delivery-flow-arrow" v-click="1" aria-hidden="true"><mdi-arrow-right /></div>
+  <section class="delivery-flow-stage is-ci" v-click="1" aria-label="Build">
+    <span class="delivery-flow-number">02</span>
+    <mdi-hammer-wrench />
+    <b>BUILD</b>
+    <small>repeatable output</small>
+  </section>
+  <div class="delivery-flow-arrow" v-click="2" aria-hidden="true"><mdi-arrow-right /></div>
+  <section class="delivery-flow-stage is-ci" v-click="2" aria-label="Test">
+    <span class="delivery-flow-number">03</span>
+    <mdi-test-tube />
+    <b>TEST</b>
+    <small>expected behavior</small>
+  </section>
+  <div class="delivery-flow-arrow" v-click="3" aria-hidden="true"><mdi-arrow-right /></div>
+  <section class="delivery-flow-stage is-verify" v-click="3" aria-label="Verify">
+    <span class="delivery-flow-number">04</span>
+    <mdi-shield-check-outline />
+    <b>VERIFY</b>
+    <small>evidence recorded</small>
+  </section>
+</div>
+
+<div class="delivery-footer" v-click="3">
+  <div class="delivery-footer-label"><mdi-check-circle-outline /><span>CI QUESTION</span></div>
+  <strong>Does this change still behave as expected?</strong>
+  <small>Fast feedback keeps the change easy to understand and easy to fix.</small>
+</div>
+
+<div class="slide-id">W2 · 34</div>
+
+<!--
+Continuous Integration means that each change meets the same build and test process. The goal is not to make every change perfect before it moves. The goal is to find problems while the change is still small enough to understand.
+
+The engineer creates and versions the change. The pipeline produces a repeatable output, runs the expected checks, and records evidence. A green result does not replace engineering judgment, but it gives the engineer something objective to review.
+
+Transition: Once software is verified, how do we move it toward a controlled release?
+-->
+
+---
+layout: default
+class: where-agentic-fits dark-slide
+---
+
+<div class="kicker">WORKSHOP 02 · DEVOPS · 03 MIN</div>
+
+<div class="delivery-heading">
+  <div>
+    <h1>Continuous<br><span class="accent">Delivery</span></h1>
+    <p>Verified software becomes a traceable candidate for controlled release.</p>
+  </div>
+  <div class="delivery-definition-mark"><span>CD</span><small>READY TO RELEASE<br>WHEN APPROVED</small></div>
+</div>
+
+<div class="delivery-handoff" v-click="1">
+  <mdi-check-circle-outline />
+  <span>FROM CI</span>
+  <strong>VERIFIED ARTIFACT</strong>
+  <small>same bits, named and traceable</small>
+</div>
+
+<div class="delivery-flow cd-flow" aria-label="Continuous Delivery stages">
+  <section class="delivery-flow-stage is-package">
+    <span class="delivery-flow-number">05</span>
+    <mdi-package-variant-closed />
+    <b>PACKAGE</b>
+    <small>traceable artifact</small>
+  </section>
+  <div class="delivery-flow-arrow" v-click="1" aria-hidden="true"><mdi-arrow-right /></div>
+  <section class="delivery-flow-stage is-cd" v-click="1">
+    <span class="delivery-flow-number">06</span>
+    <mdi-clipboard-check-outline />
+    <b>RELEASE CANDIDATE</b>
+    <small>ready for decision</small>
+  </section>
+  <div class="delivery-gate-slot" v-click="2">
+    <div class="delivery-gate-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+    <div class="delivery-gate">
+      <mdi-account-check-outline />
+      <span>HUMAN GATE</span>
+      <b>release decision</b>
+    </div>
+  </div>
+  <section class="delivery-flow-stage is-deploy" v-click="3">
+    <span class="delivery-flow-number">07</span>
+    <mdi-upload-network-outline />
+    <b>DEPLOY</b>
+    <small>controlled target</small>
+  </section>
+  <div class="delivery-flow-arrow" v-click="4" aria-hidden="true"><mdi-arrow-right /></div>
+  <section class="delivery-flow-stage is-monitor" v-click="4">
+    <span class="delivery-flow-number">08</span>
+    <mdi-chart-timeline-variant-shimmer />
+    <b>MONITOR</b>
+    <small>feeds the next change</small>
+  </section>
+</div>
+
+<div class="delivery-footer" v-click="4">
+  <div class="delivery-footer-label"><mdi-shield-check-outline /><span>CD QUESTION</span></div>
+  <strong>Can we move this verified artifact safely to its target?</strong>
+  <small>Automation prepares the release; people own the decision.</small>
+</div>
+
+<div class="slide-id">W2 · 35</div>
+
+<!--
+Continuous Delivery begins with the verified result from Continuous Integration. The pipeline packages that result so it can be identified, reproduced, and moved without rebuilding it by hand.
+
+The release candidate is ready, but ready does not mean automatic. A human release decision remains visible between the candidate and the deployment target. After deployment, monitoring tells us what happened in the real environment and provides feedback for the next change.
+
+Transition: CI and CD are most useful when we see them as one connected delivery flow.
+-->
+
+---
+layout: default
+class: devops-pipeline dark-slide
+---
+
+<div class="kicker">WORKSHOP 02 · DEVOPS · 05 MIN</div>
+
+<div class="delivery-heading combined-heading">
+  <div>
+    <h1>CI/CD<br><span class="accent">putting it together</span></h1>
+    <p>CI makes changes trustworthy. CD makes verified software releasable.</p>
+  </div>
+  <div class="delivery-principle"><span>ONE SYSTEM</span><strong>ENGINEER CREATES THE CHANGE.<br>PIPELINE EXECUTES THE PROCESS.</strong></div>
+</div>
+
+<div class="delivery-combined-flow" aria-label="The combined DevOps delivery flow">
+  <section class="delivery-region ci-region" aria-label="Continuous Integration">
+    <div class="delivery-region-heading"><span>CONTINUOUS INTEGRATION</span><small>make the change trustworthy</small></div>
+    <div class="delivery-region-flow ci-region-flow">
+      <section class="delivery-flow-stage is-code">
+        <span class="delivery-flow-number">01</span>
+        <mdi-source-commit />
+        <b>CODE</b>
+        <small>engineer creates</small>
+      </section>
+      <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+      <section class="delivery-flow-stage is-ci">
+        <span class="delivery-flow-number">02</span>
+        <mdi-hammer-wrench />
+        <b>BUILD</b>
+        <small>repeatable output</small>
+      </section>
+      <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+      <section class="delivery-flow-stage is-ci">
+        <span class="delivery-flow-number">03</span>
+        <mdi-test-tube />
+        <b>TEST</b>
+        <small>expected behavior</small>
+      </section>
+      <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+      <section class="delivery-flow-stage is-verify">
+        <span class="delivery-flow-number">04</span>
+        <mdi-shield-check-outline />
+        <b>VERIFY</b>
+        <small>evidence recorded</small>
+      </section>
+    </div>
+  </section>
+
+  <div class="delivery-combined-handoff" v-click="1" aria-hidden="true">
+    <span>VERIFIED SOFTWARE<br>BECOMES A<br>RELEASE CANDIDATE</span>
+    <mdi-arrow-right />
+  </div>
+
+  <section class="delivery-region cd-region" v-click="1" aria-label="Continuous Delivery">
+    <div class="delivery-region-heading"><span>CONTINUOUS DELIVERY</span><small>move it with control</small></div>
+    <div class="delivery-region-flow cd-region-flow">
+      <section class="delivery-flow-stage is-package">
+        <span class="delivery-flow-number">05</span>
+        <mdi-package-variant-closed />
+        <b>PACKAGE</b>
+        <small>traceable artifact</small>
+      </section>
+      <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+      <section class="delivery-flow-stage is-cd">
+        <span class="delivery-flow-number">06</span>
+        <mdi-clipboard-check-outline />
+        <b>RELEASE</b>
+        <small>ready for decision</small>
+      </section>
+      <div class="delivery-approval-slot" v-click="2">
+        <mdi-arrow-right class="delivery-approval-arrow" aria-hidden="true" />
+        <div class="delivery-inline-gate">
+          <mdi-account-check-outline />
+          <span>RELEASE DECISION</span>
+        </div>
+      </div>
+      <section class="delivery-flow-stage is-deploy" v-click="2">
+        <span class="delivery-flow-number">07</span>
+        <mdi-upload-network-outline />
+        <b>DEPLOY</b>
+        <small>controlled target</small>
+      </section>
+      <div class="delivery-flow-arrow" v-click="3" aria-hidden="true"><mdi-arrow-right /></div>
+      <section class="delivery-flow-stage is-monitor" v-click="3">
+        <span class="delivery-flow-number">08</span>
+        <mdi-chart-timeline-variant-shimmer />
+        <b>MONITOR</b>
+        <small>feeds the next change</small>
+      </section>
+    </div>
+  </section>
+</div>
+
+<div class="delivery-feedback" v-click="3">
+  <div class="delivery-footer-label"><mdi-chart-timeline-variant-shimmer /><span>FEEDBACK LOOP</span></div>
+  <strong>Monitor what happened. Feed the next change.</strong>
+</div>
+
+<div class="slide-id">W2 · 36</div>
+
+<!--
+This is the whole delivery flow in one picture. Continuous Integration takes the engineer's change through build, test, and verification. Continuous Delivery takes the verified result through packaging, release, deployment, and monitoring.
+
+The handoff matters: the pipeline does not silently rebuild a different version. It moves a named artifact forward. The release decision is deliberately visible, because controlled delivery still needs human context and accountability.
+
+Monitoring closes the loop. What happens in the target environment becomes evidence for the next change, so delivery is not a one-way copy operation but a repeatable engineering system.
+-->
+
+---
+layout: default
+class: example-orange-juice-machine dark-slide
+---
+
+<!--
+
 -->
 
 ---
@@ -1474,7 +1871,7 @@ class: devops-definition-slide
   DevOps is the <strong>practice of making change visible, repeatable, and accountable.</strong>
 </div>
 
-<div class="slide-id">W2 · 32</div>
+<div class="slide-id">W2 · 37</div>
 
 <!--
 Remember: DevOps is a set of practices. It can be a small manual checklist, a script used by one engineer, or a fully gated release process.
@@ -1529,7 +1926,7 @@ class: why-now-slide dark-slide
   WRITE MORE TESTS <i>+</i> VERIFY THE ORACLE <i>+</i> REVIEW THE RELEASE
 </div>
 
-<div class="slide-id">W2 · 33</div>
+<div class="slide-id">W2 · 38</div>
 
 <!--
 Remember: AI can increase the rate of change and lower the cost of drafting tests. DevOps keeps the feedback and governance signal strong enough to review that change.
@@ -1566,7 +1963,7 @@ class: industrial-difference-slide
   Source history is necessary.<br><strong>It is not machine behavior.</strong>
 </div>
 
-<div class="slide-id">W2 · 34</div>
+<div class="slide-id">W2 · 39</div>
 
 <!--
 Remember: An industrial release is source plus runtime, state, hardware, and responsibility. Source history alone cannot tell us how a machine will behave.
@@ -1622,7 +2019,7 @@ class: engineering-loop-slide dark-slide
   What would be invisible if we skipped this stage?
 </div>
 
-<div class="slide-id">W2 · 35</div>
+<div class="slide-id">W2 · 40</div>
 
 <!--
 Remember: Each stage should produce an artifact that makes the next decision inspectable. Approval sits between evidence and release.
@@ -1682,7 +2079,7 @@ class: build-inputs-slide
   <span>THE BUILD CONTRACT tells us what to run.</span>
 </div>
 
-<div class="slide-id">W2 · 36</div>
+<div class="slide-id">W2 · 41</div>
 
 <!--
 Remember: Git preserves source and history. A repeatable build also needs a declared environment, project inputs, target, dependencies, and build action.
@@ -1731,7 +2128,7 @@ class: provenance-slide dark-slide
   Reproducibility is something we demonstrate and measure.
 </div>
 
-<div class="slide-id">W2 · 37</div>
+<div class="slide-id">W2 · 42</div>
 
 <!--
 Remember: Repeatability is a declared recipe plus provenance. Reproducibility is not a feeling and does not automatically mean byte-for-byte identity.
@@ -1772,7 +2169,7 @@ class: test-ladder-slide dark-slide
   Simulation evidence is valuable.<br><strong>It is not automatically physical or safety validation.</strong>
 </div>
 
-<div class="slide-id">W2 · 38</div>
+<div class="slide-id">W2 · 43</div>
 
 <!--
 Remember: Choose the fastest layer that is faithful enough for the risk. Add simulation, HIL, or physical validation when fidelity requires it.
@@ -1813,7 +2210,7 @@ class: integration-contract-slide
   ASSERT OBSERVABLE BEHAVIOR · NOT A SCREENSHOT
 </div>
 
-<div class="slide-id">W2 · 39</div>
+<div class="slide-id">W2 · 44</div>
 
 <!--
 Remember: A useful integration test stimulates an interface and checks observable machine behavior. It is not a screenshot or a UI click path.
@@ -1859,7 +2256,7 @@ class: approval-slide dark-slide
   <div><mdi-robot-outline /><b>BOUND THE AGENT</b><small>suggests and acts within permission</small></div>
 </div>
 
-<div class="slide-id">W2 · 40</div>
+<div class="slide-id">W2 · 45</div>
 
 <!--
 Remember: Tests provide evidence for a human engineering decision. They do not transfer safety or release accountability to an agent or pipeline.
@@ -1903,7 +2300,7 @@ class: conveyor-intro-slide dark-slide
   Before we run it: name three pass criteria.
 </div>
 
-<div class="slide-id">W2 · 41</div>
+<div class="slide-id">W2 · 46</div>
 
 <!--
 Remember: One vertical slice makes version, build, test, and evidence tangible.
@@ -1949,7 +2346,7 @@ class: clean-demo-slide dark-slide
   Use the exact event-tested command transcript live; use the same evidence bundle in the recording.
 </div>
 
-<div class="slide-id">W2 · 42</div>
+<div class="slide-id">W2 · 47</div>
 
 <!--
 Remember: A controlled run is valuable because it leaves observable state, behavior, and evidence from one declared sequence.
@@ -1999,7 +2396,7 @@ class: fault-demo-slide dark-slide
   Confirm the event build's fault point, task names, variables, and final count before showing numeric values.
 </div>
 
-<div class="slide-id">W2 · 43</div>
+<div class="slide-id">W2 · 48</div>
 
 <!--
 Remember: A bounded failure should produce an observable abort or hold, a controlled recovery, and evidence that the intended batch completed.
@@ -2045,7 +2442,7 @@ class: release-handoff-slide
   The checked-in flow is a demonstrator release path, not a production deployment recommendation.
 </div>
 
-<div class="slide-id">W2 · 44</div>
+<div class="slide-id">W2 · 49</div>
 
 <!--
 Remember: Release packages approved evidence and known inputs. It is not simply copying the newest files.
@@ -2093,7 +2490,7 @@ class: adoption-slide dark-slide
   Trustworthy repetition beats maximum automation.
 </div>
 
-<div class="slide-id">W2 · 45</div>
+<div class="slide-id">W2 · 50</div>
 
 <!--
 Remember: Start with one bounded workflow, explicit inputs, one meaningful oracle, captured evidence, and a human approval boundary.
@@ -2105,4 +2502,23 @@ Reveal the four adoption steps, then give pairs two minutes to fill in the workf
 Close with the guardrails: bounded, reversible, measurable, and human-approved. The workshop ends here; questions and lunch follow at 12.15.
 
 Status: General adoption guidance and illustrative examples.
+-->
+
+---
+layout: default
+class: working-in-progress dark-slide
+---
+
+<!--
+Make an ending slide about "what we are working on" (Robust docker image, Package Manager).
+Maybe use wording like OT does not become IT in a year.
+-->
+
+---
+layout: default
+class: Questions dark-slide
+---
+
+<!--
+Questions
 -->
