@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<EventBindingSet id="HD_LS1_contentMain" xmlns="http://www.br-automation.com/iat2014/eventbinding/v2" xmlns:types="http://www.br-automation.com/iat2015/widgetTypes/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Bindings>
+    <EventBinding id="HD_LS1_contentMain.StartButton.Click">
+      <Source xsi:type="widgets.brease.Button.Event" contentRefId="HD_LS1_contentMain" widgetRefId="StartButton" event="Click" />
+      <EventHandler>
+        <Action>
+          <Target xsi:type="opcUa.NodeAction" refId="::Main:hmi.startMachine">
+            <Method xsi:type="opcUa.NodeAction.SetValueBool" value="true" />
+          </Target>
+        </Action>
+      </EventHandler>
+    </EventBinding>
+    <EventBinding id="HD_LS1_contentMain.StopButton.Click">
+      <Source xsi:type="widgets.brease.Button.Event" contentRefId="HD_LS1_contentMain" widgetRefId="StopButton" event="Click" />
+      <EventHandler>
+        <Action>
+          <Target xsi:type="opcUa.NodeAction" refId="::Main:hmi.stopMachine">
+            <Method xsi:type="opcUa.NodeAction.SetValueBool" value="true" />
+          </Target>
+        </Action>
+      </EventHandler>
+    </EventBinding>
+    <EventBinding id="HD_LS1_contentMain.UpdateBtn.Click">
+      <Source xsi:type="widgets.brease.Button.Event" contentRefId="HD_LS1_contentMain" widgetRefId="UpdateBtn" event="Click" />
+      <EventHandler>
+        <Action>
+          <Target xsi:type="opcUa.NodeAction" refId="::Update:hmi.updateSoftware">
+            <Method xsi:type="opcUa.NodeAction.SetValueBool" value="true" />
+          </Target>
+        </Action>
+      </EventHandler>
+    </EventBinding>
+  </Bindings>
+</EventBindingSet>

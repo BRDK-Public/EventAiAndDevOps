@@ -7,6 +7,6 @@ TYPE
 		clearMachine : BOOL;
 	END_STRUCT;
 	hw_typ : 	STRUCT 
-		di_EstopOK : BOOL;
+		di_EstopOK : BOOL := TRUE;
 	END_STRUCT;
 END_TYPE

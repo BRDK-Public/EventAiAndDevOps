@@ -42,6 +42,17 @@ ACTION simulation:
 			END_IF
 		END_IF
 		
+	ELSE
+		// On real hw just always simulate that a bottle is there. (Only because it is a test machine)
+		IF em.StateCurrent = STATE_EXECUTE THEN
+			
+			IF em.SubState = 0 OR em.SubState = 10 THEN
+				hw.di_bottleReady := TRUE;
+			ELSE
+				hw.di_bottleReady := FALSE;
+			END_IF
+			
+		END_IF
 	END_IF
 		
 END_ACTION

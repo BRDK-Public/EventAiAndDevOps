@@ -1,3 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
-<OpcUaSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" FileVersion="10">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio FileVersion="6.0"?>
+<OpcUaSource FileVersion="10">
+  <Aliases>
+    <ACLAliases />
+    <EURangeViolationAliases />
+    <EURangesAliases />
+    <EngineeringUnitAliases />
+  </Aliases>
+  <Module Name="&lt;Default&gt;">
+    <Task Name="EM_Conveyo">
+      <Variable Name="productionCycleCount" />
+    </Task>
+    <Task Name="Main">
+      <Variable Name="hmi">
+        <Variable Name="startMachine" />
+        <Variable Name="stopMachine" />
+      </Variable>
+    </Task>
+    <Task Name="Update">
+      <Variable Name="UpdateReady" />
+      <Variable Name="UpdateVersion" />
+      <Variable Name="UpdateVersionOnPLC" />
+      <Variable Name="hmi">
+        <Variable Name="updateSoftware" />
+        <Variable Name="updateReady" />
+      </Variable>
+    </Task>
+  </Module>
 </OpcUaSource>
