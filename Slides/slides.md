@@ -21,7 +21,6 @@ exportFilename: agentic-engineering
 ---
 
 <img class="cover-image" src="/evolution.png" alt="Evolution from AI assistant to AI agent and agentic AI">
-
 <img class="cover-logo" src="/br-logo.svg" alt="B&R Industrial Automation">
 
 <div class="eyebrow" v-motion :initial="{ opacity: 0, x: -30 }" :enter="{ opacity: 1, x: 0, transition: { delay: 150 } }">
@@ -43,7 +42,6 @@ exportFilename: agentic-engineering
   <div class="bridge-track"><i></i><i></i><i></i><i></i><i></i></div>
   <div class="bridge-node is-proof"><span>02</span> VERIFIED MACHINE BEHAVIOR</div>
 </div>
-
 <div class="slide-id">COVER · 01</div>
 
 <!--
@@ -2022,21 +2020,21 @@ class: devops-pipeline dark-slide
         <b>RELEASE</b>
         <small>ready for decision</small>
       </section>
-      <div class="delivery-approval-slot" v-click="2">
+      <div class="delivery-approval-slot" v-click="1">
         <mdi-arrow-right class="delivery-approval-arrow" aria-hidden="true" />
         <div class="delivery-inline-gate">
           <mdi-account-check-outline />
           <span>RELEASE DECISION</span>
         </div>
       </div>
-      <section class="delivery-flow-stage is-deploy" v-click="2">
+      <section class="delivery-flow-stage is-deploy" v-click="1">
         <span class="delivery-flow-number">07</span>
         <mdi-upload-network-outline />
         <b>DEPLOY</b>
         <small>controlled target</small>
       </section>
-      <div class="delivery-flow-arrow" v-click="3" aria-hidden="true"><mdi-arrow-right /></div>
-      <section class="delivery-flow-stage is-monitor" v-click="3">
+      <div class="delivery-flow-arrow" v-click="1" aria-hidden="true"><mdi-arrow-right /></div>
+      <section class="delivery-flow-stage is-monitor" v-click="1">
         <span class="delivery-flow-number">08</span>
         <mdi-chart-timeline-variant-shimmer />
         <b>MONITOR</b>
@@ -2063,11 +2061,284 @@ Monitoring closes the loop. What happens in the target environment becomes evide
 
 ---
 layout: default
-class: example-orange-juice-machine dark-slide
+class: tooling-matters-slide dark-slide
 ---
 
-<!--
+<div class="status-badge general">GENERAL PRINCIPLE</div>
+<div class="kicker">WORKSHOP 02 · TOOLING · 04 MIN</div>
 
+# Why <span class="accent">Tooling Matters</span>
+
+<div class="tooling-subtitle">Automation requires programmable access to engineering tools.</div>
+
+<div class="tooling-access-grid" aria-label="Human-driven and pipeline-driven engineering workflows">
+  <section class="tooling-workflow-panel gui-workflow-panel" aria-label="Human-driven workflow">
+    <div class="tooling-panel-label">01 · HUMAN-DRIVEN WORKFLOW</div>
+    <div class="tooling-panel-title"><mdi-monitor-dashboard /><b>GUI WORKFLOW</b></div>
+    <div class="tooling-gui-window" v-click="1">
+      <div class="tooling-window-bar"><span>ENGINEERING APPLICATION</span><i></i><i></i><i></i></div>
+      <div class="tooling-step-list">
+        <div class="tooling-step"><span>01</span><mdi-folder-open-outline /><b>OPEN PROJECT</b><span class="tooling-click-icon"><mdi-cursor-default-click-outline /></span></div>
+        <div class="tooling-step-arrow"><mdi-arrow-down /></div>
+        <div class="tooling-step"><span>02</span><mdi-tune-variant /><b>SELECT CONFIGURATION</b><span class="tooling-click-icon"><mdi-cursor-default-click-outline /></span></div>
+        <div class="tooling-step-arrow"><mdi-arrow-down /></div>
+        <div class="tooling-step"><span>03</span><mdi-hammer-wrench /><b>CLICK BUILD</b><span class="tooling-click-icon"><mdi-cursor-default-click-outline /></span></div>
+        <div class="tooling-step-arrow"><mdi-arrow-down /></div>
+        <div class="tooling-step"><span>04</span><mdi-text-box-search-outline /><b>READ RESULT</b><span class="tooling-click-icon"><mdi-cursor-default-click-outline /></span></div>
+        <div class="tooling-step-arrow"><mdi-arrow-down /></div>
+        <div class="tooling-step"><span>05</span><mdi-upload-network-outline /><b>CLICK TRANSFER</b><span class="tooling-click-icon"><mdi-cursor-default-click-outline /></span></div>
+      </div>
+      <div class="tooling-manual-cue"><mdi-cursor-default-click-outline /><span>REPEAT EACH HANDOFF BY HAND</span></div>
+    </div>
+    <p class="tooling-panel-note" v-click="1">Effective for engineering work, difficult for unattended execution.</p>
+  </section>
+
+  <div class="tooling-interface-bridge" v-click="2" aria-label="Complementary interfaces">
+    <div class="tooling-bridge-box"><strong>GUI</strong><small>FOR PEOPLE</small></div>
+    <mdi-arrow-down />
+    <div class="tooling-bridge-caption">SAME<br>ENGINEERING<br>CAPABILITY</div>
+    <mdi-arrow-down />
+    <div class="tooling-bridge-box is-automation"><strong>CLI / API</strong><small>FOR AUTOMATION</small></div>
+  </div>
+  <section class="tooling-workflow-panel pipeline-workflow-panel" aria-label="Pipeline-driven workflow">
+    <div class="tooling-panel-label">02 · PIPELINE-DRIVEN WORKFLOW</div>
+    <div class="tooling-panel-title" v-click="2"><mdi-console-line /><b>PROGRAMMABLE INTERFACE</b></div>
+    <div class="tooling-runner-shell" v-click="2">
+      <div class="tooling-runner-bar"><mdi-source-branch /><span>PIPELINE RUNNER</span></div>
+      <div class="tooling-runner-question"><mdi-help-circle-outline /><b>NEED A<br>PROGRAMMABLE INTERFACE</b></div>
+    </div>
+    <div class="tooling-cli-boundary" v-click="2">
+      <div class="tooling-cli-label"><mdi-console-line /><b>CLI / API</b><small>ONE AUTOMATED BOUNDARY</small></div>
+      <div class="tooling-automated-steps">
+        <div><mdi-hammer-wrench /><b>BUILD</b></div>
+        <div><mdi-test-tube /><b>TEST</b></div>
+        <div><mdi-package-variant-closed /><b>PACKAGE</b></div>
+        <div><mdi-upload-network-outline /><b>TRANSFER</b></div>
+        <div><mdi-file-check-outline /><b>RETURN RESULT</b></div>
+      </div>
+    </div>
+    <p class="tooling-panel-note" v-click="2">The same operation can be executed consistently every time.</p>
+  </section>
+</div>
+
+<div class="tooling-takeaway" v-click="3">
+  <strong>If a human must click it, a pipeline cannot reliably automate it.</strong>
+  <small>The capability must also be exposed programmatically.</small>
+</div>
+
+<div class="slide-id">W2 · 46</div>
+
+<!--
+The build, test, and transfer capabilities may already exist. The challenge is access.
+
+A person can operate a graphical engineering application. A pipeline needs a stable, scriptable, non-interactive interface that can run unattended and return a result that a machine can inspect.
+
+The GUI is not the problem and it does not disappear. It is the interface designed for people. The CLI or API is the complementary interface designed for repeatable automation.
+
+Reveal the complete GUI workflow first. Then introduce the programmable interface together with the complementary GUI and CLI / API bridge and the automated workflow. Finish with the takeaway.
+-->
+
+---
+layout: default
+class: as-cli-intro-slide dark-slide
+---
+
+<div class="status-badge general">B&amp;R TOOLING</div>
+<div class="kicker">WORKSHOP 02 · AS-CLI · DEMO ROADMAP</div>
+
+# New <span class="accent">as-cli</span>
+
+<div class="as-cli-subtitle">One programmable interface for pipelines, agents, and engineers.</div>
+
+<div class="as-cli-consumer-row" aria-label="Consumers of as-cli">
+  <article class="as-cli-consumer-card as-cli-consumer-devops" v-click="1">
+    <div class="as-cli-consumer-icon"><mdi-source-branch /></div>
+    <div class="as-cli-consumer-copy">
+      <span>01 · CONSUMER</span>
+      <b>DEVOPS PIPELINE</b>
+    </div>
+    <mdi-arrow-down class="as-cli-consumer-arrow" />
+  </article>
+  <article class="as-cli-consumer-card as-cli-consumer-engineer" v-click="1">
+    <div class="as-cli-consumer-icon"><mdi-account-hard-hat-outline /></div>
+    <div class="as-cli-consumer-copy">
+      <span>02 · CONSUMER</span>
+      <b>ENGINEER</b>
+    </div>
+    <mdi-arrow-down class="as-cli-consumer-arrow" />
+  </article>
+  <article class="as-cli-consumer-card as-cli-consumer-agent" v-click="1">
+    <div class="as-cli-consumer-icon"><mdi-robot-outline /></div>
+    <div class="as-cli-consumer-copy">
+      <span>03 · CONSUMER</span>
+      <b>AI AGENT</b>
+    </div>
+    <mdi-arrow-down class="as-cli-consumer-arrow" />
+  </article>
+</div>
+
+<div class="as-cli-core-row" aria-label="as-cli programmable tool layer">
+  <section class="as-cli-core" aria-label="as-cli command-line tool">
+    <div class="as-cli-core-topline"><span>PROGRAMMABLE TOOL LAYER</span><small>B&amp;R ENGINEERING ACCESS</small></div>
+    <div class="as-cli-terminal-line"><span>&gt;_</span> <strong>as-cli</strong></div>
+    <div class="as-cli-core-name">AUTOMATION STUDIO COMMAND LINE INTERFACE</div>
+  </section>
+</div>
+
+<div class="as-cli-roadmap" aria-label="as-cli demonstration roadmap">
+  <div class="as-cli-capability-grid">
+    <article class="as-cli-capability-card as-cli-capability-build" v-click="1">
+      <div class="as-cli-capability-head"><span>01</span><mdi-hammer-wrench /></div>
+      <b class="as-cli-capability-name">BUILD</b>
+      <div class="as-cli-capability-purpose">Compile the project</div>
+      <div class="as-cli-command"><span>&gt;</span><span><strong>as-cli</strong> build</span></div>
+    </article>
+    <article class="as-cli-capability-card as-cli-capability-test" v-click="1">
+      <div class="as-cli-capability-head"><span>02</span><mdi-test-tube /></div>
+      <b class="as-cli-capability-name">TEST INTERACTION</b>
+      <div class="as-cli-capability-purpose">Set inputs and inspect behavior</div>
+      <div class="as-cli-command-stack">
+        <div class="as-cli-command"><span>&gt;</span><span><strong>as-cli</strong> var write ...</span></div>
+        <div class="as-cli-command"><span>&gt;</span><span><strong>as-cli</strong> var read ...</span></div>
+      </div>
+    </article>
+    <article class="as-cli-capability-card as-cli-capability-package" v-click="1">
+      <div class="as-cli-capability-head"><span>03</span><mdi-package-variant-closed /></div>
+      <b class="as-cli-capability-name">PACKAGE</b>
+      <div class="as-cli-capability-purpose">Create an installation package</div>
+      <small class="as-cli-capability-sublabel">PROJECT INSTALLATION PACKAGE</small>
+      <div class="as-cli-command"><span>&gt;</span><span><strong>as-cli</strong> build pip --output ...</span></div>
+    </article>
+    <article class="as-cli-capability-card as-cli-capability-transfer" v-click="1">
+      <div class="as-cli-capability-head"><span>04</span><span class="as-cli-approval-icon" title="Controlled deployment"><mdi-account-check-outline /></span></div>
+      <div class="as-cli-capability-icon"><mdi-upload-network-outline /></div>
+      <b class="as-cli-capability-name">TRANSFER</b>
+      <div class="as-cli-capability-purpose">Transfer to a target</div>
+      <div class="as-cli-command"><span>&gt;</span><span><strong>as-cli</strong> transfer online --ip ...</span></div>
+    </article>
+    <article class="as-cli-capability-card as-cli-capability-diagnostics" v-click="1">
+      <div class="as-cli-capability-head"><span>05</span><mdi-file-search-outline /></div>
+      <b class="as-cli-capability-name">DIAGNOSTICS</b>
+      <div class="as-cli-capability-purpose">Read controller logbook entries</div>
+      <div class="as-cli-command"><span>&gt;</span><span><strong>as-cli</strong> logbook read</span></div>
+    </article>
+  </div>
+</div>
+
+<div class="slide-id">W2 · 47</div>
+
+<!--
+The previous slide established that pipelines and agents need programmable access to engineering tools. This is the role of as-cli.
+
+as-cli is not the DevOps pipeline. The pipeline decides which operations should run and when they should run. as-cli provides a repeatable way to execute the requested engineering operation.
+
+as-cli is also not the AI agent. An agent can decide that it needs to build a project, inspect a variable, or retrieve diagnostics. It still needs a tool to perform the operation.
+
+This is where DevOps and Agentic Engineering meet. Both depend on the same programmable access to engineering capabilities.
+
+Walk through the five cards as the roadmap for the demonstration:
+
+1. Build the Automation Studio project.
+2. Write and read runtime variables as part of a test scenario.
+3. Create a Project Installation Package.
+4. Perform a controlled transfer to a target.
+5. Retrieve logbook information for diagnostics and feedback.
+
+Clarify that variable operations and logbook access require a connection to a controller or simulation.
+
+Do not describe variable read and write as a complete test framework. They are building blocks that can be used in an automated test scenario.
+
+Keep the deployment claim bounded. Programmable transfer does not remove engineering approval, machine validation, commissioning, or safety responsibilities.
+
+End with:
+
+"Rather than explain every command, let's use these five pipeline needs as our demo roadmap."
+-->
+
+---
+layout: default
+class: as-cli-demo-slide dark-slide
+---
+
+<div class="status-badge demonstrator">DEMO 1 / 2</div>
+<div class="kicker">AS-CLI DEVELOPMENT · DEVOPS IN PRACTICE</div>
+
+# How <span class="accent">as-cli</span> tests itself
+
+<div class="as-cli-devops-flow" aria-label="as-cli development test gates">
+  <article class="as-cli-devops-gate as-cli-devops-unit">
+    <div class="as-cli-devops-gate-head"><span>01 · FAST GATE</span><mdi-test-tube /></div>
+    <b class="as-cli-devops-gate-name">PURE UNIT TESTS</b>
+    <p>Fast tests of isolated logic, with no live Automation Studio</p>
+    <code>.\tests\run-tests.ps1</code>
+    <br />
+  </article>
+  <div class="as-cli-devops-arrow" aria-hidden="true"><span>THEN</span><mdi-arrow-right /></div>
+  <article class="as-cli-devops-gate as-cli-devops-integration">
+    <div class="as-cli-devops-gate-head"><span>02 · REAL SYSTEM</span><mdi-monitor-eye /></div>
+    <b class="as-cli-devops-gate-name">INTEGRATION TESTS</b>
+    <p>Slower tests that verify the complete system up against an Automation Studio simulator </p>
+    <code>.\tests\run-integration-tests.ps1</code>
+    <br />
+  </article>
+</div>
+
+<div class="as-cli-devops-result">
+  <mdi-shield-check-outline />
+  <span>PASS / FAIL</span>
+  <strong>Protects quality. Builds confidence that nothing breaks.</strong>
+</div>
+
+<div class="slide-id">W2 · 48</div>
+
+<!--
+Demo 1 shows the DevOps loop used to develop as-cli itself.
+
+Start with the fast gate. run-tests.ps1 locates the .NET Framework csc.exe compiler, compiles a curated
+SDK-free subset of production code with the hand-rolled test harness, and runs it in seconds. This is the
+default check for every change.
+
+Then show the real-system gate. run-integration-tests.ps1 rebuilds as-cli unless asked to reuse the binary,
+drives the committed Automation Studio integration fixture through ARsim and PVI, checks design-time and
+online behavior, and cleans up the daemon and simulator. It is slower and local because the B&R SDK is required.
+
+The point is the separation of feedback speed from system fidelity: fast proof first, real-system proof before
+an SDK-bound change is ready for review. Do not imply that the integration runner is hosted CI; the repository
+has no hosted CI because Automation Studio is not available on a runner.
+-->
+
+---
+layout: default
+class: machine-demo-slide dark-slide
+---
+
+<div class="status-badge demonstrator">DEMO 2 / 2</div>
+<div class="kicker">FULL CI/CD PIPELINE · TEST PROJECT</div>
+
+# The <span class="accent">orange</span> juice machine
+
+<div class="machine-demo-subtitle">Demo Project our GitHub workflow will build, test, package and deploy</div>
+
+<div class="machine-demo-meta">
+  <span>PROJECT IN GITHUB</span>
+  <span class="machine-demo-path">.\EventAiAndDevOps\DevOps\DevOpsDemo</span>
+</div>
+
+<div class="machine-demo-machine">
+  <BottleConveyor state="running" :count="42" />
+</div>
+
+<div class="slide-id">W2 · 49</div>
+
+<!--
+Demo 2 is the handoff into the live full-pipeline demonstration.
+
+Show the conveyor as the example machine represented by the DevOpsDemo project. It is a visual
+demonstrator, not an official B&R machine template. Let the running animation establish the machine
+context, then Alt+Tab to the repository and show how one push or GitHub tag starts the workflow.
+
+Do not explain the workflow from this slide. The live repository view carries the build, test, release,
+package, and deployment sequence.
 -->
 
 ---

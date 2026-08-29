@@ -3,7 +3,6 @@ PROGRAM _INIT
 	
 	em.Setup.Name := 'Main';
 	gIsSimulation := DiagCpuIsARsim();
-	hw.di_EstopOK := gIsSimulation;
 	
 END_PROGRAM
 
