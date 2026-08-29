@@ -18,4 +18,5 @@ VAR
 	FileInfoData_0 : fiFILE_INFO;
 	UpdateVersionOnPLC : STRING[32];
 	hmi : hmi_typ;
+	DirCreate_0 : DirCreate;
 END_VAR
