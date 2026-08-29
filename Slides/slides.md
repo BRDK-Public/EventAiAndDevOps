@@ -172,10 +172,12 @@ class: light-grid
     <div class="verdict-row"><b>Everyone else has</b><span>solved AI</span></div>
     <div class="verdict-row"><b>Copy our</b><span>productivity percentage</span></div>
     <div class="verdict-row"><b>Buy one tool and</b><span>transformation follows</span></div>
+    <div class="verdict-row"><b>The newest LLM</b><span>benchmarks and hype</span></div>
   </div>
   <div class="verdict yes" v-click>
     <div class="verdict-head"><mdi-check-circle-outline /> WHAT WE WILL TELL YOU</div>
     <div class="verdict-row"><b>Industrial AI is</b><span>still emerging</span></div>
+    <div class="verdict-row"><b>Our current strategy</b><span>and what we are working on</span></div>
     <div class="verdict-row"><b>Results depend on</b><span>context and process</span></div>
     <div class="verdict-row"><b>How to get started</b><span>in your own team</span></div>
   </div>
@@ -372,7 +374,57 @@ Modellen alene har ingen adgang til Automation Studio, et project, en PLC eller 
 Agenten opstår, når modellen kan vælge et tool, kalde det, se resultatet og beslutte næste trin. Harnesset er miljøet rundt om agenten: context, tools, permissions, logging, handoffs, budgets og approvals.
 Git er versionsstyringen. GitHub eller Azure DevOps lægger samarbejde ovenpå med issues, pull requests og CI/CD. Repository, issue, commit, pull request og testresultat er de holdbare artefakter. En chatsamtale er ikke system of record.
 Transition: Hvorfor er dette sket hurtigere i IT end i OT?
+colorSchema: light
+aspectRatio: 16/9
+canvasWidth: 1280
+transition: slide-left
+duration: 90min
+timer: countdown
+drawings:
+  enabled: true
+  persist: false
+fonts:
+  sans: IBM Plex Sans
+  serif: Barlow Condensed
+  mono: IBM Plex Mono
+  provider: google
+exportFilename: agentic-engineering
+---
+
+<img class="cover-image" src="/evolution.png" alt="Evolution from AI assistant to AI agent and agentic AI">
+
+<img class="cover-logo" src="/br-logo.svg" alt="B&R Industrial Automation">
+
+<div class="eyebrow" v-motion :initial="{ opacity: 0, x: -30 }" :enter="{ opacity: 1, x: 0, transition: { delay: 150 } }">
+  AI · DEVOPS · AGENTIC ENGINEERING
+</div>
+
+<div class="cover-event" v-motion :initial="{ opacity: 0, x: -30 }" :enter="{ opacity: 1, x: 0, transition: { delay: 280 } }">
+  <span>03 SEP 2026</span><span>ODENSE</span><span>08.30–13.00</span>
+</div>
+
+# The future of<br><span class="accent">automation</span>
+
+<p class="cover-sub" v-motion :initial="{ opacity: 0, y: 18 }" :enter="{ opacity: 1, y: 0, transition: { delay: 450 } }">
+  How do we create real value in industrial engineering?
+</p>
+
+<div class="bridge-visual" v-motion :initial="{ opacity: 0, y: 24 }" :enter="{ opacity: 1, y: 0, transition: { delay: 700 } }">
+  <div class="bridge-node"><span>01</span> IDEA</div>
+  <div class="bridge-track"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="bridge-node is-proof"><span>02</span> VERIFIED MACHINE BEHAVIOR</div>
+</div>
+
+<div class="slide-id">COVER · 01</div>
+
+<!--
+Godmorgen og velkommen. Det centrale spørgsmål i dag er ikke, hvilken AI-model der ligger nummer ét på en benchmark i denne uge. Spørgsmålet er, hvordan vi skaber reel og dokumenterbar værdi i udviklingen af maskiner og anlæg.
+
+Vi vil derfor tale mindre om magiske prompts og mere om versionsstyring, kontekst, værktøjer, test, sporbarhed og menneskeligt ansvar.
+
+Målet er, at I går herfra med en realistisk måde at komme i gang på. Først ser vi dagens samlede forløb.
 -->
+
 ---
 layout: default
 class: process-slide
@@ -390,7 +442,7 @@ class: process-slide
   <span class="it-stack-logo docker" title="Docker"><simple-icons-docker aria-hidden="true" /></span>
   <span class="it-stack-logo copilot" title="GitHub Copilot"><simple-icons-githubcopilot aria-hidden="true" /></span>
   <span class="it-stack-logo claude" title="Claude Code"><simple-icons-claudecode aria-hidden="true" /></span>
-  <img class="it-stack-mcp" src="/mcp-logo-custom.svg" alt="Model Context Protocol">
+  <img class="it-stack-mcp" src="/mcp-logo.png" alt="Model Context Protocol">
 </div>
 
 <div class="it-ot-body">
@@ -420,6 +472,98 @@ I OT skal vi i højere grad selv udvikle de tilsvarende værktøjer og den konte
 
 Transition: Det vigtigste hul er forskellen mellem at generere kode og at verificere engineering.
 -->
+
+---
+layout: default
+class: foundation-slide dark-slide
+---
+
+<div class="kicker">OT ENABLEMENT · 04 MIN</div>
+
+# what is needed to<br><span class="accent">close the gap</span>
+
+<div class="foundation-layout">
+  <div class="foundation-stack">
+    <div class="foundation-row">
+      <span class="foundation-index">01</span>
+      <span class="foundation-icon"><mdi-database-search-outline /></span>
+      <div class="foundation-copy">
+        <h2>Domain context</h2>
+        <p>Product, platform and customer knowledge the LLM does not carry.</p>
+      </div>
+      <span class="foundation-tag">B&amp;R + Customer</span>
+    </div>
+    <div class="foundation-row">
+      <span class="foundation-index">02</span>
+      <span class="foundation-icon"><mdi-file-tree-outline /></span>
+      <div class="foundation-copy">
+        <h2>Project context</h2>
+        <p>A readable map of programs, configuration, hardware, and dependencies.</p>
+      </div>
+      <span class="foundation-tag">B&amp;R</span>
+    </div>
+    <div class="foundation-row">
+      <span class="foundation-index">03</span>
+      <span class="foundation-icon"><mdi-source-commit /></span>
+      <div class="foundation-copy">
+        <h2>Git source control</h2>
+        <p>Reproducible commits make every change traceable and reversible.</p>
+      </div>
+      <span class="foundation-tag">B&amp;R</span>
+    </div>
+    <div class="foundation-row">
+      <span class="foundation-index">04</span>
+      <span class="foundation-icon"><mdi-tools /></span>
+      <div class="foundation-copy">
+        <h2>B&amp;R platform tools</h2>
+        <p>Supported actions for debugging, testing, and deployment on the platform.</p>
+      </div>
+      <span class="foundation-tag">B&amp;R</span>
+    </div>
+    <div class="foundation-row">
+      <span class="foundation-index">05</span>
+      <span class="foundation-icon"><mdi-shield-check-outline /></span>
+      <div class="foundation-copy">
+        <h2>Guardrails</h2>
+        <p>B&amp;R specific rules. Customer architecture, coding, naming, and testing strategies. </p>
+      </div>
+      <span class="foundation-tag">B&amp;R + Customer</span>
+    </div>
+  </div>
+  <div class="foundation-contract">
+    <div class="foundation-contract-head">
+      <span>THE ENGINEERING CONTRACT</span>
+      <mdi-lock-check-outline />
+    </div>
+    <div class="foundation-agent">
+      <span class="foundation-agent-icon"><mdi-robot-outline /></span>
+      <div>
+        <b>LLM / AGENT</b>
+        <small>reason over evidence</small>
+      </div>
+    </div>
+    <div class="foundation-contract-arrow"><mdi-arrow-down /></div>
+    <div class="foundation-contract-flow">
+      <div><span>01</span><b>READ</b><small>context that is in scope</small></div>
+      <div><span>02</span><b>CHANGE</b><small>controlled platform actions</small></div>
+      <div><span>03</span><b>VERIFY</b><small>tests, diagnostics, and evidence</small></div>
+    </div>
+    <p class="foundation-contract-foot">Same engineering pattern as IT.<br><strong>Different domain boundary.</strong></p>
+  </div>
+</div>
+
+<div class="foundation-outcome"><i></i><span>CONTEXT + CONTROL + EVIDENCE</span><i></i></div>
+
+<div class="slide-id">I6 · 07A</div>
+
+<!--
+For at arbejde som IT skal OT ikke kopiere alle IT-værktøjer. Vi skal give en agent de samme grundlæggende egenskaber: viden, en forståelig projektmodel, sporbare ændringer, handlinger tæt på platformen og tydelige grænser.
+
+Projektcontext skal være læsbar for både mennesker og modeller. Git gør ændringer reproducerbare, mens platformværktøjer lukker feedback-loopet med debug, test og deployment. Guardrails gør hastigheden kompatibel med arkitektur, kvalitet og ansvar.
+
+Transition: Når fundamentet er på plads, kan vi lukke det industrielle engineering-loop.
+-->
+
 ---
 layout: default
 class: feedback-slide dark-slide
@@ -493,51 +637,62 @@ Transition: B&R skal ikke eje alle lag. Vi skal eje det lag, hvor vores domænev
 
 ---
 layout: default
-class: strategy-slide
+class: agentops-slide
 ---
 
-<div class="kicker">STRATEGY · 05 MIN</div>
+<div class="kicker">WORKFLOW · 04 MIN</div>
 
-# Own the model<br><span class="accent">or own the bridge?</span>
+# AgentOps<br><span class="accent">workflow</span>
 
-<div class="strategy-grid">
-  <div class="strategy-card integrated" v-click>
-    <div class="strategy-top"><mdi-layers-triple-outline /><span>VERTICALLY INTEGRATED AI</span></div>
-    <ul>
-      <li>One selected experience</li>
-      <li>Model-specific specialization</li>
-      <li>Tight product coupling</li>
-      <li>Vendor controls the full stack</li>
-    </ul>
+<div class="agentops-diagram" role="img" aria-label="AgentOps workflow with research and planning, tools, guardrails, testing, and quality gates around B&R">
+  <div class="agentops-ring" aria-hidden="true"></div>
+
+  <div class="agentops-point agentops-point-research">
+    <div class="agentops-copy">
+      <h2>Research/Plan</h2>
+      <p>Use agents for research, brainstorming and planning</p>
+    </div>
+    <div class="agentops-node"><mdi-magnify /></div>
   </div>
-  <div class="versus" v-click>OR</div>
-  <div class="strategy-card portable" v-click>
-    <div class="strategy-top"><mdi-bridge /><span>PORTABLE ENGINEERING BRIDGE</span></div>
-    <ul>
-      <li>Choice of model + harness</li>
-      <li>Context supplied at runtime</li>
-      <li>Stable domain + tool interfaces</li>
-      <li>Customer keeps policy choices</li>
-    </ul>
+
+  <div class="agentops-point agentops-point-tools">
+    <div class="agentops-node"><mdi-tools /></div>
+    <div class="agentops-copy">
+      <h2>Tools (MCP / CLI)</h2>
+      <p>Let agents interact with your environment by giving them tools</p>
+    </div>
+  </div>
+
+  <div class="agentops-point agentops-point-guardrails">
+    <div class="agentops-node"><mdi-shield-outline /></div>
+    <div class="agentops-copy">
+      <h2>Guardrails</h2>
+      <p>Define guardrails and architecture for agents to work within</p>
+    </div>
+  </div>
+
+  <div class="agentops-point agentops-point-testing">
+    <div class="agentops-copy">
+      <h2>Testing (TDD)</h2>
+      <p>Let agents write and run tests to validate the functionality of the code they write</p>
+    </div>
+    <div class="agentops-node"><mdi-flask-outline /></div>
+  </div>
+
+  <div class="agentops-point agentops-point-quality">
+    <div class="agentops-copy">
+      <h2>Quality Gates</h2>
+      <p>By staying in the loop, we can guarantee the same quality and security as human development. Static analysis to deterministically decrease common errors.</p>
+    </div>
+    <div class="agentops-node"><mdi-account-outline /></div>
+  </div>
+
+  <div class="agentops-brand" aria-label="B&amp;R Industrial Automation">
+    <img src="/br-logo.svg" alt="B&amp;R Industrial Automation">
   </div>
 </div>
 
-<div class="br-investment" v-click>
-  <span>THE OUTCOME</span>
-  <strong>repeatable engineering value</strong><i>+</i><strong>portable automation capability</strong>
-</div>
-
-<div class="slide-id">I9 · 10</div>
-
-<!--
-Nogle leverandører vælger en vertikalt integreret løsning. Det kan give en enkel brugeroplevelse, og det er et legitimt valg.
-
-B&R vælger en anden retning. Modeller og harnesses ændrer sig hurtigere end en normal industriel produktcyklus. Det, B&R kan noget unikt om, er Automation Studio, hardware, motion, libraries, diagnostics og automation workflows.
-
-Derfor bør vores differentierede værdi ligge i broen, som bringer den viden og de handlinger ind i det miljø, kunden ønsker at bruge. Kunden kan vælge model, harness, cloud eller lokal behandling efter opgave, politik og økonomi.
-
-Transition: Hvorfor bør en maskinbygger investere i den workflow?
--->
+<div class="slide-id">I8 · 09A</div>
 
 ---
 layout: default
@@ -799,6 +954,54 @@ MCP er en standardforbindelse mellem harnesset og eksterne data eller tools. Det
 Værdien af et officielt B&R-interface er governance: Hvilken source kom svaret fra? Hvilken version gælder det for? Har brugeren adgang? Hvornår er informationen opdateret?
 
 Brug kun de source-kategorier, som er godkendt i den aktuelle product communication. Vis citations, version og eventuelle antagelser. MCP er forbindelsen til viden, ikke en garanti for at alle svar automatisk er korrekte.
+-->
+
+---
+layout: default
+class: strategy-slide
+---
+
+<div class="kicker">STRATEGY · 05 MIN</div>
+
+# Own the model<br><span class="accent">or own the bridge?</span>
+
+<div class="strategy-grid">
+  <div class="strategy-card integrated" v-click>
+    <div class="strategy-top"><mdi-layers-triple-outline /><span>VERTICALLY INTEGRATED AI</span></div>
+    <ul>
+      <li>One selected experience</li>
+      <li>Model-specific specialization</li>
+      <li>Tight product coupling</li>
+      <li>Vendor controls the full stack</li>
+    </ul>
+  </div>
+  <div class="versus" v-click>OR</div>
+  <div class="strategy-card portable" v-click>
+    <div class="strategy-top"><mdi-bridge /><span>PORTABLE ENGINEERING BRIDGE</span></div>
+    <ul>
+      <li>Choice of model + harness</li>
+      <li>Context supplied at runtime</li>
+      <li>Stable domain + tool interfaces</li>
+      <li>Customer keeps policy choices</li>
+    </ul>
+  </div>
+</div>
+
+<div class="br-investment" v-click>
+  <span>THE OUTCOME</span>
+  <strong>repeatable engineering value</strong><i>+</i><strong>portable automation capability</strong>
+</div>
+
+<div class="slide-id">I9 · 10</div>
+
+<!--
+Nogle leverandører vælger en vertikalt integreret løsning. Det kan give en enkel brugeroplevelse, og det er et legitimt valg.
+
+B&R vælger en anden retning. Modeller og harnesses ændrer sig hurtigere end en normal industriel produktcyklus. Det, B&R kan noget unikt om, er Automation Studio, hardware, motion, libraries, diagnostics og automation workflows.
+
+Derfor bør vores differentierede værdi ligge i broen, som bringer den viden og de handlinger ind i det miljø, kunden ønsker at bruge. Kunden kan vælge model, harness, cloud eller lokal behandling efter opgave, politik og økonomi.
+
+Transition: Hvorfor bør en maskinbygger investere i den workflow?
 -->
 
 ---

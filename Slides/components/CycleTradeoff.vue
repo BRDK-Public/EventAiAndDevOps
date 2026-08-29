@@ -97,6 +97,7 @@ function nudgeInvestment(event: KeyboardEvent) {
       <small style="grid-column: 4">review</small>
       <small style="grid-column: 5">release</small>
       <small style="grid-column: 7">improve</small>
+      <small style="grid-column: 8">trade for quality</small>
     </div>
   </div>
 </template>
