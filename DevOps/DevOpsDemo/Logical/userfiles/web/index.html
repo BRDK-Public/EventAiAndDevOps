@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111315">
+  <title>Bottle Conveyor | Line 04</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --orange: #ff7a00;
+      --steel: #929ba1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+      margin: 0;
+    }
+
+    body {
+      display: grid;
+      min-height: 100vh;
+      place-items: center;
+      margin: 0;
+      overflow-x: hidden;
+      background: rgba(51, 51, 51, 1);
+    }
+
+    .bottle-conveyor {
+      width: 100%;
+      max-width: 1180px;
+      overflow: hidden;
+    }
+
+    .conveyor-stage {
+      width: 100%;
+      padding-bottom: 24px;
+    }
+
+    .belt-wrap {
+      position: relative;
+      min-width: 0;
+    }
+
+    .station-track {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 50px;
+      margin-bottom: 11px;
+    }
+
+    .station {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      min-width: 0;
+      padding: 0 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-top: 4px solid #7b878d;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .station:first-child {
+      border-right: 0;
+    }
+
+    .station.capper-station {
+      border-color: rgba(255, 122, 0, 0.62);
+      border-left-color: rgba(255, 122, 0, 0.62);
+    }
+
+    .station::after {
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      width: 1px;
+      height: 11px;
+      content: "";
+      background: #8c969b;
+    }
+
+    .station span,
+    .station b {
+      font-family: Consolas, "Courier New", monospace;
+    }
+
+    .station span {
+      overflow: hidden;
+      color: #bdc5c9;
+      font-size: 10px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .station b {
+      color: var(--orange);
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .station i {
+      position: absolute;
+      right: 12px;
+      bottom: 8px;
+      left: 12px;
+      height: 3px;
+      background: rgba(255, 122, 0, 0.34);
+    }
+
+    .bottles {
+      position: relative;
+      height: 94px;
+    }
+
+    .bottle {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 27px;
+      height: 68px;
+      border: 2px solid var(--steel);
+      border-radius: 6px 6px 4px 4px;
+      background: rgba(255, 255, 255, 0.06);
+      animation: bottle-flow 9s linear infinite;
+      animation-delay: var(--bottle-delay);
+      animation-fill-mode: backwards;
+      animation-play-state: paused;
+      visibility: hidden;
+    }
+
+    .bottle::before {
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      width: 9px;
+      height: 11px;
+      border: 2px solid var(--steel);
+      border-bottom: 0;
+      content: "";
+      transform: translateX(-50%);
+    }
+
+    .bottle-liquid {
+      position: absolute;
+      right: 2px;
+      bottom: 2px;
+      left: 2px;
+      height: 0;
+      background: var(--orange);
+      animation: liquid-fill 9s linear infinite;
+      animation-delay: var(--bottle-delay);
+      animation-fill-mode: backwards;
+      animation-play-state: paused;
+    }
+
+    .bottle-cap {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      width: 15px;
+      height: 5px;
+      border: 1px solid var(--orange);
+      background: var(--orange);
+      opacity: 0;
+      animation: cap-appear 9s linear infinite;
+      animation-delay: var(--bottle-delay);
+      animation-fill-mode: backwards;
+      animation-play-state: paused;
+      transform: translateX(-50%);
+    }
+
+    .bottle-conveyor.has-started .bottle {
+      visibility: visible;
+    }
+
+    .bottle-conveyor.is-running .bottle,
+    .bottle-conveyor.is-running .bottle-liquid,
+    .bottle-conveyor.is-running .bottle-cap {
+      animation-play-state: running;
+    }
+
+    .belt {
+      display: flex;
+      height: 25px;
+      align-items: center;
+      justify-content: space-around;
+      padding-top: 5px;
+      border-top: 5px solid #8a9399;
+      border-bottom: 5px solid #51585d;
+      background: #151719;
+    }
+
+    .belt i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #737c82;
+    }
+
+    @keyframes bottle-flow {
+      0%, 10% { left: -30px; }
+      22%, 39% { left: calc(25% - 14px); }
+      58%, 69% { left: calc(75% - 14px); }
+      100% { left: calc(100% + 14px); }
+    }
+
+    @keyframes liquid-fill {
+      0%, 21% { height: 0; }
+      37%, 100% { height: 76%; }
+    }
+
+    @keyframes cap-appear {
+      0%, 61% { opacity: 0; transform: translateX(-50%) scale(0.7); }
+      64%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+    }
+
+    @media (max-width: 760px) {
+      body {
+        display: flex;
+        align-items: center;
+      }
+
+      .conveyor-stage {
+        padding-bottom: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bottle-conveyor.is-running .bottle,
+      .bottle-conveyor.is-running .bottle-liquid,
+      .bottle-conveyor.is-running .bottle-cap {
+        animation-play-state: paused;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="bottle-conveyor" aria-label="Line 04 bottle conveyor demonstration">
+    <section class="conveyor-stage" aria-label="Filler and capper stations">
+      <div class="belt-wrap">
+        <div class="station-track">
+          <div class="station filler-station">
+            <span>FILLER</span>
+            <b>FILL</b>
+            <i aria-hidden="true"></i>
+          </div>
+          <div class="station capper-station">
+            <span>CAPPER</span>
+            <b>CAP</b>
+            <i aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <div class="bottles" aria-hidden="true">
+          <div class="bottle" style="--bottle-delay: 0s"><i class="bottle-liquid"></i><i class="bottle-cap"></i></div>
+          <div class="bottle" style="--bottle-delay: 1.8s"><i class="bottle-liquid"></i><i class="bottle-cap"></i></div>
+          <div class="bottle" style="--bottle-delay: 3.6s"><i class="bottle-liquid"></i><i class="bottle-cap"></i></div>
+          <div class="bottle" style="--bottle-delay: 5.4s"><i class="bottle-liquid"></i><i class="bottle-cap"></i></div>
+          <div class="bottle" style="--bottle-delay: 7.2s"><i class="bottle-liquid"></i><i class="bottle-cap"></i></div>
+        </div>
+
+        <div class="belt" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var conveyor = document.querySelector('.bottle-conveyor');
+      var stateEndpoint = '/bottle-conveyor-state.cgi';
+      var stateRequestInFlight = false;
+
+      function setConveyorRunning(running) {
+        if (running) {
+          conveyor.classList.add('has-started');
+          conveyor.classList.add('is-running');
+        } else {
+          conveyor.classList.remove('is-running');
+        }
+      }
+
+      function pollConveyorState() {
+        if (stateRequestInFlight) return;
+
+        stateRequestInFlight = true;
+        var request = new XMLHttpRequest();
+        request.open('GET', stateEndpoint + '?t=' + Date.now(), true);
+        request.timeout = 3000;
+        request.setRequestHeader('Cache-Control', 'no-cache');
+
+        request.onload = function () {
+          stateRequestInFlight = false;
+
+          if (request.status < 200 || request.status >= 300) {
+            setConveyorRunning(false);
+            return;
+          }
+
+          try {
+            var state = JSON.parse(request.responseText);
+            setConveyorRunning(state.running === true);
+          } catch (error) {
+            setConveyorRunning(false);
+          }
+        };
+
+        request.onerror = function () {
+          stateRequestInFlight = false;
+          setConveyorRunning(false);
+        };
+
+        request.ontimeout = function () {
+          stateRequestInFlight = false;
+          setConveyorRunning(false);
+        };
+
+        request.send();
+      }
+
+      setConveyorRunning(false);
+      pollConveyorState();
+      window.setInterval(pollConveyorState, 1000);
+    }());
+  </script>
+</body>
+</html>

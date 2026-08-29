@@ -22,6 +22,6 @@
     <Build GccVersion="11.3.0" />
     <DefaultTargetMemory Tasks="UserROM" />
     <TaskClasses DefaultTaskClass="Cyclic1" />
-    <Transfer AddToUserPart="False" AdditionalUserDir="\userfiles" AllowDowngrade="False" AllowInitialTransfer="False" AllowPartitioning="False" ExecuteInitExitProgram="True" ForceInitialTransfer="False" IgnoreVersion="True" KeepNonVolatileMemory="True" PreserveVariableValues="False" ProjectConsistent="False" RebootDuringTransfer="True" SavedPipDestinationFolder="C:\updates\devopsPipTest" TargetIdentificationType="Always" TryToBootInRunMode="False" UserFilesIgnoreDifference="True" />
+    <Transfer AddToUserPart="True" AdditionalUserDir="\Logical\userfiles" AllowDowngrade="False" AllowInitialTransfer="False" AllowPartitioning="False" ExecuteInitExitProgram="True" ForceInitialTransfer="False" IgnoreVersion="True" KeepNonVolatileMemory="True" PreserveVariableValues="False" ProjectConsistent="False" RebootDuringTransfer="True" SavedPipDestinationFolder="C:\updates\devopsPipTest" TargetIdentificationType="Always" TryToBootInRunMode="False" UserFilesIgnoreDifference="False" />
   </Configuration>
 </Cpu>

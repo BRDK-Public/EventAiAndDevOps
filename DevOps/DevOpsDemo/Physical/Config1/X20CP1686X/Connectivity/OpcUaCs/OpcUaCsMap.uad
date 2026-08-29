@@ -12,7 +12,7 @@
       <Variable Name="productionCycleCount" />
     </Task>
     <Task Name="Main">
-      <Variable Name="hmi">
+      <Variable Name="hmi" RecursiveEnable="2">
         <Variable Name="startMachine" />
         <Variable Name="stopMachine" />
       </Variable>

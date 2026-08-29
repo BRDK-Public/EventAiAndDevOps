@@ -2,4 +2,11 @@ VAR
 	em : {REDUND_UNREPLICABLE} EquipmentModule;
 	hmi : hmi_typ;
 	hw : hw_typ;
+	hmiHttpService : httpService;
+	webServiceEnable : BOOL;
+	webServiceSend : BOOL;
+	webServiceName : STRING[40] := 'bottle-conveyor-state.cgi';
+	webResponseData : STRING[63];
+	webResponseDataLen : UDINT;
+	webResponseHeader : httpResponseHeader_t;
 END_VAR

@@ -3,6 +3,7 @@ PROGRAM _INIT
 	
 	em.Setup.Name := 'Main';
 	gIsSimulation := DiagCpuIsARsim();
+	webServiceEnable := TRUE;
 	
 END_PROGRAM
 
@@ -15,10 +16,12 @@ PROGRAM _CYCLIC
 	
 	alarm;
 	modules;
+	webservice;
 	simulation;
 	
 END_PROGRAM
 
 PROGRAM _EXIT
-	 
+	webServiceEnable := FALSE;
+	webservice;
 END_PROGRAM
