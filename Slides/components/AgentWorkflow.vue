@@ -263,7 +263,7 @@ const workflows: WorkflowDefinition[] = [
           lead: 'IMPLEMENTATION AGENT',
           agents: [
             { name: 'AS-HELP MCP', task: 'PLC guidance', note: 'Search the AS-Help' },
-            { name: 'AS-CLI', task: 'Build + simulation', note: 'Debug' },
+            { name: 'as', task: 'Build + simulation', note: 'Debug' },
             { name: 'WEB RESEARCH', task: 'Patterns + edge cases', note: 'Research' },
             { name: 'HMI AGENT', task: 'Application feedback', note: 'HMI Design' },
           ],

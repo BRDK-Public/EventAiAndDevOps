@@ -1,30 +1,90 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
 const LOOP_DURATION_SECONDS = 9
 const BOTTLE_COUNT = 5
 const COUNTER_STEP_MS = (LOOP_DURATION_SECONDS * 1000) / BOTTLE_COUNT
+type InteractiveMode = 'execute' | 'aborted' | 'stopped'
 
 const props = withDefaults(defineProps<{
   state?: 'running' | 'fault' | 'recovered'
   count?: number
   compact?: boolean
+  interactive?: boolean
 }>(), {
   state: 'running',
   count: 42,
   compact: false,
+  interactive: false,
 })
 
-const displayCount = ref(props.count)
+const interactiveMode = ref<InteractiveMode>('execute')
+const displayCount = ref(props.interactive ? 0 : props.count)
+const bottleRunId = ref(0)
 let counterTimer: ReturnType<typeof setInterval> | undefined
 
+const currentState = computed(() => props.interactive ? interactiveMode.value : props.state)
+const stateClass = computed(() => `is-${currentState.value}`)
+const machineIsRunning = computed(() => props.interactive ? interactiveMode.value === 'execute' : props.state === 'running')
+const machineStatus = computed(() => {
+  if (props.interactive) {
+    return interactiveMode.value === 'aborted' ? 'ABORTED' : interactiveMode.value === 'stopped' ? 'STOPPED' : 'EXECUTE'
+  }
+  return props.state === 'fault' ? 'ABORTED' : props.state === 'recovered' ? 'COMPLETE' : 'RUNNING'
+})
+const fillerStatus = computed(() => {
+  if (props.interactive) {
+    return interactiveMode.value === 'aborted' ? 'HOLD' : interactiveMode.value === 'stopped' ? 'EMPTY' : 'FILL'
+  }
+  return props.state === 'fault' ? 'HOLD' : props.state === 'recovered' ? 'DONE' : 'FILL'
+})
+const capperStatus = computed(() => {
+  if (props.interactive) {
+    return interactiveMode.value === 'execute' ? 'CAP' : interactiveMode.value === 'aborted' ? 'HOLD' : 'EMPTY'
+  }
+  return props.state === 'fault' ? 'HOLD' : props.state === 'recovered' ? 'DONE' : 'CAP'
+})
+const faultStatus = computed(() => {
+  if (props.interactive) return interactiveMode.value === 'aborted' ? 'E_STOP' : 'NONE'
+  return props.state === 'fault' ? 'AXIS_04' : 'NONE'
+})
+const counterStatus = computed(() => {
+  if (props.interactive) {
+    return interactiveMode.value === 'aborted' ? 'HOLD' : interactiveMode.value === 'stopped' ? 'ZEROED' : 'COUNT'
+  }
+  return props.state === 'fault' ? 'HOLD' : props.state === 'recovered' ? 'EXACT' : 'COUNT'
+})
+const recoveryStatus = computed(() => {
+  if (props.interactive) {
+    return interactiveMode.value === 'aborted' ? 'RESET REQUIRED' : interactiveMode.value === 'stopped' ? 'START READY' : 'READY'
+  }
+  return props.state === 'fault' ? 'AWAIT CLEAR' : props.state === 'recovered' ? 'VERIFIED' : 'READY'
+})
+const canEstop = computed(() => props.interactive && interactiveMode.value === 'execute')
+const canReset = computed(() => props.interactive && interactiveMode.value === 'aborted')
+const canStart = computed(() => props.interactive && interactiveMode.value === 'stopped')
+
 const bottleStyle = (bottleIndex: number): Record<string, string> => ({
-  '--bottle-delay': `${-((bottleIndex - 1) * LOOP_DURATION_SECONDS / BOTTLE_COUNT)}s`,
+  '--bottle-delay': props.interactive
+    ? `${(bottleIndex - 1) * LOOP_DURATION_SECONDS / BOTTLE_COUNT}s`
+    : `${-((bottleIndex - 1) * LOOP_DURATION_SECONDS / BOTTLE_COUNT)}s`,
 })
 
+const bottleKey = (bottleIndex: number) => props.interactive
+  ? `${bottleRunId.value}-${bottleIndex}`
+  : bottleIndex
+
 const advanceCounter = () => {
-  if (props.state !== 'running') return
+  if (!machineIsRunning.value) return
+  if (props.interactive) {
+    if (displayCount.value < 100) displayCount.value += 1
+    return
+  }
   displayCount.value = displayCount.value >= 100 ? 0 : displayCount.value + 1
+}
+
+const handleBottleIteration = () => {
+  if (props.interactive) advanceCounter()
 }
 
 const stopCounter = () => {
@@ -35,35 +95,65 @@ const stopCounter = () => {
 
 const startCounter = () => {
   stopCounter()
-  if (props.state === 'running') {
+  if (!props.interactive && machineIsRunning.value) {
     counterTimer = setInterval(advanceCounter, COUNTER_STEP_MS)
   }
 }
 
-onMounted(startCounter)
+const emergencyStop = () => {
+  if (!canEstop.value) return
+  interactiveMode.value = 'aborted'
+  stopCounter()
+}
+
+const resetMachine = () => {
+  if (!canReset.value) return
+  interactiveMode.value = 'stopped'
+  displayCount.value = 0
+  stopCounter()
+}
+
+const startMachine = () => {
+  if (!canStart.value) return
+  bottleRunId.value += 1
+  interactiveMode.value = 'execute'
+  startCounter()
+}
+
+onMounted(() => {
+  if (props.interactive) displayCount.value = 0
+  startCounter()
+})
 onUnmounted(stopCounter)
 
 watch(() => props.count, (value) => {
-  displayCount.value = value
+  if (!props.interactive) displayCount.value = value
 })
 
 watch(() => props.state, (value) => {
+  if (props.interactive) return
   displayCount.value = props.count
   if (value === 'running') startCounter()
   else stopCounter()
 })
+
+watch(() => props.interactive, (value) => {
+  interactiveMode.value = 'execute'
+  displayCount.value = value ? 0 : props.count
+  startCounter()
+})
 </script>
 
 <template>
-  <div class="bottle-conveyor" :class="[`is-${state}`, { compact }]">
+  <div class="bottle-conveyor" :class="[stateClass, { compact, interactive }]">
     <div class="conveyor-header">
       <div class="machine-label">
         <span>LINE / 04</span>
         <b>CONVEYOR AXIS</b>
       </div>
-      <div class="machine-state">
+      <div class="machine-state" aria-live="polite">
         <i></i>
-        {{ state === 'fault' ? 'ABORTED' : state === 'recovered' ? 'COMPLETE' : 'RUNNING' }}
+        {{ machineStatus }}
       </div>
     </div>
 
@@ -77,25 +167,28 @@ watch(() => props.state, (value) => {
         <div class="station-track">
           <div class="station filler-station">
             <span>FILLER</span>
-            <b>{{ state === 'fault' ? 'HOLD' : state === 'recovered' ? 'DONE' : 'FILL' }}</b>
+            <b>{{ fillerStatus }}</b>
             <i></i>
           </div>
           <div class="station capper-station">
             <span>CAPPER</span>
-            <b>{{ state === 'fault' ? 'HOLD' : state === 'recovered' ? 'DONE' : 'CAP' }}</b>
+            <b>{{ capperStatus }}</b>
             <i></i>
           </div>
         </div>
         <div class="bottles">
-          <div
-            v-for="bottleIndex in BOTTLE_COUNT"
-            :key="bottleIndex"
-            class="bottle"
-            :style="bottleStyle(bottleIndex)"
-          >
-            <i class="bottle-liquid"></i>
-            <i class="bottle-cap"></i>
-          </div>
+          <template v-if="!interactive || interactiveMode !== 'stopped'">
+            <div
+              v-for="bottleIndex in BOTTLE_COUNT"
+              :key="bottleKey(bottleIndex)"
+              class="bottle"
+              :style="bottleStyle(bottleIndex)"
+              @animationiteration="handleBottleIteration"
+            >
+              <i class="bottle-liquid"></i>
+              <i class="bottle-cap"></i>
+            </div>
+          </template>
         </div>
         <div class="belt"><i v-for="rollerIndex in 16" :key="rollerIndex"></i></div>
       </div>
@@ -108,9 +201,24 @@ watch(() => props.state, (value) => {
     </div>
 
     <div class="fault-rail">
-      <div><span>FAULT</span><b>{{ state === 'fault' ? 'AXIS_04' : 'NONE' }}</b></div>
-      <div><span>COUNTER</span><b>{{ state === 'fault' ? 'HOLD' : state === 'recovered' ? 'EXACT' : 'COUNT' }}</b></div>
-      <div><span>RECOVERY</span><b>{{ state === 'fault' ? 'AWAIT CLEAR' : state === 'recovered' ? 'VERIFIED' : 'READY' }}</b></div>
+      <div><span>FAULT</span><b>{{ faultStatus }}</b></div>
+      <div><span>COUNTER</span><b>{{ counterStatus }}</b></div>
+      <div><span>RECOVERY</span><b>{{ recoveryStatus }}</b></div>
+    </div>
+
+    <div v-if="interactive" class="conveyor-controls" aria-label="Machine controls">
+      <button class="conveyor-control is-estop" type="button" :disabled="!canEstop" @click.stop="emergencyStop">
+        <mdi-stop-circle-outline aria-hidden="true" />
+        <span>E-STOP</span>
+      </button>
+      <button class="conveyor-control" type="button" :disabled="!canReset" @click.stop="resetMachine">
+        <mdi-refresh aria-hidden="true" />
+        <span>RESET</span>
+      </button>
+      <button class="conveyor-control is-start" type="button" :disabled="!canStart" @click.stop="startMachine">
+        <mdi-play-circle-outline aria-hidden="true" />
+        <span>START</span>
+      </button>
     </div>
   </div>
 </template>
@@ -168,6 +276,17 @@ watch(() => props.state, (value) => {
   background: #ff7a00;
   box-shadow: 0 0 0 5px rgba(255, 122, 0, 0.14);
   animation: fault-pulse 1.2s infinite;
+}
+
+.is-aborted .machine-state i {
+  background: #ff7a00;
+  box-shadow: 0 0 0 5px rgba(255, 122, 0, 0.14);
+  animation: fault-pulse 1.2s infinite;
+}
+
+.is-stopped .machine-state i {
+  background: #8f989e;
+  box-shadow: 0 0 0 5px rgba(143, 152, 158, 0.13);
 }
 
 .conveyor-stage {
@@ -286,6 +405,14 @@ watch(() => props.state, (value) => {
   background: rgba(255, 122, 0, 0.72);
 }
 
+.is-aborted .station i {
+  background: rgba(255, 122, 0, 0.72);
+}
+
+.is-stopped .station i {
+  background: rgba(143, 152, 158, 0.48);
+}
+
 .is-recovered .station i {
   background: rgba(69, 169, 107, 0.72);
 }
@@ -308,6 +435,7 @@ watch(() => props.state, (value) => {
   background: rgba(255, 255, 255, 0.06);
   animation: bottle-flow 9s linear infinite;
   animation-delay: var(--bottle-delay);
+  animation-fill-mode: backwards;
   animation-play-state: paused;
 }
 
@@ -357,6 +485,12 @@ watch(() => props.state, (value) => {
 .is-running .bottle,
 .is-running .bottle-liquid,
 .is-running .bottle-cap {
+  animation-play-state: running;
+}
+
+.is-execute .bottle,
+.is-execute .bottle-liquid,
+.is-execute .bottle-cap {
   animation-play-state: running;
 }
 
@@ -450,6 +584,51 @@ watch(() => props.state, (value) => {
   font-size: 8px;
 }
 
+.conveyor-controls {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.conveyor-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 48px;
+  padding: 9px 12px;
+  border: 0;
+  color: #c8ced2;
+  background: #292e31;
+  font: 600 8px/1 'IBM Plex Mono', monospace;
+  cursor: pointer;
+}
+
+.conveyor-control:hover:not(:disabled) {
+  color: #fff;
+  background: #353b3f;
+}
+
+.conveyor-control:disabled {
+  opacity: 0.34;
+  cursor: not-allowed;
+}
+
+.conveyor-control svg {
+  width: 17px;
+  height: 17px;
+}
+
+.conveyor-control.is-estop {
+  color: #ff9b55;
+}
+
+.conveyor-control.is-start {
+  color: #70c18d;
+}
+
 .is-fault .fault-rail > div:first-child,
 .is-fault .fault-rail > div:nth-child(2) {
   background: rgba(255, 122, 0, 0.12);
@@ -459,6 +638,21 @@ watch(() => props.state, (value) => {
 .is-fault .fault-rail > div:nth-child(2) b,
 .is-recovered .fault-rail b {
   color: #ff7a00;
+}
+
+.is-aborted .fault-rail > div:first-child,
+.is-aborted .fault-rail > div:nth-child(2) {
+  background: rgba(255, 122, 0, 0.12);
+}
+
+.is-aborted .fault-rail > div:first-child b,
+.is-aborted .fault-rail > div:nth-child(2) b {
+  color: #ff7a00;
+}
+
+.is-stopped .fault-rail > div:nth-child(2) b,
+.is-stopped .fault-rail > div:nth-child(3) b {
+  color: #b8c0c5;
 }
 
 .compact .conveyor-stage {

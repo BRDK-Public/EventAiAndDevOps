@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "slidev --open",
+    "dev": "node --use-system-ca node_modules/@slidev/cli/bin/slidev.mjs --open",
     "build": "slidev build",
     "export": "slidev export --output agentic-engineering.pdf"
   },

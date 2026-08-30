@@ -62,7 +62,7 @@ const steps = [
     status: 'TESTING',
     category: 'runtime',
     label: 'BUILD',
-    command: 'AS-CLI BUILD',
+    command: 'as build',
     detail: 'target + diagnostics',
     output: '0 errors · 5 warnings',
   },
@@ -71,7 +71,7 @@ const steps = [
     status: 'TESTING',
     category: 'runtime',
     label: 'SIMULATE',
-    command: 'AS-CLI SIMULATE',
+    command: 'as sim enable',
     detail: 'controlled runtime',
     output: 'ARSim running',
   },
@@ -80,7 +80,7 @@ const steps = [
     status: 'TESTING',
     category: 'runtime',
     label: 'READ / WRITE PV',
-    command: 'AS-CLI READ / WRITE PV',
+    command: 'as var read / write',
     detail: 'PVI: bottleCount + state',
     output: 'bottleCount = 42',
   },
@@ -89,7 +89,7 @@ const steps = [
     status: 'TESTING',
     category: 'runtime',
     label: 'READ LOGBOOK',
-    command: 'AS-CLI READ LOGBOOK',
+    command: 'as logbook read',
     detail: 'faults + cycle notes',
     output: 'logbook entries loaded',
   },
@@ -382,7 +382,7 @@ onBeforeUnmount(() => {
             <mdi-monitor-dashboard v-else-if="tool.id === 'simulate'" />
             <mdi-chart-timeline-variant-shimmer v-else-if="tool.id === 'read-pv'" />
             <mdi-notebook-outline v-else />
-            <span>AS-CLI</span><i></i>
+            <span>as</span><i></i>
           </div>
           <b>{{ tool.command }}</b>
           <small>{{ tool.detail }}</small>

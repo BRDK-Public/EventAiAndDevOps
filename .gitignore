@@ -4,3 +4,4 @@ Diagnosis/
 *.set
 *.isopen
 /.playwright-mcp
+/*.png
