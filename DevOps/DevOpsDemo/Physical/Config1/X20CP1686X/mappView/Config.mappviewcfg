@@ -6,12 +6,9 @@
       <Selector ID="WebServerProtocol" Value="1">
         <Property ID="WebServerPort" Value="81" />
       </Selector>
-      <Property ID="MaxClientConnections" Value="2" />
+      <Property ID="MaxClientConnections" Value="4" />
       <Property ID="MpUserXUserPreferences" Value="FALSE" />
-      <Selector ID="StartupUser" Value="StartupUserDefaultUser">
-        <Property ID="StartupUserDefaultUserName" Value="engineer" />
-        <Property ID="MVEncryptedPassword" Value="HaJFQX+ASRW3IfVIzSJv6Q==" />
-      </Selector>
+      <Selector ID="StartupUser" Value="StartupUserAnonymousToken" />
       <Group ID="TcpProxyConf">
         <Selector ID="InsecureMode" Value="1" />
       </Group>

@@ -6,4 +6,5 @@ VAR
 	sim : sim_typ;
 	productionCycleCount : UDINT;
 	simulateAxisError : BOOL;
+	TON_simulateBottles : TON;
 END_VAR

@@ -28,4 +28,9 @@ ACTION modules:
 		STATE_ACTIVATING: hmi.packmlState := 'STATE_ACTIVATING';
 	END_CASE
 	
+	IF Reboot THEN
+		Reboot := FALSE;
+		SYSreset(1,SYSLIB_WARMSTART);
+	END_IF
+	
 END_ACTION

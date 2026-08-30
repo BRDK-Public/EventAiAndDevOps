@@ -2,4 +2,5 @@ VAR
 	em : {REDUND_UNREPLICABLE} EquipmentModule;
 	hmi : hmi_typ;
 	hw : hw_typ;
+	Reboot : BOOL;
 END_VAR
