@@ -55,6 +55,10 @@ jobs:
         shell: pwsh
         run: .\tests\run-integration-tests.ps1
 
+      - name: Disable ARsim before packaging
+        if: success()
+        run: .\as-cli.exe sim disable --no-clean
+
       - name: Create Project Installation package (PIP)
         if: success()
         run: .\as-cli.exe build pip -o ReleaseCandidate --reboot true --ignore-version --execute-ei true --allow-partitioning false

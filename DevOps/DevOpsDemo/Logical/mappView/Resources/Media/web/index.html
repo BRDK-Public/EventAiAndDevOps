@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#151719">
+  <title>Orange Juice Conveyor</title>
+  <style>
+    :root {
+      --orange: #ff7a00;
+      --ink: #151719;
+      --panel: #202326;
+      --steel: #737c82;
+      --steel-light: #c0c7cb;
+      --line: rgba(255, 255, 255, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 900px;
+      height: 360px;
+      min-width: 900px;
+      min-height: 360px;
+      margin: 0;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: rgb(51, 51, 51);
+      color: #fff;
+      font-family: "Cascadia Code", Consolas, monospace;
+    }
+
+    .conveyor {
+      width: 100%;
+      height: 100%;
+      padding: clamp(18px, 3vw, 34px);
+    }
+
+    .station-track {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: clamp(48px, 6vw, 68px);
+    }
+
+    .station {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      min-width: 0;
+      padding: 0 clamp(10px, 1.5vw, 18px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-top: 4px solid var(--steel);
+      background: rgba(255, 255, 255, 0.055);
+    }
+
+    .station:first-child {
+      border-right: 0;
+    }
+
+    .station.capper-station {
+      border-color: rgba(255, 122, 0, 0.68);
+      border-left-color: rgba(255, 122, 0, 0.68);
+    }
+
+    .station::after {
+      position: absolute;
+      bottom: -18px;
+      left: 50%;
+      width: 1px;
+      height: 17px;
+      content: "";
+      background: #8c969b;
+    }
+
+    .station span,
+    .station b {
+      font-size: clamp(8px, 1vw, 12px);
+      letter-spacing: 0.06em;
+    }
+
+    .station span {
+      overflow: hidden;
+      color: var(--steel-light);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .station b {
+      color: var(--orange);
+      font-weight: 600;
+    }
+
+    .station i {
+      position: absolute;
+      right: clamp(10px, 1.5vw, 18px);
+      bottom: 9px;
+      left: clamp(10px, 1.5vw, 18px);
+      height: 2px;
+      background: rgba(255, 122, 0, 0.42);
+    }
+
+    .bottles {
+      position: relative;
+      height: clamp(105px, 15vw, 165px);
+      visibility: hidden;
+    }
+
+    .has-started .bottles {
+      visibility: visible;
+    }
+
+    .bottle {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      --bottle-half-width: 13px;
+      --bottle-infeed: 36px;
+      width: 25px;
+      height: clamp(62px, 8vw, 92px);
+      border: 2px solid #929ba1;
+      border-radius: 6px 6px 4px 4px;
+      background: rgba(255, 255, 255, 0.06);
+      opacity: 0;
+      animation: bottle-flow 9s linear infinite;
+      animation-delay: var(--bottle-delay);
+      animation-fill-mode: both;
+      animation-play-state: paused;
+    }
+
+    .bottle::before {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      width: 9px;
+      height: 12px;
+      border: 2px solid #929ba1;
+      border-bottom: 0;
+      content: "";
+      transform: translateX(-50%);
+    }
+
+    .bottle-liquid {
+      position: absolute;
+      right: 2px;
+      bottom: 2px;
+      left: 2px;
+      height: 0;
+      background: var(--orange);
+      animation: liquid-fill 9s linear infinite;
+      animation-delay: var(--bottle-delay);
+      animation-fill-mode: both;
+      animation-play-state: paused;
+    }
+
+    .bottle-cap {
+      position: absolute;
+      top: -17px;
+      left: 50%;
+      width: 15px;
+      height: 5px;
+      border: 1px solid var(--orange);
+      background: var(--orange);
+      opacity: 0;
+      animation: cap-appear 9s linear infinite;
+      animation-delay: var(--bottle-delay);
+      animation-fill-mode: both;
+      animation-play-state: paused;
+      transform: translateX(-50%);
+    }
+
+    .is-execute .bottle,
+    .is-execute .bottle-liquid,
+    .is-execute .bottle-cap {
+      animation-play-state: running;
+    }
+
+    .belt {
+      display: flex;
+      justify-content: space-around;
+      height: clamp(28px, 3vw, 40px);
+      padding-top: 7px;
+      border-top: 5px solid #8a9399;
+      border-bottom: 5px solid #51585d;
+      background: #101214;
+    }
+
+    .belt i {
+      width: clamp(7px, 0.75vw, 10px);
+      height: clamp(7px, 0.75vw, 10px);
+      border-radius: 50%;
+      background: #737c82;
+    }
+
+    @keyframes bottle-flow {
+      0%, 6% { left: 0; opacity: 0; }
+      8%, 10% { left: 0; opacity: 1; }
+      22%, 39% { left: calc(25% - var(--bottle-half-width)); opacity: 1; }
+      58%, 69% { left: calc(75% - var(--bottle-half-width)); opacity: 1; }
+      100% { left: calc(100% + var(--bottle-half-width)); opacity: 1; }
+    }
+
+    @keyframes liquid-fill {
+      0%, 21% { height: 0; }
+      37%, 100% { height: 76%; }
+    }
+
+    @keyframes cap-appear {
+      0%, 61% { opacity: 0; transform: translateX(-50%) scale(0.7); }
+      64%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+    }
+
+    @media (max-width: 520px) {
+      body {
+        overflow: auto;
+      }
+
+      .conveyor {
+        width: calc(100vw - 24px);
+        padding: 14px;
+      }
+
+      .station-track {
+        height: 48px;
+      }
+
+      .station {
+        border-top-width: 3px;
+      }
+
+      .station span,
+      .station b {
+        font-size: 7px;
+      }
+
+      .station i {
+        right: 8px;
+        left: 8px;
+        bottom: 6px;
+      }
+
+      .bottles {
+        height: 105px;
+      }
+
+      .bottle {
+        --bottle-half-width: 10px;
+        --bottle-infeed: 24px;
+        width: 19px;
+        height: 62px;
+      }
+
+      .bottle::before {
+        top: -9px;
+        width: 7px;
+        height: 9px;
+      }
+
+      .bottle-cap {
+        top: -13px;
+        width: 12px;
+        height: 4px;
+      }
+
+      .belt {
+        height: 28px;
+        border-top-width: 4px;
+        border-bottom-width: 4px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bottle,
+      .bottle-liquid,
+      .bottle-cap {
+        animation-play-state: paused;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="conveyor" aria-label="Orange juice conveyor with filler and capper stations">
+    <div class="station-track">
+      <div class="station filler-station">
+        <span>FILLER</span>
+        <b>FILL</b>
+        <i aria-hidden="true"></i>
+      </div>
+      <div class="station capper-station">
+        <span>CAPPER</span>
+        <b>CAP</b>
+        <i aria-hidden="true"></i>
+      </div>
+    </div>
+
+    <div class="bottles" aria-hidden="true">
+      <div class="bottle" style="--bottle-delay: 0s"><i class="bottle-liquid"></i><i class="bottle-cap"></i></div>
+      <div class="bottle" style="--bottle-delay: 1.8s"><i class="bottle-liquid"></i><i class="bottle-cap"></i></div>
+      <div class="bottle" style="--bottle-delay: 3.6s"><i class="bottle-liquid"></i><i class="bottle-cap"></i></div>
+      <div class="bottle" style="--bottle-delay: 5.4s"><i class="bottle-liquid"></i><i class="bottle-cap"></i></div>
+      <div class="bottle" style="--bottle-delay: 7.2s"><i class="bottle-liquid"></i><i class="bottle-cap"></i></div>
+    </div>
+
+    <div class="belt" aria-hidden="true">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+  </main>
+  <script>
+    const executeStateUrl = 'orangeJuiceState.cgi';
+    let hasEnteredExecute = false;
+
+    const setExecuteState = (isExecute) => {
+      if (isExecute && !hasEnteredExecute) {
+        hasEnteredExecute = true;
+        document.documentElement.classList.add('has-started');
+      }
+
+      document.documentElement.classList.toggle('is-execute', isExecute);
+    };
+
+    const readExecuteState = async () => {
+      try {
+        const response = await fetch(executeStateUrl, {
+          cache: 'no-store'
+        });
+
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        const state = await response.json();
+        setExecuteState(state.execute === true);
+      } catch {
+        setExecuteState(false);
+      }
+    };
+
+    readExecuteState();
+    window.setInterval(readExecuteState, 500);
+  </script>
+</body>
+</html>

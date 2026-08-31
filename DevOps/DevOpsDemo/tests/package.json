@@ -1,0 +1,11 @@
+{
+  "name": "devops-demo-hmi-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:hmi": "playwright test --config playwright.config.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.1"
+  }
+}

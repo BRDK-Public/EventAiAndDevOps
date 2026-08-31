@@ -5,6 +5,7 @@ TYPE
 		stopMachine : BOOL;
 		abortMachine : BOOL;
 		clearMachine : BOOL;
+		packmlState : STRING[40];
 	END_STRUCT;
 	hw_typ : 	STRUCT 
 		di_EstopOK : BOOL := TRUE;

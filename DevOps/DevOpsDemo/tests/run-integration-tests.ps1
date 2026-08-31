@@ -727,10 +727,10 @@ finally {
     if (-not $KeepAlive) {
         Write-Host ''
         Write-Host 'Cleanup: stopping the daemon and ARsim...' -ForegroundColor DarkGray
-        Invoke-Cli -CliArgs @('sim', 'disable', '--no-clean') -TimeoutMs 30000 | Out-Null
+        #Invoke-Cli -CliArgs @('sim', 'disable', '--no-clean') -TimeoutMs 30000 | Out-Null
         Invoke-Cli -CliArgs @('daemon', 'stop') -TimeoutMs 30000 | Out-Null
         Stop-LingeringDaemons -ProjectPath $proj
-        Stop-ArSim
+        #Stop-ArSim
     }
 }
 

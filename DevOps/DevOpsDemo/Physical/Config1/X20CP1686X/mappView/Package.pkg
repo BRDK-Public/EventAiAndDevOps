@@ -11,5 +11,6 @@
     <Object Type="File">Config.mappviewcfg</Object>
     <Object Type="File">HD_LS1_contentMain.binding</Object>
     <Object Type="File">HD_LS1_contentMain.eventbinding</Object>
+    <Object Type="File">HD_LS1_contentHeader.binding</Object>
   </Objects>
 </Package>

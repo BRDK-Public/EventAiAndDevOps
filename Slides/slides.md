@@ -197,7 +197,7 @@ Problemet er, at man sjældent får hele regnestykket med. Man hører ikke altid
 Sådan skal det ikke være i dag. AI i automationsbranchen er stadig nyt. I har ikke sovet i timen, men tidspunktet er godt til at begynde systematisk. Vi viser både det, der virker nu, og det, der stadig kræver jeres egen kontekst, proces og ansvar.
 
 	- Why are we having this event?
-		- Inform our customers about new and existing possibilities with AI and DevOps on the B&R platform. 
+    - Inform our customers about new and existing possibilities with AI and DevOps on the B&R platform.
 		- Give insight into our work and future direction on the topics
 		- Have good discussions and feedback from you. Please ask questions during the presentations.
 
@@ -2609,8 +2609,8 @@ layout: default
 class: as-cli-demo-slide dark-slide
 ---
 
-<div class="status-badge demonstrator">DEMO 1 / 2</div>
-<div class="kicker">AS DEVELOPMENT · DEVOPS IN PRACTICE</div>
+<div class="status-badge demonstrator">DEMO 1 / 3</div>
+<div class="kicker">AS-CLI DEVELOPMENT · DEVOPS IN PRACTICE</div>
 
 # How <span class="accent">as</span> tests itself
 
@@ -2661,7 +2661,7 @@ layout: default
 class: machine-demo-slide dark-slide
 ---
 
-<div class="status-badge demonstrator">DEMO 2 / 2</div>
+<div class="status-badge demonstrator">DEMO 2 / 3</div>
 <div class="kicker">FULL CI/CD PIPELINE · TEST PROJECT</div>
 
 # The <span class="accent">orange</span> juice machine
@@ -2688,6 +2688,69 @@ context, then Alt+Tab to the repository and show how one push or GitHub tag star
 
 Do not explain the workflow from this slide. The live repository view carries the build, test, release,
 package, and deployment sequence.
+-->
+
+---
+layout: default
+class: playwright-hmi-demo-slide dark-slide
+---
+
+<div class="status-badge demonstrator">DEMO 3 / 3</div>
+<div class="kicker">FULL CI/CD PIPELINE · HMI FEEDBACK</div>
+
+# Test the HMI<br><span class="accent">like a user</span>
+
+<div class="playwright-hmi-subtitle">Playwright turns browser actions into repeatable HMI feedback.</div>
+
+<div class="playwright-hmi-flow">
+  <section class="playwright-hmi-runner" aria-label="Playwright CLI test runner">
+    <div class="playwright-hmi-panel-head"><span>PLAYWRIGHT CLI</span><mdi-test-tube /></div>
+    <div class="playwright-hmi-command"><span>&gt;</span> npm run test:hmi <b>-- --headed --reporter=line</b></div>
+    <div class="playwright-hmi-checks">
+      <div><span>01</span><b>OPEN</b><small>launch the HMI in a real browser</small></div>
+      <div><span>02</span><b>INTERACT</b><small>follow a meaningful operator workflow</small></div>
+      <div><span>03</span><b>ASSERT</b><small>check controls, state, and feedback</small></div>
+    </div>
+    <div class="playwright-hmi-runner-foot"><span>REPEATABLE CHECK</span><b>BROWSER + RUNTIME</b></div>
+  </section>
+
+  <div class="playwright-hmi-bridge" aria-label="Browser and PLC handoff">
+    <span>DRIVES +<br>OBSERVES</span>
+    <mdi-arrow-right />
+  </div>
+
+  <section class="playwright-hmi-browser" aria-label="Chrome HMI session">
+    <div class="playwright-hmi-browser-bar"><span>CHROME · 127.0.0.1:81</span><i></i><i></i><i></i></div>
+    <div class="playwright-hmi-screen">
+      <div class="playwright-hmi-screen-nav"><span>HMI SESSION</span><b>OPERATOR</b></div>
+      <div class="playwright-hmi-screen-body">
+        <div class="playwright-hmi-state-tile"><small>MACHINE STATUS</small><strong>READY</strong><span>VISIBLE FEEDBACK</span></div>
+        <div class="playwright-hmi-counter-tile"><small>TEST SIGNAL</small><b>OK</b><span>EXPECTED RESULT</span></div>
+      </div>
+      <div class="playwright-hmi-screen-actions"><span>START</span><span>STOP</span><b>PASS</b></div>
+    </div>
+  </section>
+</div>
+
+<div class="playwright-hmi-proof" aria-label="HMI test evidence">
+  <div><span>RESULT</span><strong><mdi-shield-check-outline /> PASS / FAIL</strong></div>
+  <div><span>OBSERVATION</span><strong>VISIBLE FEEDBACK</strong></div>
+  <div><span>ASSERTION</span><strong>EXPECTED RESULT</strong></div>
+  <div><span>INTERFACE</span><strong>REAL BROWSER</strong></div>
+</div>
+
+<div class="slide-id">W2 · 50</div>
+
+<!--
+Demo 3 introduces browser-level verification for an industrial HMI.
+
+Run the Playwright CLI against the HMI in headed mode so the audience can see the test and the application together.
+
+The general pattern is simple: open the HMI in a real browser, perform a meaningful user workflow, and assert the visible controls, state, and feedback. A runtime interface such as as-cli can provide setup and observation alongside the browser test.
+
+Point out the boundary. Browser automation proves the declared HMI workflow in its controlled environment. It does not prove physical timing, functional safety, or every target variant.
+
+Transition: the machine is visible, the pipeline is concrete, and the user-facing layer now produces evidence too.
 -->
 
 ---
