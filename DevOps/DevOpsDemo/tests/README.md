@@ -36,3 +36,13 @@ npm run test:hmi -- --headed --reporter=line
 The test logs in as `operator`, `maintenance`, and `engineer`, closes the user menu, then simulates ten production batches and checks the visible counter.
 
 If the HMI reports that the maximum number of clients has been reached, close other HMI browser sessions and run the test again.
+
+## Standalone demo-page tests
+
+The three web dashboards can also be tested without PVI or a running PLC. The demo config starts a temporary server from the Logical mappView web folder and checks the deterministic local workflows:
+
+```powershell
+npm run test:demo
+```
+
+The suite covers the Production batch controls, Alarm filtering and acknowledgment, and Service inspection and checklist actions at the `1260 x 720` page size.

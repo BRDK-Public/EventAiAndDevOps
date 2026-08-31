@@ -1,17 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Content id="HD_LS1_contentMain" guid="2ae96892-4694-4638-ada8-cc6a55f82f32" height="708" width="1258" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Widgets>
-    <Widget xsi:type="widgets.brease.GroupBox" id="GroupBox1" top="10" left="10" width="325" height="280" zIndex="0" text="PRODUCTION">
-      <Widgets>
-        <Widget xsi:type="widgets.brease.DonutChart" id="DonutChart1" top="1" left="32" width="238" height="238" zIndex="0">
-          <Widgets>
-            <Widget xsi:type="widgets.brease.DonutChartItem" id="DonutChartItem1" top="43" left="114" zIndex="0" text="DonutChartItem1" value="100" style="orange" />
-            <Widget xsi:type="widgets.brease.DonutChartItem" id="DonutChartItem2" top="15" left="167" zIndex="1" text="DonutChartItem2" style="gold" />
-          </Widgets>
-        </Widget>
-      </Widgets>
-    </Widget>
-    <Widget xsi:type="widgets.brease.GroupBox" id="GroupBox2" top="420" left="350" width="890" height="275" zIndex="1" text="UPDATE">
+    <Widget xsi:type="widgets.brease.GroupBox" id="GroupBox2" top="420" left="350" width="890" height="275" zIndex="0" text="UPDATE">
       <Widgets>
         <Widget xsi:type="widgets.brease.TextOutput" id="TextOutput1" top="63" left="468" zIndex="0" value="v.1.0.1" fontSize="20px" />
         <Widget xsi:type="widgets.brease.TextOutput" id="TextOutput2" top="63" left="328" zIndex="1" value="v.1.0.0" fontSize="20px" />
@@ -20,16 +10,11 @@
         <Widget xsi:type="widgets.brease.Button" id="UpdateBtn" top="123" left="368" width="160" height="45" zIndex="4" text="Update" backColor="rgba(0, 180, 83, 1)" disabledBackColor="rgba(96, 96, 96, 1)" />
       </Widgets>
     </Widget>
-    <Widget xsi:type="widgets.brease.GroupBox" id="GroupBox3" top="300" left="10" width="325" height="105" zIndex="2" text="PRODUCTS">
+    <Widget xsi:type="widgets.brease.Button" id="StartButton" top="540" left="20" width="150" height="150" zIndex="1" image="Media/Images/playButton.svg" imageAlign="bottom" imageHeight="70" imageColor="rgba(76, 209, 55, 1)" mouseDownImageColor="rgba(76, 209, 55, 1)" />
+    <Widget xsi:type="widgets.brease.Button" id="StopButton" top="540" left="180" width="150" height="150" zIndex="2" image="Media/Images/stop.svg" imageHeight="70" imageColor="rgba(232, 65, 24, 1)" mouseDownImageColor="rgba(232, 65, 24, 1)" />
+    <Widget xsi:type="widgets.brease.GroupBox" id="GroupBox4" top="10" left="20" width="1220" height="395" zIndex="3" text="OVERVIEW">
       <Widgets>
-        <Widget xsi:type="widgets.brease.NumericOutput" id="NumericOutputProducts" top="2" left="69" width="183" height="61" zIndex="0" format="{'metric':{'decimalPlaces':0,'minimumIntegerDigits':1},'imperial':{'decimalPlaces':0,'minimumIntegerDigits':1},'imperial-us':{'decimalPlaces':0,'minimumIntegerDigits':1}}" textAlign="center" fontSize="48px" />
-      </Widgets>
-    </Widget>
-    <Widget xsi:type="widgets.brease.Button" id="StartButton" top="540" left="20" width="150" height="150" zIndex="3" image="Media/Images/playButton.svg" imageAlign="bottom" imageHeight="70" imageColor="rgba(76, 209, 55, 1)" mouseDownImageColor="rgba(76, 209, 55, 1)" />
-    <Widget xsi:type="widgets.brease.Button" id="StopButton" top="540" left="180" width="150" height="150" zIndex="4" image="Media/Images/stop.svg" imageHeight="70" imageColor="rgba(232, 65, 24, 1)" mouseDownImageColor="rgba(232, 65, 24, 1)" />
-    <Widget xsi:type="widgets.brease.GroupBox" id="GroupBox4" top="10" left="350" width="890" height="395" zIndex="5" text="SIMULATION">
-      <Widgets>
-        <Widget xsi:type="widgets.brease.WebViewer" id="WebViewer1" top="0" left="0" width="900" height="360" zIndex="0" path="index.html" />
+        <Widget xsi:type="widgets.brease.WebViewer" id="WebViewer1" top="0" left="0" width="1220" height="360" zIndex="0" path="index.html" />
       </Widgets>
     </Widget>
   </Widgets>

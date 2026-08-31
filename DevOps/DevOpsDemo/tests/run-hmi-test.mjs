@@ -10,7 +10,8 @@ const projectPath = join(projectRoot, 'DevOpsDemo.apj');
 const startButton = '#HD_LS1_contentMain_StartButton';
 const stopButton = '#HD_LS1_contentMain_StopButton';
 const stateDisplay = '#HD_LS1_contentHeader_TextOutput52';
-const counterDisplay = '#HD_LS1_contentMain_NumericOutputProducts';
+const counterFrame = '#HD_LS1_contentMain_WebViewer1 iframe';
+const counterDisplay = '#bottle-counter';
 const userMenuButton = '#HD_LS1_contentNavigation_ButtonUserSettings';
 const userConfigFlyout = '#HD_LS1_contentNavigation_FlyOutUserConfig';
 const loginUserWidget = '#HD_LS1_contentNavigation_Login1_liUser';
@@ -133,14 +134,14 @@ async function enterLoginValue(page, widgetSelector, value) {
 }
 
 async function readHmiCounter(page) {
-  const counterWidget = page.locator(counterDisplay);
+  const counterWidget = page.frameLocator(counterFrame).locator(counterDisplay);
   const input = counterWidget.locator('input');
   if (await input.count() > 0) return Number(await input.first().inputValue());
   return Number((await counterWidget.innerText()).trim());
 }
 
 async function expectCounter(page, expectedCounter) {
-  const counterWidget = page.locator(counterDisplay);
+  const counterWidget = page.frameLocator(counterFrame).locator(counterDisplay);
   await expect(counterWidget, 'production counter in the HMI').toBeVisible();
   await expect.poll(
     () => readHmiCounter(page),
