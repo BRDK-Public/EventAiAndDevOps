@@ -20,5 +20,7 @@ PROGRAM _CYCLIC
 END_PROGRAM
 
 PROGRAM _EXIT
+	httpStateService.enable := FALSE;
+	httpStateService();
 	 
 END_PROGRAM

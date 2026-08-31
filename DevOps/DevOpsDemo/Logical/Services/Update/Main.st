@@ -23,27 +23,10 @@ PROGRAM _CYCLIC
 				UpdateVersionOnPLC := ArProjectGetInfo_0.ConfigurationVersion; 
 				ArProjectGetInfo_0.Execute := FALSE;
 				ArProjectGetInfo_0();
-				state := 3;
+				state := 5;
 			ELSIF ArProjectGetInfo_0.Error THEN
 				ArProjectGetInfo_0.Execute := FALSE;
 				ArProjectGetInfo_0();
-				state := 222;
-			END_IF
-			
-		3:
-			// Create "update" directory if it doesnt exist
-			DirCreate_0.enable := TRUE;
-			DirCreate_0.pDevice := ADR('USER');
-			DirCreate_0.pName := ADR('update');
-			DirCreate_0();
-			
-			IF DirCreate_0.status = ERR_OK OR DirCreate_0.status = fiERR_DIR_ALREADY_EXIST THEN
-				DirCreate_0.enable := FALSE;
-				DirCreate_0();
-				state := 5;
-			ELSIF DirCreate_0.status <> ERR_FUB_BUSY THEN
-				DirCreate_0.enable := FALSE;
-				DirCreate_0();
 				state := 222;
 			END_IF
 			

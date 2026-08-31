@@ -4,5 +4,6 @@
   <Objects>
     <Object Type="Package" TransferedForTargetSourceCompare="true">Img_HD_LS1</Object>
     <Object Type="Package">Images</Object>
+    <Object Type="Package">web</Object>
   </Objects>
 </Package>

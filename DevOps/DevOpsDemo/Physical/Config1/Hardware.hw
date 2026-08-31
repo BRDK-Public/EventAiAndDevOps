@@ -43,6 +43,9 @@
     <Group ID="FileDevice2" />
     <Parameter ID="FileDeviceName2" Value="UPDATELOCAL" />
     <Parameter ID="FileDevicePath2" Value="USER_PATH/update" />
+    <Group ID="FileDevice3" />
+    <Parameter ID="FileDeviceName3" Value="SYSTEM" />
+    <Parameter ID="FileDevicePath3" Value="/C" />
     <Parameter ID="ActivateFtpServer" Value="1" />
     <Parameter ID="FTPProtocol" Value="1" />
     <Group ID="FtpUser1" />
@@ -50,6 +53,12 @@
     <Parameter ID="FtpUserPassword1" Value="iyZ0XLBPgzxOgT+/oJkddR4xsYE0T7Q6FwQSQTUdxHI=" />
     <Parameter ID="FtpUserSalt1" Value="CcomFuPe" />
     <Parameter ID="FTPAccessRight1" Value="0" />
+    <Group ID="FtpUser2" />
+    <Parameter ID="FtpUsername2" Value="superuser" />
+    <Parameter ID="FtpUserPassword2" Value="4Akg47HZy6DlK+anhrEtsAiI7QW2c+xc+/r/2Z5L3Tk=" />
+    <Parameter ID="FtpUserSalt2" Value="idt327Hb" />
+    <Parameter ID="FTPAccessRight2" Value="0" />
+    <Parameter ID="FTPdevice2" Value="ALL" />
     <Parameter ID="ActivateWebServer" Value="1" />
     <Parameter ID="WebServerProtocol" Value="1" />
     <Parameter ID="ActivateSdm" Value="1" />
