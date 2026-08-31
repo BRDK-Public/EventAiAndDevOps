@@ -21,28 +21,34 @@ npm install
 
 ## Run
 
-Headless:
+Show the Chrome window while the test runs:
 
 ```powershell
 npm run test:hmi
 ```
 
-Show the browser while the test runs:
+The same command accepts additional Playwright arguments, so this also opens Chrome:
 
 ```powershell
-npm run test:hmi -- --headed --reporter=line
+npm run test:hmi -- --reporter=line
 ```
 
-The test logs in as `operator`, `maintenance`, and `engineer`, closes the user menu, then simulates ten production batches and checks the visible counter.
+Headless:
+
+```powershell
+npm run test:hmi:headless
+```
+
+The single live-HMI flow logs in as `operator`, `maintenance`, and `engineer`, closes the user menu, simulates ten production batches, then stays on the Production, Service, and Alarm tabs while verifying each WebViewer resource and exercising the batch, maintenance, checklist, filtering, acknowledgment, trigger, and reset controls. The headed run pauses between these interactions so the workflow can be followed during a demo.
 
 If the HMI reports that the maximum number of clients has been reached, close other HMI browser sessions and run the test again.
 
-## Standalone demo-page tests
+## Live mappView demo test
 
-The three web dashboards can also be tested without PVI or a running PLC. The demo config starts a temporary server from the Logical mappView web folder and checks the deterministic local workflows:
+The simple demo command runs the complete headed HMI workflow against mappView at `http://127.0.0.1:81`. It opens one Chrome window, tests all three users, starts the machine, waits for `STATE_EXECUTE`, produces and verifies ten bottles, then navigates through the real Production, Service, and Alarm tabs with 1.5-second pauses between interactions. It uses the same single end-to-end test as `test:hmi`.
 
 ```powershell
 npm run test:demo
 ```
 
-The suite covers the Production batch controls, Alarm filtering and acknowledgment, and Service inspection and checklist actions at the `1260 x 720` page size.
+The single browser workflow covers PLC/PVI setup, user access, machine state and production feedback, plus Production batch controls, Alarm filtering and acknowledgment, and Service inspection and checklist actions inside their WebViewer iframes.

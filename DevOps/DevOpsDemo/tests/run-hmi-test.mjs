@@ -19,6 +19,30 @@ const loginPasswordWidget = '#HD_LS1_contentNavigation_Login1_liPassword';
 const loginSubmitButton = '#HD_LS1_contentNavigation_Login1_liButton';
 const loginMessage = '#HD_LS1_contentNavigation_Login1_liMessageLabel';
 const loginKeyboard = '#breaseKeyBoard';
+const demoPauseMs = 1_500;
+const dashboardRoutes = {
+  production: {
+    name: 'Production Cockpit',
+    navigationButton: '#HD_LS1_contentNavigation_NavigationProduction',
+    webViewer: '#HD_LS1_contentProductionMgt_WebViewerProduction',
+    pagePath: 'production.html',
+    readySelector: '#production-simulate-batch'
+  },
+  service: {
+    name: 'Service and Diagnostics',
+    navigationButton: '#HD_LS1_contentNavigation_NavigationService',
+    webViewer: '#HD_LS1_contentServiceMgt_WebViewerService',
+    pagePath: 'service.html',
+    readySelector: '#service-inspect-capper'
+  },
+  alarm: {
+    name: 'Alarm Command Center',
+    navigationButton: '#HD_LS1_contentNavigation_NavigationButton2',
+    webViewer: '#HD_LS1_contentAlarmMgt_WebViewerAlarm',
+    pagePath: 'alarm.html',
+    readySelector: '#alarm-ack-ALM-001'
+  }
+};
 
 async function runAsCli(args) {
   try {
@@ -152,7 +176,25 @@ async function expectCounter(page, expectedCounter) {
   ).toBe(expectedCounter);
 }
 
-test('HMI production and user access flow', async ({ page }) => {
+async function openDashboard(page, dashboard) {
+  await page.locator(dashboard.navigationButton).click();
+  const iframe = page.locator(`${dashboard.webViewer} iframe`);
+  await expect(iframe, `${dashboard.name} WebViewer`).toBeAttached({ timeout: 30_000 });
+  await expect(iframe, `${dashboard.name} page resource`).toHaveAttribute(
+    'src',
+    new RegExp(dashboard.pagePath.replace('.', '\\.')),
+    { timeout: 30_000 }
+  );
+  const frame = page.frameLocator(`${dashboard.webViewer} iframe`);
+  await expect(frame.locator(dashboard.readySelector), `${dashboard.name} ready control`).toBeVisible({ timeout: 30_000 });
+  return frame;
+}
+
+async function pauseForDemo(page) {
+  await page.waitForTimeout(demoPauseMs);
+}
+
+test('HMI production, access, and dashboard flow', async ({ page }) => {
   test.setTimeout(5 * 60_000);
   await test.step('connect to the running PLC', async () => {
     await runAsCli(['plc', 'connect', '--ip', '127.0.0.1']);
@@ -162,6 +204,7 @@ test('HMI production and user access flow', async ({ page }) => {
     await restartMainTask();
   });
   await waitForHmi(page);
+  await pauseForDemo(page);
 
   await expect(page.locator(userMenuButton), 'upper-left user menu button').toBeVisible();
 
@@ -186,7 +229,7 @@ test('HMI production and user access flow', async ({ page }) => {
         `User changed to: ${user.username}`,
         { timeout: 30_000 }
       );
-      await page.waitForTimeout(1_000);
+      await pauseForDemo(page);
     });
   }
 
@@ -205,6 +248,7 @@ test('HMI production and user access flow', async ({ page }) => {
 
   await page.locator(startButton).click();
   await expectState(page, 'STATE_EXECUTE');
+  await pauseForDemo(page);
 
   for (let batchNumber = 1; batchNumber <= 10; batchNumber += 1) {
     await test.step(`simulate batch ${batchNumber}`, async () => {
@@ -217,4 +261,83 @@ test('HMI production and user access flow', async ({ page }) => {
 
   await page.locator(stopButton).click();
   await expectState(page, 'STATE_STOPPED');
+  await pauseForDemo(page);
+
+  await test.step('navigate to Production and simulate a batch', async () => {
+    const productionFrame = await openDashboard(page, dashboardRoutes.production);
+    await pauseForDemo(page);
+    await productionFrame.locator('#production-reset-demo').click();
+    await expect(productionFrame.locator('#production-output')).toHaveText(/0 batches/);
+    await pauseForDemo(page);
+    await productionFrame.locator('#production-simulate-batch').click();
+    await expect(productionFrame.locator('#production-output')).toHaveText(/1 batches/);
+    await expect(productionFrame.locator('#production-good')).toHaveText(/1 units/);
+    await pauseForDemo(page);
+    await productionFrame.locator('#production-simulate-batch').click();
+    await expect(productionFrame.locator('#production-output')).toHaveText(/2 batches/);
+    await expect(productionFrame.locator('#production-good')).toHaveText(/2 units/);
+    await expect(productionFrame.locator('[data-batch-id="B-002"]')).toBeVisible();
+    await pauseForDemo(page);
+    await productionFrame.locator('#production-reset-demo').click();
+    await expect(productionFrame.locator('#production-output')).toHaveText(/0 batches/);
+    await pauseForDemo(page);
+  });
+
+  await test.step('navigate to Service and complete maintenance checks', async () => {
+    const serviceFrame = await openDashboard(page, dashboardRoutes.service);
+    await pauseForDemo(page);
+    await serviceFrame.locator('#service-reset-demo').click();
+    await expect(serviceFrame.locator('#service-line-health')).toHaveText('2 / 3 HEALTHY');
+    await pauseForDemo(page);
+    await serviceFrame.locator('#service-inspect-capper').click();
+    await expect(serviceFrame.locator('#service-line-health')).toHaveText('3 / 3 HEALTHY');
+    await expect(serviceFrame.locator('#service-due-count')).toHaveText('0');
+    await pauseForDemo(page);
+    await serviceFrame.locator('#service-inspect-all').click();
+    await expect(serviceFrame.locator('#service-line-health')).toHaveText('3 / 3 HEALTHY');
+    await expect(serviceFrame.locator('#service-due-count')).toHaveText('0');
+    await pauseForDemo(page);
+    await serviceFrame.locator('#service-task-pressure').check();
+    await expect(serviceFrame.locator('#service-checklist-summary')).toHaveText('3 / 4 COMPLETE');
+    await pauseForDemo(page);
+    await serviceFrame.locator('#service-task-capper').check();
+    await expect(serviceFrame.locator('#service-checklist-summary')).toHaveText('4 / 4 COMPLETE');
+    await pauseForDemo(page);
+    await serviceFrame.locator('#service-reset-demo').click();
+    await expect(serviceFrame.locator('#service-line-health')).toHaveText('2 / 3 HEALTHY');
+    await expect(serviceFrame.locator('#service-checklist-summary')).toHaveText('2 / 4 COMPLETE');
+    await pauseForDemo(page);
+  });
+
+  await test.step('navigate to Alarm and acknowledge a triggered event', async () => {
+    const alarmFrame = await openDashboard(page, dashboardRoutes.alarm);
+    await pauseForDemo(page);
+    await alarmFrame.locator('#alarm-reset-demo').click();
+    await expect(alarmFrame.locator('#alarm-active-count')).toHaveText('2');
+    await pauseForDemo(page);
+    await alarmFrame.locator('[data-filter="critical"]').click();
+    await expect(alarmFrame.locator('#alarm-row-ALM-001')).toBeVisible();
+    await expect(alarmFrame.locator('#alarm-row-ALM-002')).toBeHidden();
+    await pauseForDemo(page);
+    await alarmFrame.locator('#alarm-ack-ALM-001').click();
+    await expect(alarmFrame.locator('#alarm-unacknowledged-count')).toHaveText('1');
+    await pauseForDemo(page);
+    await alarmFrame.locator('[data-filter="warning"]').click();
+    await expect(alarmFrame.locator('#alarm-row-ALM-002')).toBeVisible();
+    await expect(alarmFrame.locator('#alarm-row-ALM-001')).toBeHidden();
+    await pauseForDemo(page);
+    await alarmFrame.locator('[data-filter="active"]').click();
+    await expect(alarmFrame.locator('#alarm-row-ALM-002')).toBeVisible();
+    await expect(alarmFrame.locator('#alarm-row-ALM-003')).toBeHidden();
+    await pauseForDemo(page);
+    await alarmFrame.locator('#alarm-trigger-demo').click();
+    await expect(alarmFrame.locator('#alarm-active-count')).toHaveText('3');
+    await pauseForDemo(page);
+    await alarmFrame.locator('#alarm-acknowledge-all').click();
+    await expect(alarmFrame.locator('#alarm-unacknowledged-count')).toHaveText('0');
+    await pauseForDemo(page);
+    await alarmFrame.locator('#alarm-reset-demo').click();
+    await expect(alarmFrame.locator('#alarm-active-count')).toHaveText('2');
+    await pauseForDemo(page);
+  });
 });
