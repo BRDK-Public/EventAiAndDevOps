@@ -1923,7 +1923,7 @@ class: devops-cover ai-workshop-cover dark-slide
 
 <div class="devops-chapter">02</div>
 
-<div class="kicker">WORKSHOP 02 · 75 MIN</div>
+<div class="kicker">WORKSHOP 02</div>
 <div class="part-label">MADS ANDERSEN · AUTOMATION ENGINEER</div>
 
 # DevOps in<br><span class="accent">industry</span>
@@ -1956,7 +1956,7 @@ class: devops-intro-slide dark-slide
 ---
 
 <div class="status-badge general">GENERAL PRINCIPLE</div>
-<div class="kicker">WORKSHOP 02 · ORIENTATION · 04 MIN</div>
+<div class="kicker">WORKSHOP 02 · ORIENTATION</div>
 
 # What is<br><span class="accent">DevOps?</span>
 
@@ -2082,7 +2082,7 @@ layout: default
 class: old-way-slide dark-slide
 ---
 
-<div class="kicker">WORKSHOP 02 · THE OLD WAY · 04 MIN</div>
+<div class="kicker">WORKSHOP 02 · THE OLD WAY</div>
 
 # Why <span class="accent">change?</span>
 
@@ -2168,7 +2168,7 @@ layout: default
 class: devops-tooling dark-slide
 ---
 
-<div class="kicker">WORKSHOP 02 · DEVOPS · 03 MIN</div>
+<div class="kicker">WORKSHOP 02 · DEVOPS</div>
 
 <div class="delivery-heading">
   <div>
@@ -2229,7 +2229,7 @@ layout: default
 class: where-agentic-fits dark-slide
 ---
 
-<div class="kicker">WORKSHOP 02 · DEVOPS · 03 MIN</div>
+<div class="kicker">WORKSHOP 02 · DEVOPS</div>
 
 <div class="delivery-heading">
   <div>
@@ -2304,7 +2304,7 @@ layout: default
 class: devops-pipeline dark-slide
 ---
 
-<div class="kicker">WORKSHOP 02 · DEVOPS · 05 MIN</div>
+<div class="kicker">WORKSHOP 02 · DEVOPS</div>
 
 <div class="delivery-heading combined-heading">
   <div>
@@ -2414,7 +2414,7 @@ class: tooling-matters-slide dark-slide
 ---
 
 <div class="status-badge general">GENERAL PRINCIPLE</div>
-<div class="kicker">WORKSHOP 02 · TOOLING · 04 MIN</div>
+<div class="kicker">WORKSHOP 02 · TOOLING</div>
 
 # Why <span class="accent">Tooling Matters</span>
 
@@ -2495,7 +2495,7 @@ class: as-cli-intro-slide dark-slide
 <div class="status-badge general">B&amp;R TOOLING</div>
 <div class="kicker">WORKSHOP 02 · AS · DEMO ROADMAP</div>
 
-# New <span class="accent">as</span>
+# New <span class="accent">as CLI</span>
 
 <div class="as-cli-subtitle">One programmable interface for pipelines, agents, and engineers.</div>
 
@@ -2666,7 +2666,7 @@ class: machine-demo-slide dark-slide
 
 # The <span class="accent">orange</span> juice machine
 
-<div class="machine-demo-subtitle">Demo Project our GitHub workflow will build, test, package and deploy</div>
+<div class="machine-demo-subtitle">A GitHub workflow builds, tests, packages, and deploys this demonstration project.</div>
 
 <div class="machine-demo-meta">
   <span>PROJECT IN GITHUB</span>
@@ -2692,67 +2692,126 @@ package, and deployment sequence.
 
 ---
 layout: default
-class: playwright-hmi-demo-slide dark-slide
+class: hmi-testing-slide dark-slide
 ---
 
-<div class="status-badge demonstrator">DEMO 3 / 3</div>
-<div class="kicker">FULL CI/CD PIPELINE · HMI FEEDBACK</div>
+<div class="kicker">HMI VERIFICATION</div>
 
-# Test the HMI<br><span class="accent">like a user</span>
+# Test the HMI <span class="accent">like a user</span>
 
-<div class="playwright-hmi-subtitle">Playwright turns browser actions into repeatable HMI feedback.</div>
+<p class="hmi-testing-subtitle">Automated checks of real operator workflows.</p>
 
-<div class="playwright-hmi-flow">
-  <section class="playwright-hmi-runner" aria-label="Playwright CLI test runner">
-    <div class="playwright-hmi-panel-head"><span>PLAYWRIGHT CLI</span><mdi-test-tube /></div>
-    <div class="playwright-hmi-command"><span>&gt;</span> npm run test:hmi <b>-- --headed --reporter=line</b></div>
-    <div class="playwright-hmi-checks">
-      <div><span>01</span><b>OPEN</b><small>launch the HMI in a real browser</small></div>
-      <div><span>02</span><b>INTERACT</b><small>follow a meaningful operator workflow</small></div>
-      <div><span>03</span><b>ASSERT</b><small>check controls, state, and feedback</small></div>
-    </div>
-    <div class="playwright-hmi-runner-foot"><span>REPEATABLE CHECK</span><b>BROWSER + RUNTIME</b></div>
-  </section>
-
-  <div class="playwright-hmi-bridge" aria-label="Browser and PLC handoff">
-    <span>DRIVES +<br>OBSERVES</span>
-    <mdi-arrow-right />
-  </div>
-
-  <section class="playwright-hmi-browser" aria-label="Chrome HMI session">
-    <div class="playwright-hmi-browser-bar"><span>CHROME · 127.0.0.1:81</span><i></i><i></i><i></i></div>
-    <div class="playwright-hmi-screen">
-      <div class="playwright-hmi-screen-nav"><span>HMI SESSION</span><b>OPERATOR</b></div>
-      <div class="playwright-hmi-screen-body">
-        <div class="playwright-hmi-state-tile"><small>MACHINE STATUS</small><strong>READY</strong><span>VISIBLE FEEDBACK</span></div>
-        <div class="playwright-hmi-counter-tile"><small>TEST SIGNAL</small><b>OK</b><span>EXPECTED RESULT</span></div>
-      </div>
-      <div class="playwright-hmi-screen-actions"><span>START</span><span>STOP</span><b>PASS</b></div>
-    </div>
-  </section>
+<div class="hmi-testing-flow" aria-label="Operator workflow from action to verified result">
+  <article class="hmi-testing-card is-user">
+    <div class="hmi-testing-card-head"><span>01</span><mdi-account-outline /></div>
+    <div><small>USER ACTION</small><strong>Press Start</strong></div>
+  </article>
+  <div class="hmi-testing-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <article class="hmi-testing-card is-hmi">
+    <div class="hmi-testing-card-head"><span>02</span><mdi-monitor-dashboard /></div>
+    <div><small>HMI</small><strong>Button changes state</strong></div>
+  </article>
+  <div class="hmi-testing-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <article class="hmi-testing-card is-plc">
+    <div class="hmi-testing-card-head"><span>03</span><mdi-cog-outline /></div>
+    <div><small>PLC</small><strong>Machine reacts</strong></div>
+  </article>
+  <div class="hmi-testing-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <article class="hmi-testing-card is-result">
+    <div class="hmi-testing-card-head"><span>04</span><mdi-check-circle-outline /></div>
+    <div><small>RESULT</small><strong>Expected behavior verified</strong></div>
+  </article>
 </div>
 
-<div class="playwright-hmi-proof" aria-label="HMI test evidence">
-  <div><span>RESULT</span><strong><mdi-shield-check-outline /> PASS / FAIL</strong></div>
-  <div><span>OBSERVATION</span><strong>VISIBLE FEEDBACK</strong></div>
-  <div><span>ASSERTION</span><strong>EXPECTED RESULT</strong></div>
-  <div><span>INTERFACE</span><strong>REAL BROWSER</strong></div>
+<div class="hmi-testing-takeaway">
+  <mdi-shield-check-outline />
+  <strong>Every software change can automatically prove that the operator workflow still works.</strong>
+</div>
+
+<div class="hmi-testing-examples">
+  <span>EXAMPLES</span>
+  <p>Start machine &bull; Change recipe &bull; Acknowledge alarm &bull; Verify status indication</p>
 </div>
 
 <div class="slide-id">W2 · 50</div>
 
 <!--
-Demo 3 introduces browser-level verification for an industrial HMI.
+This slide makes the concept deliberately simple: an automated check follows the same path as a real operator.
 
-Run the Playwright CLI against the HMI in headed mode so the audience can see the test and the application together.
+Walk left to right. The user presses Start, the HMI changes state, the PLC and machine react, and the expected behavior is verified.
 
-The general pattern is simple: open the HMI in a real browser, perform a meaningful user workflow, and assert the visible controls, state, and feedback. A runtime interface such as as-cli can provide setup and observation alongside the browser test.
+The same pattern applies to starting a machine, changing a recipe, acknowledging an alarm, or verifying a status indication. The point is the repeatable operator workflow, not the test framework.
 
-Point out the boundary. Browser automation proves the declared HMI workflow in its controlled environment. It does not prove physical timing, functional safety, or every target variant.
-
-Transition: the machine is visible, the pipeline is concrete, and the user-facing layer now produces evidence too.
+Transition: once an operator workflow can produce evidence, the team can make that check part of the repeatable path from commit to evidence.
 -->
 
+
+---
+layout: default
+class: start-path-slide dark-slide
+---
+
+<div class="brandbar end-brand">
+  <div class="brandmark">B<span>&amp;</span>R</div>
+  <div class="brandline">Industrial Automation</div>
+</div>
+
+<div class="kicker">THE FIRST LOOP · PRACTICAL START</div>
+
+# Start <span class="accent">Monday Morning</span>
+
+<p class="start-path-lead">One repeatable engineering path is enough</p>
+
+<div class="start-path-roadmap" aria-label="Five-step repeatable engineering path">
+  <article class="start-path-step is-version">
+    <div class="start-path-step-head"><span>01</span><mdi-source-branch /></div>
+    <div><small>VERSION</small><strong>Put the project in Git</strong></div>
+  </article>
+  <div class="start-path-connector connector-one" aria-hidden="true"><mdi-arrow-right /></div>
+  <article class="start-path-step is-build">
+    <div class="start-path-step-head"><span>02</span><mdi-hammer-wrench /></div>
+    <div><small>BUILD</small><strong>Create one repeatable build command</strong></div>
+  </article>
+  <div class="start-path-connector connector-two" aria-hidden="true"><mdi-arrow-right /></div>
+  <article class="start-path-step is-test">
+    <div class="start-path-step-head"><span>03</span><mdi-test-tube /></div>
+    <div><small>TEST</small><strong>Automate one meaningful check</strong></div>
+  </article>
+  <div class="start-path-connector connector-three" aria-hidden="true"><mdi-arrow-right /></div>
+  <article class="start-path-step is-evidence">
+    <div class="start-path-step-head"><span>04</span><mdi-file-check-outline /></div>
+    <div><small>EVIDENCE</small><strong>Store test results and build outputs</strong></div>
+  </article>
+  <div class="start-path-connector connector-four" aria-hidden="true"><mdi-arrow-right /></div>
+  <article class="start-path-step is-release">
+    <div class="start-path-step-head"><span>05</span><mdi-account-check-outline /></div>
+    <div><small>RELEASE</small><strong>Make deployment a deliberate decision</strong></div>
+  </article>
+</div>
+
+<div class="start-path-takeaway">
+  <strong>Do not automate the whole factory.</strong>
+  <b>Make one change repeatable from commit to evidence.</b>
+</div>
+
+<div class="start-path-footer">
+  <span>Agentic Engineering creates changes faster.</span>
+  <b>DevOps gives every change a repeatable path.</b>
+</div>
+
+<div class="slide-id">W2 · 51</div>
+
+<!--
+The goal is not to become a Silicon Valley software company overnight.
+
+Start with a single engineering workflow.
+
+One versioned project, one repeatable build, one automated test, one piece of evidence.
+
+Success is not a perfect pipeline.
+
+Success is eliminating one manual step and being able to reproduce the result tomorrow.
+-->
 
 ---
 layout: default
@@ -2797,7 +2856,7 @@ Maybe use wording like OT does not become IT in a year.
   <p>Do you have suggestions for our next priorities?</p>
 </div>
 
-<div class="slide-id">W2 · 51</div>
+<div class="slide-id">W2 · 52</div>
 
 ---
 layout: default
@@ -2819,4 +2878,4 @@ class: questions-slide dark-slide
 
 <div class="questions-footer"><span>THANK YOU</span><i></i><b>B&amp;R INDUSTRIAL AUTOMATION &middot; AGENTIC ENGINEERING + DEVOPS</b></div>
 
-<div class="slide-id">W2 · 52</div>
+<div class="slide-id">W2 · 53</div>

@@ -3,8 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test:hmi": "playwright test --config playwright.config.mjs --headed",
-    "test:hmi:headless": "playwright test --config playwright.config.mjs",
+    "test:hmi": "playwright test --config playwright.config.mjs",
+    "test:hmi:headless": "npm run test:hmi",
     "test:demo": "playwright test --config playwright.config.mjs --headed"
   },
   "devDependencies": {
