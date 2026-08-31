@@ -5,7 +5,7 @@ import { promisify } from 'node:util';
 
 const execFileAsync = promisify(execFile);
 const projectRoot = resolve(import.meta.dirname, '..');
-const asCliPath = join(projectRoot, 'as-cli.exe');
+const asCliPath = join(projectRoot, 'as.exe');
 const projectPath = join(projectRoot, 'DevOpsDemo.apj');
 const startButton = '#HD_LS1_contentMain_StartButton';
 const stopButton = '#HD_LS1_contentMain_StopButton';
@@ -59,7 +59,7 @@ async function runAsCli(args) {
     });
   } catch (error) {
     const detail = [error.stdout, error.stderr, error.message].filter(Boolean).join('\n');
-    throw new Error(`as-cli ${args.join(' ')} failed: ${detail}`);
+    throw new Error(`as ${args.join(' ')} failed: ${detail}`);
   }
 }
 
