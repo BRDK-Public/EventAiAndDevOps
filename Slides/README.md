@@ -1,6 +1,6 @@
 # Agentic Engineering Slides
 
-A B&R Industrial Automation themed Slidev event deck: a 30-minute introduction, a 60-minute Agentic Engineering workshop, and a 75-minute DevOps in industry workshop. The rendered source deck contains 45 slides: `COVER`, `I1-I10`, `W1-W17`, `D1`, `D2`, and `W2 · 31-45`. The DevOps workshop continues immediately after the retained D2 introduction.
+A B&R Industrial Automation themed Slidev event deck: a 30-minute introduction, a 60-minute Agentic Engineering workshop, and a 75-minute DevOps in industry workshop. The rendered source deck contains 67 pages: 60 numbered presentation slides (`01-60`) and 7 unnumbered utility or reference pages. The numbered sequence follows source order: introduction `02-11`, Agentic Engineering `12-34`, the workshop handoff `35`, and Workshop Two `36-60`.
 
 ## Run
 
@@ -10,6 +10,8 @@ npm run dev
 ```
 
 Slidev opens the presentation at `http://localhost:3030`. Press `P` for presenter mode and `O` for the slide overview.
+
+The Skills slide uses a companion local development proxy so the live `skills.sh` page remains interactive inside its iframe during `npm run dev`. The proxy runs one port above Slidev (for example, `3031` when Slidev runs on `3030`). The public site intentionally sends `X-Frame-Options: DENY` and `frame-ancestors 'none'`; therefore a static GitHub Pages build keeps the external `OPEN` link, but cannot provide the live embedded page.
 
 ## Build
 
@@ -46,7 +48,7 @@ Export requires the Playwright Chromium browser. In this environment, its automa
 ## Event-Day Checks
 
 - Replace the structured demo operations in the presenter notes with commands tested against the exact event build and target configuration.
-- Rehearse both the live ARsim/as-cli path and a recorded or static evidence fallback for the bottle-conveyor demonstrator.
+- Rehearse both the live ARsim/as path and a recorded or static evidence fallback for the bottle-conveyor demonstrator.
 - Confirm the canonical task names and variable paths before showing any numeric result; the repository contains more than one test path with different module names.
 - Keep simulation acceleration wording tied to the verified event setup. Do not present a time factor as a benchmark or universal capability.
 - Keep simulation evidence, HIL, physical validation, functional safety, and release approval as separate engineering boundaries.
