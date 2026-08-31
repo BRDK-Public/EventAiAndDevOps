@@ -29,6 +29,7 @@ PROGRAM _CYCLIC
 				ArProjectGetInfo_0();
 				state := 222;
 			END_IF
+			
 
 		5:
 			// Create file device to update server
@@ -80,9 +81,9 @@ PROGRAM _CYCLIC
 			IF ArProjectGetPackageInfo_0.Done THEN
 				ArProjectGetPackageInfo_0.Execute := FALSE;
 				
+				UpdateVersion := ArProjectGetPackageInfo_0.ConfigurationVersion;
 				// If update on server is different from the version on PLC
 				IF ArProjectGetPackageInfo_0.ConfigurationVersion <> UpdateVersionOnPLC THEN 
-					UpdateVersion := ArProjectGetPackageInfo_0.ConfigurationVersion;
 					state := 25;
 				ELSE
 					state := 10;

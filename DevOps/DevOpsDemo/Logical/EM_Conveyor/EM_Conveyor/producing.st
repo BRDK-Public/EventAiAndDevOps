@@ -64,7 +64,7 @@ ACTION producing:
 					em.StateInfo := 'Start conveyor and wait for bottle to leave photosensor';
 				
 					Axis.MoveAdditive := TRUE;
-					Parameters.Velocity := 400.0;
+					Parameters.Velocity := 82.0;
 					Parameters.Distance := 100.0;
 					
 					IF NOT hw.di_bottleReady THEN

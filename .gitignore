@@ -3,3 +3,5 @@ Binaries/
 Diagnosis/
 *.set
 *.isopen
+/.playwright-mcp
+/*.png

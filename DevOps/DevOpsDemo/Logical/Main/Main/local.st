@@ -3,7 +3,6 @@ PROGRAM _INIT
 	
 	em.Setup.Name := 'Main';
 	gIsSimulation := DiagCpuIsARsim();
-	hw.di_EstopOK := gIsSimulation;
 	
 END_PROGRAM
 
@@ -21,5 +20,7 @@ PROGRAM _CYCLIC
 END_PROGRAM
 
 PROGRAM _EXIT
+	httpStateService.enable := FALSE;
+	httpStateService();
 	 
 END_PROGRAM

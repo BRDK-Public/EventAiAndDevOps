@@ -787,7 +787,7 @@ Reuse the existing inline terminal simulator treatment from the current deck: `.
 The simulator should show:
 
 ```text
-as-cli var read ...
+as var read ...
 {
   "target": "ARsim",
   "variable": "...",

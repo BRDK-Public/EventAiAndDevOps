@@ -21,5 +21,7 @@
     <Object Type="Library" Language="binary" Description="[mapp Motion] ACOPOS parameter ID library">McAcpPar</Object>
     <Object Type="Library" Language="binary" Description="This library contains standard function blocks and functions for IEC 61131-3.">standard</Object>
     <Object Type="Library" Language="binary" Description="The AsIODiag library provides functions for creating and evaluating I/O module information.">AsIODiag</Object>
+    <Object Type="Library" Language="Binary" Description="Communication library for mappView widgets">MpServer</Object>
+    <Object Type="Library" Language="binary" Description="This library contains FBKs for exchanging and formatting data (message based) via HTTP (TCP).">AsHttp</Object>
   </Objects>
 </Package>

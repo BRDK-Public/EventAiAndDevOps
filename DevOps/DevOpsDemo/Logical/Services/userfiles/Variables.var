@@ -1,0 +1,6 @@
+VAR
+	DirCopy_0 : DirCopy;
+	DirCreate_0 : DirCreate;
+	DevLink_0 : DevLink;
+	state : USINT;
+END_VAR

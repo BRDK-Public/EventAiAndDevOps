@@ -2,4 +2,11 @@ VAR
 	em : {REDUND_UNREPLICABLE} EquipmentModule;
 	hmi : hmi_typ;
 	hw : hw_typ;
+	Reboot : BOOL;
+	machineExecute : BOOL; (* TRUE while Main is in STATE_EXECUTE. *)
+	httpStateService : httpService; (* AsHttp service that exposes the execute state. *)
+	httpStateServiceName : STRING[32] := 'orangeJuiceState.cgi'; (* URI suffix used by the web visu. *)
+	httpStateResponse : STRING[32]; (* JSON response body returned to the web visu. *)
+	httpStateResponseHeader : httpResponseHeader_t; (* HTTP response header for the JSON state. *)
+	httpStateResponseLength : UDINT; (* Response body length [bytes]. *)
 END_VAR

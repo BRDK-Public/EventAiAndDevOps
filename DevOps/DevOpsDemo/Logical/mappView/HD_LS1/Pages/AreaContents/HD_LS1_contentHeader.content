@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Content id="HD_LS1_contentHeader" guid="90e64465-05ac-4fa9-8b7d-42133996a046" height="60" width="1258" xmlns="http://www.br-automation.com/iat2015/contentDefinition/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Widgets>
+    <Widget xsi:type="widgets.brease.LoginInfo" id="LoginInfo1" top="10" left="0" width="200" height="20" zIndex="0" textAlign="left" fontSize="14px" padding="4px" />
+    <Widget xsi:type="widgets.brease.DateTimeOutput" id="DateTimeOutput1" top="25" left="0" width="315" zIndex="1" textAlign="left" fontSize="14px" padding="5px" />
+    <Widget xsi:type="widgets.brease.Image" id="Image1" top="0" left="1168" width="90" height="60" zIndex="2" image="Media/Img_HD_LS1/BnR_Logo_Tagline_below.svg" />
+    <Widget xsi:type="widgets.brease.Label" id="LabelTitle" top="0" left="240" width="248" height="60" zIndex="3" text="HD_LS1" textColor="rgba(255, 255, 255, 0)" padding="0px" style="Headline4" />
+    <Widget xsi:type="widgets.brease.TextOutput" id="TextOutput52" top="0" left="420" width="520" height="60" zIndex="4" fontSize="30px" />
+  </Widgets>
+</Content>
