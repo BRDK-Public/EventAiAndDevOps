@@ -18,45 +18,8 @@ fonts:
   mono: IBM Plex Mono
   provider: google
 exportFilename: agentic-engineering
----
-
-<img class="cover-image" src="/evolution.png" alt="Evolution from AI assistant to AI agent and agentic AI">
-<img class="cover-logo" src="/br-logo.svg" alt="B&R Industrial Automation">
-
-<div class="eyebrow" v-motion :initial="{ opacity: 0, x: -30 }" :enter="{ opacity: 1, x: 0, transition: { delay: 150 } }">
-  AI · DEVOPS · AGENTIC ENGINEERING
-</div>
-
-<div class="cover-event" v-motion :initial="{ opacity: 0, x: -30 }" :enter="{ opacity: 1, x: 0, transition: { delay: 280 } }">
-  <span>03 SEP 2026</span><span>ODENSE</span><span>08.30–13.00</span>
-</div>
-
-# The future of<br><span class="accent">automation</span>
-
-<p class="cover-sub" v-motion :initial="{ opacity: 0, y: 18 }" :enter="{ opacity: 1, y: 0, transition: { delay: 450 } }">
-  How do we create real value in industrial engineering?
-</p>
-
-<div class="bridge-visual" v-motion :initial="{ opacity: 0, y: 24 }" :enter="{ opacity: 1, y: 0, transition: { delay: 700 } }">
-  <div class="bridge-node"><span>01</span> IDEA</div>
-  <div class="bridge-track"><i></i><i></i><i></i><i></i><i></i></div>
-  <div class="bridge-node is-proof"><span>02</span> VERIFIED MACHINE BEHAVIOR</div>
-</div>
-<div class="slide-id">01</div>
-
-<!--
-Godmorgen og velkommen. Det centrale spørgsmål i dag er ikke, hvilken AI-model der ligger nummer ét på en benchmark i denne uge. Spørgsmålet er, hvordan vi skaber reel og dokumenterbar værdi i udviklingen af maskiner og anlæg.
-
-Vi vil derfor tale mindre om magiske prompts og mere om versionsstyring, kontekst, værktøjer, test, sporbarhed og menneskeligt ansvar.
-
-
-Målet er, at I går herfra med en realistisk måde at komme i gang på. Først ser vi dagens samlede forløb.
--->
-
-
----
-layout: default
-class: reference-slide welcome-reference
+defaults:
+  layout: default
 ---
 
 # Welcome!
@@ -107,6 +70,43 @@ class: reference-slide events-reference
 </div>
 
 <img class="reference-brand" src="/br-logo.svg" alt="B&R Industrial Automation">
+
+---
+layout: cover
+---
+
+<img class="cover-image" src="/evolution.png" alt="Evolution from AI assistant to AI agent and agentic AI">
+<img class="cover-logo" src="/br-logo.svg" alt="B&R Industrial Automation">
+
+<div class="eyebrow" v-motion :initial="{ opacity: 0, x: -30 }" :enter="{ opacity: 1, x: 0, transition: { delay: 150 } }">
+  AI · DEVOPS · AGENTIC ENGINEERING
+</div>
+
+<div class="cover-event" v-motion :initial="{ opacity: 0, x: -30 }" :enter="{ opacity: 1, x: 0, transition: { delay: 280 } }">
+  <span>03 SEP 2026</span><span>ODENSE</span><span>08.30–13.00</span>
+</div>
+
+# The future of<br><span class="accent">automation</span>
+
+<p class="cover-sub" v-motion :initial="{ opacity: 0, y: 18 }" :enter="{ opacity: 1, y: 0, transition: { delay: 450 } }">
+  How do we create real value in industrial engineering?
+</p>
+
+<div class="bridge-visual" v-motion :initial="{ opacity: 0, y: 24 }" :enter="{ opacity: 1, y: 0, transition: { delay: 700 } }">
+  <div class="bridge-node"><span>01</span> IDEA</div>
+  <div class="bridge-track"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="bridge-node is-proof"><span>02</span> VERIFIED MACHINE BEHAVIOR</div>
+</div>
+<div class="slide-id">01</div>
+
+<!--
+Godmorgen og velkommen. Det centrale spørgsmål i dag er ikke, hvilken AI-model der ligger nummer ét på en benchmark i denne uge. Spørgsmålet er, hvordan vi skaber reel og dokumenterbar værdi i udviklingen af maskiner og anlæg.
+
+Vi vil derfor tale mindre om magiske prompts og mere om versionsstyring, kontekst, værktøjer, test, sporbarhed og menneskeligt ansvar.
+
+
+Målet er, at I går herfra med en realistisk måde at komme i gang på. Først ser vi dagens samlede forløb.
+-->
 
 ---
 layout: default
@@ -282,8 +282,7 @@ class: dark-slide cycletime-slide
 <div class="cycle-block" v-click>
   <p class="cycle-head"><b>Without DevOps</b> — no safety net, a variable cost lands after release</p>
   <div class="cycle-track track-nodevops">
-    <span>Plan</span>
-    <span>Design</span>
+    <span>Idea</span>
     <span class="hot">Build</span>
     <span>Deploy</span>
     <span class="bad">Bugfix</span>
@@ -382,33 +381,37 @@ class: process-slide
 ---
 <div class="kicker">FOUNDATION · 04 MIN</div>
 
-# IT + OT are<br><span class="accent">converging</span>
+# IT & OT are<br><span class="accent">converging</span>
 
-<img class="it-ot-figure" src="/it-ot.png" alt="IT and OT convergence">
+<p class="it-ot-lead">The engineering tools are meeting. The feedback loop still has to reach the machine.</p>
 
-<div class="it-stack-strip" v-click role="img" aria-label="IT engineering tools and agent protocols">
+<div class="it-stack-strip" role="img" aria-label="IT engineering tools and agent protocols">
+  <span class="it-stack-label">SHARED<br>TOOLCHAIN</span>
   <span class="it-stack-logo vscode" title="Visual Studio Code"><simple-icons-visualstudiocode aria-hidden="true" /></span>
   <span class="it-stack-logo git" title="Git"><simple-icons-git aria-hidden="true" /></span>
   <span class="it-stack-logo github" title="GitHub"><simple-icons-github aria-hidden="true" /></span>
   <span class="it-stack-logo docker" title="Docker"><simple-icons-docker aria-hidden="true" /></span>
+  <span class="it-stack-logo test" title="Unit tests"><mdi-test-tube aria-hidden="true" /></span>
+  <span class="it-stack-logo cli" title="Command line interface"><mdi-console aria-hidden="true" /></span>
+  <span class="it-stack-logo mcp" title="Model Context Protocol"><simple-icons-modelcontextprotocol aria-hidden="true" /></span>
   <span class="it-stack-logo copilot" title="GitHub Copilot"><simple-icons-githubcopilot aria-hidden="true" /></span>
   <span class="it-stack-logo claude" title="Claude Code"><simple-icons-claudecode aria-hidden="true" /></span>
-  <img class="it-stack-mcp" src="/mcp-logo.png" alt="Model Context Protocol">
+
 </div>
-
-<div class="it-ot-body">
-  <div class="it-ot-messages">
-    <div v-click><span>01</span><b>IT and Agentic Engineering are <strong>emerging fast</strong></b></div>
-    <div v-click><span>02</span><b>Competences are <strong>converging</strong> but solutions are <strong> diverging</strong></b></div>
-    <div v-click><span>03</span><b>Only an <strong>open Automation Platform</strong> will support a unified future</b></div>
+<div class="it-ot-messages">
+  <div v-click><span>01</span><b>IT and Agentic Engineering are <strong>emerging fast</strong></b></div>
+  <div v-click><span>02</span><b>Competences are <strong>converging</strong> but solutions are <strong>diverging</strong></b></div>
+  <div v-click><span>03</span><b>Only an <strong>open Automation Platform</strong> supports a unified future</b></div>
+</div>
+<div class="it-ot-figure-card">
+  <img class="it-ot-figure" src="/it-ot.png" alt="IT and OT convergence">
+</div>
+<div class="it-ot-platform" v-click>
+  <div class="it-ot-platform-copy">
   </div>
-
-  <div class="it-ot-platform" v-click>
+  <div class="it-ot-platform-lockup">
     <img class="as-logo" src="/as-logo.png" alt="Automation Studio">
-    <div class="as-labels">
-      <span>No binaries</span>
-      <span>Only text</span>
-    </div>
+    <div class="as-labels"><span>No binaries</span><span>Only text</span></div>
   </div>
 </div>
 
@@ -435,16 +438,16 @@ class: foundation-slide dark-slide
 
 <div class="foundation-layout">
   <div class="foundation-stack">
-    <div class="foundation-row">
+    <div class="foundation-row" v-click>
       <span class="foundation-index">01</span>
       <span class="foundation-icon"><mdi-database-search-outline /></span>
       <div class="foundation-copy">
         <h2>Domain context</h2>
-        <p>Product, platform and customer knowledge the LLM does not carry.</p>
+        <p>Product, platform and OEM knowledge the LLM does not carry.</p>
       </div>
-      <span class="foundation-tag">B&amp;R + Customer</span>
+      <span class="foundation-tag">B&amp;R + OEM</span>
     </div>
-    <div class="foundation-row">
+    <div class="foundation-row" v-click>
       <span class="foundation-index">02</span>
       <span class="foundation-icon"><mdi-file-tree-outline /></span>
       <div class="foundation-copy">
@@ -453,7 +456,7 @@ class: foundation-slide dark-slide
       </div>
       <span class="foundation-tag">B&amp;R</span>
     </div>
-    <div class="foundation-row">
+    <div class="foundation-row" v-click>
       <span class="foundation-index">03</span>
       <span class="foundation-icon"><mdi-source-commit /></span>
       <div class="foundation-copy">
@@ -462,7 +465,7 @@ class: foundation-slide dark-slide
       </div>
       <span class="foundation-tag">B&amp;R</span>
     </div>
-    <div class="foundation-row">
+    <div class="foundation-row" v-click>
       <span class="foundation-index">04</span>
       <span class="foundation-icon"><mdi-tools /></span>
       <div class="foundation-copy">
@@ -471,17 +474,17 @@ class: foundation-slide dark-slide
       </div>
       <span class="foundation-tag">B&amp;R</span>
     </div>
-    <div class="foundation-row">
+    <div class="foundation-row" v-click>
       <span class="foundation-index">05</span>
       <span class="foundation-icon"><mdi-shield-check-outline /></span>
       <div class="foundation-copy">
         <h2>Guardrails</h2>
-        <p>B&amp;R specific rules. Customer architecture, coding, naming, and testing strategies. </p>
+        <p>B&amp;R specific rules. OEM architecture, coding, naming, and testing strategies. </p>
       </div>
-      <span class="foundation-tag">B&amp;R + Customer</span>
+      <span class="foundation-tag">B&amp;R + OEM</span>
     </div>
   </div>
-  <div class="foundation-contract">
+  <div class="foundation-contract" v-click>
     <div class="foundation-contract-head">
       <span>THE ENGINEERING CONTRACT</span>
       <mdi-lock-check-outline />
@@ -490,20 +493,20 @@ class: foundation-slide dark-slide
       <span class="foundation-agent-icon"><mdi-robot-outline /></span>
       <div>
         <b>LLM / AGENT</b>
-        <small>reason over evidence</small>
+        <small>reason over feedback</small>
       </div>
     </div>
     <div class="foundation-contract-arrow"><mdi-arrow-down /></div>
     <div class="foundation-contract-flow">
       <div><span>01</span><b>READ</b><small>context that is in scope</small></div>
       <div><span>02</span><b>CHANGE</b><small>controlled platform actions</small></div>
-      <div><span>03</span><b>VERIFY</b><small>tests, diagnostics, and evidence</small></div>
+      <div><span>03</span><b>VERIFY</b><small>tests, diagnostics, and feedback</small></div>
     </div>
     <p class="foundation-contract-foot">Same engineering pattern as IT.<br><strong>Different domain boundary.</strong></p>
   </div>
 </div>
 
-<div class="foundation-outcome"><i></i><span>CONTEXT + CONTROL + EVIDENCE</span><i></i></div>
+<div class="foundation-outcome"><i></i><span>CONTEXT + CONTROL + FEEDBACK</span><i></i></div>
 
 <div class="slide-id">08</div>
 
@@ -522,12 +525,12 @@ class: agent-loop-slide
 
 <div class="kicker">JOURNEY · 04 MIN</div>
 
-# What B&R<br><span class="accent">learned on the journey</span>
+# The path<br><span class="accent">Going forward</span>
 
 <div class="strategy-shift" aria-label="B&amp;R strategy shift from custom models to an open platform">
   <section class="strategy-shift-side custom-model" v-click>
-    <div class="strategy-shift-label"><span>THEN</span><strong>BUILD THE MODEL</strong></div>
-    <h2>AS-Copilot <span>pretrain + fine-tune</span></h2>
+    <div class="strategy-shift-label"><span>THEN</span><strong>BUILD THE MODEL AND THE HARNESS</strong></div>
+    <h2>AS-Copilot + AS-Code <span>pretrain + fine-tune</span></h2>
     <div class="strategy-shift-costs">
       <div><span>01</span><p><b>Expensive to build</b><small>resources, compute, and time</small></p></div>
       <div><span>02</span><p><b>Outdated quickly</b><small>a new model arrives before release</small></p></div>
@@ -545,8 +548,8 @@ class: agent-loop-slide
   </div>
 
   <section class="strategy-shift-side open-platform" v-click>
-    <div class="strategy-shift-label"><span>NOW</span><strong>INTEGRATE THE BEST FIT</strong></div>
-    <h2>Open platform <span>any LLM / harness</span></h2>
+    <div class="strategy-shift-label"><span>NOW</span><strong>INTEGRATION OF YOUR CHOISE</strong></div>
+    <h2>Open platform <span>any LLM / harness / IDE</span></h2>
     <div class="strategy-shift-stack">
       <div><span>CONTEXT ENGINEERING</span><small>current B&amp;R and customer knowledge</small></div>
       <i>+</i>
@@ -578,65 +581,6 @@ B&R skal eje broen og domænegrænsen, ikke alle lag i AI-stacken. Så kan vi ta
 
 Transition: Det er den retning, vi nu bygger videre på.
 -->
-
----
-layout: default
-class: agentops-slide
----
-
-<div class="kicker">WORKFLOW · 04 MIN</div>
-
-# AgentOps<br><span class="accent">workflow</span>
-
-<div class="agentops-diagram" role="img" aria-label="AgentOps workflow with research and planning, tools, guardrails, testing, and quality gates around B&R">
-  <div class="agentops-ring" aria-hidden="true"></div>
-
-  <div class="agentops-point agentops-point-research">
-    <div class="agentops-copy">
-      <h2>Research/Plan</h2>
-      <p>Use agents for research, brainstorming and planning</p>
-    </div>
-    <div class="agentops-node"><mdi-magnify /></div>
-  </div>
-
-  <div class="agentops-point agentops-point-tools">
-    <div class="agentops-node"><mdi-tools /></div>
-    <div class="agentops-copy">
-      <h2>Tools (MCP / CLI)</h2>
-      <p>Let agents interact with your environment by giving them tools</p>
-    </div>
-  </div>
-
-  <div class="agentops-point agentops-point-guardrails">
-    <div class="agentops-node"><mdi-shield-outline /></div>
-    <div class="agentops-copy">
-      <h2>Guardrails</h2>
-      <p>Define guardrails and architecture for agents to work within</p>
-    </div>
-  </div>
-
-  <div class="agentops-point agentops-point-testing">
-    <div class="agentops-copy">
-      <h2>Testing (TDD)</h2>
-      <p>Let agents write and run tests to validate the functionality of the code they write</p>
-    </div>
-    <div class="agentops-node"><mdi-flask-outline /></div>
-  </div>
-
-  <div class="agentops-point agentops-point-quality">
-    <div class="agentops-copy">
-      <h2>Quality Gates</h2>
-      <p>By staying in the loop, we can guarantee the same quality and security as human development. Static analysis to deterministically decrease common errors.</p>
-    </div>
-    <div class="agentops-node"><mdi-account-outline /></div>
-  </div>
-
-  <div class="agentops-brand" aria-label="B&amp;R Industrial Automation">
-    <img src="/br-logo.svg" alt="B&amp;R Industrial Automation">
-  </div>
-</div>
-
-<div class="slide-id">10</div>
 
 ---
 layout: default
@@ -697,30 +641,25 @@ class: devops-cover ai-workshop-cover dark-slide
 
 # It's all about<br><span class="accent">the workflow</span>
 
-<p class="devops-cover-copy">The model proposes. The workflow governs. The evidence earns trust.</p>
+<p class="devops-cover-copy">The model proposes. The harnes provides context and feedback. The workflow governs.</p>
 
 <div class="devops-spine" v-motion :initial="{ opacity: 0, y: 18 }" :enter="{ opacity: 1, y: 0, transition: { delay: 300 } }">
-  <div><span>01</span><b>GOAL</b><small>what outcome matters?</small></div>
+  <div><span>01</span><b>PLAN</b><small>What and how</small></div>
   <i></i>
-  <div><span>02</span><b>CONTEXT</b><small>what must it know?</small></div>
+  <div><span>02</span><b>IMPLEMENT</b><small>According to guardrails</small></div>
   <i></i>
-  <div><span>03</span><b>OT TOOLS</b><small>how can it act?</small></div>
+  <div><span>03</span><b>TEST</b><small>Validate the result</small></div>
   <i></i>
-  <div><span>04</span><b>FEEDBACK</b><small>what proves done?</small></div>
+  <div><span>04</span><b>APPROVE</b><small>What is being deployed</small></div>
 </div>
 
-<div class="audience-checkin" v-click>
-  <span>START WITH THE ROOM</span>
-  <b>Which engineering workflow should<br>become repeatable?</b>
-  <small>RESEARCH · DEBUGGING · TESTING · DOCUMENTATION · REVIEW · DEPLOYMENT</small>
-</div>
 
 <div class="slide-id">12</div>
 
 <!--
-Den vigtigste enhed er ikke modellen eller agenten. Det er workflowen.
+Den vigtigste enhed er ikke modellen eller agenten. Det er workflowet.
 
-Modellen kan udskiftes. Harnesset kan ændres. Men workflowen definerer, hvordan intent bliver til issues, hvordan ændringer isoleres, hvilken feedback der kræves, og hvem der må godkende resultatet.
+Modellen kan udskiftes. Harnesset kan ændres. Men workflowet definerer, hvordan intent bliver til issues, hvordan ændringer isoleres, hvilken feedback der kræves, og hvem der må godkende resultatet.
 
 Den er et levende engineering-system. Den skal versionsstyres, måles, vedligeholdes og forbedres, præcis som andre dele af jeres platform.
 -->
@@ -815,75 +754,6 @@ Brug den godkendte releaseformulering på dagen. Skeln mellem det, der er tilgæ
 
 ---
 layout: default
-class: feedback-slide dark-slide
----
-
-<div class="kicker">EXECUTABLE FEEDBACK · 03 MIN</div>
-
-# Close the industrial<br><span class="accent">engineering loop</span>
-
-<AutomationStudioAgent />
-
-<div class="slide-id">14</div>
-
-<!--
-Et agentforslag er først værdifuldt, når vi kan lukke loopet. Før loopet kan handle, skal det have domænekontekst: projektstruktur, produkt- og versionsviden, regler og intent. Projektet skal derefter kunne bygges reproducerbart. Vi skal kunne starte en kontrolleret simulation, stimulere en tilstand, observere variable og logbook og sammenligne resultatet med et krav.
-
-På sliden ses guardrails via instructions og skills, derefter research via AS-HELP, BR-COMMUNITY, firmware-noter og den cloud-baserede AS-COPILOT MCP. Automation Studio læser og skriver kode gennem Main.st-editoren, mens as bygger, simulerer, læser variable og læser logbook.
-
-DevOps udfører en kendt sekvens deterministisk. Agenten vælger næste afgrænsede handling ud fra feedback. Det er derfor vigtigt, at det samme command contract kan anvendes af en engineer, en test, en pipeline og en agent.
-
-Transition: Det er præcis den rejse, B&R selv har været igennem.
--->
-
----
-layout: default
-class: llm-slide
----
-
-<div class="kicker">OFFICIAL KNOWLEDGE · 03 MIN</div>
-
-# Official B&R MCP:<br><span class="accent">knowledge at work</span>
-
-<div class="token-machine">
-  <div class="token-input" v-click>
-    <small>AGENT QUESTION</small>
-    <div><span>What</span><span>does</span><span>this</span><span>warning</span><span>mean?</span></div>
-  </div>
-  <div class="token-core" v-click>
-    <div class="core-rings"><i></i><i></i><i></i><b>MCP</b></div>
-    <small>APPROVED CONTEXT INTERFACE</small>
-  </div>
-  <div class="token-output" v-click>
-    <small>CITED RESPONSE</small>
-    <b>answer + source</b><span>version-qualified</span>
-    <div class="prob-bar"><i></i></div>
-  </div>
-</div>
-
-<div class="model-definition" v-click>
-  MCP gives a harness a standard way to expose <strong>approved resources, tools and context</strong> to an agent.
-</div>
-
-<div class="mini-timeline">
-  <div v-click><span>01</span>QUESTION</div><i v-click></i>
-  <div v-click><span>02</span>RETRIEVE</div><i v-click></i>
-  <div v-click><span>03</span>CITE</div><i v-click></i>
-  <div v-click><span>04</span>DECIDE NEXT ACTION</div>
-</div>
-
-<div class="slide-id">15</div>
-
-<!--
-MCP er en standardforbindelse mellem harnesset og eksterne data eller tools. Det er ikke en model og ikke en database. Det er protokol-laget, der gør capabilities discoverable.
-
-Værdien af et officielt B&R-interface er governance: Hvilken source kom svaret fra? Hvilken version gælder det for? Har brugeren adgang? Hvornår er informationen opdateret?
-
-Brug kun de source-kategorier, som er godkendt i den aktuelle product communication. Vis citations, version og eventuelle antagelser. MCP er forbindelsen til viden, ikke en garanti for at alle svar automatisk er korrekte.
--->
-
----
-layout: default
 class: mcp-basics-slide dark-slide
 ---
 
@@ -892,7 +762,7 @@ class: mcp-basics-slide dark-slide
 # MCP - the semantic<br><span class="accent">tool API for Agents</span>
 
 <div class="mcp-architecture" role="img" aria-label="An MCP server exposes tools and resources. The available servers are described in a manifest inside the LLM context window, where the agent can decide whether a tool is useful for the current task.">
-  <section class="mcp-server-column">
+  <section class="mcp-server-column" v-click="1">
     <div class="mcp-step-label">01 · EXPOSE</div>
     <div class="mcp-server-stack">
       <div class="mcp-server-card mcp-github-card">
@@ -900,7 +770,7 @@ class: mcp-basics-slide dark-slide
         <p class="mcp-endpoint">https://api.githubcopilot.com/mcp/</p>
         <div class="mcp-capability-group">
           <span class="mcp-capability-label"><mdi-wrench-outline /> TOOLS</span>
-          <div class="mcp-chip-row"><span>search_code</span><span>get_file_contents</span></div>
+          <div class="mcp-chip-row"><span>search_repositories</span><span>create_issue</span></div>
         </div>
         <div class="mcp-capability-group">
           <span class="mcp-capability-label"><mdi-file-document-outline /> RESOURCES</span>
@@ -922,24 +792,24 @@ class: mcp-basics-slide dark-slide
     </div>
   </section>
 
-  <div class="mcp-flow-arrow" aria-hidden="true"><span>discover</span><i></i></div>
+  <div class="mcp-flow-arrow" aria-hidden="true" v-click="2"><span>discover</span><i></i></div>
 
-  <section class="mcp-context-column">
+  <section class="mcp-context-column" v-click="2">
     <div class="mcp-step-label">02 · DESCRIBE</div>
     <div class="mcp-context-card">
-      <div class="mcp-context-heading"><span>LLM CONTEXT WINDOW</span><small>task + connected MCPs</small></div>
+      <div class="mcp-context-heading"><span>MCP Manifest</span><small>connected MCPs + tools</small></div>
       <div class="mcp-manifest">
         <div class="mcp-manifest-heading"><b>TOOL CONTRACTS</b><span>INPUT → RETURNS</span></div>
         <div class="mcp-tool-server github"><simple-icons-github aria-hidden="true" /><b>GITHUB · REMOTE</b></div>
         <div class="mcp-tool-contract">
-          <div class="mcp-tool-title"><strong>search_code</strong><span>READ</span></div>
-          <div><b>in</b> query · optional repo/path qualifiers</div>
-          <div><b>out</b> matching files: repo, path, SHA, text matches</div>
+          <div class="mcp-tool-title"><strong>search_repositories</strong><span>READ</span></div>
+          <div><b>in</b> query · optional org/owner qualifiers</div>
+          <div><b>out</b> matching repos: name, owner, description, URL</div>
         </div>
         <div class="mcp-tool-contract">
-          <div class="mcp-tool-title"><strong>get_file_contents</strong><span>READ</span></div>
-          <div><b>in</b> owner, repo, path · optional ref/sha</div>
-          <div><b>out</b> file text or directory entries</div>
+          <div class="mcp-tool-title"><strong>create_issue</strong><span class="is-write">WRITE</span></div>
+          <div><b>in</b> owner, repo, title · optional body/labels/assignees</div>
+          <div><b>out</b> issue number, state, URL</div>
         </div>
         <div class="mcp-tool-server as-help"><mdi-book-open-page-variant-outline aria-hidden="true" /><b>AS-HELP · LOCAL</b></div>
         <div class="mcp-tool-contract">
@@ -953,36 +823,36 @@ class: mcp-basics-slide dark-slide
           <div><b>out</b> full page text, metadata, online URL</div>
         </div>
       </div>
-      <div class="mcp-context-note"><mdi-information-outline /> The model sees each tool's input schema and return shape before choosing a call.</div>
+      <div class="mcp-context-note"><mdi-information-outline /> Tool definitions are discoverable &mdash; the agent retrieves each tool's input schema before it calls it.</div>
     </div>
   </section>
 
-  <div class="mcp-flow-arrow" aria-hidden="true"><span>reason</span><i></i></div>
+  <div class="mcp-flow-arrow" aria-hidden="true" v-click="3"><span>reason</span><i></i></div>
 
-  <section class="mcp-decision-column">
+  <section class="mcp-decision-column" v-click="3">
     <div class="mcp-step-label">03 · CHOOSE</div>
     <div class="mcp-decision-card">
       <div class="mcp-agent-mark"><mdi-brain /> <span>AGENT DECISION</span></div>
-      <p>Task: locate the failing <strong>test_machine_sim.py</strong></p>
-      <strong>CALL search_code</strong>
+      <p>Task: decode ACOPOS error <strong>7070</strong> from the logbook</p>
+      <strong>CALL search_help</strong>
       <div class="mcp-decision-options"><span class="is-call">CALL TOOL</span><i>or</i><span>ANSWER</span></div>
       <small>The model chooses a useful capability, or answers directly if the context is enough.</small>
     </div>
   </section>
 </div>
 
-<div class="mcp-takeaway" v-click><span>MCP is not the model.</span><strong>It makes capabilities discoverable and callable through a shared semantic contract.</strong></div>
+<div class="mcp-takeaway" v-click="4"><span>MCP is not the model.</span><strong>It makes capabilities discoverable and callable through a shared semantic contract.</strong></div>
 
 <div class="slide-id">16</div>
 
 <!--
 MCP står for Model Context Protocol. Tænk på det som et semantisk tool-API: en server beskriver sine tools og resources, så en model kan opdage dem på en standardiseret måde.
 
-Her bruger vi GitHub MCP som konkret eksempel. Den viste forbindelse er den hosted remote server på https://api.githubcopilot.com/mcp/. De viste tools er rigtige GitHub MCP-navne: search_code kan finde implementationer, get_file_contents kan læse en fil eller mappe på en branch, og pull_request_read kan læse pull request-detaljer, diff og review-kontekst. Repository content, for eksempel README.md eller Slides/slides.md, kan tilføjes som en MCP resource.
+Her bruger vi GitHub MCP som konkret eksempel. Den viste forbindelse er den hosted remote server på https://api.githubcopilot.com/mcp/. De viste tools er rigtige GitHub MCP-navne: search_repositories kan finde relevante repositories, og create_issue kan oprette et issue med titel, body og labels. Repository content, for eksempel README.md eller Slides/slides.md, kan tilføjes som en MCP resource.
 
 Som andet MCP viser vi det offentlige projekt br-automation-community/as-help-mcp. Det er en Rust-baseret lokal server, der køres som as-help-server.exe via stdio, til B&R Automation Studio help documentation med search_help, get_categories, browse_section og get_page_by_id. Den bruger LanceDB full-text search som standard og kan udvide til hybrid semantic + keyword search med RRF; den tilbyder også prompts som help_search og help_details.
 
-Manifestet er ikke selve dataene eller udførelsen. Det giver modellen et katalog over tilgængelige MCP-servere, capability-navne, beskrivelser og input-formater i den kontekst, den arbejder med. På baggrund af opgaven kan modellen vælge at kalde search_code for repository-kode, search_help for AS-dokumentation, eller svare uden et tool.
+Manifestet er ikke selve dataene eller udførelsen. Det giver modellen et katalog over tilgængelige MCP-servere, capability-navne, beskrivelser og input-formater i den kontekst, den arbejder med. På baggrund af opgaven kan modellen vælge at kalde search_help for at slå ACOPOS error 7070 op i AS-dokumentationen, create_issue for at rapportere en fejl, eller svare uden et tool.
 
 Det er stadig workflowet, der skal styre rettigheder, approvals, isolation og evidens. MCP gør capabilities discoverable; det gør ikke automatisk en handling sikker eller et svar korrekt.
 -->
@@ -994,7 +864,7 @@ class: as-help-boot-slide dark-slide
 
 <div class="kicker">AS-HELP MCP · FIRST BOOT · 03 MIN</div>
 
-# AS-Help MCP:<br><span class="accent">index once, retrieve exactly</span>
+# AS-Help MCP:<br><span class="accent">index once, serve locally</span>
 
 <div class="as-help-boot-grid">
   <figure class="as-help-boot-visual" v-click>
@@ -1016,7 +886,7 @@ class: as-help-boot-slide dark-slide
       </div>
       <div class="as-help-stage" v-click>
         <span class="as-help-stage-number">03</span><mdi-map-marker-path />
-        <div><b>PERSIST NAVIGATION</b><small>Keep page_id, title, file_path, and breadcrumb_path.</small></div>
+        <div><b>PERSIST METADATA</b><small>Keep page_id, title, file_path, and breadcrumb_path.</small></div>
         <strong>ANCHOR</strong>
       </div>
       <div class="as-help-stage ready" v-click>
@@ -1027,7 +897,7 @@ class: as-help-boot-slide dark-slide
     </div>
     <div class="as-help-index-record" v-click>
       <div class="as-help-record-heading"><span>SEARCH RECORD</span><small>metadata stays attached to the hit</small></div>
-      <div class="as-help-record-grid"><code>page_id</code><b>&lt;returned page id&gt;</b><code>breadcrumb</code><span>Motion &gt; ... &gt; MC_BR_MoveAbsolute</span><code>preview</code><span>short evidence only</span></div>
+      <div class="as-help-record-grid"><code>page_id</code><b>&lt;returned page id&gt;</b><code>breadcrumb</code><span>Motion &gt; ... &gt; MC_BR_MoveAbsolute</span><code>preview</code><span>short desciption of the context</span></div>
     </div>
     <div class="as-help-query-flow" v-click>
       <div class="as-help-query-heading"><span>AGENT QUERY</span><strong>FTS · KEYWORD RANKING</strong></div>
@@ -1038,7 +908,7 @@ class: as-help-boot-slide dark-slide
   </section>
 </div>
 
-<div class="as-help-boot-takeaway" v-click><span>THE PATTERN</span><strong>Search returns the best address. Retrieval returns the evidence.</strong></div>
+<div class="as-help-boot-takeaway" v-click><span>THE PRO AND THE CON</span><strong>Only reflect what you have installed locally</strong> </div>
 
 <div class="slide-id">17</div>
 
@@ -1052,72 +922,20 @@ Agenten bruger derefter page_id i get_page_by_id for at hente den fulde tekst, m
 
 ---
 layout: default
-class: mcp-image-pair-slide
+class: mcp-image-pair-slide dark-slide
 ---
+
+<div class="kicker">OFFICIAL B&amp;R MCP SERVER</div>
+
+# Official B&R MCP<br><span class="accent">On B&R Community</span>
 
 <div class="mcp-image-pair">
-  <img src="/mcp-official.png" alt="Official MCP server extension listing in VS Code">
-  <img src="/br-mcp.png" alt="B&R MCP server configuration documentation">
+  <img src="/br-mcp.png" alt="B&R MCP server setup guidance on the B&R Community">
 </div>
 
----
-layout: default
-class: support-agent-sequence-slide
----
-
-<div class="support-agent-sequence">
-  <img class="support-agent-frame" src="/support-agent-welcome.png" alt="B&R Support Agent welcome screen">
-  <img class="support-agent-frame" src="/support-agent-chat.png" alt="B&R Support Agent chat response" v-click="1">
-  <img class="support-agent-frame" src="/online-help.png" alt="B&R Automation Help documentation page" v-click="2">
+<div class="mcp-image-link">
+  <mdi-link-variant /><a href="https://community.br-automation.com/t/release-2026-use-b-r-mcp-server-with-any-ai-assistant-using-jwt-from-as-code-6-7-github-copilot-continue-dev-more/11705" target="_blank">community.br-automation.com — Use B&amp;R MCP Server with any AI assistant (JWT from AS Code 6.7)</a>
 </div>
-
----
-layout: default
-class: strategy-slide
----
-
-<div class="kicker">STRATEGY · 05 MIN</div>
-
-# Own the model<br><span class="accent">or own the bridge?</span>
-
-<div class="strategy-grid">
-  <div class="strategy-card integrated" v-click>
-    <div class="strategy-top"><mdi-layers-triple-outline /><span>VERTICALLY INTEGRATED AI</span></div>
-    <ul>
-      <li>One selected experience</li>
-      <li>Model-specific specialization</li>
-      <li>Tight product coupling</li>
-      <li>Vendor controls the full stack</li>
-    </ul>
-  </div>
-  <div class="versus" v-click>OR</div>
-  <div class="strategy-card portable" v-click>
-    <div class="strategy-top"><mdi-bridge /><span>PORTABLE ENGINEERING BRIDGE</span></div>
-    <ul>
-      <li>Choice of model + harness</li>
-      <li>Context supplied at runtime</li>
-      <li>Stable domain + tool interfaces</li>
-      <li>Customer keeps policy choices</li>
-    </ul>
-  </div>
-</div>
-
-<div class="br-investment" v-click>
-  <span>THE OUTCOME</span>
-  <strong>repeatable engineering value</strong><i>+</i><strong>portable automation capability</strong>
-</div>
-
-<div class="slide-id">18</div>
-
-<!--
-Nogle leverandører vælger en vertikalt integreret løsning. Det kan give en enkel brugeroplevelse, og det er et legitimt valg.
-
-B&R vælger en anden retning. Modeller og harnesses ændrer sig hurtigere end en normal industriel produktcyklus. Det, B&R kan noget unikt om, er Automation Studio, hardware, motion, libraries, diagnostics og automation workflows.
-
-Derfor bør vores differentierede værdi ligge i broen, som bringer den viden og de handlinger ind i det miljø, kunden ønsker at bruge. Kunden kan vælge model, harness, cloud eller lokal behandling efter opgave, politik og økonomi.
-
-Transition: Hvorfor bør en maskinbygger investere i den workflow?
--->
 
 ---
 layout: default
@@ -1165,6 +983,18 @@ class: br-role-slide
     <div><span>FIGMA · GITHUB</span><b>FIGMA MCP</b><small>bring design context into engineering</small></div>
     <div class="micro-status community role-link">GH REPO <mdi-open-in-new aria-hidden="true" /></div>
   </a>
+  <a class="role-layer" href="https://github.com/microsoft/playwright-mcp" target="_blank" rel="noopener noreferrer" aria-label="Open the Playwright MCP server on GitHub" v-click>
+    <div class="role-number">07</div>
+    <mdi-web-check />
+    <div><span>MICROSOFT · GITHUB</span><b>PLAYWRIGHT MCP</b><small>drive and verify HMI in a real browser</small></div>
+    <div class="micro-status community role-link">GH REPO <mdi-open-in-new aria-hidden="true" /></div>
+  </a>
+  <a class="role-layer" href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem" target="_blank" rel="noopener noreferrer" aria-label="Open the Filesystem MCP server on GitHub" v-click>
+    <div class="role-number">08</div>
+    <mdi-folder-open-outline />
+    <div><span>MCP REFERENCE · GITHUB</span><b>FILESYSTEM MCP</b><small>read and write project files under policy</small></div>
+    <div class="micro-status community role-link">GH REPO <mdi-open-in-new aria-hidden="true" /></div>
+  </a>
 </div>
 
 <div class="community-rail" v-click>
@@ -1192,6 +1022,17 @@ Men skeln mellem source og connector. En community-maintained MCP, der læser of
 
 Brug en syntetisk eller offentlig question. Vis citations, version og uncertainty. Ingen customer cases eller restricted support data.
 -->
+
+---
+layout: default
+class: support-agent-sequence-slide
+---
+
+<div class="support-agent-sequence">
+  <img class="support-agent-frame" src="/support-agent-welcome.png" alt="B&R Support Agent welcome screen">
+  <img class="support-agent-frame" src="/support-agent-chat.png" alt="B&R Support Agent chat response" v-click="1">
+  <img class="support-agent-frame" src="/online-help.png" alt="B&R Automation Help documentation page" v-click="2">
+</div>
 
 ---
 layout: default
@@ -1250,6 +1091,66 @@ class: skills-slide dark-slide
 skills.sh viser et åbent katalog af genbrugelige capabilities til AI-agenter.
 Brug siden som et konkret eksempel på, at en agent kan udvides med procedure knowledge uden at ændre modellen.
 Åbn linket i browseren som fallback, hvis eventmiljøets CSP eller netværk blokerer indlejret webindhold.
+-->
+
+---
+layout: default
+class: skill-matrix-slide dark-slide
+---
+
+<div class="kicker">SKILL DESIGN · 02 MIN</div>
+
+# The four categories of<br><span class="accent">skills</span>
+
+<div class="skill-axes">
+  <div class="skill-axis"><mdi-lightbulb-auto-outline /><b>ABILITY</b><small>discoverable — the agent loads it when the task needs it</small></div>
+  <div class="skill-axis"><mdi-play-box-outline /><b>ROUTINE</b><small>invoked — you call it deliberately, like a saved prompt</small></div>
+  <div class="skill-axis"><mdi-database-off-outline /><b>STATELESS</b><small>one shot, no memory between runs</small></div>
+  <div class="skill-axis"><mdi-database-sync-outline /><b>STATEFUL</b><small>carries progress across turns and files</small></div>
+</div>
+
+<div class="skill-matrix">
+  <article class="skill-quadrant" v-click>
+    <span class="skill-tags">ABILITY <i>·</i> STATELESS</span>
+    <b>event-script skill for mappView</b>
+    <small>Picked up automatically when writing HMI scripts for mappView.</small>
+  </article>
+  <article class="skill-quadrant" v-click>
+    <span class="skill-tags">ABILITY <i>·</i> STATEFUL</span>
+    <b>domain-modeling skill</b>
+    <small>Picked up automatically when discussing codebase terminology, consuming and editing a CONTEXT.md</small>
+  </article>
+  <article class="skill-quadrant" v-click>
+    <span class="skill-tags">ROUTINE <i>·</i> STATELESS</span>
+    <b>triage skill for GitHub issues</b>
+    <small>You invoke it on a ticket. Same procedure every time, nothing carried over.</small>
+  </article>
+  <article class="skill-quadrant" v-click>
+    <span class="skill-tags">ROUTINE <i>·</i> STATEFUL</span>
+    <b>grill-with-docs skill</b>
+    <small>You start it when describing a new feature. A CONTEXT.md and ADR.md is stored to document decisions for future runs.</small>
+  </article>
+</div>
+
+<div class="skill-matrix-takeaway" v-click>
+  <mdi-set-split /> <b>Ability vs routine</b> is about <i>how it is triggered</i><span>·</span><b>stateless vs stateful</b> is about <i>what it remembers</i>
+</div>
+
+<figure class="skill-invocation-shot" v-click>
+  <img src="/skill-invocation.png" alt="SKILL.md frontmatter with disable-model-invocation set to true">
+  <figcaption>One line in the frontmatter turns an <b>ability</b> into a <b>routine</b></figcaption>
+</figure>
+
+<div class="slide-id">22</div>
+
+<!--
+Skills falder i to uafhængige dimensioner.
+
+Første dimension er, hvordan de aktiveres. En ability ligger fremme og bliver loadet af agenten selv, når opgaven kalder på den. En routine invokerer du bevidst, som en gemt prompt.
+
+Anden dimension er, om de husker noget. En stateless skill kører én gang og glemmer. En stateful skill bygger op over flere turns.
+
+De to dimensioner kombineres frit, så du får fire typer. Vælg bevidst, når du designer en ny skill.
 -->
 
 ---
@@ -1397,99 +1298,6 @@ Kilde: https://github.com/mattpocock/skills/blob/main/skills/engineering/tdd/SKI
 
 ---
 layout: default
-class: context-slide dark-slide
----
-
-<div class="kicker">MODEL CHOICE · 03 MIN</div>
-
-# Model choice, data<br><span class="accent">boundary + context</span>
-
-<div class="context-compare">
-  <div class="tuning-card" v-click>
-    <div class="compare-head"><mdi-tune-vertical /><span>MODEL / FINE-TUNING</span></div>
-    <div class="model-weight-visual"><i></i><i></i><i></i><i></i><b>Δ WEIGHTS</b></div>
-    <ul>
-      <li>Cloud, private endpoint, or local</li>
-      <li>Useful for stable repeated behavior</li>
-      <li>Not a home for current project facts</li>
-      <li>Dedicated evaluation required</li>
-    </ul>
-  </div>
-  <div class="context-card" v-click>
-    <div class="compare-head"><mdi-database-arrow-right-outline /><span>RUNTIME CONTEXT</span></div>
-    <div class="runtime-context-visual">
-      <span>AS VERSION</span><span>PROJECT</span><span>POLICY</span><span>LOGBOOK</span><mdi-arrow-down />
-    </div>
-    <ul>
-      <li>Data residency and retention</li>
-      <li>Current facts + variants</li>
-      <li>Portable + inspectable</li>
-      <li>Start here before fine-tuning</li>
-    </ul>
-  </div>
-</div>
-
-<div class="strategy-sequence" v-click>
-  <span>CONTEXT</span><i>+</i><span>TOOLS</span><i>+</i><span>EVALUATIONS</span><mdi-arrow-right /><strong>MEASURED GAP?</strong><mdi-arrow-right /><b>THEN CONSIDER FINE-TUNING</b>
-</div>
-
-<div class="slide-id">24</div>
-
-<!--
-Model choice er en policy- og routingbeslutning, ikke et religionsvalg. En billig model kan være god til classification eller simple implementation tasks. En stærkere reasoning-model kan være relevant til architecture og review. Local models kan være relevante ved særlige data- eller latency-krav.
-
-Fine-tuning er ikke et godt sted at gemme project facts, aktuelle versionsdata eller live machine state. Det hører hjemme i runtime context fra en authoritative source.
-
-Evaluer modeller på jeres egne repræsentative opgaver: correctness, tool selection, latency, cost, data boundary og stopping behavior.
--->
-
----
-layout: default
-class: context-window-slide dark-slide
----
-
-<div class="kicker">FINITE CONTEXT · 04 MIN</div>
-
-# Every session is<br><span class="accent">a new colleague</span>
-
-<div class="context-gauge" v-click>
-  <div class="gauge-label"><span>HIGH SIGNAL</span><small>"smart zone"</small></div>
-  <div class="gauge-track">
-    <i class="signal"></i><i class="crowded"></i><i class="degraded"></i>
-    <b>goal · files · tools · results · chat · logs · patches · history</b>
-  </div>
-  <div class="gauge-label right"><span>DEGRADED ATTENTION</span><small>crowded context</small></div>
-</div>
-
-<div class="context-constraints">
-  <div v-click><span>01</span><mdi-database-off-outline /><b>No durable memory</b><small>by default</small></div>
-  <div v-click><span>02</span><mdi-format-align-middle /><b>Lost in the middle</b><small>attention is uneven</small></div>
-  <div v-click><span>03</span><mdi-directions-fork /><b>Trajectory + anchoring</b><small>early choices bias later ones</small></div>
-  <div v-click><span>04</span><mdi-arrow-collapse-horizontal /><b>Horizontal tasks degrade</b><small>prefer vertical outcomes</small></div>
-</div>
-
-<div class="restart-pattern" v-click>
-  <div class="trajectory-noise"><span>accumulated trajectory</span><i></i><i></i><i></i><i></i></div>
-  <mdi-restart />
-  <div class="durable-restart"><span>FRESH SESSION</span><b>spec · issue · Git · evidence</b></div>
-</div>
-
-<div class="measurement-note" v-click>NO UNIVERSAL TOKEN THRESHOLD · MEASURE YOUR MODEL + HARNESS</div>
-
-<div class="slide-id">25</div>
-
-<!--
-Forestil jer, at en dygtig ny kollega møder ind til hver opgave, men uden hukommelse om gårsdagens samtale. Agenten har et context window med instructions, chat, filer, tool results og sit eget svar.
-
-Et større vindue hjælper, men mere kontekst er ikke altid bedre. Information i midten kan få mindre effektiv opmærksomhed, og gamle beslutninger og store logs konkurrerer med de vigtige facts.
-
-En lang session opbygger også trajectory og anchoring. Hvis retningen er forkert, er en frisk session fra en kort spec, et issue og friske artifacts ofte bedre end at argumentere mod hele historikken.
-
-Subagents og sandboxes kan give isolation, men de fjerner ikke handoffs, coordination cost eller approval. Mål den konkrete model, harness og opgave.
--->
-
----
-layout: default
 class: enforcement-slide
 ---
 
@@ -1542,46 +1350,6 @@ Deterministiske tools kører uafhængigt af agentens opmærksomhed: compiler, sc
 Pull requesten samler requirement, diff, testresultater, assumptions, unresolved risk og reproduktionskommandoer. Build, static checks og behavior tests blokerer. En kompetent person accepterer de strategiske valg og release.
 -->
 
-layout: default
-class: accountability-slide dark-slide
----
-
-<div class="kicker">OPERATING MODEL · 03 MIN</div>
-
-# Speed creates a<br><span class="accent">new bottleneck</span>
-
-<div class="speed-meter" v-click>
-  <div class="meter-agent"><mdi-robot-industrial-outline /><span>AGENT OUTPUT</span><b>FAST</b></div>
-  <div class="meter-track"><i></i></div>
-  <div class="meter-human"><mdi-account-search-outline /><span>HUMAN REVIEW</span><b>FINITE</b></div>
-</div>
-
-<div class="ownership-levels">
-  <div v-click>
-    <span>ASSISTANT</span><b>"Here is the code<br>I suggest."</b><small>SUGGESTS</small>
-  </div>
-  <div v-click>
-    <span>AGENT</span><b>"I changed, built,<br>observed, corrected."</b><small>OWNS THE LOOP</small>
-  </div>
-  <div class="accountable" v-click>
-    <span>AGENTIC SYSTEM</span><b>"Approved gates passed.<br>Ready for review."</b><small>RETURNS EVIDENCE</small>
-  </div>
-</div>
-
-<div class="delegate-line" v-click>
-  DELEGATE THE <strong>IMPLEMENTATION LOOP</strong> · RETAIN <strong>INTENT + ACCOUNTABILITY</strong>
-</div>
-
-<div class="slide-id">27</div>
-
-<!--
-Det imponerende ved agents er deres hastighed. Det frustrerende er, at den samme hastighed hurtigt gør engineerens manuelle review til flaskehalsen.
-
-Lad agenten tage operationelt ejerskab for implementation-loopet: implementere, bygge, køre checks, undersøge fejl, rette og forklare resultatet. Mennesket ejer fortsat intent, arkitektur, test-orakel, risiko og release.
-
-Review flytter fra korrekturlæsning af al produceret kode til vurdering af strategiske valg, testene og den evidens, workflowet har produceret. Det virker kun, hvis de deterministiske checks er stærke nok.
--->
-
 ---
 layout: default
 class: testing-slide dark-slide
@@ -1630,6 +1398,29 @@ Test er ikke kun den sidste kvalitetskontrol. For en agent er test og simulation
 Unit tests kan bevise lokal logik. Integrationstest kan bevise interfaces. ARsim og smoke tests kan bevise defineret applikationsadfærd i et kontrolleret miljø. HIL og fysisk validering tilføjes, hvor risiko og fidelity kræver det.
 
 Agenten kan hjælpe med at skrive test, men den må ikke alene definere sin egen sandhed. Acceptance criteria eller reference behavior skal reviewes uafhængigt.
+-->
+
+---
+layout: default
+class: feedback-slide dark-slide
+---
+
+<div class="kicker">EXECUTABLE FEEDBACK · 03 MIN</div>
+
+# Close the industrial<br><span class="accent">engineering loop</span>
+
+<AutomationStudioAgent />
+
+<div class="slide-id">14</div>
+
+<!--
+Et agentforslag er først værdifuldt, når vi kan lukke loopet. Før loopet kan handle, skal det have domænekontekst: projektstruktur, produkt- og versionsviden, regler og intent. Projektet skal derefter kunne bygges reproducerbart. Vi skal kunne starte en kontrolleret simulation, stimulere en tilstand, observere variable og logbook og sammenligne resultatet med et krav.
+
+På sliden ses guardrails via instructions og skills, derefter research via AS-HELP, BR-COMMUNITY, firmware-noter og den cloud-baserede AS-COPILOT MCP. Automation Studio læser og skriver kode gennem Main.st-editoren, mens as bygger, simulerer, læser variable og læser logbook.
+
+DevOps udfører en kendt sekvens deterministisk. Agenten vælger næste afgrænsede handling ud fra feedback. Det er derfor vigtigt, at det samme command contract kan anvendes af en engineer, en test, en pipeline og en agent.
+
+Transition: Det er præcis den rejse, B&R selv har været igennem.
 -->
 
 ---
@@ -1703,103 +1494,6 @@ Start human-in-the-loop. Godkend mål, scope og permissions før kørsel. Stop v
 
 ---
 layout: default
-class: handoff-slide
----
-
-<div class="kicker">WORKFLOW 1 · HITL · SPECIFICATION</div>
-
-# From warning<br>to <span class="accent">issues</span>
-
-<div class="handoff-chain">
-  <div class="handoff-artifact spec" v-click>
-    <mdi-file-document-edit-outline />
-    <span>RESEARCH</span>
-    <b>build + runtime<br>warnings</b>
-  </div>
-  <div class="handoff-arrow" v-click><mdi-arrow-right /></div>
-  <div class="handoff-artifact issue" v-click>
-    <mdi-checkbox-marked-circle-plus-outline />
-    <span>SAFE RESOLUTION</span>
-    <b>error code + context<br>without changing intent</b>
-  </div>
-  <div class="handoff-arrow" v-click><mdi-arrow-right /></div>
-  <div class="handoff-artifact pr" v-click>
-    <mdi-source-pull />
-    <span>ISSUES</span>
-    <b>priority + dependencies<br>+ detailed handoff</b>
-  </div>
-</div>
-
-<div class="vertical-slices">
-  <div v-click><span>01</span><b>Research</b><small>agent reads build + logbook output</small></div>
-  <div v-click><span>02</span><b>Look up codes</b><small>official, AS Help, and community sources</small></div>
-  <div v-click><span>03</span><b>Propose safely</b><small>preserve intended logic</small></div>
-  <div v-click><span>04</span><b>Create handoffs</b><small>severity + dependencies + next step</small></div>
-</div>
-
-<div class="living-note" v-click>
-  Human checkpoint: <strong>does the proposed resolution preserve intent?</strong>
-</div>
-
-<div class="slide-id">31</div>
-
-<!--
-Brug en levende product specification, som fastholder intent, invariants, constraints og den aktuelle definition of done. Lad implementationen udvikle sig gennem korte, verificerede iterationer.
-
-Først registrerer vi baseline. Hvad er nyt, og hvad var allerede accepteret? Er finding i customer source, generated code, vendor library eller configuration?
-
-Issues oprettes efter root cause og coherent remediation. De beskriver intent og evidence, så næste agent ikke skal genopfinde analysen.
--->
-
----
-layout: default
-class: demo-slide dark-slide
----
-
-<div class="status-badge demonstrator">BOUNDED AFK</div>
-<div class="kicker">WORKFLOW 2 · AFK · IMPLEMENTATION</div>
-
-# Planning to<br><span class="accent">merge</span>
-
-<div class="demo-steps">
-  <div v-click><span>01</span><b>PLAN</b><small>open issues + dependencies</small></div>
-  <div v-click><span>02</span><b>BRANCH</b><small>isolated checkout + handoff</small></div>
-  <div v-click><span>03</span><b>IMPLEMENT</b><small>approved scope + tests</small></div>
-  <div v-click><span>04</span><b>REVIEW</b><small>fresh context + guardrails</small></div>
-  <div v-click><span>05</span><b>TEST</b><small>clean environment + evidence</small></div>
-  <div v-click><span>06</span><b>CANDIDATE</b><small>PR, not silent merge</small></div>
-</div>
-
-<div class="demo-proof">
-  <div v-click><span>IMPLEMENTER</span><b>fix + targeted test</b><mdi-check /></div>
-  <div v-click><span>REVIEWER</span><b>scope + invariants</b><mdi-pause /></div>
-  <div v-click><span>TEST RUNNER</span><b>build + regression</b><mdi-check-all /></div>
-</div>
-
-<div class="orchestration-grid">
-  <div v-click><mdi-playlist-check /><span>FAIL</span><b>Return exact evidence</b><small>review or test finding</small></div>
-  <div v-click><mdi-source-branch /><span>PASS</span><b>Prepare candidate</b><small>diff + provenance</small></div>
-  <div v-click><mdi-account-check-outline /><span>HUMAN</span><b>Evaluate intent</b><small>risk + oracle + scope</small></div>
-  <div v-click><mdi-shield-check-outline /><span>BOUNDARY</span><b>Approve release</b><small>only where authorized</small></div>
-</div>
-
-<div class="evidence-boundary" v-click>
-  <mdi-information-outline /> Proves the declared workflow checks in its controlled environment. It does not prove physical timing, functional safety, conformity, or every target.
-</div>
-
-<div class="slide-id">32</div>
-
-<!--
-Planneren vælger næste ready issue, vurderer afhængigheder og opretter en isoleret branch eller worktree. Implementeren ændrer kun det godkendte scope, tilføjer relevante tests og returnerer assumptions og evidence.
-Reviewer-agenten arbejder fra frisk context og kontrollerer intent, invariants, customer instructions, generated artifacts, test quality, security og unexpected scope. Den er ikke en deterministic oracle.
-
-Test runneren kører i et rent, kontrolleret miljø: relevante configurations, regression suite, targeted tests, ARsim/PVI hvor det gælder, warning comparison og provenance.
-
-Integrationen forbereder en PR eller merge candidate. Den pusher ikke stille til en protected branch. Mennesket vurderer, om evidence er relevant og tilstrækkelig, og om merge eller release er autoriseret.
--->
-
----
-layout: default
 class: monday-slide dark-slide
 ---
 
@@ -1868,52 +1562,6 @@ B&R's opgave er at gøre Automation Studio tilgængelig gennem en robust bridge.
 AWESOME-BRDK kan være en kilde til inspiration, men status og URL skal bekræftes før eventet. Brug de godkendte releaseformuleringer for bridge, MCP og AS-CLI.
 
 Final line: B&R owns the bridge. You own the workflow. The evidence earns the trust.
--->
-
----
-layout: default
-class: devops-break-slide dark-slide
----
-
-<img class="devops-logo" src="/br-logo.svg" alt="B&R Industrial Automation">
-
-<div class="kicker">HANDOFF · 10.30</div>
-
-# Pause the loop.<br><span class="accent">Keep the evidence.</span>
-
-<div class="handoff-window">
-  <div class="handoff-stop is-complete" v-click>
-    <span>09.30–10.30</span>
-    <b>AGENTIC ENGINEERING</b>
-    <small>Workflows · bridge · tools · evidence</small>
-  </div>
-  <div class="handoff-connector" v-click><i></i><mdi-arrow-right /></div>
-  <div class="handoff-stop is-break" v-click>
-    <span>10.30–11.00</span>
-    <b>BREAK + NETWORKING</b>
-    <small>Compare one workflow you could make repeatable</small>
-  </div>
-  <div class="handoff-connector" v-click><i></i><mdi-arrow-right /></div>
-  <div class="handoff-stop is-next" v-click>
-    <span>11.00–12.15</span>
-    <b>DEVOPS IN INDUSTRY</b>
-    <small>Mads Andersen · Automation Engineer</small>
-  </div>
-</div>
-
-<div class="devops-handoff-line" v-click>
-  The workflow now needs a reliable engineering track. The same build, test, and evidence foundations become <strong>the subject of Workshop 2.</strong>
-  <small>DevOps turns agent-ready actions into a repeatable, reviewable release process.</small>
-</div>
-
-<div class="slide-id">35</div>
-
-<!--
-Vi holder nu en pause på 30 minutter og fortsætter klokken 11.00.
-
-Tag gerne ét spørgsmål med ud i pausen: Hvilken manuel handling i jeres Automation Studio-flow ville give mest værdi, hvis den blev reproducerbar og gav et struktureret resultat?
-
-Den første session har handlet om, hvordan en agent kan bruge kontekst, tools og feedback. Efter pausen vender Mads perspektivet: Hvordan bygger vi selve den reproducerbare engineering- og releaseproces, som både mennesker, CI og agenter kan stole på?
 -->
 
 ---

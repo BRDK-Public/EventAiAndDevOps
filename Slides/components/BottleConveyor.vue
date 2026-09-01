@@ -83,7 +83,8 @@ const advanceCounter = () => {
   displayCount.value = displayCount.value >= 100 ? 0 : displayCount.value + 1
 }
 
-const handleBottleIteration = () => {
+const handleBottleIteration = (event: AnimationEvent) => {
+  if (event.target !== event.currentTarget) return
   if (props.interactive) advanceCounter()
 }
 
