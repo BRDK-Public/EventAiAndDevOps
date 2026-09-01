@@ -612,23 +612,29 @@ ul {
 }
 
 .loop-compare {
+  position: relative;
   display: grid;
-  grid-template-columns: 1fr 1px 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr auto;
   gap: 40px;
   align-items: stretch;
   margin-top: 34px;
 }
 
-.loop-compare::after {
+/* divider lives on the cycle column so it fades in with that illustration */
+.loop-cycle::before {
   content: '';
-  grid-row: 1 / span 2;
-  grid-column: 2;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -20px;
+  width: 1px;
   background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.35) 18%, rgba(255, 255, 255, 0.35) 82%, transparent);
 }
 
 .loop-linear,
 .loop-cycle {
+  position: relative;
   display: grid;
   grid-row: 1 / span 2;
   grid-template-rows: subgrid;
@@ -673,6 +679,8 @@ ul {
 .loop-compare .loop-linear p,
 .loop-compare .loop-cycle p { align-self: start; }
 
+.loop-compare .loop-linear p { border-top: none; }
+
 .loop-cycle svg { width: 292px; height: 292px; }
 .loop-hub { fill: var(--br-orange); }
 
@@ -700,7 +708,7 @@ ul {
 .loop-slide h1 { font-size: 40px; }
 .loop-slide .signal-callout {
   gap: 14px;
-  margin-top: 30px;
+  margin-top: 8px;
   padding: 15px 20px;
   border-left: 3px solid var(--br-orange);
   background: rgba(255, 122, 0, 0.08);
@@ -2952,8 +2960,10 @@ ul {
 
 .vertical-modules-slide .kicker { display: block; margin-bottom: 14px; }
 .vertical-modules-lead { max-width: 770px; margin: 12px 0 0; color: #c5cdd1; font-size: 14px; line-height: 1.2; }
-.kanban-compare { display: grid; grid-template-columns: minmax(0, 1fr) 68px minmax(0, 1.32fr); gap: 12px; align-items: center; margin-top: 18px; }
-.kanban-panel { min-height: 253px; padding: 12px; border: 1px solid rgba(255, 255, 255, 0.16); border-top: 3px solid #748087; background: rgba(255, 255, 255, 0.055); }
+.kanban-compare { display: grid; grid-template-columns: minmax(0, 1fr) 68px minmax(0, 1fr); gap: 12px; align-items: stretch; margin-top: 18px; }
+.kanban-panel { display: flex; flex-direction: column; min-height: 253px; padding: 12px; border: 1px solid rgba(255, 255, 255, 0.16); border-top: 3px solid #748087; background: rgba(255, 255, 255, 0.055); }
+.kanban-panel .kanban-board { flex: 1; }
+.kanban-panel .kanban-lanes { align-content: start; }
 .vertical-panel { border-color: rgba(255, 122, 0, 0.65); border-top-color: var(--br-orange); background: linear-gradient(135deg, rgba(255, 122, 0, 0.12), rgba(255, 122, 0, 0.045)); }
 .kanban-panel-head { display: flex; align-items: center; justify-content: space-between; min-height: 34px; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.15); }
 .kanban-panel-head div span,
