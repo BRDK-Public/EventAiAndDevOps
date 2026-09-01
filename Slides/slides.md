@@ -1928,7 +1928,7 @@ class: devops-cover ai-workshop-cover dark-slide
 
 # DevOps in<br><span class="accent">industry</span>
 
-<p class="devops-cover-copy">What, why and how to get started with B&R</p>
+<p class="devops-cover-copy">Building confidence in a world of AI-generated change</p>
 
 <div class="devops-spine" v-motion :initial="{ opacity: 0, y: 18 }" :enter="{ opacity: 1, y: 0, transition: { delay: 300 } }">
   <div><span>01</span><b>VERSION</b><small>known inputs</small></div>
@@ -1943,12 +1943,86 @@ class: devops-cover ai-workshop-cover dark-slide
 <div class="slide-id">36</div>
 
 <!--
-Efter pausen tager Mads over med Workshop 2: DevOps i industrien.
+"Jeg hedder Mads Andersen og har arbejdet næsten 8 år hos B&R.
 
-Vi bygger videre på det samme command contract, men flytter fokus til den engineering- og releaseproces, som gør ændringer reproducerbare, testbare og reviewbare. Vi følger vejen fra kendte versioner og build inputs til test evidence, et pakket artifact og en kontrolleret release.
+Jeg har primært arbejdet i OT-verdenen, men har altid haft en stor interesse for software engineering og de værktøjer og workflows man bruger i IT.
 
-Transition: Først ser vi på, hvordan én ændring bevæger sig gennem en reproducerbar pipeline.
+Igennem mange år har vi talt om at OT og IT langsomt bevæger sig tættere på hinanden.
+
+Men de sidste par år er det accelereret voldsomt.
+
+Vi har lige hørt om Agentic Engineering og hvordan AI kan hjælpe os med at skabe software hurtigere end tidligere.
+
+Men det rejser et nyt spørgsmål:
+
+Hvordan sikrer vi kvaliteten når mængden af software og ændringer stiger?
+
+Det er i virkeligheden det DevOps handler om.
+
+Hvordan vi kan bygge, teste og levere software på en reproducerbar måde.
+
+Og det er det vi skal kigge nærmere på nu."
+
 -->
+
+---
+layout: default
+class: agenda-slide dark-slide devops-agenda-slide
+---
+
+<div class="kicker">WORKSHOP 02 · AGENDA</div>
+
+<div class="agenda-layout">
+  <div class="agenda-intro" v-motion :initial="{ opacity: 0, x: -24 }" :enter="{ opacity: 1, x: 0 }">
+    <h1>DevOps in<br><span class="accent">industry.</span></h1>
+    <p class="agenda-lead">The engineering path from a project in Git to a tested, reviewable release.</p>
+    <div class="agenda-event-mark">
+      <span>02</span>
+      <div><b>DEVOPS IN INDUSTRY</b><small>VERSION · BUILD · TEST · RELEASE</small></div>
+    </div>
+  </div>
+
+  <div class="agenda-timeline" v-motion :initial="{ opacity: 0, x: 28 }" :enter="{ opacity: 1, x: 0, transition: { delay: 220 } }" aria-label="DevOps in industry agenda shown as a Git commit history">
+    <div class="agenda-row is-session">
+      <time datetime="commit-01">01</time><i aria-hidden="true"></i><div><b>What is DevOps?</b><small>Development · operations · feedback</small></div>
+    </div>
+    <div class="agenda-row">
+      <time datetime="commit-02">02</time><i aria-hidden="true"></i><div><b>Why DevOps?</b><small>Make change visible and repeatable</small></div>
+    </div>
+    <div class="agenda-row">
+      <time datetime="commit-03">03</time><i aria-hidden="true"></i><div><b>CI / CD</b><small>Build, test, verify, deploy</small></div>
+    </div>
+    <div class="agenda-row">
+      <time datetime="commit-04">04</time><i aria-hidden="true"></i><div><b>Tooling + as CLI</b><small>Make engineering actions programmable</small></div>
+    </div>
+    <div class="agenda-row is-session">
+      <time datetime="commit-05">05</time><i aria-hidden="true"></i><div><b>Demos: as cli, Orange Juice Machine and HMI testing</b><small>Prove expected machine behavior</small></div>
+    </div>
+    <div class="agenda-row">
+      <time datetime="commit-06">06</time><i aria-hidden="true"></i><div><b>Start Monday</b><small>One bounded, repeatable workflow</small></div>
+    </div>
+  </div>
+</div>
+
+<div class="slide-id">37</div>
+
+<!--
+Lad os lige hurtigt kigge på dagens rejse.
+
+Først skal vi blive enige om hvad vi egentlig mener med DevOps.
+
+Derefter skal vi snakke om hvorfor det bliver mere relevant end nogensinde i en verden med AI og Agentic Engineering.
+
+Så kigger vi på CI/CD og de grundlæggende principper bag automatiseret levering af software.
+
+Derefter skal vi se hvorfor tooling er så vigtigt, og hvordan as-cli passer ind i det billede.
+
+Men størstedelen af tiden kommer faktisk til at være demoer, hvor vi ser det hele i praksis.
+
+Til sidst samler vi det hele i spørgsmålet:
+
+Hvad kan man realistisk begynde på allerede på mandag?
+ -->
 
 ---
 layout: default
@@ -1994,7 +2068,7 @@ class: devops-intro-slide dark-slide
 <br />
 
 <div class="devops-beyond">
-  <div class="devops-beyond-label"><span>OTHER DISCIPLINES</span><b>NOT COVERED TODAY</b></div>
+  <div class="devops-beyond-label"><span>ALSO DEVOPS</span><b>NOT COVERED TODAY</b></div>
   <ul aria-label="DevOps disciplines not covered today">
     <li>Automated Setup (IaC)</li>
     <li>Security / DevSecOps</li>
@@ -2011,11 +2085,28 @@ Today we focus on the software delivery flow: <strong>Code → Build → Test �
 <div class="slide-id">37</div>
 <!--
 Title: What is DevOps
-Development and Operations
-DevOps can be MANY things.
-We will not cover everything today
-We will focus on CI/CD pipeline and how it can be done with B&R ecosystem
-Visualization idea: Standard DevOps infinity symbol with a lot of DevOps related words floating around and then mark those with bold we will focus on
+Før vi går videre, lad os lige blive enige om hvad vi mener med DevOps i dag.
+
+Development handler om at planlægge, implementere og verificere ændringer i software.
+
+Operations handler om at få den software sikkert ud på den rigtige maskine, overvåge hvordan den opfører sig i drift, og samle feedback til næste ændring.
+
+Det er også derfor man ofte illustrerer DevOps med uendelighedstegnet. Når software kommer ud i drift får vi ny viden. Måske finder vi fejl. Måske opdager vi noget der kan forbedres. Og så starter næste ændring.
+
+Men det er en meget simplificeret definition. DevOps er i virkeligheden et kæmpe område.
+
+Der er mange andre discipliner som ofte hører under DevOps. Infrastruktur, sikkerhed, samarbejde, dokumentation og så videre.
+
+De er alle sammen vigtige.
+
+Men hvis vi prøver at dække dem alle sammen i dag, så er vi her stadig i morgen.
+
+Så når jeg siger DevOps i resten af præsentationen, så mener jeg primært denne del af DevOps:
+
+Hvordan vi går fra kode til en verificeret release gennem Build, Test og Deploy.
+
+Og det er især interessant i en verden hvor AI hjælper os med at skabe flere ændringer end nogensinde før.
+
 -->
 
 ---
@@ -2068,13 +2159,25 @@ class: why-devops-slide dark-slide
 <div class="slide-id">38</div>
 
 <!--
-Remember: Agentic Engineering accelerates software creation; it does not make the result reliable by itself.
+Lars har været inde på dette i starten, men for at gentage kort:
 
-Walk left to right. AI can generate code and tests faster. DevOps adds the build, test, quality, deployment, and feedback controls needed to deliver the result reliably.
+Agentic Engineering gør at vi kan generere kode hurtigt, skrive automatiske tests hurtigt, lave en idé til en prototype på rekordtid.
+... Men agenten har brug for "Guardrails" og det er her DevOps kommre ind i billedet med build,test, kontroleret deployment, kvalitetstjek.
 
-"If AI helps us create ten times more software changes, we need a system that can verify, test, and deliver ten times more changes as well. That's where DevOps comes in."
+AI hjælper os med at lave software hurtigere. DevOps hjælper os med at levere det sikkert.
 
-Keep the claim bounded. DevOps provides controls and evidence for delivery; it does not replace engineering judgment, safety validation, or release accountability.
+
+Lars har allerede været inde på Agentic Engineering, men lad os lige koble det til DevOps.
+
+Agentic Engineering hjælper os med at skabe software hurtigere.
+
+Men hurtigere udvikling er ikke det samme som pålidelig levering.
+
+Derfor har vi brug for build, test, kvalitetstjek og kontrolleret deployment omkring ændringerne.
+
+AI hjælper os med at skabe software hurtigere.
+
+DevOps hjælper os med at levere det på en kontrolleret måde.
 -->
 
 ---
@@ -2131,7 +2234,7 @@ class: old-way-slide dark-slide
 </div>
 
 <div class="old-way-pain">
-  <div class="old-way-pain-label"><span>PAIN POINTS</span><b>MANUAL DELIVERY CREATES BLIND SPOTS</b></div>
+  <div class="old-way-pain-label"><span>PAIN POINTS</span><b>COMMON CHALLENGES</b></div>
   <ul>
     <li><mdi-hammer-wrench /><span>Manual build steps</span></li>
     <li><mdi-monitor-multiple /><span>Different PC configurations</span></li>
@@ -2141,26 +2244,111 @@ class: old-way-slide dark-slide
   </ul>
 </div>
 
+
+<br />
 <br />
 <br />
 <br />
 <br />
 <br />
 
-<div class="old-way-takeaway">
-  <blockquote>As software creation accelerates (due to AI), delivery must become more systematic and automated.</blockquote>
+<div class="why-devops-matters-takeaway" v-click>
+  <blockquote><strong>If AI helps us create 10&times; more changes, we need a way to verify 10&times; more changes.</strong></blockquote>
 </div>
 
 <div class="slide-id">39</div>
 
 <!--
-"Traditionally, many software delivery activities have been manual. An engineer makes a change, builds locally, runs a few checks, maybe copies files to a test system, and eventually deploys the result."
+Lad os prøve at kigge på hvordan softwarelevering ofte har fungeret historisk.
 
-"That works when changes are infrequent. But Agentic Engineering changes the equation. If we can generate code, tests, and prototypes much faster, we can also expect more changes, more experiments, and more iterations."
+En ingeniør laver en ændring.
+Projektet bygges lokalt.
+Der kopieres måske nogle filer rundt.
+Der køres måske nogle tests - måske ikke.
+Og til sidst deployeres ændringen manualt.
 
-"At that point, the bottleneck is no longer creating software. The bottleneck becomes verifying and delivering it consistently."
+Der er ikke nødvendigvis noget forkert i den proces.
+Sådan er mange projekter blevet udviklet i årevis.
+Men den giver nogle udfordringer:
 
-"That's why, as software creation accelerates, delivery must become more systematic and automated."
+Hvilken PC blev projektet bygget på?
+Hvilke indstillinger havde den?
+Hvilke tests blev kørt?
+Kan vi genskabe præcis det samme resultat igen?
+Og hvis noget går galt, hvor nemt er det så at rulle tilbage?
+
+Så længe antallet af ændringer er lavt, kan vi ofte håndtere det.
+Men når tempoet stiger, bliver det sværere.
+Og det gælder især nu.
+For hele pointen med Agentic Engineering er jo, at vi kan producere ændringer hurtigere.
+
+[CLICK]
+
+Hvis AI hjælper os med at lave 10 gange flere ændringer,
+så har vi brug for en måde at verificere 10 gange flere ændringer.
+
+Vi får ikke 10 gange flere timer til test.
+Vi får ikke 10 gange flere commissioning engineers.
+Derfor bliver vi nødt til at automatisere dele af build-, test- og release-processen.
+Ikke fordi mennesker gør noget forkert.
+Men fordi mennesker ikke skalerer lige så godt som software.
+
+Og det er præcis det problem Continuous Integration forsøger at løse.
+
+-->
+
+---
+layout: default
+class: why-devops-matters-slide dark-slide
+---
+
+<div class="status-badge general">GENERAL PRINCIPLE</div>
+<div class="kicker">WORKSHOP 02 · THE CASE FOR DEVOPS</div>
+
+# Why Testing<br><span class="accent">Becomes Affordable</span>
+
+<div class="why-devops-matters-grid" aria-label="Why DevOps matters more as software creation accelerates">
+  <section class="why-devops-matters-panel historical" aria-label="Historically">
+    <div class="why-devops-matters-head">
+      <div><span>01</span><b>HISTORICALLY</b></div>
+      <mdi-account-hard-hat-outline />
+    </div>
+    <div class="why-devops-matters-items">
+      <div class="why-devops-matters-item"><mdi-file-edit-outline /><b>Engineer writes code</b></div>
+      <div class="why-devops-matters-item"><mdi-test-tube /><b>Engineer writes tests</b></div>
+      <div class="why-devops-matters-item"><mdi-clock-alert-outline /><b>Testing feels expensive</b></div>
+    </div>
+  </section>
+
+  <section class="why-devops-matters-panel agentic" aria-label="Agentic Engineering">
+    <div class="why-devops-matters-head">
+      <div><span>02</span><b>AGENTIC ENGINEERING</b></div>
+      <mdi-robot-outline />
+    </div>
+    <div class="why-devops-matters-items">
+      <div class="why-devops-matters-item"><mdi-robot-outline /><b>Agent helps create code</b></div>
+      <div class="why-devops-matters-item"><mdi-robot-outline /><b>Agent helps create tests</b></div>
+      <div class="why-devops-matters-item"><mdi-shield-check-outline /><b>Testing becomes easier to justify</b></div>
+    </div>
+  </section>
+</div>
+
+<div class="slide-id">40</div>
+
+<!--
+Økonomien ved at skrive tests har også ændret sig med Agentic Engineering. 
+
+Historisk set har automatiseret test været svært at retfærdiggøre i mange automationsprojekter.
+
+Det er ikke fordi ingen kan lide tests. Problemet er, at tests også skal udvikles, vedligeholdes og opdateres. For mindre projekter har indsatsen ofte virket større end gevinsten.
+
+Men Agentic Engineering ændrer lidt på den ligning.
+
+Hvis tiden til at producere software falder markant, så falder omkostningen til at producere tests også. AI kan hjælpe os med både at implementere funktionalitet og oprette de test cases, der skal verificere funktionaliteten.
+
+Samtidig ser vi ofte, at moderne agent workflows selv genererer og kører tests som en del af deres arbejdsproces. Verifikation bliver derfor en langt mere naturlig del af udviklingsflowet.
+
+Af den grund er det blevet mere rentabelt at skrive tests og nemmere at retfærdiggøre i et OT projekt.
 -->
 
 ---
@@ -2214,7 +2402,7 @@ class: devops-tooling dark-slide
   <small>Fast feedback keeps the change easy to understand and easy to fix.</small>
 </div>
 
-<div class="slide-id">40</div>
+<div class="slide-id">41</div>
 
 <!--
 Continuous Integration means that each change meets the same build and test process. The goal is not to make every change perfect before it moves. The goal is to find problems while the change is still small enough to understand.
@@ -2289,7 +2477,7 @@ class: where-agentic-fits dark-slide
   <small>Automation prepares the release; people own the decision.</small>
 </div>
 
-<div class="slide-id">41</div>
+<div class="slide-id">42</div>
 
 <!--
 Continuous Delivery begins with the verified result from Continuous Integration. The pipeline packages that result so it can be identified, reproduced, and moved without rebuilding it by hand.
@@ -2398,7 +2586,7 @@ class: devops-pipeline dark-slide
   <strong>Monitor what happened. Feed the next change.</strong>
 </div>
 
-<div class="slide-id">42</div>
+<div class="slide-id">43</div>
 
 <!--
 This is the whole delivery flow in one picture. Continuous Integration takes the engineer's change through build, test, and verification. Continuous Delivery takes the verified result through packaging, release, deployment, and monitoring.
@@ -2475,7 +2663,7 @@ class: tooling-matters-slide dark-slide
   <small>The capability must also be exposed programmatically.</small>
 </div>
 
-<div class="slide-id">43</div>
+<div class="slide-id">44</div>
 
 <!--
 The build, test, and transfer capabilities may already exist. The challenge is access.
@@ -2574,7 +2762,7 @@ class: as-cli-intro-slide dark-slide
   </div>
 </div>
 
-<div class="slide-id">44</div>
+<div class="slide-id">45</div>
 
 <!--
 The previous slide established that pipelines and agents need programmable access to engineering tools. This is the role of as.
@@ -2638,7 +2826,7 @@ class: as-cli-demo-slide dark-slide
   <strong>Protects quality. Builds confidence that nothing breaks.</strong>
 </div>
 
-<div class="slide-id">45</div>
+<div class="slide-id">46</div>
 
 <!--
 Demo 1 shows the DevOps loop used to develop as itself.
@@ -2677,7 +2865,7 @@ class: machine-demo-slide dark-slide
   <BottleConveyor state="running" :count="42" />
 </div>
 
-<div class="slide-id">46</div>
+<div class="slide-id">47</div>
 
 <!--
 Demo 2 is the handoff into the live full-pipeline demonstration.
@@ -2733,7 +2921,7 @@ class: hmi-testing-slide dark-slide
   <p>Start machine &bull; Change recipe &bull; Acknowledge alarm &bull; Verify status indication</p>
 </div>
 
-<div class="slide-id">W2 · 50</div>
+<div class="slide-id">W2 · 51</div>
 
 <!--
 This slide makes the concept deliberately simple: an automated check follows the same path as a real operator.
@@ -2799,7 +2987,7 @@ class: start-path-slide dark-slide
   <b>DevOps gives every change a repeatable path.</b>
 </div>
 
-<div class="slide-id">W2 · 51</div>
+<div class="slide-id">W2 · 52</div>
 
 <!--
 The goal is not to become a Silicon Valley software company overnight.
@@ -2856,7 +3044,7 @@ Maybe use wording like OT does not become IT in a year.
   <p>Do you have suggestions for our next priorities?</p>
 </div>
 
-<div class="slide-id">W2 · 52</div>
+<div class="slide-id">W2 · 53</div>
 
 ---
 layout: default
@@ -2878,4 +3066,4 @@ class: questions-slide dark-slide
 
 <div class="questions-footer"><span>THANK YOU</span><i></i><b>B&amp;R INDUSTRIAL AUTOMATION &middot; AGENTIC ENGINEERING + DEVOPS</b></div>
 
-<div class="slide-id">W2 · 53</div>
+<div class="slide-id">W2 · 54</div>

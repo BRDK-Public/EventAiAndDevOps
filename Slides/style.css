@@ -2427,6 +2427,292 @@ ul {
 .devops-spine small { margin-top: 5px; color: #9da6ad; font: 500 9px/1 'IBM Plex Mono', monospace; }
 .devops-spine > i { height: 2px; background: var(--br-orange); }
 
+.devops-agenda-slide { isolation: isolate; }
+
+.devops-agenda-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 40px;
+  align-items: end;
+  margin-top: 20px;
+}
+
+.devops-agenda-heading h1 {
+  font-size: 84px;
+  line-height: 0.84;
+}
+
+.devops-agenda-lead {
+  max-width: 560px;
+  margin: 18px 0 0;
+  color: #bdc5ca;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.devops-agenda-ref {
+  display: grid;
+  gap: 8px;
+  align-self: end;
+  padding: 15px 18px;
+  border-left: 4px solid var(--br-orange);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.devops-agenda-ref span,
+.devops-agenda-ref b,
+.devops-agenda-ref small {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.devops-agenda-ref span {
+  color: var(--br-orange);
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.devops-agenda-ref span svg {
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+  vertical-align: -3px;
+}
+
+.devops-agenda-ref b {
+  color: var(--white);
+  font-size: 16px;
+}
+
+.devops-agenda-ref small {
+  color: #9da6ad;
+  font-size: 8px;
+}
+
+.devops-agenda-terminal {
+  position: relative;
+  margin-top: 29px;
+  padding: 15px 18px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.devops-agenda-terminal-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #aeb7bc;
+  font: 600 9px/1 'IBM Plex Mono', monospace;
+}
+
+.devops-agenda-terminal-top span:first-child {
+  color: var(--br-orange);
+}
+
+.devops-agenda-terminal-top svg {
+  width: 15px;
+  height: 15px;
+  margin-right: 6px;
+  vertical-align: -3px;
+}
+
+.devops-agenda-terminal-top i {
+  margin: 0 8px;
+  color: var(--br-orange);
+  font-style: normal;
+}
+
+.devops-agenda-commit-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.devops-agenda-commit-grid::before {
+  position: absolute;
+  top: 24px;
+  right: 5%;
+  left: 5%;
+  height: 2px;
+  content: '';
+  background: linear-gradient(90deg, var(--br-orange), var(--flow-cyan), var(--flow-green), var(--br-orange));
+  opacity: 0.7;
+}
+
+.devops-agenda-commit {
+  position: relative;
+  z-index: 1;
+  min-height: 170px;
+  padding: 38px 13px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-top: 4px solid var(--commit-color);
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.devops-agenda-commit.is-orient { --commit-color: var(--br-orange); background: rgba(255, 122, 0, 0.11); }
+.devops-agenda-commit.is-why { --commit-color: var(--flow-amber); }
+.devops-agenda-commit.is-flow { --commit-color: var(--flow-blue); }
+.devops-agenda-commit.is-tools { --commit-color: var(--flow-cyan); }
+.devops-agenda-commit.is-prove { --commit-color: var(--flow-green); }
+.devops-agenda-commit.is-start { --commit-color: var(--br-orange); background: rgba(255, 122, 0, 0.11); }
+
+.devops-agenda-commit-marker {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  display: grid;
+  width: 29px;
+  height: 29px;
+  place-items: center;
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  background: var(--commit-color);
+  box-shadow: 0 0 0 1px var(--commit-color);
+  color: var(--ink);
+  transform: translateX(-50%);
+}
+
+.devops-agenda-commit-marker svg {
+  width: 16px;
+  height: 16px;
+}
+
+.devops-agenda-commit-index,
+.devops-agenda-commit b,
+.devops-agenda-commit small {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.devops-agenda-commit-index {
+  color: var(--commit-color);
+  font-size: 8px;
+  font-weight: 600;
+}
+
+.devops-agenda-commit b {
+  margin-top: 9px;
+  color: #c6ced2;
+  font-size: 9px;
+}
+
+.devops-agenda-commit strong {
+  display: block;
+  margin-top: 17px;
+  color: var(--white);
+  font: 700 17px/1.02 'Barlow Condensed', sans-serif;
+}
+
+.devops-agenda-commit small {
+  margin-top: 10px;
+  color: #aeb7bc;
+  font-size: 8px;
+  line-height: 1.2;
+}
+
+.devops-agenda-footer {
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+  margin-top: 16px;
+  padding: 12px 17px;
+  border-left: 4px solid var(--br-orange);
+  background: var(--white);
+  color: var(--ink);
+}
+
+.devops-agenda-footer span {
+  color: var(--br-orange);
+  font: 600 9px/1 'IBM Plex Mono', monospace;
+}
+
+.devops-agenda-footer strong {
+  font-size: 16px;
+}
+
+@media (max-width: 900px) {
+  .devops-agenda-heading {
+    grid-template-columns: 1fr;
+    gap: 13px;
+    margin-top: 12px;
+  }
+
+  .devops-agenda-heading h1 {
+    font-size: 54px;
+  }
+
+  .devops-agenda-lead {
+    margin-top: 11px;
+    font-size: 14px;
+  }
+
+  .devops-agenda-ref {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 5px 12px;
+    padding: 9px 13px;
+  }
+
+  .devops-agenda-ref small {
+    grid-column: 2;
+  }
+
+  .devops-agenda-terminal {
+    margin-top: 17px;
+    padding: 12px 13px 14px;
+  }
+
+  .devops-agenda-terminal-top {
+    font-size: 8px;
+  }
+
+  .devops-agenda-commit-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .devops-agenda-commit {
+    min-height: 137px;
+    padding: 35px 10px 11px;
+  }
+
+  .devops-agenda-commit-marker {
+    top: 9px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .devops-agenda-commit-marker svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .devops-agenda-commit-index { font-size: 7px; }
+  .devops-agenda-commit b { margin-top: 7px; font-size: 8px; }
+  .devops-agenda-commit strong { margin-top: 12px; font-size: 14px; }
+  .devops-agenda-commit small { margin-top: 7px; font-size: 7px; }
+
+  .devops-agenda-footer {
+    margin-top: 11px;
+    padding: 10px 13px;
+  }
+
+  .devops-agenda-footer strong { font-size: 14px; }
+}
+
+@media (max-width: 560px) {
+  .devops-agenda-heading h1 { font-size: 46px; }
+  .devops-agenda-lead { font-size: 12px; }
+  .devops-agenda-ref { font-size: 7px; }
+  .devops-agenda-commit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .devops-agenda-commit { min-height: 112px; padding: 34px 9px 9px; }
+  .devops-agenda-commit strong { font-size: 13px; }
+  .devops-agenda-footer strong { font-size: 12px; }
+}
+
 .audience-checkin {
   position: absolute !important;
   top: 164px;
@@ -3773,6 +4059,129 @@ ul {
 }
 
 .old-way-takeaway blockquote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--ink);
+  background: transparent;
+  font: 700 20px/1.15 'IBM Plex Sans', sans-serif;
+  text-align: center;
+}
+
+.why-devops-matters-slide h1 {
+  max-width: 900px;
+  margin-top: 22px;
+  font-size: 64px;
+  line-height: 0.88;
+}
+
+.why-devops-matters-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 27px;
+}
+
+.why-devops-matters-panel {
+  min-height: 236px;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-top: 4px solid #78858b;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.why-devops-matters-panel.agentic {
+  border-color: var(--br-orange);
+  background: linear-gradient(135deg, rgba(255, 122, 0, 0.13), rgba(80, 194, 197, 0.055));
+}
+
+.why-devops-matters-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 39px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.why-devops-matters-head div span,
+.why-devops-matters-head div b {
+  display: block;
+}
+
+.why-devops-matters-head div span {
+  color: var(--br-orange);
+  font: 600 8px/1 'IBM Plex Mono', monospace;
+}
+
+.why-devops-matters-head div b {
+  margin-top: 6px;
+  color: var(--white);
+  font: 700 25px/0.95 'Barlow Condensed', sans-serif;
+}
+
+.why-devops-matters-head > svg {
+  width: 29px;
+  height: 29px;
+  color: var(--br-orange);
+}
+
+.why-devops-matters-panel.agentic .why-devops-matters-head > svg {
+  color: var(--flow-cyan);
+}
+
+.why-devops-matters-items {
+  display: grid;
+  gap: 9px;
+  margin-top: 16px;
+}
+
+.why-devops-matters-item {
+  display: grid;
+  grid-template-columns: 29px 1fr;
+  min-height: 48px;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 10px;
+  border-left: 3px solid #737d83;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.why-devops-matters-item svg {
+  width: 22px;
+  height: 22px;
+  color: var(--br-orange);
+}
+
+.why-devops-matters-item b {
+  color: #e1e5e7;
+  font: 600 14px/1.1 'IBM Plex Sans', sans-serif;
+}
+
+.why-devops-matters-panel.historical .why-devops-matters-item:nth-child(3) {
+  border-left-color: var(--flow-amber);
+}
+
+.why-devops-matters-panel.agentic .why-devops-matters-item {
+  border-left-color: var(--flow-cyan);
+  background: rgba(80, 194, 197, 0.08);
+}
+
+.why-devops-matters-panel.agentic .why-devops-matters-item:nth-child(3) {
+  border-left-color: var(--flow-green);
+  background: rgba(69, 169, 107, 0.1);
+}
+
+.why-devops-matters-takeaway {
+  display: grid;
+  align-items: center;
+  margin-top: 18px;
+  padding: 14px 20px;
+  border-left: 5px solid var(--br-orange);
+  background: var(--white);
+}
+
+.why-devops-matters-takeaway blockquote {
   margin: 0;
   padding: 0;
   border: 0;
@@ -5787,11 +6196,16 @@ ul {
 }
 
 @media (max-width: 900px) {
+  .why-devops-matters-slide h1 {
+    font-size: 54px;
+  }
+
   .objective-rail,
   .devops-spectrum,
   .why-now-flow,
   .engineering-chain,
   .old-way-flow,
+  .why-devops-matters-grid,
   .build-contract,
   .approval-sequence,
   .release-chain,
@@ -5828,6 +6242,43 @@ ul {
 
   .old-way-pain ul {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .why-devops-matters-grid {
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .why-devops-matters-panel {
+    min-height: 0;
+    padding: 12px 14px;
+  }
+
+  .why-devops-matters-head div b {
+    font-size: 22px;
+  }
+
+  .why-devops-matters-items {
+    gap: 7px;
+    margin-top: 12px;
+  }
+
+  .why-devops-matters-item {
+    min-height: 40px;
+    padding: 6px 9px;
+  }
+
+  .why-devops-matters-item b {
+    font-size: 12px;
+  }
+
+  .why-devops-matters-takeaway {
+    margin-top: 8px;
+    padding: 11px 13px;
+  }
+
+  .why-devops-matters-takeaway blockquote {
+    font-size: 15px;
   }
 
   .room-checkin,
