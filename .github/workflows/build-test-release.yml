@@ -57,11 +57,11 @@ jobs:
 
       - name: Disable ARsim before packaging
         if: success()
-        run: .\as-cli.exe sim disable --no-clean
+        run: .\as.exe sim disable --no-clean
 
       - name: Create Project Installation package (PIP)
         if: success()
-        run: .\as-cli.exe build pip -o ReleaseCandidate --reboot true --ignore-version --execute-ei true --allow-partitioning false
+        run: .\as.exe build pip -o ReleaseCandidate --reboot true --ignore-version --execute-ei true --allow-partitioning false
 
       - name: Package Release
         if: success()

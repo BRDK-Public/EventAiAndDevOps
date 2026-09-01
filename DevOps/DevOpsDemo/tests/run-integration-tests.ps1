@@ -5,7 +5,7 @@
     project running under ARsim. Requires Automation Studio (+ ARsim) installed.
 
 .DESCRIPTION
-    Drives the built as-cli.exe as a black box: builds the project into ARsim and
+    Drives the bundled as.exe as a black box: builds the project into ARsim and
     starts the simulator, connects over PVI, and exercises the online handlers
     (var read/write, logbook, io) plus a design-time sanity read. Reports PASS/FAIL
     per step and exits non-zero on any failure.
@@ -16,7 +16,7 @@
     docs/testing-strategy.md.
 
 .PARAMETER SkipBuild
-    Reuse the existing bin\Release\as-cli.exe instead of rebuilding it first.
+    Reuse the bundled as.exe instead of rebuilding it first.
 
 .PARAMETER SkipSimBuild
     Assume ARsim is already running (skips 'build sim'); useful for fast iteration.
@@ -38,7 +38,7 @@ param(
 # ------------------------- SETUP -------------------------
 $root = Split-Path -Parent $PSScriptRoot
 $proj = Join-Path $root 'DevOpsDemo.apj'
-$exe  = Join-Path $root 'as-cli.exe'
+$exe  = Join-Path $root 'as.exe'
 $ip   = '127.0.0.1'
 $stoppedState = 2
 $executeState = 6
@@ -109,14 +109,14 @@ function Wait-ArSimRunning {
 }
 
 # Belt-and-suspenders daemon cleanup: after the graceful 'daemon stop', force-kill any
-# as-cli daemon process still bound to this project so repeated runs never pile up daemons
+# A CLI daemon process still bound to this project can make repeated runs pile up daemons
 # on the dev X20CP1686X. Matches only THIS project's daemon (by its spawn command line), leaving
 # daemons for any other project untouched.
 function Stop-LingeringDaemons {
     param([string]$ProjectPath)
     try {
         $needle = [regex]::Escape([System.IO.Path]::GetFileName($ProjectPath))
-        $procs = Get-CimInstance Win32_Process -Filter "Name = 'as-cli.exe'" -ErrorAction SilentlyContinue |
+        $procs = Get-CimInstance Win32_Process -Filter "Name = 'as.exe' OR Name = 'as-cli.exe'" -ErrorAction SilentlyContinue |
             Where-Object { $_.CommandLine -and $_.CommandLine -match 'daemon\s+start' -and $_.CommandLine -match $needle }
         foreach ($p in $procs) {
             Stop-Process -Id $p.ProcessId -Force -ErrorAction SilentlyContinue
@@ -421,9 +421,9 @@ if (-not (Test-Path $proj)) { Write-Error "Test project not found: $proj"; exit 
 Stop-LingeringDaemons -ProjectPath $proj
 if (-not $SkipSimBuild) { Stop-ArSim }
 
-if (-not (Test-Path $exe)) { Write-Error 'as-cli.exe not found; run without -SkipBuild.'; exit 2 }
+if (-not (Test-Path $exe)) { Write-Error 'Bundled as.exe not found in the demo root.'; exit 2 }
 
-Write-Host 'as-cli end-to-end (ARsim) integration tests'
+Write-Host 'as end-to-end (ARsim) integration tests'
 Write-Host '==========================================='
 Write-Host '(the first step starts the daemon; Automation Studio init can take up to ~2 min)' -ForegroundColor DarkGray
 

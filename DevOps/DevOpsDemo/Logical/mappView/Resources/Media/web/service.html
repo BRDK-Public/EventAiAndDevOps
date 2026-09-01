@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=1260, height=720, initial-scale=1">
+	<meta name="theme-color" content="#171b1d">
+	<title>Service and Diagnostics</title>
+	<style>
+		:root {
+			--bg: #171b1d;
+			--panel: rgba(30, 36, 39, 0.95);
+			--panel-raised: #252d30;
+			--line: rgba(193, 204, 207, 0.18);
+			--line-strong: rgba(193, 204, 207, 0.34);
+			--text: #f4f2eb;
+			--muted: #aeb9bb;
+			--faint: #748084;
+			--orange: #ff7a00;
+			--green: #68d391;
+			--green-soft: rgba(104, 211, 145, 0.13);
+			--blue: #75a8ff;
+			--blue-soft: rgba(117, 168, 255, 0.12);
+			--amber: #f0b65b;
+			--amber-soft: rgba(240, 182, 91, 0.13);
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		html,
+		body {
+			width: 1260px;
+			height: 720px;
+			min-width: 1260px;
+			min-height: 720px;
+			margin: 0;
+		}
+
+		body {
+			overflow: hidden;
+			color: var(--text);
+			font-family: "Bahnschrift", "Cascadia Code", Consolas, monospace;
+			background:
+				linear-gradient(135deg, rgba(117, 168, 255, 0.06), transparent 32%),
+				repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 5px),
+				var(--bg);
+		}
+
+		button {
+			border: 0;
+			color: inherit;
+			font: inherit;
+			cursor: pointer;
+		}
+
+		.shell {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			height: 100%;
+			padding: 22px 28px 24px;
+			gap: 14px;
+		}
+
+		.topbar {
+			display: flex;
+			align-items: center;
+			min-height: 58px;
+			gap: 18px;
+			border-bottom: 1px solid var(--line);
+		}
+
+		.brand-mark {
+			display: grid;
+			place-items: center;
+			width: 52px;
+			height: 52px;
+			border: 1px solid rgba(117, 168, 255, 0.62);
+			color: var(--blue);
+			font-size: 13px;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			background: var(--blue-soft);
+		}
+
+		.heading {
+			flex: 1;
+			min-width: 0;
+		}
+
+		.eyebrow,
+		.section-kicker,
+		.summary-label,
+		.unit-code,
+		.unit-status,
+		.action-button,
+		.demo-mark,
+		.checklist-label {
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+		}
+
+		.eyebrow {
+			color: var(--blue);
+			font-size: 10px;
+			font-weight: 700;
+		}
+
+		h1,
+		h2,
+		p {
+			margin: 0;
+		}
+
+		h1 {
+			margin-top: 4px;
+			font-family: "Bahnschrift", "Trebuchet MS", sans-serif;
+			font-size: 25px;
+			font-weight: 600;
+			letter-spacing: 0.02em;
+		}
+
+		.topbar-tools,
+		.panel-actions {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		.demo-mark {
+			display: inline-flex;
+			align-items: center;
+			height: 30px;
+			padding: 0 11px;
+			border: 1px solid rgba(117, 168, 255, 0.4);
+			color: var(--blue);
+			font-size: 9px;
+			font-weight: 700;
+			background: var(--blue-soft);
+		}
+
+		.action-button {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			gap: 7px;
+			height: 34px;
+			padding: 0 12px;
+			color: #151719;
+			background: var(--orange);
+			font-size: 9px;
+			font-weight: 800;
+			transition: background 160ms ease, transform 160ms ease;
+		}
+
+		.action-button:hover {
+			background: #ff9c3d;
+			transform: translateY(-1px);
+		}
+
+		.action-button.secondary {
+			border: 1px solid var(--line-strong);
+			color: var(--muted);
+			background: transparent;
+		}
+
+		.action-button.secondary:hover {
+			color: var(--text);
+			background: rgba(255, 255, 255, 0.08);
+		}
+
+		.summary-grid {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 10px;
+		}
+
+		.summary-item {
+			min-height: 82px;
+			padding: 14px 17px;
+			border: 1px solid var(--line);
+			background: linear-gradient(130deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.018));
+		}
+
+		.summary-item.health {
+			border-top: 2px solid var(--green);
+		}
+
+		.summary-item.due {
+			border-top: 2px solid var(--amber);
+		}
+
+		.summary-item.check {
+			border-top: 2px solid var(--orange);
+		}
+
+		.summary-item.window {
+			border-top: 2px solid var(--blue);
+		}
+
+		.summary-label {
+			color: var(--muted);
+			font-size: 9px;
+			font-weight: 700;
+		}
+
+		.summary-value {
+			display: block;
+			margin-top: 8px;
+			color: var(--text);
+			font-size: 24px;
+			font-weight: 700;
+			line-height: 1;
+		}
+
+		.summary-value.small {
+			font-size: 15px;
+		}
+
+		.workspace {
+			display: grid;
+			grid-template-columns: minmax(0, 1.25fr) minmax(370px, 0.75fr);
+			flex: 1;
+			min-height: 0;
+			gap: 14px;
+		}
+
+		.panel {
+			display: flex;
+			flex-direction: column;
+			min-height: 0;
+			border: 1px solid var(--line);
+			background: var(--panel);
+		}
+
+		.panel-header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			min-height: 52px;
+			padding: 0 17px;
+			border-bottom: 1px solid var(--line);
+		}
+
+		.section-kicker {
+			color: var(--muted);
+			font-size: 10px;
+			font-weight: 700;
+		}
+
+		.panel-meta {
+			color: var(--faint);
+			font-size: 10px;
+		}
+
+		.unit-list {
+			display: grid;
+			flex: 1;
+			min-height: 0;
+			padding: 4px 17px 0;
+		}
+
+		.unit-row {
+			display: grid;
+			grid-template-columns: minmax(170px, 1.4fr) 100px 90px 90px 126px 100px;
+			align-items: center;
+			gap: 12px;
+			min-height: 92px;
+			border-bottom: 1px solid var(--line);
+		}
+
+		.unit-row:last-child {
+			border-bottom: 0;
+		}
+
+		.unit-code {
+			display: block;
+			color: var(--orange);
+			font-size: 9px;
+			font-weight: 800;
+		}
+
+		.unit-name {
+			display: block;
+			margin-top: 7px;
+			color: var(--text);
+			font-family: "Bahnschrift", "Trebuchet MS", sans-serif;
+			font-size: 18px;
+			font-weight: 600;
+		}
+
+		.unit-model {
+			display: block;
+			margin-top: 4px;
+			color: var(--faint);
+			font-size: 9px;
+		}
+
+		.metric-label {
+			display: block;
+			color: var(--faint);
+			font-size: 8px;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.metric-value {
+			display: block;
+			margin-top: 6px;
+			color: var(--muted);
+			font-size: 12px;
+			font-weight: 700;
+		}
+
+		.unit-status {
+			display: inline-flex;
+			width: max-content;
+			align-items: center;
+			gap: 7px;
+			padding: 6px 8px;
+			color: var(--green);
+			background: var(--green-soft);
+			font-size: 8px;
+			font-weight: 800;
+		}
+
+		.unit-status::before {
+			width: 6px;
+			height: 6px;
+			border-radius: 50%;
+			background: currentColor;
+			content: "";
+		}
+
+		.unit-status.attention {
+			color: var(--amber);
+			background: var(--amber-soft);
+		}
+
+		.inspect-button {
+			height: 28px;
+			padding: 0 9px;
+			border: 1px solid var(--line-strong);
+			color: var(--muted);
+			background: transparent;
+			font-size: 8px;
+			font-weight: 800;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.inspect-button:hover {
+			border-color: var(--blue);
+			color: var(--blue);
+		}
+
+		.maintenance-content {
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+			min-height: 0;
+			padding: 17px;
+		}
+
+		.maintenance-heading {
+			display: flex;
+			align-items: baseline;
+			justify-content: space-between;
+		}
+
+		.maintenance-heading strong {
+			font-size: 15px;
+		}
+
+		.maintenance-heading span {
+			color: var(--orange);
+			font-size: 11px;
+			font-weight: 700;
+		}
+
+		.progress-track {
+			height: 8px;
+			margin-top: 11px;
+			background: #101416;
+		}
+
+		.progress-bar {
+			width: 50%;
+			height: 100%;
+			background: linear-gradient(90deg, var(--orange), #ffb04f);
+			transition: width 220ms ease;
+		}
+
+		.checklist {
+			display: grid;
+			gap: 8px;
+			margin-top: 17px;
+		}
+
+		.checklist-item {
+			display: flex;
+			align-items: center;
+			min-height: 35px;
+			padding: 0 10px;
+			border: 1px solid var(--line);
+			background: rgba(255, 255, 255, 0.025);
+		}
+
+		.checklist-item input {
+			width: 15px;
+			height: 15px;
+			margin: 0 10px 0 0;
+			accent-color: var(--orange);
+		}
+
+		.checklist-label {
+			color: var(--muted);
+			font-size: 9px;
+		}
+
+		.log-heading {
+			margin-top: 20px;
+			padding-top: 14px;
+			border-top: 1px solid var(--line);
+			color: var(--muted);
+			font-size: 10px;
+			font-weight: 700;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+		}
+
+		.log-list {
+			display: grid;
+			gap: 9px;
+			margin: 11px 0 0;
+			padding: 0;
+			overflow: hidden;
+			list-style: none;
+		}
+
+		.log-list li {
+			display: grid;
+			grid-template-columns: 76px 1fr;
+			gap: 9px;
+			color: var(--muted);
+			font-size: 9px;
+		}
+
+		.log-list time {
+			color: var(--blue);
+		}
+
+		.footer {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			min-height: 20px;
+			color: var(--faint);
+			font-size: 9px;
+		}
+
+		.footer strong {
+			color: var(--muted);
+			font-weight: 500;
+		}
+
+		@media (max-width: 900px) {
+			html,
+			body {
+				width: 100vw;
+				min-width: 0;
+			}
+
+			.shell {
+				min-width: 760px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<main class="shell" aria-label="Orange juice service and diagnostics">
+		<header class="topbar">
+			<div class="brand-mark" aria-hidden="true">OJ/01</div>
+			<div class="heading">
+				<div class="eyebrow">LINE 01 / ASSET HEALTH</div>
+				<h1>Service and diagnostics</h1>
+			</div>
+			<div class="topbar-tools">
+				<span class="demo-mark">DEMO MODE</span>
+				<button id="service-reset-demo" class="action-button secondary" type="button"><span aria-hidden="true">&#8635;</span> RESET</button>
+			</div>
+		</header>
+
+		<section class="summary-grid" aria-label="Service summary">
+			<article class="summary-item health">
+				<span class="summary-label">Line health</span>
+				<strong id="service-line-health" class="summary-value small">2 / 3 HEALTHY</strong>
+			</article>
+			<article class="summary-item due">
+				<span class="summary-label">Service due</span>
+				<strong id="service-due-count" class="summary-value">1</strong>
+			</article>
+			<article class="summary-item check">
+				<span class="summary-label">Checklist</span>
+				<strong id="service-checklist-summary" class="summary-value small">2 / 4 COMPLETE</strong>
+			</article>
+			<article class="summary-item window">
+				<span class="summary-label">Maintenance window</span>
+				<strong class="summary-value small">14:00 - 14:30</strong>
+			</article>
+		</section>
+
+		<section class="workspace">
+			<section class="panel" aria-labelledby="asset-health-title">
+				<header class="panel-header">
+					<h2 id="asset-health-title" class="section-kicker">Asset health</h2>
+					<div class="panel-actions">
+						<span class="panel-meta">3 monitored units</span>
+						<button id="service-inspect-all" class="action-button" type="button"><span aria-hidden="true">&#10003;</span> INSPECT ALL</button>
+					</div>
+				</header>
+				<div id="service-unit-list" class="unit-list"></div>
+			</section>
+
+			<section class="panel" aria-labelledby="maintenance-title">
+				<header class="panel-header">
+					<h2 id="maintenance-title" class="section-kicker">Maintenance checklist</h2>
+					<span class="panel-meta">Shift A / standard</span>
+				</header>
+				<div class="maintenance-content">
+					<div class="maintenance-heading"><strong>Pre-shift readiness</strong><span id="service-checklist-percent">50%</span></div>
+					<div class="progress-track" role="progressbar" aria-label="Maintenance checklist progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+						<div id="service-checklist-progress" class="progress-bar"></div>
+					</div>
+					<div id="service-checklist" class="checklist">
+						<label class="checklist-item"><input id="service-task-guards" type="checkbox" data-task="guards"><span class="checklist-label">Guards and access points</span></label>
+						<label class="checklist-item"><input id="service-task-lubrication" type="checkbox" data-task="lubrication"><span class="checklist-label">Conveyor lubrication</span></label>
+						<label class="checklist-item"><input id="service-task-pressure" type="checkbox" data-task="pressure"><span class="checklist-label">Filler pressure check</span></label>
+						<label class="checklist-item"><input id="service-task-capper" type="checkbox" data-task="capper"><span class="checklist-label">Capper torque check</span></label>
+					</div>
+					<h2 class="log-heading">Recent service events</h2>
+					<ul id="service-log-list" class="log-list" aria-live="polite"></ul>
+				</div>
+			</section>
+		</section>
+
+		<footer class="footer">
+			<span>SERVICE DESK / <strong>SIMULATION DATASET 01</strong></span>
+			<span id="service-status-message" aria-live="polite">Maintenance data loaded</span>
+		</footer>
+	</main>
+	<script>
+		const storageKey = 'orange-juice-service-demo-v1';
+		const defaultUnits = [
+			{ id: 'conveyor', code: '01 / FEED', name: 'Conveyor', model: 'ACOPOStrak / Drive 01', status: 'HEALTHY', utilization: '98%', temperature: '41 C', vibration: '0.12 g', inspected: 'Today 08:42', due: '12 days' },
+			{ id: 'filler', code: '02 / FILL', name: 'Filler', model: 'Dosing head / Unit 02', status: 'HEALTHY', utilization: '94%', temperature: '38 C', vibration: '0.08 g', inspected: 'Yesterday 15:10', due: '6 days' },
+			{ id: 'capper', code: '03 / CAP', name: 'Capper', model: 'Torque station / Unit 03', status: 'ATTENTION', utilization: '87%', temperature: '46 C', vibration: '0.31 g', inspected: '2 days ago', due: '2 days' }
+		];
+		const defaultTasks = { guards: true, lubrication: true, pressure: false, capper: false };
+		const defaultLogs = [
+			{ time: '08:42', message: 'Conveyor visual inspection recorded' },
+			{ time: '08:15', message: 'Shift A maintenance window opened' },
+			{ time: 'YEST.', message: 'Capper torque trend flagged for review' }
+		];
+		let demoState = loadState();
+
+		function copyUnits() {
+			return defaultUnits.map((unit) => ({ ...unit }));
+		}
+
+		function loadState() {
+			try {
+				const stored = JSON.parse(localStorage.getItem(storageKey));
+				if (!stored || !Array.isArray(stored.units)) return { units: copyUnits(), tasks: { ...defaultTasks }, logs: [...defaultLogs] };
+				return { units: stored.units, tasks: { ...defaultTasks, ...stored.tasks }, logs: Array.isArray(stored.logs) ? stored.logs : [...defaultLogs] };
+			} catch {
+				return { units: copyUnits(), tasks: { ...defaultTasks }, logs: [...defaultLogs] };
+			}
+		}
+
+		function saveState() {
+			localStorage.setItem(storageKey, JSON.stringify(demoState));
+		}
+
+		function renderUnits() {
+			document.querySelector('#service-unit-list').innerHTML = demoState.units.map((unit) => `
+				<article id="service-unit-row-${unit.id}" class="unit-row" data-service-unit="${unit.id}">
+					<div><span class="unit-code">${unit.code}</span><strong class="unit-name">${unit.name}</strong><span class="unit-model">${unit.model}</span></div>
+					<div><span class="metric-label">Status</span><span class="unit-status ${unit.status === 'ATTENTION' ? 'attention' : ''}">${unit.status}</span></div>
+					<div><span class="metric-label">Utilization</span><span class="metric-value">${unit.utilization}</span></div>
+					<div><span class="metric-label">Temp</span><span class="metric-value">${unit.temperature}</span></div>
+					<div><span class="metric-label">Last inspection</span><span class="metric-value">${unit.inspected}</span></div>
+					<div><span class="metric-label">Due in ${unit.due}</span><button id="service-inspect-${unit.id}" class="inspect-button" type="button" data-service-action="inspect" data-service-id="${unit.id}">INSPECT</button></div>
+				</article>
+			`).join('');
+		}
+
+		function renderChecklist() {
+			const tasks = Object.values(demoState.tasks);
+			const complete = tasks.filter(Boolean).length;
+			const percent = Math.round((complete / tasks.length) * 100);
+			document.querySelector('#service-checklist-summary').textContent = `${complete} / ${tasks.length} COMPLETE`;
+			document.querySelector('#service-checklist-percent').textContent = `${percent}%`;
+			document.querySelector('#service-checklist-progress').style.width = `${percent}%`;
+			const progress = document.querySelector('[role="progressbar"]');
+			progress.setAttribute('aria-valuenow', String(percent));
+			Object.entries(demoState.tasks).forEach(([task, checked]) => {
+				document.querySelector(`[data-task="${task}"]`).checked = checked;
+			});
+		}
+
+		function renderLogs() {
+			document.querySelector('#service-log-list').innerHTML = demoState.logs.slice(0, 4).map((log) => `<li><time>${log.time}</time><span>${log.message}</span></li>`).join('');
+		}
+
+		function renderSummary() {
+			const healthy = demoState.units.filter((unit) => unit.status === 'HEALTHY').length;
+			const due = demoState.units.filter((unit) => Number.parseInt(unit.due, 10) <= 2).length;
+			document.querySelector('#service-line-health').textContent = `${healthy} / ${demoState.units.length} HEALTHY`;
+			document.querySelector('#service-due-count').textContent = String(due);
+		}
+
+		function render() {
+			renderUnits();
+			renderChecklist();
+			renderLogs();
+			renderSummary();
+		}
+
+		function inspectUnit(unitId) {
+			const unit = demoState.units.find((candidate) => candidate.id === unitId);
+			if (!unit) return;
+			unit.status = 'HEALTHY';
+			unit.inspected = 'Demo 10:20';
+			unit.due = '30 days';
+			demoState.logs.unshift({ time: '10:20', message: `${unit.name} inspection completed` });
+			document.querySelector('#service-status-message').textContent = `${unit.name} inspection completed`;
+			saveState();
+			render();
+		}
+
+		function inspectAll() {
+			demoState.units.forEach((unit) => {
+				unit.status = 'HEALTHY';
+				unit.inspected = 'Demo 10:20';
+				unit.due = '30 days';
+			});
+			demoState.logs.unshift({ time: '10:20', message: 'Full line inspection completed' });
+			document.querySelector('#service-status-message').textContent = 'Full line inspection completed';
+			saveState();
+			render();
+		}
+
+		function resetDemo() {
+			demoState = { units: copyUnits(), tasks: { ...defaultTasks }, logs: [...defaultLogs] };
+			document.querySelector('#service-status-message').textContent = 'Maintenance data reset';
+			saveState();
+			render();
+		}
+
+		document.querySelector('#service-unit-list').addEventListener('click', (event) => {
+			const button = event.target.closest('[data-service-action="inspect"]');
+			if (button) inspectUnit(button.dataset.serviceId);
+		});
+		document.querySelector('#service-checklist').addEventListener('change', (event) => {
+			const task = event.target.dataset.task;
+			if (!task) return;
+			demoState.tasks[task] = event.target.checked;
+			document.querySelector('#service-status-message').textContent = `${event.target.nextElementSibling.textContent} updated`;
+			saveState();
+			renderChecklist();
+		});
+		document.querySelector('#service-inspect-all').addEventListener('click', inspectAll);
+		document.querySelector('#service-reset-demo').addEventListener('click', resetDemo);
+		render();
+	</script>
+</body>
+</html>

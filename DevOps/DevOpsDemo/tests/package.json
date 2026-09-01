@@ -3,7 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test:hmi": "playwright test --config playwright.config.mjs"
+    "test:hmi": "playwright test --config playwright.config.mjs",
+    "test:hmi:headless": "npm run test:hmi",
+    "test:demo": "playwright test --config playwright.config.mjs --headed"
   },
   "devDependencies": {
     "@playwright/test": "1.62.1"
