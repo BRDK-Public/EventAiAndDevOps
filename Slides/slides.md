@@ -1863,7 +1863,7 @@ class: why-devops-slide dark-slide
 <div class="why-devops-flow" aria-label="Agentic Engineering connected to DevOps">
   <section class="why-devops-panel agentic">
     <div class="why-devops-panel-label">01 · ACCELERATE CREATION</div>
-    <div class="why-devops-panel-title"><mdi-robot-outline /><b>AGENTIC ENGINEERING</b></div>
+    <div class="why-devops-panel-title"><mdi-robot-outline /><b>AGENTS</b></div>
     <ul>
       <li>Generates code faster</li>
       <li>Makes automated tests easier to create</li>
@@ -1906,20 +1906,8 @@ Lars har været inde på dette i starten, men for at gentage kort:
 Agentic Engineering gør at vi kan generere kode hurtigt, skrive automatiske tests hurtigt, lave en idé til en prototype på rekordtid.
 ... Men agenten har brug for "Guardrails" og det er her DevOps kommre ind i billedet med build,test, kontroleret deployment, kvalitetstjek.
 
-AI hjælper os med at lave software hurtigere. DevOps hjælper os med at levere det sikkert.
+AI hjælper os med at lave software hurtigere. DevOps hjælper os med at levere det på en kontrolleret måde.
 
-
-Lars har allerede været inde på Agentic Engineering, men lad os lige koble det til DevOps.
-
-Agentic Engineering hjælper os med at skabe software hurtigere.
-
-Men hurtigere udvikling er ikke det samme som pålidelig levering.
-
-Derfor har vi brug for build, test, kvalitetstjek og kontrolleret deployment omkring ændringerne.
-
-AI hjælper os med at skabe software hurtigere.
-
-DevOps hjælper os med at levere det på en kontrolleret måde.
 -->
 
 ---
@@ -1930,6 +1918,8 @@ class: old-way-slide dark-slide
 <div class="kicker">WORKSHOP 02 · THE OLD WAY</div>
 
 # Why <span class="accent">change?</span>
+
+<div class="old-way-subtitle">Traditional software development in OT</div>
 
 <div class="old-way-flow" aria-label="The old manual delivery flow">
   <div class="old-way-step">
@@ -1959,7 +1949,7 @@ class: old-way-slide dark-slide
   <div class="old-way-step">
     <span class="old-way-number">05</span>
     <mdi-test-tube />
-    <b>RUN TESTS<br>MANUALLY (IF ANY)</b>
+    <b>RUN TESTS<br>(IF ANY)</b>
   </div>
   <div class="old-way-arrow" aria-hidden="true"><mdi-arrow-right /></div>
   <div class="old-way-step">
@@ -1983,6 +1973,7 @@ class: old-way-slide dark-slide
     <li><mdi-test-tube-empty /><span>Missing tests</span></li>
     <li><mdi-undo-variant /><span>Difficult rollbacks</span></li>
     <li><mdi-help-circle-outline /><span>Hard to know what was deployed</span></li>
+    <li><mdi-chart-line-variant /><span>Hard to scale</span></li>
   </ul>
 </div>
 
@@ -2033,7 +2024,7 @@ Vi får ikke 10 gange flere timer til test.
 Vi får ikke 10 gange flere commissioning engineers.
 Derfor bliver vi nødt til at automatisere dele af build-, test- og release-processen.
 Ikke fordi mennesker gør noget forkert.
-Men fordi mennesker ikke skalerer lige så godt som software.
+<b>Men fordi mennesker ikke skalerer lige så godt som software</b>.
 
 Og det er præcis det problem Continuous Integration forsøger at løse.
 
@@ -2146,30 +2137,7 @@ class: devops-tooling dark-slide
 
 <div class="slide-id">31</div>
 
-<!--
-På den forrige slide talte vi om at økonomien ved test og verifikation har ændret sig.
 
-Hvis vi kan producere flere softwareændringer, så bliver vi også nødt til at verificere flere softwareændringer.
-Det er præcis det problem Continuous Integration forsøger at løse.
-
-Når en ændring bliver lavet, stopper arbejdet ikke ved at koden er skrevet.
-Ændringen skal kunne bygges.
-Den skal kunne testes.
-Og den skal kunne verificeres.
-
-Det vigtige er ikke at alle ændringer er perfekte.
-Det vigtige er at vi får feedback mens ændringen stadig er lille.
-Hvis noget går galt efter 5 minutters arbejde, er det nemt at forstå og rette.
-Hvis noget går galt efter 3 ugers udvikling, er det ofte langt dyrere at finde årsagen.
-
-Continuous Integration handler derfor om at flytte feedback så tæt på ændringen som muligt.
-
-Hvis en agent producerer 20 ændringer på en dag, vil I så manuelt gennemgå dem alle sammen?
-Sandsynligvis ikke.
-Derfor bliver automatiseret verifikation så vigtig.
-
-CI skalerer feedback på samme måde som Agentic Engineering skalerer softwareudvikling.
--->
 
 <!-- Comment out CD - slide . It felt a bit too repetitive
 ---
@@ -2240,7 +2208,28 @@ class: where-agentic-fits dark-slide
 <div class="slide-id">32</div>
 -->
 <!--
+På den forrige slide talte vi om at økonomien ved test og verifikation har ændret sig.
 
+Hvis vi kan producere flere softwareændringer, så bliver vi også nødt til at verificere flere softwareændringer.
+Det er præcis det problem Continuous Integration forsøger at løse.
+
+Når en ændring bliver lavet, stopper arbejdet ikke ved at koden er skrevet.
+Ændringen skal kunne bygges.
+Den skal kunne testes.
+Og den skal kunne verificeres.
+
+Det vigtige er ikke at alle ændringer er perfekte.
+Det vigtige er at vi får feedback mens ændringen stadig er lille.
+Hvis noget går galt efter 5 minutters arbejde, er det nemt at forstå og rette.
+Hvis noget går galt efter 3 ugers udvikling, er det ofte langt dyrere at finde årsagen.
+
+Continuous Integration handler derfor om at flytte feedback så tæt på ændringen som muligt.
+
+Hvis en agent producerer 20 ændringer på en dag, vil I så manuelt gennemgå dem alle sammen?
+Sandsynligvis ikke.
+Derfor bliver automatiseret verifikation så vigtig.
+
+CI skalerer feedback på samme måde som Agentic Engineering skalerer softwareudvikling.
 -->
 
 ---
@@ -2463,7 +2452,6 @@ Derfor ser vi ofte CLI'er og API'er.
 De giver adgang til præcis de samme muligheder som GUI.
 Bare på en måde som en pipeline kan forstå.
 
-[CLICK]
 
 Og det leder os til den vigtigste pointe på hele sliden.
 "Hvis et menneske skal klikke på det, kan en pipeline ikke automatisere det."
