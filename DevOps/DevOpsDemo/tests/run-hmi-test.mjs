@@ -65,21 +65,88 @@ async function installDemoPointer(page) {
       .hmi-playwright-demo-focus.is-pulse {
         animation: hmi-playwright-demo-pulse 850ms ease-out;
       }
+      .hmi-playwright-demo-target {
+        position: fixed;
+        top: 0;
+        left: 0;
+        border: 3px solid #45d18a;
+        border-radius: 5px;
+        opacity: 0;
+        box-shadow: 0 0 0 3px rgba(21, 23, 25, 0.85), 0 0 24px rgba(69, 209, 138, 0.95);
+        pointer-events: none;
+      }
+      .hmi-playwright-demo-target.is-proof {
+        animation: hmi-playwright-demo-proof 3_000ms ease-out;
+      }
+      .hmi-playwright-demo-proof {
+        position: fixed;
+        display: grid;
+        width: 330px;
+        padding: 10px 14px 11px;
+        border: 2px solid #45d18a;
+        color: #fff;
+        background: rgba(21, 23, 25, 0.96);
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45), 0 0 18px rgba(69, 209, 138, 0.4);
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity 150ms ease-out, transform 150ms ease-out;
+      }
+      .hmi-playwright-demo-proof.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .hmi-playwright-demo-proof-kicker {
+        color: #45d18a;
+        font: 800 10px/1.2 Bahnschrift, 'Cascadia Code', Consolas, monospace;
+        letter-spacing: 0.14em;
+      }
+      .hmi-playwright-demo-proof-action {
+        margin-top: 5px;
+        font: 800 15px/1.1 Bahnschrift, 'Trebuchet MS', sans-serif;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+      }
+      .hmi-playwright-demo-proof-state {
+        margin-top: 4px;
+        color: #b9c7c9;
+        font: 700 11px/1.2 'Cascadia Code', Consolas, monospace;
+        letter-spacing: 0.06em;
+      }
       @keyframes hmi-playwright-demo-pulse {
         0% { opacity: 1; transform: translate(-50%, -50%) scale(0.3); }
         100% { opacity: 0; transform: translate(-50%, -50%) scale(1.2); }
+      }
+      @keyframes hmi-playwright-demo-proof {
+        0% { opacity: 0; transform: scale(0.96); }
+        18% { opacity: 1; transform: scale(1); }
+        78% { opacity: 1; transform: scale(1); }
+        100% { opacity: 0; transform: scale(1.02); }
       }
     `;
     document.documentElement.append(style);
 
     const overlay = document.createElement('div');
     overlay.id = 'hmi-playwright-demo-overlay';
-    overlay.innerHTML = '<div class="hmi-playwright-demo-focus"></div><div class="hmi-playwright-demo-pointer"></div>';
+    overlay.innerHTML = `
+      <div class="hmi-playwright-demo-focus"></div>
+      <div class="hmi-playwright-demo-target"></div>
+      <div class="hmi-playwright-demo-pointer"></div>
+      <div class="hmi-playwright-demo-proof">
+        <span class="hmi-playwright-demo-proof-kicker">ASSERTION PASSED</span>
+        <strong class="hmi-playwright-demo-proof-action"></strong>
+        <small class="hmi-playwright-demo-proof-state"></small>
+      </div>
+    `;
     document.documentElement.append(overlay);
 
     const pointer = overlay.querySelector('.hmi-playwright-demo-pointer');
     const focus = overlay.querySelector('.hmi-playwright-demo-focus');
+    const target = overlay.querySelector('.hmi-playwright-demo-target');
+    const proof = overlay.querySelector('.hmi-playwright-demo-proof');
+    const proofAction = overlay.querySelector('.hmi-playwright-demo-proof-action');
+    const proofState = overlay.querySelector('.hmi-playwright-demo-proof-state');
     let hideTimer;
+    let proofTimer;
 
     window.__hmiDemoPointer = {
       move(box) {
@@ -99,6 +166,34 @@ async function installDemoPointer(page) {
         focus.classList.remove('is-pulse');
         void focus.offsetWidth;
         focus.classList.add('is-pulse');
+      },
+      assert(box, title, action, result, targetLabel) {
+        const inset = 6;
+        target.style.left = `${box.x - inset}px`;
+        target.style.top = `${box.y - inset}px`;
+        target.style.width = `${box.width + inset * 2}px`;
+        target.style.height = `${box.height + inset * 2}px`;
+        target.classList.remove('is-proof');
+        void target.offsetWidth;
+        target.classList.add('is-proof');
+
+        proof.querySelector('.hmi-playwright-demo-proof-kicker').textContent = title;
+        proofAction.textContent = `${action}  →  ${result}`;
+        proofState.textContent = `${targetLabel} · ${result}`;
+        const proofWidth = 330;
+        const proofHeight = 82;
+        const preferredLeft = box.x + box.width + 18;
+        const left = preferredLeft + proofWidth <= window.innerWidth
+          ? preferredLeft
+          : Math.max(12, box.x - proofWidth - 18);
+        const top = Math.min(Math.max(12, box.y - 8), window.innerHeight - proofHeight - 12);
+        proof.style.left = `${left}px`;
+        proof.style.top = `${top}px`;
+        proof.classList.add('is-visible');
+        clearTimeout(proofTimer);
+        proofTimer = setTimeout(() => {
+          proof.classList.remove('is-visible');
+        }, 4_000);
       }
     };
   });
@@ -109,7 +204,7 @@ async function showDemoAction(page, locator) {
 
   await locator.scrollIntoViewIfNeeded();
   const box = await locator.boundingBox();
-  if (!box) return;
+  if (!box) throw new Error('Demo pointer could not locate the scripted HMI action');
 
   await page.evaluate(targetBox => window.__hmiDemoPointer?.move(targetBox), box);
   await page.waitForTimeout(500);
@@ -124,6 +219,27 @@ async function demoClick(page, locator) {
 async function demoCheck(page, locator) {
   await showDemoAction(page, locator);
   return locator.check();
+}
+
+async function showDemoProof(page, locator, title, action, result, targetLabel) {
+  if (!demoMode) return;
+
+  const box = await locator.boundingBox();
+  if (!box) throw new Error(`Demo proof could not locate ${targetLabel} for ${result}`);
+  await page.evaluate(
+    ({ targetBox, proofTitle, targetAction, targetResult, proofTargetLabel }) => window.__hmiDemoPointer?.assert(
+      targetBox,
+      proofTitle,
+      targetAction,
+      targetResult,
+      proofTargetLabel
+    ),
+    { targetBox: box, proofTitle: title, targetAction: action, targetResult: result, proofTargetLabel: targetLabel }
+  );
+}
+
+async function showDemoAssertion(page, locator, action, expectedState) {
+  await showDemoProof(page, locator, 'ASSERTION PASSED', action, expectedState, 'HMI state display');
 }
 
 const dashboardRoutes = {
@@ -223,7 +339,7 @@ async function restartMainTask() {
   ).toBe('running');
 }
 
-async function expectState(page, expectedState) {
+async function expectState(page, expectedState, action = 'STATE', showProof = true) {
   const stateWidget = page.locator(stateDisplay);
   await expect(stateWidget, 'PackML state display in the HMI header').toBeVisible();
   await expect.poll(
@@ -233,6 +349,7 @@ async function expectState(page, expectedState) {
       timeout: 30_000
     }
   ).toBe(expectedState);
+  if (showProof) await showDemoAssertion(page, stateWidget, action, expectedState);
 }
 
 async function waitForHmi(page) {
@@ -338,13 +455,21 @@ test('HMI production, access, and dashboard flow', async ({ page }, testInfo) =>
         `User changed to: ${user.username}`,
         { timeout: 30_000 }
       );
+      await showDemoProof(
+        page,
+        page.locator(loginMessage),
+        'LOGIN VERIFIED',
+        'LOGIN',
+        user.username.toUpperCase(),
+        'HMI access result'
+      );
       await pauseForDemo(page);
     });
   }
 
   await demoClick(page, page.locator(userMenuButton));
   await expect(page.locator(userConfigFlyout), 'user login flyout').not.toHaveClass(/show/);
-  await expectState(page, 'STATE_STOPPED');
+  await expectState(page, 'STATE_STOPPED', 'STATE', false);
 
   await test.step('reset the production counter and bottle input', async () => {
     await writePlcVariable('productionCycleCount', 0, 'EM_Conveyo');
@@ -356,7 +481,7 @@ test('HMI production, access, and dashboard flow', async ({ page }, testInfo) =>
   await expect(page.locator(stopButton), 'HMI stop button').toBeVisible({ timeout: 30_000 });
 
   await demoClick(page, page.locator(startButton));
-  await expectState(page, 'STATE_EXECUTE');
+  await expectState(page, 'STATE_EXECUTE', 'PLAY / STATE_STOPPED');
   await pauseForDemo(page);
 
   for (let batchNumber = 1; batchNumber <= 10; batchNumber += 1) {
@@ -369,7 +494,7 @@ test('HMI production, access, and dashboard flow', async ({ page }, testInfo) =>
   }
 
   await demoClick(page, page.locator(stopButton));
-  await expectState(page, 'STATE_STOPPED');
+  await expectState(page, 'STATE_STOPPED', 'STOP / STATE_EXECUTE');
   await pauseForDemo(page);
 
   await test.step('navigate to Production and simulate a batch', async () => {
