@@ -5,8 +5,6 @@ const LOOP_DURATION_SECONDS = 9
 const LOOP_DURATION_MS = LOOP_DURATION_SECONDS * 1000
 const BOTTLE_COUNT = 5
 const COUNTER_STEP_MS = LOOP_DURATION_MS / BOTTLE_COUNT
-// cap-appear reaches full opacity at 64%; add a margin so a fading-in cap never counts as capped.
-const CAP_APPLIED_MS = LOOP_DURATION_MS * 0.66
 type InteractiveMode = 'execute' | 'aborted' | 'stopped'
 
 const props = withDefaults(defineProps<{
@@ -26,11 +24,14 @@ const displayCount = ref(props.interactive ? 0 : props.count)
 const rejectedCount = ref(0)
 const bottleRuns = ref<number[]>(Array.from({ length: BOTTLE_COUNT }, () => 0))
 const bottleVisible = ref<boolean[]>(Array.from({ length: BOTTLE_COUNT }, () => true))
+const cappedAtStop = ref<boolean[]>(Array.from({ length: BOTTLE_COUNT }, () => false))
+const conveyorRoot = ref<HTMLElement>()
 // Run clock in ms that only advances while the machine is executing.
 let runElapsedMs = 0
 let runStartTs: number | undefined
-const bottleStartMs = Array.from({ length: BOTTLE_COUNT }, (_, index) => (index * LOOP_DURATION_MS) / BOTTLE_COUNT)
-const bottleDelayMs = ref<number[]>(Array.from({ length: BOTTLE_COUNT }, (_, index) => (index * LOOP_DURATION_MS) / BOTTLE_COUNT))
+const initialBottlePhase = (index: number) => (index * LOOP_DURATION_MS) / BOTTLE_COUNT
+const bottleStartMs = Array.from({ length: BOTTLE_COUNT }, (_, index) => -initialBottlePhase(index))
+const bottleDelayMs = ref<number[]>(Array.from({ length: BOTTLE_COUNT }, (_, index) => -initialBottlePhase(index)))
 let counterTimer: ReturnType<typeof setInterval> | undefined
 
 const currentState = computed(() => props.interactive ? interactiveMode.value : props.state)
@@ -86,11 +87,6 @@ const bottleKey = (bottleIndex: number) => props.interactive
 
 const runClockMs = () => runElapsedMs + (runStartTs === undefined ? 0 : performance.now() - runStartTs)
 
-const isCapped = (bottleIndex: number) => {
-  const phase = runClockMs() - bottleStartMs[bottleIndex - 1]
-  return phase >= 0 && (phase % LOOP_DURATION_MS) >= CAP_APPLIED_MS
-}
-
 const advanceCounter = () => {
   if (!machineIsRunning.value) return
   if (props.interactive) {
@@ -120,6 +116,10 @@ const startCounter = () => {
 
 const emergencyStop = () => {
   if (!canEstop.value) return
+  cappedAtStop.value = Array.from({ length: BOTTLE_COUNT }, (_, index) => {
+    const cap = conveyorRoot.value?.querySelector<HTMLElement>(`[data-bottle-index="${index}"] .bottle-cap`)
+    return cap !== undefined && Number.parseFloat(getComputedStyle(cap).opacity) >= 0.99
+  })
   if (runStartTs !== undefined) {
     runElapsedMs += performance.now() - runStartTs
     runStartTs = undefined
@@ -132,7 +132,7 @@ const emergencyStop = () => {
 const clearMachine = () => {
   if (!canClear.value) return
   for (let index = 0; index < BOTTLE_COUNT; index += 1) {
-    if (!bottleVisible.value[index] || isCapped(index + 1)) continue
+    if (!bottleVisible.value[index] || cappedAtStop.value[index]) continue
     bottleVisible.value[index] = false
     rejectedCount.value += 1
   }
@@ -213,8 +213,9 @@ watch(() => props.interactive, (value) => {
   displayCount.value = value ? 0 : props.count
   rejectedCount.value = 0
   bottleVisible.value = bottleVisible.value.map(() => true)
-  bottleDelayMs.value = bottleDelayMs.value.map((_, index) => (index * LOOP_DURATION_MS) / BOTTLE_COUNT)
-  bottleStartMs.forEach((_, index) => { bottleStartMs[index] = (index * LOOP_DURATION_MS) / BOTTLE_COUNT })
+  cappedAtStop.value = cappedAtStop.value.map(() => false)
+  bottleDelayMs.value = bottleDelayMs.value.map((_, index) => -initialBottlePhase(index))
+  bottleStartMs.forEach((_, index) => { bottleStartMs[index] = -initialBottlePhase(index) })
   runElapsedMs = 0
   runStartTs = value ? performance.now() : undefined
   startCounter()
@@ -222,7 +223,7 @@ watch(() => props.interactive, (value) => {
 </script>
 
 <template>
-  <div class="bottle-conveyor" :class="[stateClass, { compact, interactive }]">
+  <div ref="conveyorRoot" class="bottle-conveyor" :class="[stateClass, { compact, interactive }]">
     <div class="conveyor-header">
       <div class="machine-label">
         <span>LINE / 04</span>
@@ -258,6 +259,7 @@ watch(() => props.interactive, (value) => {
             <div
               v-if="!interactive || bottleVisible[bottleIndex - 1]"
               class="bottle"
+              :data-bottle-index="bottleIndex - 1"
               :style="bottleStyle(bottleIndex)"
               @animationiteration="handleBottleIteration"
             >
@@ -503,6 +505,7 @@ watch(() => props.interactive, (value) => {
   position: absolute;
   bottom: 0;
   left: 0;
+  visibility: hidden;
   --bottle-half-width: 11px;
   --bottle-infeed: 30px;
   width: 21px;
@@ -512,7 +515,6 @@ watch(() => props.interactive, (value) => {
   background: rgba(255, 255, 255, 0.06);
   animation: bottle-flow 9s linear infinite;
   animation-delay: var(--bottle-delay);
-  animation-fill-mode: backwards;
   animation-play-state: paused;
 }
 
@@ -805,10 +807,10 @@ watch(() => props.interactive, (value) => {
 }
 
 @keyframes bottle-flow {
-  0%, 10% { left: calc(0px - var(--bottle-infeed)); }
+  0%, 10% { visibility: visible; left: calc(0px - var(--bottle-infeed)); }
   22%, 39% { left: calc(25% - var(--bottle-half-width)); }
   58%, 69% { left: calc(75% - var(--bottle-half-width)); }
-  100% { left: calc(100% + var(--bottle-half-width)); }
+  100% { visibility: visible; left: calc(100% + var(--bottle-half-width)); }
 }
 
 @keyframes liquid-fill {
