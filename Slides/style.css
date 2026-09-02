@@ -4139,6 +4139,12 @@ ul {
   margin-top: 34px;
 }
 
+.old-way-subtitle {
+  margin-top: 8px;
+  color: #bdc5ca;
+  font: 500 20px/1.1 'IBM Plex Sans', sans-serif;
+}
+
 .old-way-step {
   display: grid;
   flex: 1 1 0;
@@ -4218,7 +4224,7 @@ ul {
 
 .old-way-pain ul {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 10px;
   margin: 0;
   padding: 0;
