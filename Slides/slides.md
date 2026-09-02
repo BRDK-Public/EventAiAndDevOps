@@ -101,16 +101,16 @@ layout: cover
 
 <!--
 Introduktion af os selv.
-Introduktion af vores arbejde med AI over de seneste 2 år og hvor vi er nu.
+Vi har arbejdet med AI de seneste 2 år, hvor vi er nu.
 
 Vi har valgt at lave et event med både AI og DevOps fordi vi <b>ser mange synergier.</b> 
-AI tilbyder et helt nyt niveau af produktivitet mens DevOps sikrer kvaliteten. De to ting går hånd i hånd.
+AI tilbyder et helt nyt niveau af produktivitet mens DevOps sikrer kvaliteten. De to ting går hånd i hånd i vores øjne.
 
 Vi fornemmer også at både AI og DevOps er emner der deler vandende. <b>AI er overalt</b>. Det er facinerende hvad det kan bruges til. Der er meget hype og det er helt naturligt at have <b>en sund skepsis</b>. For det er jo trods alt ikke magi!
 
-DevOps introducerer <b>en masse regler og struktur</b>. Nogen ser det som religion, andre som rigide processer der <b>dræber enhver form  for kreativitet og produktivit.</b>
+DevOps introducerer <b>en masse regler og struktur</b>. Nogen ser det som religion, mens andre ser dem som rigide processer der <b>dræber enhver form  for kreativitet og produktivit.</b>
 
-Med konceptet Agentic Engineering vil vi forhåbentligt <b>vise det bedste af begge verdener!</b> 
+Med konceptet Agentic Engineering vil vi forene dem og forhåbentligt <b>vise det bedste af begge verdener!</b> 
 -->
 
 ---
@@ -157,12 +157,12 @@ class: agenda-slide dark-slide
 <!--
 Pressentation af Agendaen. 
 
-Først en overfladisk gennemgang af AE og DevOps. 
+Først en overfladisk gennemgang af AI og DevOps. 
 Det er ikke alle her der kender koncepterne.
 
 Derefter en mere dybtegående session med Agentic Engineering:
 Hvordan kan vi helt nøjagtigt arbejde med AI i den mere industrielle verden hvor systemerne historisk set har været mere lukkede og propreitære?
-Det mener vi at vi netop nu har løst på B&R's platform.
+Det mener vi at vi er på vej til at løse på B&R's platform.
 
 
 Så har Mads en session om DevOps:
@@ -204,28 +204,33 @@ class: light-grid
 <div class="slide-id">03</div>
 
 <!--
+
 <b>Jeg har selv været til mange AI-foredrag og konferencer.</b> 
 Man kommer tit hjem med en følelse af at være totalt bagud og at alle andre har knækket koden til success med AI.<br><br> 
+
+[CLICK]
 <b>Sådan skal det selvfølgeligt ikke være i dag!</b>
 
-DET VIL VI IKKE:
+VI VIL IKKE SIGE:
 
-<b>Vi har ingen standardløsning</b> AI og DevOps er komplekst og skal skrædersyes til enhver usecase! 
+<b>At vi har en standardløsning der løser alle jeres problemer</b> AI og DevOps er komplekst og skal skrædersyes til enhver usecase og platform! 
 
-<b>Vi vil heller ikke sælge jer noget.</b> Alt hvad vi kommer til at vise jer i dag, kommer uden nogen regning. Det er en workshop, ikke nogen salgspitch!
+<b>Vi vil heller ikke sælge jer et produkt.</b> Alt hvad vi kommer til at vise jer i dag, kommer uden nogen regning. Det er en workshop, ikke nogen salgspitch!
 
-<b>Vi vil ikke snakke om fremtiden og alt hvad man måske kan lige om lidt</b>  
+<b>Vi vil ikke snakke om AGI, scify og alt hvad man måske kan lige om lidt</b>  
 
-DET VIL VI ISTEDET:
+[CLICK]
+VI VIL ISTEDET SNAKKE OM:
 
-AI i automationsbranchen er <b>relativt nyt</b>, men allerede nu er der store fordele at hente! 
+AI i automationsbranchen er <b>relativt nyt</b>, og vi vil gerne sikre at i har de værktøjer I har brug for! 
 
 Vi vil gerne informere vores kunder og samarbejdspartnere omkring <b>vores strategi og retning.</b><br>
 
-Hvis der ikke er en standardløsning hvad er der så af muligheder på B&R platformen og hvordan kommer vi igang.
+Hvis der ikke der findes en standardløsning, hvad er der så af muligheder på B&R platformen og <b>hvordan kommer vi igang?</b>.
 
+[CLICK]
 
-Have nogle gode dialoger / diskutioner med jer. Stil endelig spørgsmål eller giv feedback undervejs
+Vi vil gerne have nogle gode dialoger / diskutioner med jer. Stil endelig spørgsmål eller giv feedback undervejs
 
 Transition: Lad os se på, hvordan DevOps og Agentic Engineering supplerer hinanden.
 -->
@@ -290,16 +295,20 @@ class: dark-slide loop-slide
 <div class="slide-id">04</div>
 
 <!--
+[CLICK]
 <b>DevOps er en fremgangsmåde med forskellige stadier</b> ens software skal igennem. Hvert stadie sætter nogle krav der sikrer at næste stadie bliver en success. De skal enten <b> manuelt udføres eller manuelt bringes videre</b>. Hvis kravene ikke opfyldes grundigt nok, har workflowet ingen reel værdi. Derfor kan det for nogle godt virke rigidt og tungt - selvom det er en nødvendighed for at levere høj kvalitet.
+
+[CLICK]
 
 <b>Ved at bringe AI-Agenter ind i din DevOps process er der en masse fordele. AgentOps</b>
 
-0. DevOps bliver et framework til Agentic Engineering der sikrer kvalitet og forudsiglighed. (AI er ligesom mennesker ikke deterministiske)
-1. Agenterne overholder ALTID deres instruktioner i modsætning til mennesker. 
-2. Dele af DevOps kan automaticeres og spare tid.
-3. Viden er gemt i workflows og ikke i individer
-4. Vi har stadig fuld kontrol over processen ved at integrere quality gates, men også ved at justere og finetune sine guardrails og workflows
+0. DevOps bliver et framework til AI der sikrer kvalitet og forudsiglighed. (AI er ligesom mennesker ikke deterministiske). Det er vigtigt, for vi har aldrig kunnet lave en fejl hurtigere end vi kan nu.
+1. Agenterne overholder ALTID deres instruktioner i modsætning til mennesker. De er hverken religiøse eller brokker sig over at det er rigidt!
+2. Store dele af DevOps processerne kan automaticeres og spare tid.
+3. Viden bliver gemt i workflows og ikke i individer
+4. Vi kan stadig have fuld kontrol over processen hvis vi integrerer det smart. Det er et ultimativt krav i OT!
 
+[CLICK]
 <b>DevOps bliver altså selve frameworket for AI <br> 
 og AI gør frameworket super effektivt!</b>
 
@@ -343,22 +352,33 @@ class: dark-slide cycletime-slide
 <div class="slide-id">05</div>
 
 <!--
-Lad os prøve at kigge på hvordan investeringen af tid kunne se ud:
+Lad os prøve at kigge på hvordan investeringen af en persons tid kunne se ud under en udviklingsfase:
 
 [CLICK]
-<b>Øverst: Uden DevOps:</b> Man springer hurtigt over plan og design, bygger længe da specifikationerne ændrer sig konstant, og der er ingen test. Regningen kommer efter release som bugfix. Man ved aldrig hvornår man rammer et acceptabelt stadie og prisen er derfor uforudsiglig!
+<b>Øverst: Uden DevOps:</b> Man springer hurtigt over plan og design. Vi går i gang fra dag ét. Det er pisse spændende det her! 
+
+Vi bygger længe da specifikationerne ændrer sig konstant og softwaren er blevet kompleks. Måske skulle vi have grebet det anderledes an? Men nu er det for sent! 
+
+Tiden er brugt og deadline er kommet, vi deployer hvad vi har. 
+
+Regningen kommer efter release som bugfix. Man ved aldrig hvornår man rammer et acceptabelt stadie og prisen er derfor uforudsiglig!
 
 [CLICK]
-<b>I midten: Med DevOps:</b> Det er udfra ovenstående at DevOps opstår. Ordentlig planlægning og design koster tid, men er hele fundamentet for udvikling og test af god kvalitet. Bugfix minimeres, og der er allerede vundet tid, samt den endelige kost er mere forudsigelig.
+<b>I midten: Med DevOps:</b> Det er udfra ovenstående at DevOps er en nødvendighed. Men it OT er det ofte for dyrt at implementere til små / mellemstore oneoff projekter. Og alle projekter starter jo som oneoff projekter indtil man bygger maskine nummer 2 :-).   
+
+Ordentlig planlægning og design koster tid, men er hele fundamentet for udvikling og test af god kvalitet. Bugfix minimeres, og der er allerede vundet tid, samt den endelige kost er mere forudsigelig. Det er tit bare svært at argumentere for den ekstra investering up-front
 
 [CLICK]
-<b>Nederst: AgentOps:</b> Investeringen af tid flytter frem i processen. Agenterne har ingen hukommelse eller indforstået viden om "best practise". Alt skal defineres meget eksplicit for at undgå misforståelser. Build bliver til en brøkdel. Måske endda 0 fordi processen ikke blokerer for at man kan lave noget andet imens. 
-Review og release-beslutning ligger stadig hos os. De bliver faktisk vigtigere, fordi de nu er det, der bestemmer kvaliteten.
+<b>Nederst: AgentOps:</b> Investeringen af tid flytter endnu frem i processen. Agenterne har ingen hukommelse eller indforstået viden om "best practise". Alt skal defineres meget eksplicit for at undgå misforståelser. Workflows og instruktioner skal være tip top og finpudsede. 
 
-<b>Den frigjorte tid er ikke nødvendigvis en gratis gevinst</b> - den kan investeres i bedre kontekst, bedre tests og bedre beslutninger.
+Tilgengæld bliver udviklingen til en brøkdel. Måske endda 0 fordi processen ikke blokerer for at man kan lave noget andet imens. 
+Review og release-beslutning ligger stadig hos os. 
+
+<b>Den frigjorte tid er ikke nødvendigvis en gratis gevinst</b> - den kan investeres i bedre kontekst, bedre tests og bedre styring og beslutninger.
+
 For første gang i lang tid, bliver det muligt at øge kvaliteten markant uden at investere i markant flere ingeniører.
 
-Transition: For at forstå arkitekturen skal vi skelne mellem model, agent og harness.
+Transition: Hvad er forskellen på ChatGPT og en OT- Super Agent?
 -->
 
 ---
@@ -412,36 +432,40 @@ class: stack-slide dark-slide
 Hvad er en Agent?
 
 Består overordnet af to uafhængige komponenter. 
-Den består selvfølgelig af en LLM aka. Large Language Model aka. Sprogmodel eller generativ AI.
+En LLM (sprogmodel) og et Harness.
+
 Mange ser LLM'en som den magiske komponent der gør hele forskellen. Det er den der løber med al opmærksomheden, men det miljø den arbejder i har en mindst ligeså stor betydning for resultatet.
 
 LLM'erne ændrer sig konstant. I næste uge er det måske en helt anden model, der enten er bedst eller billigst.
-Det er derfor uafhangige komponenter hvor vi (for det meste) ingen indflydelse har på selve modellen, men derimod stor indflydelse på det harness hvor den bliver anvendt.
 
-Modellen alene har ingen adgang til Automation Studio, et project, en PLC eller en logbook. Den kan kun arbejde med den context, den får og vurdere hvordan den vil anvende de tools, som dens harness stiller til rådighed. 
+LLM'en og Harnesset er derfor uafhangige komponenter hvor vi (for det meste) ingen indflydelse har på selve modellen, men derimod stor indflydelse på det harness hvor den bliver anvendt.
+
+Modellen alene har ingen adgang til Automation Studio, et project, en PLC eller en simulator. Den kan kun arbejde med den context den får, og vurdere hvordan den vil anvende de tools, som dens harness stiller til rådighed. 
 
 Agenten opstår, når modellen kan vælge et tool, kalde det, se resultatet og beslutte næste trin. Harnesset er miljøet rundt om agenten: 
 
 [CLICK]
-Instructions: Agent.md. Hvad skal den kunne. Hvad skal den overholde?</b><br>
+Instructions: Agent.md. Skills. Hvad skal den kunne. Hvad skal den gøre?<br>
 [CLICK]
-Context: Hvad er det vi arbejder i?</b><br>
+Context: Hvad er det vi arbejder i?<br>
 [CLICK]
-Tools: Hvad skal agenten have adgang til i verden udenfor?</b><br>
+Tools: Hvad skal agenten have adgang til i verden udenfor? eller lokalt på din PC?<br>
 [CLICK]
-Memory: Da en LLM er fuldstændig stateless skal der være noget til at holde på historikken. Måske også dele det på tværs af sessioner.</b><br>
+Memory: Da en LLM er fuldstændig stateless skal der være noget til at holde på historikken. Måske også dele det på tværs af sessioner.<br>
 [CLICK]
-Permissions: Hvad må agenten gøre på egen hånd?</b><br>
+Permissions: Hvad må agenten gøre på egen hånd? Hvilke tools må den bruge?<br>
 [CLICK]
-Logs: Logger hvad agenten har gjort. Hvilke tools den har kaldt. Har den spawnet subagenter?</b><br>
+Logs: Logger hvad agenten har gjort. Hvilke tools den har kaldt. Har den spawnet subagenter? Hvad svar fik den fra dem?<br>
 [CLICK]
-Feedback: Agenten skal spørge dig til råds. Hvad mener du? Skal jeg vælge X eller Y?</b><br>
+Feedback: Agenten kan spørge dig til råds (Agenten prompter dig). Hvad mener du? Skal jeg vælge X eller Y?<br>
 [CLICK]
-Approvals: Du skal give agenten tilladelser eller adgang.</b><br>
+Approvals: Du skal give agenten tilladelser eller adgang til at bruge din PC. Må jeg slette dit C-drev?<br>
 
+[CLICK]
 En agent er en LLM i et Harness!
 
-Transition: Hvorfor er dette sket hurtigere i IT end i OT?
+[CLICK]
+Transition: Hvorfor er dette sket hurtigere i IT end i OT? Hvorfor findes der ikke agenter der kan lave AS ligeså godt som de kan lave websites? 
 -->
 
 ---
@@ -487,12 +511,13 @@ class: process-slide
 <div class="slide-id">07</div>
 
 <!--
-I mange år har "nogen" snakket om at IT og OT ville flyde sammen. Det har også tildels været rigtigt. Mange af de værktøjer der bruges i IT er nu også tilgængelige for OT. 
+I mange år har "nogen" snakket om at IT og OT ville flyde sammen. Det har også tildels været rigtigt. Mange af de værktøjer der bruges i IT er nu også tilgængelige for OT. (Vi arbejder for AS i VS-Code og Docker. Vi ved godt vi ikke er der helt endnu) 
 
-<b>Men siden AI er begyndt at blive en del af stacken, er IT begyndt at "stikke af" igen.</b>
+<b>Men siden AI er begyndt at blive en del af stacken, er IT virkeligt begyndt at "stikke af" igen.</b>
 
-Det er ikke fordi vi ikke besider de samme kompetencer i OT, men fordi IT og hele <B>opensource</b> tankegangen bare går rigtig stærkt.
-<b>LLM'erne er allerede trænet på uendeligt mange IT projekter</b>, mens OT næsten altid er closed source. Både hvad angåer selve automationsplatformen, men også det domæne I arbejder med.
+Det er ikke fordi vi ikke besider de samme kompetencer i OT, men fordi IT og hele <b>opensource</b> tankegangen bare går rigtig stærkt.
+
+<b>LLM'erne er allerede trænet på uendeligt mange IT projekter</b>, mens OT næsten altid er closed source. Både hvad angåer selve automationsplatformen, men også det domæne I arbejder med. Hvordan virker en støbemaskine eller en trykmaskine?
 
 IT har allerede værktøjer og kontekst som en naturlig del af udviklingsmiljøet: Versionsstyring, APIs, CLIs og diagnostics. Modeller og agenter kan derfor hurtigt kobles på et eksisterende feedback-loop.
 
@@ -500,9 +525,10 @@ IT har allerede værktøjer og kontekst som en naturlig del af udviklingsmiljøe
 
 I OT skal vi i højere grad selv udvikle de tilsvarende værktøjer og den kontekst, som AI kan arbejde med. OT har desuden fysiske konsekvenser, lange livscyklusser, hardware- og versionsafhængigheder, motion, safety og mindre standardiseret feedback. 
 
-<b>Derfor er opgaven ikke kun at få AI ind i OT, men ligesåmeget at gøre OT tilgængelig for AI.</b>
+[CLICK]
+<b>Derfor er opgaven ikke at få AI ind i OT, men at gøre OT tilgængelig for AI.</b>
 
-Transition: Det vigtigste hul er forskellen mellem at generere kode og at verificere engineering.
+Transition: Det største gap er forskellen mellem at generere kode og at verificere koden.
 -->
 
 ---
@@ -601,7 +627,7 @@ Vi kan ikke konkure med IT. Vi må indordne os. Vi kan ikke træne vores egne mo
 
 [CLICK]4. <b>Vi skal levere de værktøjer der er nødvendige for at kunne lukke feedback-loopet på research, debugging, test og deployment. B&R</b>
 
-[CLICK]5. <b>Vi skal definere nogle regler (guardrails). F.eks: altid opdater pkg-filen, Unused vars etc. B&R + OEM   </b>
+[CLICK]5. <b>Vi skal definere nogle retningslinjer (guardrails) for hvordan agenten må og kan arbejde i et AS projekt. F.eks: altid opdater pkg-filen, tilføje filer til textsystemet etc.  B&R + OEM   </b>
 
 
 
@@ -670,7 +696,7 @@ Heldigvis:
 
 <b>Modellen risikerer at være forældet før release, </b>
 
-og et <b>overcomplete træningssæt</b> kan give modellen mere viden end den enkelte kunde har brug for og ende med hallucinationer. 
+og et <b>overcomplete træningssæt</b> kan give modellen mere viden end den enkelte kunde har brug for og ende med hallucinationer. Hvad hvis jeg kun bruger X20? 
 
 Oven i det kommer <b>løbende fine-tuning, evaluering og vedligeholdelse.</b> 
 
@@ -684,6 +710,7 @@ Hvad gør vi så?
 [CLICK]
 Vores platform er allerede åben og tekstbaseret. <b>Derfor kan vi skabe mere varig værdi med context engineering og harness engineering med de modeller og harnesses der allerede findes og kommer i fremtiden:</b> 
 
+[CLICK]
 B&R skal eje broen / integrationen og domænegrænsen, ikke alle lag i AI-stacken. Så kan vi tage den bedste nye teknologi i brug, uden at kunden skal købe ind i et lukket og forældet B&R-økosystem.
 
 Transition: Det er den retning, vi nu bygger videre på, og som har åbnet muligheden for, at vi her i danmark f.eks kan bidrage med de integrationer der skal til.
@@ -745,7 +772,8 @@ Hvorfor er det interressant? Hvorfor skal I investere jeres tid i AE?
 
 Jeg startede med at sige, at AI foredrag næsten altid lover guld og grønne skove og at det her skulle være anderledes??. Jeg beklager hvis det ikke er lykkedes indtil videre.
 
-Vi vil ikke garantere success. Vi vil garantere at værktøjerne til success er der. Det er en stor udgift at ændre den måde man arbejder på, men udgiften ved at lade værre kan være markant størrer! 
+[CLICK]
+Vi vil ikke garantere success. Vi vil fjerne de barrierer der kan stå i vejen for jeres success med AI og DevOps. 
 
 Transition: Slut med intro.
 -->
@@ -861,12 +889,13 @@ class: use-case-slide dark-slide
 <!--
 Lad os prøve at kigge på et konkret eksempel, som resten af workshoppen skal besvare.
 
-Feature request: Når conveyor-aksen fejler, skal maskinen stoppe kontrolleret. Clear skal rydde alle flasker, der endnu ikke er cappet - uanset om de er tomme eller fyldte - og de tæller som reject. Counteren beholder sin værdi, og batchen fortsætter fra samme tal ved start, indtil de 100 flasker er færdige.
+<b>Feature request:</b> Når conveyor-aksen fejler, skal maskinen stoppe kontrolleret. Clear skal rydde alle flasker, der endnu ikke er cappet - uanset om de er tomme eller fyldte - og de tæller som reject. Counteren beholder sin værdi, og batchen fortsætter fra samme tal ved start, indtil de 100 flasker er færdige.
 
-Vis fejlen og det ønskede resultat, men forklar ikke løsningen endnu. Stil i stedet workshop-spørgsmålet: Hvordan kan vi delegere implementeringen til en agent, uden at agenten samtidig bliver specifikation, tester og godkender?
+Vis fejlen og det ønskede resultat, men forklar ikke løsningen endnu. Stil i stedet workshop-spørgsmålet: <b>Hvordan kan vi uddelegere implementeringen til en agent, uden at agenten samtidig bliver specifikation, tester og godkender?</b>
 
 Resten af workshoppen bygger svaret: MCP leverer viden, AS CLI udfører og observerer, skills og guardrails styrer arbejdet, tests leverer evidens, og mennesker samt gates afgør, om ændringen må fortsætte.
 
+[CLICK]
 Transition: For at det skal kunne lade sig gøre, skal agenten have en forbindelse til Automation Studio, Automation runtime, og domæneviden, der kan lukke feedback-loopet.
 -->
 
@@ -931,7 +960,7 @@ class: bridge-slide dark-slide
 <div class="slide-id">13</div>
 
 <!--
-Så hvad kan vi tilbyde for at løse det problem?
+Så hvad kan vi tilbyde for at svare på spørgsmålet?
 
 Hvis man går ind på linkedin eller åbner vores hjemmeside, så vil man se denne marketingskampagne for: Automation Studio Agentic Bridge. Der er flere der har kontaktet mig og spurgt ind til hvad det er. Det har i forhåbentlig en ide om nu, men selvom det ikke er helt endeligt defineret eller released (AS6.9), så lad os lige gennemgå det.
 
@@ -1299,7 +1328,7 @@ Der er mange usecases hvor vi har sparet enormt meget tid med sådan et værktø
 
 transition: Det er hvad man kan med den rette domæneviden. Men hvad hvis vi rent faktisk skal løse noget på en maskine?
 
-
+<b>Hvis pause så NU!</b>
 -->
 
 ---
