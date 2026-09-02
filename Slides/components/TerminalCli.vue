@@ -193,23 +193,30 @@ Run 'as help <command> [subcommand...]' for details on a specific command.`
 
 const commands: TerminalCommand[] = [
   { time: '09:40:59', command: 'as --help', result: helpOutput, multiline: true },
-  { time: '09:41:02', command: 'as sim enable', result: 'SIMULATION ENABLED · ARSIM READY' },
-  { time: '09:41:18', command: 'as build sim --filter errors,warnings', result: 'success=true · diagnostics: 0 errors, 5 warnings' },
+  { time: '09:41:02', command: 'as project status', result: 'name=DevOpsDemo · config=Config1 · cpu=X20CP1686X' },
+  { time: '09:41:09', command: 'as sim enable', result: 'simulation=enabled · cpu=X20CP1686X' },
+  { time: '09:41:18', command: 'as build sim', result: 'success=true · 0 errors · 5 warnings · installed to ARsim' },
   { time: '09:41:29', command: 'as plc connect --ip 127.0.0.1', result: 'connected=true · target=127.0.0.1' },
-  { time: '09:41:46', command: 'as var read counter', result: 'name=counter · connected=true · value=17 · typeName=UDINT' },
-  { time: '09:42:05', command: 'as var write em.cmd.clear --value true', result: 'name=em.cmd.clear · written=true · value=true' },
+  { time: '09:41:46', command: 'as var read gProductionCount --task Cyclic', result: 'name=gProductionCount · value=17 · typeName=UDINT' },
+  { time: '09:42:05', command: 'as var write gCmdClear --task Cyclic --value 1', result: 'name=gCmdClear · written=true · value=1' },
   {
     time: '09:42:21',
-    command: 'as logbook read --count 20',
-    result: 'logbook=arlogsys · entries=3 · info + error',
+    command: 'as logbook read --count 20 --level error',
+    result: 'logbook=$arlogsys · entries=3',
     logMessages: [
       { dateTime: '09:41:48', level: 'INFO', errorText: 'download to ArSim' },
       { dateTime: '09:41:52', level: 'INFO', errorText: 'Opcua server ready' },
       { dateTime: '09:42:03', level: 'ERROR', errorText: 'MpAxis gAxisConveyor · # -1067378809 [6023]: Voltage sag at controller enable input' },
     ],
   },
-  { time: '09:42:37', command: 'as build pip --output ./pip', result: 'PIP CREATED · ./pip' },
+  { time: '09:42:37', command: 'as build pip', result: 'pip created · ReleaseCandidate/' },
 ]
+
+// Section headings in the help text (PROJECT, BUILD & RUN, ...) are highlighted.
+const helpLines = helpOutput.split('\n').map(text => ({
+  text,
+  category: /^ {2}[A-Z][A-Z &()]*$/.test(text),
+}))
 
 const { $clicks } = useSlideContext()
 const currentStep = computed(() => Math.min(Math.max($clicks.value - 1, -1), commands.length - 1))
@@ -271,7 +278,12 @@ const visibleCommands = computed(() => commands
               </tbody>
             </table>
           </div>
-          <pre v-else-if="item.entry.multiline" class="help-output">{{ item.entry.result }}</pre>
+          <pre v-else-if="item.entry.multiline" class="help-output"><span
+            v-for="(line, lineIndex) in helpLines"
+            :key="lineIndex"
+            :class="{ 'help-category': line.category }"
+          >{{ line.text }}
+</span></pre>
           <b v-else>{{ item.entry.result }}</b>
         </div>
       </div>
@@ -360,6 +372,11 @@ const visibleCommands = computed(() => commands
   white-space: pre-wrap;
   color: #aeb6bb;
   font: 500 6px/1.2 'IBM Plex Mono', monospace;
+}
+
+.help-category {
+  color: #ff7a00;
+  font-weight: 700;
 }
 
 .logbook-output table {

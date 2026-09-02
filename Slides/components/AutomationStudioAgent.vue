@@ -34,8 +34,8 @@ const steps = [
     id: 'firmware-notes',
     status: 'RESEARCHING',
     category: 'research',
-    label: 'FIRMWARE-RELEASE-NOTES MCP',
-    command: 'FIRMWARE-RELEASE-NOTES MCP',
+    label: 'GITHUB MCP',
+    command: 'GITHUB MCP',
     detail: 'version constraints',
     output: 'release note matched',
   },
@@ -43,8 +43,8 @@ const steps = [
     id: 'as-copilot',
     status: 'RESEARCHING',
     category: 'research',
-    label: 'AS-COPILOT MCP',
-    command: 'AS-COPILOT MCP',
+    label: 'B&R MCP (OFFICIAL)',
+    command: 'B&R MCP (OFFICIAL)',
     detail: 'cloud agent + project guidance',
     output: 'cloud guidance loaded',
   },
@@ -58,15 +58,6 @@ const steps = [
     output: 'source read · code written',
   },
   {
-    id: 'build',
-    status: 'TESTING',
-    category: 'runtime',
-    label: 'BUILD',
-    command: 'as build',
-    detail: 'target + diagnostics',
-    output: '0 errors · 5 warnings',
-  },
-  {
     id: 'simulate',
     status: 'TESTING',
     category: 'runtime',
@@ -74,6 +65,15 @@ const steps = [
     command: 'as sim enable',
     detail: 'controlled runtime',
     output: 'ARSim running',
+  },
+  {
+    id: 'build',
+    status: 'TESTING',
+    category: 'runtime',
+    label: 'BUILD & TRANSFER',
+    command: 'as build & transer',
+    detail: 'target + diagnostics',
+    output: '0 errors · 5 warnings',
   },
   {
     id: 'read-pv',
@@ -109,8 +109,8 @@ const connections: Connection[] = [
   { id: 'firmware-notes', x1: 97, y1: 218, x2: 589, y2: 52 },
   { id: 'as-copilot', x1: 97, y1: 218, x2: 767, y2: 52 },
   { id: 'editor', x1: 97, y1: 218, x2: 306, y2: 201 },
-  { id: 'build', x1: 97, y1: 218, x2: 128, y2: 379 },
-  { id: 'simulate', x1: 97, y1: 218, x2: 376, y2: 379 },
+  { id: 'simulate', x1: 97, y1: 218, x2: 128, y2: 379 },
+  { id: 'build', x1: 97, y1: 218, x2: 376, y2: 379 },
   { id: 'read-pv', x1: 97, y1: 218, x2: 624, y2: 379 },
   { id: 'read-logbook', x1: 97, y1: 218, x2: 873, y2: 379 },
 ]
@@ -229,6 +229,10 @@ const updateConnections = () => {
       y: center.y + deltaY * scale,
     }
   }
+  const cornerPoint = (box: Box, toward: Point, edge: 'top' | 'bottom'): Point => ({
+    x: Math.abs(box.left - toward.x) <= Math.abs(box.right - toward.x) ? box.left : box.right,
+    y: edge === 'top' ? box.top : box.bottom,
+  })
   const agentBox = toViewBoxBox(agent)
   const agentCenter = centerOf(agentBox)
   connectorPoints.value = connections.map((connection) => {
@@ -239,7 +243,12 @@ const updateConnections = () => {
     const targetBox = toViewBoxBox(target)
     const targetCenter = centerOf(targetBox)
     const source = circleEdgePoint(agentBox, targetCenter)
-    const endpoint = edgePoint(targetBox, agentCenter)
+    const category = steps.find(step => step.id === connection.id)?.category
+    const endpoint = category === 'research'
+      ? cornerPoint(targetBox, agentCenter, 'bottom')
+      : category === 'runtime'
+        ? cornerPoint(targetBox, agentCenter, 'top')
+        : edgePoint(targetBox, agentCenter)
     return { id: connection.id, x1: source.x, y1: source.y, x2: endpoint.x, y2: endpoint.y }
   })
 }

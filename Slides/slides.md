@@ -103,14 +103,14 @@ layout: cover
 Introduktion af os selv.
 Introduktion af vores arbejde med AI over de seneste 2 år og hvor vi er nu.
 
-Hvorfor har vi valgt at kombinere Agentic Eng. og DevOps i samme event?
-Mange synergier. AE sikrer produktivitet og DevOps sikrer kvalitet.
+Vi har valgt at lave et event med både AI og DevOps fordi vi <b>ser mange synergier.</b> 
+AI tilbyder et helt nyt niveau af produktivitet mens DevOps sikrer kvaliteten. De to ting går hånd i hånd.
 
-Både AI og DevOps deler vandende. AI er overalt og lover mere end hvad der er realistisk. 
-Det er helt naturligt at have en sund skepsis.
-DevOps introducerer en masse regler og struktur. Nogen ser det som religion, andre som rigide processer der dræber kreativiteten og produktiviten.
+Vi fornemmer også at både AI og DevOps er emner der deler vandende. <b>AI er overalt</b>. Det er facinerende hvad det kan bruges til. Der er meget hype og det er helt naturligt at have <b>en sund skepsis</b>. For det er jo trods alt ikke magi!
 
-Vi vil vise vores take på det. Hvad kan man i B&R og hvad er vores vision for fremtidens automation! 
+DevOps introducerer <b>en masse regler og struktur</b>. Nogen ser det som religion, andre som rigide processer der <b>dræber enhver form  for kreativitet og produktivit.</b>
+
+Med konceptet Agentic Engineering vil vi forhåbentligt <b>vise det bedste af begge verdener!</b> 
 -->
 
 ---
@@ -157,8 +157,18 @@ class: agenda-slide dark-slide
 <!--
 Pressentation af Agendaen. 
 
-Først en overfladisk gennemgang af AE og DevOps.
-Derefter lidt mere dybtegående sessioner med hhv. AE og DevOps.
+Først en overfladisk gennemgang af AE og DevOps. 
+Det er ikke alle her der kender koncepterne.
+
+Derefter en mere dybtegående session med Agentic Engineering:
+Hvordan kan vi helt nøjagtigt arbejde med AI i den mere industrielle verden hvor systemerne historisk set har været mere lukkede og propreitære?
+Det mener vi at vi netop nu har løst på B&R's platform.
+
+
+Så har Mads en session om DevOps:
+Han vil forklare om hvad der er muligt med B&R platformen.
+Give nogle fede demoer af automatisk test og deployment.
+
 -->
 
 ---
@@ -194,22 +204,27 @@ class: light-grid
 <div class="slide-id">03</div>
 
 <!--
-Vi har selv været til mange AI-foredrag og konferencer. Ofte hører man om en virksomhed, der har løst næsten alt med AI og er blevet 30, 40 eller 50 procent mere produktiv. Historien lyder bagefter: "Gør bare som os."
-
-Problemet er, at man sjældent får hele regnestykket med. Man hører ikke altid om investeringerne, fejlene, datagrundlaget eller de særlige forudsætninger. Derfor går man let hjem med en fornemmelse af at være bagud.
+<b>Jeg har selv været til mange AI-foredrag og konferencer.</b> 
+Man kommer tit hjem med en følelse af at være totalt bagud og at alle andre har knækket koden til success med AI.<br><br> 
+<b>Sådan skal det selvfølgeligt ikke være i dag!</b>
 
 DET VIL VI IKKE:
 
-Vi vil heller ikke sælge jer noget. Alt hvad vi kommer til at vise jer i dag, kommer uden nogen regning. Jeres success er vores success!
+<b>Vi har ingen standardløsning</b> AI og DevOps er komplekst og skal skrædersyes til enhver usecase! 
 
-Det bliver heller ikke noget tech / hype hvor vi vil lovprise nye modeller og deres uanede talenter. 
+<b>Vi vil heller ikke sælge jer noget.</b> Alt hvad vi kommer til at vise jer i dag, kommer uden nogen regning. Det er en workshop, ikke nogen salgspitch!
 
-Sådan skal det ikke være i dag. AI i automationsbranchen er stadig nyt. I har ikke sovet i timen, men tidspunktet er godt til at begynde systematisk. 
+<b>Vi vil ikke snakke om fremtiden og alt hvad man måske kan lige om lidt</b>  
 
 DET VIL VI ISTEDET:
 
-Vi vil gerne informere vores kunder og samarbejdspartnere omkring vores strategi og retning.
-Hvad er der af muligheder med AI og DevOps på B&R platformen.
+AI i automationsbranchen er <b>relativt nyt</b>, men allerede nu er der store fordele at hente! 
+
+Vi vil gerne informere vores kunder og samarbejdspartnere omkring <b>vores strategi og retning.</b><br>
+
+Hvis der ikke er en standardløsning hvad er der så af muligheder på B&R platformen og hvordan kommer vi igang.
+
+
 Have nogle gode dialoger / diskutioner med jer. Stil endelig spørgsmål eller giv feedback undervejs
 
 Transition: Lad os se på, hvordan DevOps og Agentic Engineering supplerer hinanden.
@@ -275,17 +290,18 @@ class: dark-slide loop-slide
 <div class="slide-id">04</div>
 
 <!--
-DevOps er en fremgangsmåde med forskellige stadier ens software skal igennem. Hvert stadie sætter nogle krav der sikrer at næste stadie bliver en success. Mange af stadierne skal udføres manuelt eller manuelt flyttes til næste stadie. Hvis kravene ikke opfyldes grundigt nok, har workflowet ingen reel værdi. Derfor kan det for nogle godt virke rigidt og tungt - selvom det er en nødvendighed for at levere høj kvalitet.
+<b>DevOps er en fremgangsmåde med forskellige stadier</b> ens software skal igennem. Hvert stadie sætter nogle krav der sikrer at næste stadie bliver en success. De skal enten <b> manuelt udføres eller manuelt bringes videre</b>. Hvis kravene ikke opfyldes grundigt nok, har workflowet ingen reel værdi. Derfor kan det for nogle godt virke rigidt og tungt - selvom det er en nødvendighed for at levere høj kvalitet.
 
-Ved at bringe AI-Agenter ind i din DevOps process er der en masse fordele. AgentOps
+<b>Ved at bringe AI-Agenter ind i din DevOps process er der en masse fordele. AgentOps</b>
 
 0. DevOps bliver et framework til Agentic Engineering der sikrer kvalitet og forudsiglighed. (AI er ligesom mennesker ikke deterministiske)
 1. Agenterne overholder ALTID deres instruktioner i modsætning til mennesker. 
-2. DevOps kan automaticeres og spare tid.
+2. Dele af DevOps kan automaticeres og spare tid.
 3. Viden er gemt i workflows og ikke i individer
-4. Vi har stadig fuld kontrol over processen ved at integrere quality gates, men også ved at justere og finetune sine Agentic Workflows
+4. Vi har stadig fuld kontrol over processen ved at integrere quality gates, men også ved at justere og finetune sine guardrails og workflows
 
-
+<b>DevOps bliver altså selve frameworket for AI <br> 
+og AI gør frameworket super effektivt!</b>
 
 
 -->
@@ -327,14 +343,19 @@ class: dark-slide cycletime-slide
 <div class="slide-id">05</div>
 
 <!--
-Øverst: Uden DevOps: Man springer hurtigt over plan og design, bygger længe da specifikationerne ændrer sig konstant, og der er ingen test. Regningen kommer efter release som bugfix - den dyreste form for arbejde, fordi den rammer kunden eller slutbrugeren.
+Lad os prøve at kigge på hvordan investeringen af tid kunne se ud:
 
-I midten: DevOps: Ordentlig planlægning og design koster tid, men er hele fundamentet for udvikling og test af god kvalitet. Bugfix minimeres, og der er allerede vundet tid, samt den endelige kost er mere forudsigelig.
+[CLICK]
+<b>Øverst: Uden DevOps:</b> Man springer hurtigt over plan og design, bygger længe da specifikationerne ændrer sig konstant, og der er ingen test. Regningen kommer efter release som bugfix. Man ved aldrig hvornår man rammer et acceptabelt stadie og prisen er derfor uforudsiglig!
 
-Nederst: AgentOps: Investeringen af tid flytter frem i processen. Agenterne har ingen hukommelse eller indforstået viden om "best practise". Alt skal defineres meget eksplicit for at undgå misforståelser. Build bliver til en brøkdel. Måske endda 0 fordi processen ikke blokerer for at man kan lave noget andet imens. 
+[CLICK]
+<b>I midten: Med DevOps:</b> Det er udfra ovenstående at DevOps opstår. Ordentlig planlægning og design koster tid, men er hele fundamentet for udvikling og test af god kvalitet. Bugfix minimeres, og der er allerede vundet tid, samt den endelige kost er mere forudsigelig.
+
+[CLICK]
+<b>Nederst: AgentOps:</b> Investeringen af tid flytter frem i processen. Agenterne har ingen hukommelse eller indforstået viden om "best practise". Alt skal defineres meget eksplicit for at undgå misforståelser. Build bliver til en brøkdel. Måske endda 0 fordi processen ikke blokerer for at man kan lave noget andet imens. 
 Review og release-beslutning ligger stadig hos os. De bliver faktisk vigtigere, fordi de nu er det, der bestemmer kvaliteten.
 
-Den frigjorte tid er ikke nødvendigvis en gratis gevinst - den kan investeres i bedre kontekst, bedre tests og bedre beslutninger.
+<b>Den frigjorte tid er ikke nødvendigvis en gratis gevinst</b> - den kan investeres i bedre kontekst, bedre tests og bedre beslutninger.
 For første gang i lang tid, bliver det muligt at øge kvaliteten markant uden at investere i markant flere ingeniører.
 
 Transition: For at forstå arkitekturen skal vi skelne mellem model, agent og harness.
@@ -401,14 +422,22 @@ Modellen alene har ingen adgang til Automation Studio, et project, en PLC eller 
 
 Agenten opstår, når modellen kan vælge et tool, kalde det, se resultatet og beslutte næste trin. Harnesset er miljøet rundt om agenten: 
 
-Instructions: Agent.md. Hvad skal den kunne. Hvad skal den overholde?
-Context: Hvad er det vi arbejder i?
-Tools: Hvad skal agenten have adgang til i verden udenfor?
-Memory: Da en LLM er fuldstændig stateless skal der være noget til at holde på historikken. Måske også dele det på tværs af sessioner.
-Permissions: Hvad må agenten gøre på egen hånd?
-Logs: Logger hvad agenten har gjort. Hvilke tools den har kaldt. Har den spawnet subagenter?
-Feedback: Agenten skal spørge dig til råds. Hvad mener du? Skal jeg vælge X eller Y?
-Approvals: Du skal give agenten tilladelser eller adgang.
+[CLICK]
+Instructions: Agent.md. Hvad skal den kunne. Hvad skal den overholde?</b><br>
+[CLICK]
+Context: Hvad er det vi arbejder i?</b><br>
+[CLICK]
+Tools: Hvad skal agenten have adgang til i verden udenfor?</b><br>
+[CLICK]
+Memory: Da en LLM er fuldstændig stateless skal der være noget til at holde på historikken. Måske også dele det på tværs af sessioner.</b><br>
+[CLICK]
+Permissions: Hvad må agenten gøre på egen hånd?</b><br>
+[CLICK]
+Logs: Logger hvad agenten har gjort. Hvilke tools den har kaldt. Har den spawnet subagenter?</b><br>
+[CLICK]
+Feedback: Agenten skal spørge dig til råds. Hvad mener du? Skal jeg vælge X eller Y?</b><br>
+[CLICK]
+Approvals: Du skal give agenten tilladelser eller adgang.</b><br>
 
 En agent er en LLM i et Harness!
 
@@ -439,9 +468,9 @@ class: process-slide
 
 </div>
 <div class="it-ot-messages">
-  <div v-click><span>01</span><b>Agentic Engineering in IT is <strong>moving fast!</strong></b></div>
-  <div v-click><span>02</span><b>Competences are <strong>converging</strong> but solutions are <strong>diverging</strong></b></div>
-  <div v-click><span>03</span><b>Only an <strong>open Automation Platform</strong> supports a unified future</b></div>
+  <div><span>01</span><b>Agentic Engineering in IT is <strong>moving fast!</strong></b></div>
+  <div><span>02</span><b>Competences are <strong>converging</strong> but solutions are <strong>diverging</strong></b></div>
+  <div><span>03</span><b>Only an <strong>open Automation Platform</strong> supports a unified future</b></div>
 </div>
 <div class="it-ot-figure-card">
   <img class="it-ot-figure" src="/it-ot.png" alt="IT and OT convergence">
@@ -458,14 +487,16 @@ class: process-slide
 <div class="slide-id">07</div>
 
 <!--
-I mange år har "nogen" snakket om at IT og OT ville flyde mere og mere sammen. Det har også tildels været rigtigt. Mange af de værktøjer der bruges i IT er nu også tilgængelige for OT. 
+I mange år har "nogen" snakket om at IT og OT ville flyde sammen. Det har også tildels været rigtigt. Mange af de værktøjer der bruges i IT er nu også tilgængelige for OT. 
 
 <b>Men siden AI er begyndt at blive en del af stacken, er IT begyndt at "stikke af" igen.</b>
 
 Det er ikke fordi vi ikke besider de samme kompetencer i OT, men fordi IT og hele <B>opensource</b> tankegangen bare går rigtig stærkt.
-<b>LLM'erne er allerede trænet på uendeligt mange IT projekter</b>, mens OT næsten altid er closed source.
+<b>LLM'erne er allerede trænet på uendeligt mange IT projekter</b>, mens OT næsten altid er closed source. Både hvad angåer selve automationsplatformen, men også det domæne I arbejder med.
 
 IT har allerede værktøjer og kontekst som en naturlig del af udviklingsmiljøet: Versionsstyring, APIs, CLIs og diagnostics. Modeller og agenter kan derfor hurtigt kobles på et eksisterende feedback-loop.
+
+<b>Selvom vi besider de samme kompetencer</b> kan vi ikke harmle op med de inovationer der sker i IT lige nu
 
 I OT skal vi i højere grad selv udvikle de tilsvarende værktøjer og den kontekst, som AI kan arbejde med. OT har desuden fysiske konsekvenser, lange livscyklusser, hardware- og versionsafhængigheder, motion, safety og mindre standardiseret feedback. 
 
@@ -559,16 +590,21 @@ class: foundation-slide dark-slide
 
 <!--
 <b>Hvad skal der konkret til?</b><br>
-For at arbejde som IT skal OT ikke kopiere alle IT-værktøjer. Vi skal give en agent de samme grundlæggende egenskaber: viden om platformen, en forståelig projektmodel, sporbare ændringer og værktøjer der kan give agenten feedback fra projektet, plc'en eller simulatoren.
-
-1. <b>Den manglende domæne viden som LLM'erne ikke er trænet på. B&R + OEM</b>
-2. <b>Projekt context. Modellen skal kunne læse filerne og forstå deres sammenhænge. B&R</b>
-3. <b>Sourcekode, HMI, configurationer, Safety osv. skal kunne versionstyres. B&R</b>
-4. <b>Vi skal levere de værktøjer der er nødvendige for at kunne lukke feedback-loopet på research, debugging, test og deployment. B&R</b>
-5. <b>Vi skal definere nogle regler (guardrails). F.eks: altid opdater pkg-filen, Unused vars etc. B&R + OEM   </b>
+Vi kan ikke konkure med IT. Vi må indordne os. Vi kan ikke træne vores egne modeller eller lave vores eget harness. 
 
 
-Projektcontext skal være læsbar for både mennesker og modeller. Git gør ændringer reproducerbare, mens platformværktøjer lukker feedback-loopet med debug, test og deployment. Guardrails gør hastigheden kompatibel med arkitektur, kvalitet og ansvar.
+[CLICK]1. <b>Den manglende domæne viden som LLM'erne ikke er trænet på. B&R + OEM</b> 
+
+[CLICK]2. <b>Projekt context. Modellen skal kunne læse filerne i projektet og forstå deres sammenhænge. B&R</b>
+
+[CLICK]3. <b>Sourcekode, HMI, configurationer, Safety osv. skal kunne versionstyres. B&R</b>
+
+[CLICK]4. <b>Vi skal levere de værktøjer der er nødvendige for at kunne lukke feedback-loopet på research, debugging, test og deployment. B&R</b>
+
+[CLICK]5. <b>Vi skal definere nogle regler (guardrails). F.eks: altid opdater pkg-filen, Unused vars etc. B&R + OEM   </b>
+
+
+
 
 Transition: Når fundamentet er på plads, kan vi lukke det industrielle engineering-loop.
 -->
@@ -626,16 +662,31 @@ class: agent-loop-slide
 <div class="slide-id">09</div>
 
 <!--
-<b>Vores strategi har ændret sig</b> og det har måske ikke været så tydeligt hvor vi egentligt er på vej hen nu. Vi vil ikke længere pretraine eller fine-tune vores egen model som et lukket AS-Copilot-økosystem. <b>Det var det rigtige valg engang</b>, fordi modellerne ikke var istand til at PLC. Det har ændret sig!
+<b>Vores strategi har ændret sig</b> og det har måske ikke været så tydeligt hvor vi egentligt er på vej hen nu. Vi vil ikke længere pretraine eller fine-tune vores egen model som et lukket AS-Copilot-økosystem. <b>Det var det rigtige valg engang</b>, fordi modellerne ikke var istand til at kode PLC. Det har ændret sig!
 
+[CLICK]
 Heldigvis:
-For det er dyrt og langsomt at bygge, modellen risikerer at være forældet før release, og et overcomplete træningssæt kan give modellen mere viden end den enkelte kunde har brug for. Det kan gøre svarene sværere at afgrænse. Oven i det kommer løbende fine-tuning, evaluering og vedligeholdelse. Vi låser os til én model, selv om forskellige opgaver kræver forskellige modeller, og en B&R-hostet model begrænser kundens valg af AI-leverendør og måske enda konflikter med kundens IP retningslinjer.
+<b>For det er dyrt og langsomt at bygge </b>
 
-Vores platform er allerede åben og tekstbaseret. <b>Derfor kan vi skabe mere varig værdi med context engineering og harness engineering:</b> 
+<b>Modellen risikerer at være forældet før release, </b>
+
+og et <b>overcomplete træningssæt</b> kan give modellen mere viden end den enkelte kunde har brug for og ende med hallucinationer. 
+
+Oven i det kommer <b>løbende fine-tuning, evaluering og vedligeholdelse.</b> 
+
+<b>Vi låser os til én model,</b> selv om forskellige opgaver kræver forskellige modeller, og en 
+
+<b>B&R-hostet model</b> begrænser kundens valg af AI-leverendør og måske enda konflikter med kundens IP retningslinjer.
+
+[CLICK]
+Hvad gør vi så?
+
+[CLICK]
+Vores platform er allerede åben og tekstbaseret. <b>Derfor kan vi skabe mere varig værdi med context engineering og harness engineering med de modeller og harnesses der allerede findes og kommer i fremtiden:</b> 
 
 B&R skal eje broen / integrationen og domænegrænsen, ikke alle lag i AI-stacken. Så kan vi tage den bedste nye teknologi i brug, uden at kunden skal købe ind i et lukket og forældet B&R-økosystem.
 
-Transition: Det er den retning, vi nu bygger videre på.
+Transition: Det er den retning, vi nu bygger videre på, og som har åbnet muligheden for, at vi her i danmark f.eks kan bidrage med de integrationer der skal til.
 -->
 
 ---
@@ -648,7 +699,7 @@ class: takeaway-slide
 # Why care about<br><span class="accent">Agentic Engineering?</span>
 
 <div class="why-care-layout">
-  <section class="abstraction-panel" v-click aria-label="Agentic Engineering as a new software abstraction layer">
+  <section class="abstraction-panel" aria-label="Agentic Engineering as a new software abstraction layer">
     <div class="why-care-label"><span>THE SHIFT</span><strong>ANOTHER ABSTRACTION LAYER</strong></div>
     <div class="abstraction-ladder">
       <div class="abstraction-step"><span>01</span><div><b>Machine code</b><small>hardware instructions</small></div></div>
@@ -656,7 +707,7 @@ class: takeaway-slide
       <div class="abstraction-step"><span>03</span><div><b>Frameworks</b><small>compose reusable systems</small></div></div>
       <div class="abstraction-step is-current"><span>04</span><div><b>Agentic workflow</b><small>intent + context + tools + feedback</small></div></div>
     </div>
-    <div class="abstraction-caption"><span>THE COMPETITIVE EDGE</span><strong>Master the layer early.<br>Or be outpaced.</strong></div>
+    <div class="abstraction-caption"><span>THE COMPETITIVE EDGE</span><strong>Master it early.<br>Or be outpaced.</strong></div>
   </section>
 
   <section class="why-care-list" aria-label="Reasons to care about Agentic Engineering">
@@ -674,13 +725,23 @@ class: takeaway-slide
 <div class="slide-id">10</div>
 
 <!--
+Lad os slutte introen af med at opsummere:
 Hvorfor er det interressant? Hvorfor skal I investere jeres tid i AE?
 
+[CLICK]
 1. Man skal forstå at AI er det næste naturlige abstraktionslag. Dem der formår at bruge AI effektivt vil til enhver tid udkonkurerer dem der ikke gør! Vi bliver ikke arbejdsløse, vi flytter bare fokus op ad abstraktionsstigen. Ikke for at blive dovne, men for at kunne nå mere i en verden der forventer mere.
+
+[CLICK]
 2. Uanset om man elsker AI eller er fuld af skepsis, så må man indse at det er blevet en del af stacken og det er kommet for at blive. Jeg synes personligt at det er blevet 100 gange sjovere at være ingeniør. Vi kan lave de vildeste ting og vi bliver forundrede hver dag. 
+
+[CLICK]
 3. Viden bliver gemt i systemet i stedet for i individer. Systemet skal ikke på ferie, på barsel, er syg eller (gud forbyde det) siger op.
-4. Vi får muligheden for at geninvestere vores tid til at opnå bedre kvalitet. Kontinuerlig optimering der leder til mere autonomi og mere troværdighed.
-5. Vores afdeling bliver langt mere agil og robust. Det skallerer efter behov.
+
+[CLICK]
+4. Vi får muligheden for at geninvestere vores tid til at opnå bedre kvalitet, og ved kontinuerlig optimering der leder til mere autonomi og mere troværdighed.
+
+[CLICK]
+5. Vores afdeling bliver langt mere agil og robust. Det skallerer efter behov. Ikke kun efter mennesker.
 
 Jeg startede med at sige, at AI foredrag næsten altid lover guld og grønne skove og at det her skulle være anderledes??. Jeg beklager hvis det ikke er lykkedes indtil videre.
 
@@ -725,11 +786,11 @@ Inden vi springer til næste punkt på dagsordenen:
 2. Hvor mange af jer bruger DevOps principper i jeres sw-udvikling?
  
 
-Den vigtigste enhed er ikke modellen eller agenten. Det er workflowet.
+Det vigtigste er ikke AI-modellen eller agenten. Det er workflowet.
 
-Modellen kan udskiftes. Harnesset kan ændres. Men workflowet definerer, hvordan ide bliver til issues, hvordan løsningerne bliver implementeret, reviewed og testet og hvem der i sidste ende må godkende resultatet.
+Modellen kan udskiftes. Harnesset kan ændres. Men workflowet definerer, hvordan ide bliver til tickets, hvordan løsningerne bliver implementeret, reviewed og testet og hvem der i sidste ende må godkende resultatet.
 
-Den er et levende engineering-system. Det skal versionsstyres, måles, vedligeholdes og forbedres, præcis som andre dele af jeres platform.
+Det er et levende engineering-system. Det skal versionsstyres, måles, vedligeholdes og forbedres, præcis som andre dele af jeres platform.
 -->
 
 ---
@@ -742,17 +803,21 @@ class: maturity-compare-slide dark-slide
 </figure>
 
 <!--
+Hvor gammelt er Vibe-coding begrebet? (februar 25)
+
+Et fenomen der opstod for ca. 1,5 år siden. Beskriv hvad du vil have og itterer indtil du er tilfreds.
+
 Vibe coding kan være effektivt til læring og prototyper. Vi har selv vibecoded en hel del. Ikke på jeres maskiner selvfølgelig ;) Men til hurtige interne værktøjer, til POCs og til fejlfinding er der intet i vejen med bare at give den gas uden en plan.
 
-Men til rigtige maskiner der skal leve op til en masse krav, er det sjældent en god idé.
+Men til rigtige maskiner der skal leve op til en masse krav, er det sjældent en god process.
 
-Hvad er "Vibe Coding"? Et fenomen der opstod for ca. 1,5 år siden. Beskriv hvad du vil have og itterer indtil du er tilfreds.
-
-Når vi sætter det op imod "Agentic Engineering", så er det for at synliggøre, at AI er ikke magi. Vi bliver nødt til at holde det i hånden hele tiden og eje processen. AI Agenter er ikke deterministiske (ligesom mennesker heller ikke er). De har brug for guardrailes der styrer og quality gates der tillader at processen må fortsætte.  
-
-På en maskine er "det ser rigtigt ud" ikke et successkriterie.
+Når vi sætter det op imod "Agentic Engineering", så er det for at synliggøre, at AI er ikke magi. Vi bliver nødt til at holde det i hånden hele tiden og eje processen. AI Agenter er ikke deterministiske (ligesom mennesker heller ikke er). De har brug for vejledning (i form af guardrailes)  og quality gates der tillader at processen må fortsætte.  
 
 Hvis man ikke styrer processen så mister man overblikket.
+
+På en maskine er "det ser rigtigt ud" ikke et successkriterie.
+I IT gør det måske ikke så meget om en hjemmeside er nede i 5 min., men i OT er det ikke ligemeget om der kommer metalspåner i appelsinjuicen.
+
 -->
 
 ---
@@ -794,7 +859,7 @@ class: use-case-slide dark-slide
 <div class="slide-id">12</div>
 
 <!--
-Dette er den konkrete feature, som resten af workshoppen skal besvare.
+Lad os prøve at kigge på et konkret eksempel, som resten af workshoppen skal besvare.
 
 Feature request: Når conveyor-aksen fejler, skal maskinen stoppe kontrolleret. Clear skal rydde alle flasker, der endnu ikke er cappet - uanset om de er tomme eller fyldte - og de tæller som reject. Counteren beholder sin værdi, og batchen fortsætter fra samme tal ved start, indtil de 100 flasker er færdige.
 
@@ -802,7 +867,7 @@ Vis fejlen og det ønskede resultat, men forklar ikke løsningen endnu. Stil i s
 
 Resten af workshoppen bygger svaret: MCP leverer viden, AS CLI udfører og observerer, skills og guardrails styrer arbejdet, tests leverer evidens, og mennesker samt gates afgør, om ændringen må fortsætte.
 
-Transition: Først skal agenten have en bro til Automation Studio, domæneviden og de værktøjer, der kan lukke feedback-loopet.
+Transition: For at det skal kunne lade sig gøre, skal agenten have en forbindelse til Automation Studio, Automation runtime, og domæneviden, der kan lukke feedback-loopet.
 -->
 
 ---
@@ -866,17 +931,23 @@ class: bridge-slide dark-slide
 <div class="slide-id">13</div>
 
 <!--
-Hvis man går ind på linkedin eller åbner vores hjemmeside, så vil man se denne marketingskampagne for: Automation Studio Agentic Bridge. Der er flere der har kontaktet mig og spurgt ind til hvad det er. Det har i forhåbentlig en ide om nu, men selvom det ikke er helt endeligt defineret eller released, så lad os lige gennemgå det.
+Så hvad kan vi tilbyde for at løse det problem?
 
+Hvis man går ind på linkedin eller åbner vores hjemmeside, så vil man se denne marketingskampagne for: Automation Studio Agentic Bridge. Der er flere der har kontaktet mig og spurgt ind til hvad det er. Det har i forhåbentlig en ide om nu, men selvom det ikke er helt endeligt defineret eller released (AS6.9), så lad os lige gennemgå det.
+
+[CLICK]
 Agentic Bridge er integrationen af domæneviden og tools fra enhver Agent (altså et hvilket som helst harness med en hvilken som helst model)
 
+[CLICK]
 <b>Den består af</b> nogle instruktioner, skills og hooks for at guide agenten med at arbejde i et AS-Projekt
+
 
 <b>Den består af</b> en MCP server der kan levere domæneviden til agenten omkring: B&R produkter, Automation Studio, Structured Text, AS-Help, Anonymiserede support tickets, Sales notices, manualer, Release notes osv. Denne MCP server er tilgængelig allerede nu og er den officielle B&R MCP server. 
 
-<b>Den består af et Command Line Interface til Automation Studio</b>: CLI'et stiller en række funktionaliteter til rådighed for agenten, så den kan bygge projektet, simulerer, læse/skrive variabler, læse logbogen osv. 
+<b>Den består af et Command Line Interface til Automation Studio</b>: CLI'et har vi bygget her I DK. Først som et uofficielt produkt, men nu som en integreret del af Automation Studio. CLI'et stiller en række funktionaliteter til rådighed for agenten, så den kan bygge projektet, simulerer, læse/skrive variabler, læse logbogen osv. 
 
-Man er selvfølgelig ikke begrænset til de tools der er en del af Agentic Bridge. Man kan selvfølgelig stadig bruge de 1000 vis af skills, MCP-servere og CLI'er der findes.
+[CLICK]
+Man er selvfølgelig ikke begrænset til de skills, MCPs og tools der er en del af Agentic Bridge. Man kan selvfølgelig stadig bruge de 1000 vis af skills, MCP-servere og CLI'er der findes, og selvfølgelig lave sine egne, der interfacer den domæneviden, eller de systemer man vil tilgå.
 
 transition: Hvor mange ved hvad en MCP server er?
 
@@ -978,14 +1049,17 @@ class: mcp-basics-slide dark-slide
 <!--
 MCP står for Model Context Protocol. Tænk på det som et semantisk tool-API: en server beskriver sine tools og resources, så en model kan opdage dem og bruge på en standardiseret måde.
 
-Et eksempel kunne være den officielle GitHub MCP server.
+[CLICK]
+<b>Et eksempel kunne være den officielle GitHub MCP server.</b>
 Den har omkring 47 tools til alt lige fra at oprette issues og PR, læse repositories, merge branches osv. 
 
 
 <b>Som andet eksempel har vi vores egen AS-Help MCP</b>. Det er en lokal server, der via stdio, stiller funktioner til rådighed for at søge i B&R Automation Studio help: search_help, get_categories, browse_section og get_page_by_id. 
 
+[CLICK]
 Manifestet er ikke selve dataene eller udførelsen. Det giver modellen et katalog over tilgængelige MCP-servere, deres tools med beskrivelser og input-formater i den kontekst, den arbejder med. På baggrund af opgaven kan modellen vælge at kalde search_help for at slå ACOPOS error 7070 op i AS-dokumentationen, create_issue for at rapportere en fejl, eller svare uden et tool.
 
+[CLICK]
 En MCP server gør altså sine funktioner tilgængelige over et standard interface som en agent kan forstå
 -->
 
@@ -1031,7 +1105,7 @@ class: as-help-boot-slide dark-slide
       <div class="as-help-record-heading"><span>SEARCH RECORD</span><small>metadata stays attached to the hit</small></div>
       <div class="as-help-record-grid"><code>page_id</code><b>&lt;returned page id&gt;</b><code>breadcrumb</code><span>Motion &gt; ... &gt; MC_BR_MoveAbsolute</span><code>preview</code><span>short desciption of the context</span></div>
     </div>
-    <div class="as-help-query-flow" v-click>
+    <div class="as-help-query-flow">
       <div class="as-help-query-heading"><span>AGENT QUERY</span><strong>FTS · KEYWORD RANKING</strong></div>
       <div class="as-help-query-line"><code>search_help</code><span>query: "MC_BR_MoveAbsolute"</span></div>
       <div class="as-help-top-result"><b>#1</b><span>highest-ranked match</span><strong>page_id + breadcrumb + preview</strong></div>
@@ -1045,11 +1119,33 @@ class: as-help-boot-slide dark-slide
 <div class="slide-id">15</div>
 
 <!--
+Vi vil gerne reklamere lidt for vores egen AS-Help MCP der ligger tilgængelig på GitHub. Vi synes selv den er MEGA god!
 Første gang AS-Help MCP starter, læser den den lokale Automation Studio help folder og bygger et søgeindeks. Den gemmer ikke kun søgetekst, men også page_id, titel, filsti og breadcrumb, så et hit kan følges tilbage til den rigtige side.
 
-FTS, full-text search, er klar først og rangerer keyword matches. Semantisk søgning kan være et senere, valgfrit lag. Det vigtige i agent-flowet er, at search_help ikke foregiver at være hele svaret: den returnerer et rangeret hit med page_id, breadcrumb og en kort preview.
+[CLICK]
+[CLICK]
+[CLICK]
+[CLICK]
+[CLICK]
+
+FTS, full-text search, er klar. <b>Semantisk søgning kan være et senere, valgfrit lag.</b> 
+
+Vi synes at FTS virker så godt, at vi ikke rigtigt har brugt embedding modeller og vector-databasen, men man kan nemt smide sin egen embedding model på, og så få semantisk søgning sammen med FTS. Det kan spare på tokens og give mere akkurate søgninger, da hele konteksten indgår i søgningen, og ikke kun keywords.
+
+Det vigtige i agent-flowet er, at search_help ikke foregiver at være hele svaret: den returnerer et rangeret hit med page_id, breadcrumb og en kort preview.
+
+[CLICK]
+
 
 Agenten bruger derefter page_id i get_page_by_id for at hente den fulde tekst, metadata og eventuelt online-help URL. Det er en enkel, sporbar to-trins kontrakt: find den bedste adresse, hent derefter evidensen.
+
+[CLICK]
+
+Da <b>projektet er opensource</b>, kan det nemt kopieres til andre hjælpesystemer fra f.eks en tredjepart. Det skal i være velkomne til!
+
+Til mange ting synes vi at det er en fordel, at MCP-serveren KUN har adgang til din lokale hjælp, og derfor ikke til teknologier du ikke har installeret eller nyere versioner du ikke bruger. Den kan selvfølgelig ikke bruge hele B&Rs katalog som data, men hvis den kun skal forholde sig til din maskine, så er det jo også tit det bedste. 
+
+transition: Hvis man har brug for overkomplete viden kan man bruge den officielle B&R MCP-server
 -->
 
 ---
@@ -1076,11 +1172,14 @@ Den som er med i Agentic Bridge. Den indeholder mere B&R viden end bare hjælpen
 
 1. Den afspejler ikke kun de produkter og libraries du bruger / har installeret, men alt der er tilgængeligt. 
 
-2. Den er hosted på en B&R cloud service. Dine prompts bliver sendt til B&R, men bliver ikke gemt.
+2. Den er hosted på en B&R cloud service. Dine prompts bliver sendt ud af din computer, men bliver ikke logget eller analyseret.
 
 3. Den giver ikke refferencer på alle svar, da nogle data ikke er tilgængelige som pdf'er eller hjælp URL'er. 
 
-4. Den er i Beta. Vi anbefaler AS-Help, BR-Community MCP indtil den bliver bedre
+4. Den er i Beta. Vi anbefaler AS-Help, BR-Community MCP indtil den bliver bedre.
+
+
+transition: Hvad er der ellers af brugbare MCP-Servere?
 -->
 
 ---
@@ -1147,6 +1246,8 @@ class: br-role-slide
 
 <!--
 Eksempler på relevante MCP servere:
+
+transition: Alle de her MCP servere kan man selvfølgelig bruge i sine Agentic Engineering workflows, men man kan også bruge dem til andre formål!
 -->
 
 ---
@@ -1160,13 +1261,13 @@ class: support-agent-sequence-slide
   <img class="support-agent-frame" src="/online-help.png" alt="B&R Automation Help documentation page" v-click="2">
 </div>
 <!--
-Et eksempel på en application som vi har lavet - B&R Support Agent
+<b>Et eksempel på en application som vi har lavet - B&R Support Agent</b>
 
-Her kan man forbinde et workspace så agenten kan kigge i et project f.eks.
+Her kan man forbinde et workspace så agenten kan kigge i et project.
 
 Man kan uploade filer. Det kunne f.eks være en system dump eller en wireshark trace.
 
-Man kan give den en persona (instruktioner til workflow). F.eks Du skal altid give links til relevante kilder.
+<b>Man kan give den instruktioner:</b> F.eks Ved spørgsmål der indeholder kundenavn, tjek altid for tidligere sager på Jira, eller kig altid på denne sharepoint side når det handler om Codian robotter.
 
 Den kan nu bruge dens forbundne MCP servere til at søge den fornødne domæneviden.
 
@@ -1176,9 +1277,28 @@ Den kan nu bruge dens forbundne MCP servere til at søge den fornødne domænevi
 - workIQ (sharepoint, teams kanaler, support mail box)
 - Revision history (released firmware med release notes)
 
+[CLICK]
+
 Vi kan stille den et spørgsmål og se hvordan den bruger sine tools.
 
-Og hvordan den giver link direkte til online-hjælpen
+Og hvordan den i det her tilfælde giver link direkte til online-hjælpen.
+
+[CLICK]
+
+<b>USECASES:</b>
+
+Der er mange usecases hvor vi har sparet enormt meget tid med sådan et værktøj.
+
+1. Gennerel søgning i vores interne systemer
+2. Validere at et problem ikke tidligere har været løst inden det sendes videre til HQ.
+3. Finde komplekse sammenhænge mellem logs, kode og tidligere historik.
+<b>Vi har fundet bugs vi ALDRIG havde fundet uden!</b>
+
+<b>Det er ikke længere nødvendigt at det er firmaets bedste mand der hjælper til med support!</b>
+
+
+transition: Det er hvad man kan med den rette domæneviden. Men hvad hvis vi rent faktisk skal løse noget på en maskine?
+
 
 -->
 
@@ -1193,14 +1313,15 @@ class: demo-slide dark-slide as-cli-slide
 # as cli:<br><span class="accent">action + observation</span>
 
 <div class="demo-steps">
-  <div v-click><span>01</span><b>BROWSE</b><small>--help → command surface</small></div>
-  <div v-click><span>02</span><b>SIM ENABLE</b><small>ArSim enabled</small></div>
-  <div v-click><span>03</span><b>BUILD SIM</b><small>errors,warnings → diagnostics</small></div>
-  <div v-click><span>04</span><b>PLC CONNECT</b><small>--ip 127.0.0.1</small></div>
-  <div v-click><span>05</span><b>READ VAR</b><small>counter → value + type</small></div>
-  <div v-click><span>06</span><b>WRITE VAR</b><small>em.cmd.clear → written</small></div>
-  <div v-click><span>07</span><b>READ LOGBOOK</b><small>arlogsys → info + error entries</small></div>
-  <div v-click><span>08</span><b>CREATE PIP</b><small>--output ./pip</small></div>
+  <div v-click><span>01</span><b>BROWSE</b><small>as --help → command surface</small></div>
+  <div v-click><span>02</span><b>PROJECT STATUS</b><small>name · config · cpu</small></div>
+  <div v-click><span>03</span><b>SIM ENABLE</b><small>simulation on CPU</small></div>
+  <div v-click><span>04</span><b>BUILD SIM</b><small>build + install to ARsim</small></div>
+  <div v-click><span>05</span><b>PLC CONNECT</b><small>--ip 127.0.0.1</small></div>
+  <div v-click><span>06</span><b>VAR READ</b><small>gProductionCount → value + type</small></div>
+  <div v-click><span>07</span><b>VAR WRITE</b><small>gCmdClear → written</small></div>
+  <div v-click><span>08</span><b>LOGBOOK READ</b><small>$arlogsys → error entries</small></div>
+  <div v-click><span>09</span><b>BUILD PIP</b><small>offline install package</small></div>
 </div>
 
 <TerminalCli />
@@ -1209,23 +1330,52 @@ class: demo-slide dark-slide as-cli-slide
 <div class="slide-id">16</div>
 
 <!--
+<b>Hvis pause så NU!</b>
+
 `AS CLI` er et command-line interface der kan bruges af et menneske, et script, en automatisk test, en CI-pipeline og en agent.
 
-AS CLI er selve rygraden i Agentic Bridge og er noget vi har udviklet her i DK. Det er et mere eller mindre komplet interface til Automation Studio 6 og kan mange af de samme ting som man ellers manuelt skal udføre i automation studio. Ud over selve runtime funktionerne som vi kigger på om lidt, så kan det også tilføje libraries, hardware, tasks, hmi, konfigurationer osv. Selvom det selvfølgelig bare er text, så er det mere pålideligt at bruge den existerende scripting engine bag AS, så alt bliver indsat rigtig og konfigureret med valide parametre.
+AS CLI er selve rygraden i Agentic Bridge og er noget <b>vi har udviklet her i DK</b>. Det er et mere eller mindre komplet interface til Automation Studio 6 og kan mange af de samme ting som man ellers manuelt skal udføre i automation studio. <b>Ud over selve runtime funktionerne som vi kigger på om lidt, så kan det også tilføje libraries, hardware, tasks, hmi, konfigurationer osv.</b> Selvom det selvfølgelig bare er text, så er det mere pålideligt at bruge den existerende scripting engine bag AS, så alt bliver indsat rigtigt og konfigureret med valide parametre.
 
-Det åbner Automation Studio i headless mode (uden GUI) og forbinder direkte til backenden i AS. Alle functioner og status bliver tilgængeligt via et json-rpc interface, der gør det nemt f.eks at bygge en VS-Code extension, et AS-SDK til tests eller noget tredje. Det er i hvert fald noget af det næste vi gerne vil lave. 
+Det åbner Automation Studio i headless mode (uden GUI) og forbinder direkte til backenden i AS. Alle functioner og status bliver tilgængeligt via et json-rpc interface, der gør det nemt at bygge andre systemer ovenpå. Det bliver formentlig også det som vores officielle VS-Code extension kommer til at bruge.
+
+[CLICK]
 
 Da vi designede CLI'et var det vigtigt for os, at AI blev tænkt ind i designet. Dvs. at en Agent skal selv kunne finde ud af at bruge det, uden at man skal instruere den i hvordan.
 
 Agenten kan lave --help overalt for at søge information om hvilke kommandoer og hvilke parametre den kan bruge og hvad de vil returnere.
+[CLICK]
+
+Den kan give status på det projekt den er forbundet til
+
+[CLICK]
 
 Det kan simulere, men også betjene simulatoren. Den kan f.eks skrue op eller ned for tiden. På den måde kan den prøve ting af i slowmotion eller speede tiden op hvis den skal køre en test på et stort batch.
 
-Det kan builde projektet til enten fysisk hardware, en simulator eller til en ProjectInstallationPackage PIP (Deployment artifact)
+[CLICK]
 
-Forbinde til PLC og læse / skrive til variable eller direkte til IO.
+Det kan builde projektet til enten fysisk hardware eller en simulator  
 
-Læse logbøger osv.
+[CLICK]
+
+Forbinde til PLC'en eller simulatoren
+
+[CLICK]
+
+Læse variable
+
+[CLICK]
+
+Skrive variable
+
+[CLICK]
+
+Læse logbøger 
+
+[CLICK]
+
+Lave en PIP pakke. ProjectInstallationPackage PIP (Deployment artifact)
+
+transsition: Nu har vi alt toolingen på plads, så mangler vi bare instruktioner og skills
 -->
 
 ---
@@ -1243,10 +1393,16 @@ class: skills-slide dark-slide
 <div class="slide-id">17</div>
 
 <!--
-skills.sh viser et åbent katalog af genbrugelige skills til AI-agenter uanset harness.
-Se hvad der trender.
-Nemt at installere.
+Hvis man kender skills.sh lavet af vercel, så ved man at der findes rigtig mange skills og at de er tilgængelige for langt de fleste agenter. 
 
+Mange af dem er <b>ligeså relevante</b> for et automationsprojekt som for altmuligt andet. Og bruger man <b>DevOps principper</b>, så behøver man ikke at opfinde den dybe tallerken igen. Der er rigtig gode skills til alle de forskellige faser.
+
+Det er supernemt at installere med npx kommandoen direkte fra dit harness.
+
+De mest populære skils er:
+vis <b>grill-with-docs</b>
+
+transition: Men man slipper ikke for at lave sine egne skills. Man har sine egne krav, sine egne principper og sine egne standarder.
 -->
 
 ---
@@ -1302,17 +1458,36 @@ class: skill-matrix-slide dark-slide
 <!--
 Skills falder i to uafhængige dimensioner.
 
-<b>Første dimension</b> er, hvordan de aktiveres. Et model-invoked skill ligger fremme og bliver loadet af agenten selv, når opgaven kalder på det. Et user-invoked skill invokerer du bevidst, som en gemt prompt.
+<b>Første dimension</b> er, hvordan de aktiveres. 
 
-Et model-invoked skill kan være noget information som du gerne vil have at agenten fokuserer på i bestemte sammenhænge. Når vi tester skal vi altid bruge pytest med as cli, eller når vi researcher skal vi altid lave et dokument med refferencer til kilderne.
+<b>Et model-invoked skill</b> ligger fremme og bliver loadet af agenten selv, når agenten mener at indholdet er relevant for den arbejde. 
 
-Et user-invoked skill er mere en fast del af et workflow. F.eks: Lav en ticket og brug altid denne her template. Lav et review af det her kode ud fra de her principper. Det er brugeren og KUN brugeren der kan aktivere skillet.
-
-
-<b>Anden dimension</b> er, om de husker noget. Et stateless skill kører én gang og glemmer. Et stateful skill bygger op og genbruger tidligere outputs.
+<b>Et user-invoked skill</b> kalder du bevidst, som en gemt prompt for at udføre en bestemt handling eller rutine.
 
 
-De to dimensioner kombineres frit, så du får fire typer af skills. Vælg bevidst, når du designer et nyt skill.
+<b>Anden dimension</b> er, om de husker noget fra gang til gang. Et stateless skill kører én gang og glemmer. Et stateful skill bygger op og genbruger tidligere outputs i fremtidige sessioner.
+
+
+De to dimensioner kombineres frit, så du får fire typer af skills. Vælg bevidst, når du designer et nyt skill. Her er et par eksempler:
+
+[CLICK]
+Event script skill til MappView. Det er <b>model-invoked</b>, fordi agenten selv skal kunne fremkalde information om eventscripts hvis den skal rette eller lave nye scripts. Det er <b>stateless</b> fordi det ikke producerer noget information til fremtidige kald.
+
+[CLICK]
+Domain-modelling skillet er også <b>model-invoked</b>. Agenten kalder det når der diskuteres domæne-specifikke termer. Agenten skal forstå jargonen og dokumentere den <b>(statefull)</b>, så den i fremtiden ikke bliver forviret. Hvis et issue f.eks indeholder ordet "filler" fra eksemplet, så vil skillet undersøge om det er en del af context.md filen og hvad det i så fald er. Hvis det ikke er det, så vil den undersøge / spørge for derefter at putte det i ccontext.md filen. 
+
+[CLICK]
+Triage skill. Dette er <b>user-invoked</b> fordi det udelukkende er os der bestemmer om et GitHub issue skal igennem en omskrivning. Det kan være at vi har fået indrapporteret en bug. Brugeren har oprettet et GH-issue, men han har glemt vigtige detaljer som en agent skal bruge, for at kunne arbejde videre med det. Det kunne være at brugeren havde skrevet, "Jeg får ingen alarmer når servoaksen fejler". Men hvad for en alarm vil vi gerne have? hvad skal den sige?. Vi laver derfor triage på den for at få den op på et niveau hvor vi kan uddellegere den til en agent.
+
+[CLICK]
+grill-with-docs. Et af de mest populære skills. Bliver ved med at diskutere med brugeren indtil der er en fælles forståelse. Indeholder det termonologi eller særlige designkrav bliver det noteret ned for fremtidige sessioner.
+
+[CLICK]
+Hvordan bliver skillet loaded ind og gemmer det information til sig selv i fremtiden.
+
+[CLICK]
+
+transition: Hvorfor skal vi selv lave skills?
 -->
 
 ---
@@ -1336,7 +1511,7 @@ class: guardrails-slide dark-slide
   <article class="guardrail-principle" v-click>
     <div class="guardrail-head"><span>02</span><mdi-text-box-outline /></div>
     <h2>Naming conventions</h2>
-    <p>Name for domain intent, not implementation detail.</p>
+    <p>How to name: vars, globals, types, io, safety, alarms, recipe</p>
     <small>CONSISTENT + SEARCHABLE</small>
   </article>
   <article class="guardrail-principle" v-click>
@@ -1367,14 +1542,27 @@ class: guardrails-slide dark-slide
 <div class="slide-id">19</div>
 
 <!--
+Når man er blevet dygtig til at skrive skills og instruktioner (Der findes selvfølgelig skills der er gode til at skrive skills eller agent.md filer) så kan man begynde at designe sine guardrails.
+
 Guardrails er de beslutninger, vi vil kunne se igen i kode, tests og review.
 
-Guardrailes kan defineres via dine skills eller agent.md filer. (eller en kombination).
+[CLICK]
+Det kan være krav til arkitektur 
 
-Det er instruktioner der skal guide agenterne til følge dine regler og overholde dine krav.
+[CLICK]
+Naming konventions
 
-Det kan være krav til arkitektur eller HMI design. Det kan også være CRA krav som skal overholdes eller eksplicit testes. 
+[CLICK]
+Testing strategi
 
+[CLICK]
+HMI og GUI design
+
+[CLICK]
+Safety principper
+
+[CLICK]
+transition: Guradrailes er med til at guide agenten når den specificerer, implementere og reviewer. Men hvad med tests?
 -->
 
 ---
@@ -1386,16 +1574,16 @@ class: testing-slide dark-slide
 
 # Tests are the<br><span class="accent">sensor system</span>
 
-<div class="baseline-banner" v-click>
+<div class="baseline-banner" >
   <mdi-radar /> <span>TEST-DRIVEN RULE</span>
   <b>Clear acceptance criteria give agents a fast signal. Establish the regression baseline <strong>before</strong> delegating feature work.</b>
 </div>
 
 <div class="test-pyramid">
-  <div class="test-level hil" v-click><span>04</span><b>HIL / PHYSICAL</b><small>where risk + fidelity require it</small></div>
-  <div class="test-level arsim" v-click><span>03</span><b>ARSIM / SMOKE</b><small>controlled application behavior</small></div>
-  <div class="test-level integration" v-click><span>02</span><b>INTEGRATION</b><small>interfaces + module behavior</small></div>
-  <div class="test-level unit" v-click><span>01</span><b>UNIT</b><small>local logic</small></div>
+  <div class="test-level hil" ><span>04</span><b>HIL / PHYSICAL</b><small>where risk + fidelity require it</small></div>
+  <div class="test-level arsim" ><span>03</span><b>ARSIM / SMOKE</b><small>controlled application behavior</small></div>
+  <div class="test-level integration" ><span>02</span><b>INTEGRATION</b><small>interfaces + module behavior</small></div>
+  <div class="test-level unit" ><span>01</span><b>UNIT</b><small>local logic</small></div>
 </div>
 
 <div class="two-oracles">
@@ -1416,19 +1604,28 @@ class: testing-slide dark-slide
 <div class="slide-id">20</div>
 
 <!--
-På et brownfield-projekt skal vi etablere en baseline for den eksisterende adfærd, før agenten ændrer projektet: bygge relevante konfigurationer, køre eksisterende regressioner og beskytte kritiske maskinflows.
+Jeg vil ikke sige så meget om tests. Det kommer Mads meget mere ind på om lidt. 
 
-Test er ikke kun den sidste kvalitetskontrol. For en agent er test og simulation sensorer i feedback-loopet.
+Det er dog vigtigt at sige, at test er uundværlige når man koder med Agenter. AI er ikke deterministikse, så vi har brug for pålidelige gates der kan validere vores software. Tests virker både som feedback til agenten, men ligeså meget som dokumentation til os der skal godkende en ændring.
 
-Unit tests kan bevise lokal logik. Integrationstest kan bevise interfaces. ARsim og smoke tests kan bevise defineret applikationsadfærd i et kontrolleret miljø. HIL og fysisk validering tilføjes, hvor risiko og fidelity kræver det.
+Det er blevet uendeligt meget nemmere at skrive test i dag, end det var før AI. Men AI agenten kan ikke bare teste sig selv.
 
-De to bokse til højre måler to forskellige ting. <b>Product tests</b> spørger, om maskinens faktiske adfærd opfylder kravet: Stopper den kontrolleret, bliver de rigtige flasker afvist, bevares tælleren, og kan batchen fortsætte korrekt? Det er produktets output og den observerbare maskinadfærd, vi validerer.
+[CLICK]
 
-<b>Agent evaluations</b> spørger i stedet, om agenten fulgte den aftalte arbejdsform: Brugte den de rigtige tools, overholdt den permissions og guardrails, bad den om hjælp ved tvetydighed, og stoppede den før en handling, som krævede menneskelig godkendelse? Her evaluerer vi altså processen og agentens adfærd, ikke selve maskinfunktionen.
+Product tests:
+En test af softwaren / maskinen:
+Virker tingene rent faktisk som vi gerne vil have det? 
 
-Vi har brug for begge dele. En agent kan følge processen korrekt og stadig implementere en forkert løsning. Omvendt kan en ændring tilfældigvis virke, selv om agenten brød reglerne undervejs. Derfor skal både produktet og workflowet kunne bestå deres egne tests.
+[CLICK]
 
-Agenten kan hjælpe med at skrive test, men den må ikke alene definere sin egen sandhed. Acceptance criteria eller reference behavior skal reviewes uafhængigt.
+Agent Evaluering: 
+En test af workflowet / systemet:
+Gjorde agenten som aftalt?
+
+Vi har brug for begge dele. En agent kan følge processen korrekt, men stadig lave fejl. Omvendt kan ændringerne tilfældigvis virke, selvom agenten brød reglerne undervejs.
+
+transition:
+
 -->
 
 ---
@@ -1478,6 +1675,8 @@ class: enforcement-slide
 <div class="slide-id">21</div>
 
 <!--
+Jeg tror alle har forstået at guardrails styrer og guider workflowet, mens tests er deterministiske fixpunkter (gates) der holder agenten igang indtil de er opfyldt.
+
 Instructions og guardrails styrer en probabilistisk model. De er vigtige, men de er adfærdsvejledning - ikke enforcement.
 
 Deterministiske tools kører uafhængigt af agentens opmærksomhed: compiler, schemas, permissions, architecture checks og blocking tests. Det betyder ikke, at checket er komplet eller at testen nødvendigvis er rigtig. Mennesker skal stadig reviewe test-oraklet.
@@ -1499,9 +1698,9 @@ class: feedback-slide dark-slide
 <div class="slide-id">22</div>
 
 <!--
-Et agentforslag er først værdifuldt, når vi kan lukke loopet. Før loopet kan handle, skal det have domænekontekst: projektstruktur, produkt- og versionsviden, regler og intent. Projektet skal derefter kunne bygges reproducerbart. Vi skal kunne starte en kontrolleret simulation, stimulere en tilstand, observere variable og logbook og sammenligne resultatet med et krav.
+Et agentforslag er først værdifuldt, når vi kan lukke loopet helt. Før loopet kan handle, skal det have domænekontekst: projektstruktur, produkt- og versionsviden, regler og intent. Projektet skal derefter kunne bygges reproducerbart. Vi skal kunne starte en kontrolleret simulation, stimulere en tilstand, observere variable og logbook og sammenligne resultatet med et krav.
 
-På sliden ses guardrails via instructions og skills, derefter research via AS-HELP, BR-COMMUNITY, firmware-noter og den cloud-baserede AS-COPILOT MCP. Automation Studio læser og skriver kode gennem Main.st-editoren, mens as bygger, simulerer, læser variable og læser logbook.
+På sliden ses guardrails via instructions og skills, derefter research via AS-HELP, BR-COMMUNITY, GitHub og den cloud-baserede AS-COPILOT MCP. Automation Studio læser og skriver kode gennem Main.st-editoren, mens as bygger, simulerer, læser variable og læser logbook.
 
 DevOps udfører en kendt sekvens deterministisk. Agenten vælger næste afgrænsede handling ud fra feedback. Det er derfor vigtigt, at det samme command contract kan anvendes af en engineer, en test, en pipeline og en agent.
 
@@ -1585,10 +1784,17 @@ class: vertical-modules-slide dark-slide
 <div class="slide-id">23</div>
 
 <!--
-Mennesker organiserer sig ofte i kanban-swimlanes efter fagdisciplin: HMI, safety, control og hardware. Det er en rationel arbejdsform, når fokus er begrænset, og når forskellige personer ejer forskellige fagligheder. Men featureadfærden bliver først synlig, når alle kategorier er integreret.
+[CLICK]
+Mennesker organiserer sig ofte i kanban-swimlanes efter fagdisciplin: HMI, safety, control og hardware. <b>horizontal slices</b> Det er en rationel arbejdsform, når fokus er begrænset, og når forskellige personer ejer forskellige fagligheder. Det er en begrænsning vi har som mennesker. En lille kortidshukommelse og vi er dårlige til at multitaske / context switche.
+Som mennesker laver vi derfor typisk en disciplin ad gangen. Det er der vi er mest produktive, men det skaber udfordringer ved test. Hvordan tester man HMI uden logik? Der er ingen feedback!
 
-En agent kan holde en afgrænset feature på tværs af lag i sin working context. Derfor kan den arbejde vertikalt: feature-swimlanes med HMI-state, safety contract, control logic, I/O eller simulation og acceptance test i samme korte loop. Safety boundary er stadig en review- og approval-grænse; vertikal betyder ikke autonom safety release.
+[CLICK]
 
+
+[CLICK]
+En agent har ikke de begrænsninger og den kan bare starte subagenter op til at tage sig af andre ekspertiser, eller for at isolerer og delegerer konteksten fra. Derfor kan den arbejde vertikalt (<b>vertical slices</b>): feature-swimlanes med HMI-state, safety contract, control logic, I/O eller simulation og acceptance test i samme korte loop. Det er en kæmpe fordel ift. test. Hver feature kan testes uafhængigt fordi de indeholder alle ellementerne.
+
+[CLICK]
 Matt Pococks TDD-skill beskriver horizontal slicing som anti-patternet: skriv ikke alle tests først og al implementation bagefter. Arbejd i vertical slices: én test, én minimal implementation, gentag. Hver test er en tracer bullet, der bruger feedback fra den forrige cyklus. Red før green; refactor hører til reviewfasen.
 
 Kilde: https://github.com/mattpocock/skills/blob/main/skills/engineering/tdd/SKILL.md
@@ -1601,7 +1807,7 @@ class: feature-recap-slide dark-slide
 
 <div class="kicker">BACK TO THE MACHINE · 01 MIN</div>
 
-# One feature.<br><span class="accent">Now we have the pieces.</span>
+# One feature to build.<br><span class="accent">Now we have all the pieces.</span>
 
 <div class="feature-recap-layout">
   <div class="feature-recap-machine">
@@ -1632,9 +1838,8 @@ Det er den samme maskinopgave, vi startede workshoppen med: fejl, kontrolleret s
 
 Nu har vi byggestenene: domæneviden, tools til at handle og observere, guardrails, tests og deterministiske gates.
 
-Brug kun 30-45 sekunder på denne slide. Formålet er ikke at demonstrere maskinen igen, men at genaktivere opgaven i publikums hukommelse.
 
-Transition: Lad os samle byggestenene i de tre workflows, der gør ændringen afgrænset, verificerbar og ansvarlig.
+Transition: Lad os samle byggestenene i de tre workflows, der gør ændringen afgrænset og verificerbar.
 -->
 
 ---
@@ -1651,11 +1856,17 @@ class: planning-slide dark-slide
 <div class="slide-id">24</div>
 
 <!--
-"Recover efter en aksefejl" lyder som en opgave, men det er ikke en specifikation. Agenten kan researche eksisterende states, variable og patterns. Product intent og trade-offs skal tilbage til engineer eller product owner.
+"Recover efter en aksefejl" lyder som en opgave, men det er ikke en specifikation. Agenten kan researche eksisterende kode og søge viden. Men intention og trade-offs skal tilbage til os så vi kan tage stilling.
 
-Den første workflow handler om at få den rigtige opgave. Den anden kan være unattended, når den er bounded, isolated og har earned trust. Den sidste handler om accountability.
+Her er et eksempel på hvordan et fuldt workflow kunne se ud der leder direkte til det Mads vil fortælle om efter pausen:
 
-Start human-in-the-loop. Godkend mål, scope og permissions før kørsel. Stop ved tvetydighed, policy-konflikt eller irreversibel handling. Godkend evidence og engineering trade-offs til sidst.
+Den første workflow handler om at få den rigtige opgave beskrevet. 
+
+Den anden kan være fuldt ud aftomatisk, når den er afgrænset, isoleret og har vundet vores tillid. 
+
+Den sidste handler om validering og optimering af systemet.
+
+transition: SPØRGSMÅL
 -->
 
 ---
