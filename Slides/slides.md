@@ -2373,22 +2373,22 @@ class: devops-tooling dark-slide
     <b>CODE</b>
     <small>change is versioned</small>
   </section>
-  <div class="delivery-flow-arrow" v-click="1" aria-hidden="true"><mdi-arrow-right /></div>
-  <section class="delivery-flow-stage is-ci" v-click="1" aria-label="Build">
+  <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <section class="delivery-flow-stage is-ci" aria-label="Build">
     <span class="delivery-flow-number">02</span>
     <mdi-hammer-wrench />
     <b>BUILD</b>
     <small>repeatable output</small>
   </section>
-  <div class="delivery-flow-arrow" v-click="2" aria-hidden="true"><mdi-arrow-right /></div>
-  <section class="delivery-flow-stage is-ci" v-click="2" aria-label="Test">
+  <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <section class="delivery-flow-stage is-ci" aria-label="Test">
     <span class="delivery-flow-number">03</span>
     <mdi-test-tube />
     <b>TEST</b>
     <small>expected behavior</small>
   </section>
-  <div class="delivery-flow-arrow" v-click="3" aria-hidden="true"><mdi-arrow-right /></div>
-  <section class="delivery-flow-stage is-verify" v-click="3" aria-label="Verify">
+  <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <section class="delivery-flow-stage is-verify" aria-label="Verify">
     <span class="delivery-flow-number">04</span>
     <mdi-shield-check-outline />
     <b>VERIFY</b>
@@ -2396,7 +2396,7 @@ class: devops-tooling dark-slide
   </section>
 </div>
 
-<div class="delivery-footer" v-click="3">
+<div class="delivery-footer">
   <div class="delivery-footer-label"><mdi-check-circle-outline /><span>CI QUESTION</span></div>
   <strong>Does this change still behave as expected?</strong>
   <small>Fast feedback keeps the change easy to understand and easy to fix.</small>
@@ -2405,13 +2405,31 @@ class: devops-tooling dark-slide
 <div class="slide-id">41</div>
 
 <!--
-Continuous Integration means that each change meets the same build and test process. The goal is not to make every change perfect before it moves. The goal is to find problems while the change is still small enough to understand.
+På den forrige slide talte vi om at økonomien ved test og verifikation har ændret sig.
 
-The engineer creates and versions the change. The pipeline produces a repeatable output, runs the expected checks, and records evidence. A green result does not replace engineering judgment, but it gives the engineer something objective to review.
+Hvis vi kan producere flere softwareændringer, så bliver vi også nødt til at verificere flere softwareændringer.
+Det er præcis det problem Continuous Integration forsøger at løse.
 
-Transition: Once software is verified, how do we move it toward a controlled release?
+Når en ændring bliver lavet, stopper arbejdet ikke ved at koden er skrevet.
+Ændringen skal kunne bygges.
+Den skal kunne testes.
+Og den skal kunne verificeres.
+
+Det vigtige er ikke at alle ændringer er perfekte.
+Det vigtige er at vi får feedback mens ændringen stadig er lille.
+Hvis noget går galt efter 5 minutters arbejde, er det nemt at forstå og rette.
+Hvis noget går galt efter 3 ugers udvikling, er det ofte langt dyrere at finde årsagen.
+
+Continuous Integration handler derfor om at flytte feedback så tæt på ændringen som muligt.
+
+Hvis en agent producerer 20 ændringer på en dag, vil I så manuelt gennemgå dem alle sammen?
+Sandsynligvis ikke.
+Derfor bliver automatiseret verifikation så vigtig.
+
+CI skalerer feedback på samme måde som Agentic Engineering skalerer softwareudvikling.
 -->
 
+<!-- Comment out CD - slide . It felt a bit too repetitive
 ---
 layout: default
 class: where-agentic-fits dark-slide
@@ -2427,7 +2445,7 @@ class: where-agentic-fits dark-slide
   <div class="delivery-definition-mark"><span>CD</span><small>READY TO RELEASE<br>WHEN APPROVED</small></div>
 </div>
 
-<div class="delivery-handoff" v-click="1">
+<div class="delivery-handoff">
   <mdi-check-circle-outline />
   <span>FROM CI</span>
   <strong>VERIFIED ARTIFACT</strong>
@@ -2441,14 +2459,14 @@ class: where-agentic-fits dark-slide
     <b>PACKAGE</b>
     <small>traceable artifact</small>
   </section>
-  <div class="delivery-flow-arrow" v-click="1" aria-hidden="true"><mdi-arrow-right /></div>
-  <section class="delivery-flow-stage is-cd" v-click="1">
+  <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <section class="delivery-flow-stage is-cd">
     <span class="delivery-flow-number">06</span>
     <mdi-clipboard-check-outline />
     <b>RELEASE CANDIDATE</b>
     <small>ready for decision</small>
   </section>
-  <div class="delivery-gate-slot" v-click="2">
+  <div class="delivery-gate-slot">
     <div class="delivery-gate-arrow" aria-hidden="true"><mdi-arrow-right /></div>
     <div class="delivery-gate">
       <mdi-account-check-outline />
@@ -2456,14 +2474,14 @@ class: where-agentic-fits dark-slide
       <b>release decision</b>
     </div>
   </div>
-  <section class="delivery-flow-stage is-deploy" v-click="3">
+  <section class="delivery-flow-stage is-deploy">
     <span class="delivery-flow-number">07</span>
     <mdi-upload-network-outline />
     <b>DEPLOY</b>
     <small>controlled target</small>
   </section>
-  <div class="delivery-flow-arrow" v-click="4" aria-hidden="true"><mdi-arrow-right /></div>
-  <section class="delivery-flow-stage is-monitor" v-click="4">
+  <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <section class="delivery-flow-stage is-monitor">
     <span class="delivery-flow-number">08</span>
     <mdi-chart-timeline-variant-shimmer />
     <b>MONITOR</b>
@@ -2471,20 +2489,16 @@ class: where-agentic-fits dark-slide
   </section>
 </div>
 
-<div class="delivery-footer" v-click="4">
+<div class="delivery-footer">
   <div class="delivery-footer-label"><mdi-shield-check-outline /><span>CD QUESTION</span></div>
   <strong>Can we move this verified artifact safely to its target?</strong>
   <small>Automation prepares the release; people own the decision.</small>
 </div>
 
 <div class="slide-id">42</div>
-
+-->
 <!--
-Continuous Delivery begins with the verified result from Continuous Integration. The pipeline packages that result so it can be identified, reproduced, and moved without rebuilding it by hand.
 
-The release candidate is ready, but ready does not mean automatic. A human release decision remains visible between the candidate and the deployment target. After deployment, monitoring tells us what happened in the real environment and provides feedback for the next change.
-
-Transition: CI and CD are most useful when we see them as one connected delivery flow.
 -->
 
 ---
@@ -2497,7 +2511,7 @@ class: devops-pipeline dark-slide
 <div class="delivery-heading combined-heading">
   <div>
     <h1>CI/CD<br><span class="accent">putting it together</span></h1>
-    <p>CI makes changes trustworthy. CD makes verified software releasable.</p>
+    <p>From code change to controlled release.</p>
   </div>
   <div class="delivery-principle"><span>ONE SYSTEM</span><strong>ENGINEER CREATES THE CHANGE.<br>PIPELINE EXECUTES THE PROCESS.</strong></div>
 </div>
@@ -2536,12 +2550,12 @@ class: devops-pipeline dark-slide
     </div>
   </section>
 
-  <div class="delivery-combined-handoff" v-click="1" aria-hidden="true">
+  <div class="delivery-combined-handoff" aria-hidden="true">
     <span>VERIFIED SOFTWARE<br>BECOMES A<br>RELEASE CANDIDATE</span>
     <mdi-arrow-right />
   </div>
 
-  <section class="delivery-region cd-region" v-click="1" aria-label="Continuous Delivery">
+  <section class="delivery-region cd-region" aria-label="Continuous Delivery">
     <div class="delivery-region-heading"><span>CONTINUOUS DELIVERY</span><small>move it with control</small></div>
     <div class="delivery-region-flow cd-region-flow">
       <section class="delivery-flow-stage is-package">
@@ -2557,21 +2571,21 @@ class: devops-pipeline dark-slide
         <b>RELEASE</b>
         <small>ready for decision</small>
       </section>
-      <div class="delivery-approval-slot" v-click="1">
+      <div class="delivery-approval-slot">
         <mdi-arrow-right class="delivery-approval-arrow" aria-hidden="true" />
         <div class="delivery-inline-gate">
           <mdi-account-check-outline />
           <span>RELEASE DECISION</span>
         </div>
       </div>
-      <section class="delivery-flow-stage is-deploy" v-click="1">
+      <section class="delivery-flow-stage is-deploy">
         <span class="delivery-flow-number">07</span>
         <mdi-upload-network-outline />
         <b>DEPLOY</b>
         <small>controlled target</small>
       </section>
-      <div class="delivery-flow-arrow" v-click="1" aria-hidden="true"><mdi-arrow-right /></div>
-      <section class="delivery-flow-stage is-monitor" v-click="1">
+      <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+      <section class="delivery-flow-stage is-monitor">
         <span class="delivery-flow-number">08</span>
         <mdi-chart-timeline-variant-shimmer />
         <b>MONITOR</b>
@@ -2581,7 +2595,7 @@ class: devops-pipeline dark-slide
   </section>
 </div>
 
-<div class="delivery-feedback" v-click="3">
+<div class="delivery-feedback">
   <div class="delivery-footer-label"><mdi-chart-timeline-variant-shimmer /><span>FEEDBACK LOOP</span></div>
   <strong>Monitor what happened. Feed the next change.</strong>
 </div>
@@ -2589,11 +2603,16 @@ class: devops-pipeline dark-slide
 <div class="slide-id">43</div>
 
 <!--
-This is the whole delivery flow in one picture. Continuous Integration takes the engineer's change through build, test, and verification. Continuous Delivery takes the verified result through packaging, release, deployment, and monitoring.
+Når vi så sætter det sammen med CD kalder vi det CI/CD.
 
-The handoff matters: the pipeline does not silently rebuild a different version. It moves a named artifact forward. The release decision is deliberately visible, because controlled delivery still needs human context and accountability.
+CI verificerer vores ændringer. 
 
-Monitoring closes the loop. What happens in the target environment becomes evidence for the next change, so delivery is not a one-way copy operation but a repeatable engineering system.
+Continours Delivery (CD) pakker og releaser (f.eks. github),
+Deployer til PLC, men næsten altid med et mennesker som godkender hvornår. I IT verdenen er det meget normalt at opdateringen kommer automatisk uden et mennesker godkender (eks. dette slide show til github pages. Opdateres auto ved et push til github). Dette passer ikke got i OT hvor det skal passe ind i produktionsplanlægning.
+Til sidst har vi monitor delen som feeder de næste ændringer tilbage til vores CI og så får vi igen den her "timeglas effekt" som vi snakkede om i starten. 
+
+Alt dette kalder vi CI/CD og senere har vi også en demo af det, men inden da skal vi snakker lidt om tooling.
+
 -->
 
 ---
@@ -2666,13 +2685,57 @@ class: tooling-matters-slide dark-slide
 <div class="slide-id">44</div>
 
 <!--
-The build, test, and transfer capabilities may already exist. The challenge is access.
+Vi har nu snakket om CI og CD.
+Men der mangler stadig et vigtigt spørgsmål.
+Hvordan får vi egentlig alt det her til at ske?
+For en pipeline kan ikke trykke på musen.
 
-A person can operate a graphical engineering application. A pipeline needs a stable, scriptable, non-interactive interface that can run unattended and return a result that a machine can inspect.
+Hvis vi tager en klassisk engineering-applikation.
+Det kunne være Automation Studio.
+Det kunne være TIA Portal.
+Det kunne være Studio 5000.
 
-The GUI is not the problem and it does not disappear. It is the interface designed for people. The CLI or API is the complementary interface designed for repeatable automation.
+Som menneske kan vi gøre en masse ting.
+Vi kan åbne et projekt.
+Vi kan vælge en konfiguration.
+Vi kan starte et build.
+Vi kan læse resultatet.
+Vi kan overføre software til et target.
+Og det fungerer faktisk rigtig godt.
 
-Reveal the complete GUI workflow first. Then introduce the programmable interface together with the complementary GUI and CLI / API bridge and the automated workflow. Finish with the takeaway.
+GUI'er er lavet til mennesker.
+De er optimeret til at vi kan udforske, forstå og arbejde med systemet.
+Problemet opstår først når vi ønsker automation.
+For en pipeline ved ikke hvad den skal klikke på.
+Den kan ikke se knapper.
+Den kan ikke læse dialogbokse.
+Den kan ikke fortolke et build-vindue på samme måde som et menneske.
+
+[CLICK]
+
+Så hvis vi vil automatisere build, test, packaging og deployment...
+så har vi brug for en anden type interface.
+Ikke et interface til mennesker.
+Men et interface til software.
+Derfor ser vi ofte CLI'er og API'er.
+De giver adgang til præcis de samme muligheder som GUI.
+Bare på en måde som en pipeline kan forstå.
+
+[CLICK]
+
+Og det leder os til den vigtigste pointe på hele sliden.
+"Hvis et menneske skal klikke på det, kan en pipeline ikke automatisere det."
+Det er selvfølgelig en lille simplificering.
+
+Men grundideen er vigtig:
+Hvis vi vil have DevOps.
+Hvis vi vil have automatiske tests.
+Hvis vi vil have Agentic Engineering.
+Så skal de engineering-funktioner vi allerede har adgang til som mennesker...
+også være tilgængelige programmatisk.
+Og det er præcis her B&R kommer ind i billedet.
+
+For lad os kigge på hvordan vi forsøger at gøre det i Automation Studio.
 -->
 
 ---
@@ -2728,7 +2791,10 @@ class: as-cli-intro-slide dark-slide
       <div class="as-cli-capability-head"><span>01</span><mdi-hammer-wrench /></div>
       <b class="as-cli-capability-name">BUILD</b>
       <div class="as-cli-capability-purpose">Compile the project</div>
-      <div class="as-cli-command"><span>&gt;</span><span><strong>as</strong> build</span></div>
+      <div class="as-cli-command-stack">
+        <div class="as-cli-command"><span>&gt;</span><span><strong>as</strong> build</span></div>
+        <div class="as-cli-command"><span>&gt;</span><span><strong>as</strong> build sim</span></div>
+      </div>
     </article>
     <article class="as-cli-capability-card as-cli-capability-test" v-click="1">
       <div class="as-cli-capability-head"><span>02</span><mdi-test-tube /></div>
@@ -2744,20 +2810,25 @@ class: as-cli-intro-slide dark-slide
       <b class="as-cli-capability-name">PACKAGE</b>
       <div class="as-cli-capability-purpose">Create an installation package</div>
       <small class="as-cli-capability-sublabel">PROJECT INSTALLATION PACKAGE</small>
-      <div class="as-cli-command"><span>&gt;</span><span><strong>as</strong> build pip --output ...</span></div>
+      <div class="as-cli-command-stack">
+        <div class="as-cli-command"><span>&gt;</span><span><strong>as</strong> build pip --output ...</span></div>
+      </div>
     </article>
     <article class="as-cli-capability-card as-cli-capability-transfer" v-click="1">
-      <div class="as-cli-capability-head"><span>04</span><span class="as-cli-approval-icon" title="Controlled deployment"><mdi-account-check-outline /></span></div>
-      <div class="as-cli-capability-icon"><mdi-upload-network-outline /></div>
+      <div class="as-cli-capability-head"><span>04</span><span class="as-cli-capability-icon"><mdi-upload-network-outline /></span></div>
       <b class="as-cli-capability-name">TRANSFER</b>
       <div class="as-cli-capability-purpose">Transfer to a target</div>
-      <div class="as-cli-command"><span>&gt;</span><span><strong>as</strong> transfer online --ip ...</span></div>
+      <div class="as-cli-command-stack">
+        <div class="as-cli-command"><span>&gt;</span><span><strong>as</strong> transfer online --ip ...</span></div>
+      </div>
     </article>
     <article class="as-cli-capability-card as-cli-capability-diagnostics" v-click="1">
       <div class="as-cli-capability-head"><span>05</span><mdi-file-search-outline /></div>
       <b class="as-cli-capability-name">DIAGNOSTICS</b>
       <div class="as-cli-capability-purpose">Read controller logbook entries</div>
-      <div class="as-cli-command"><span>&gt;</span><span><strong>as</strong> logbook read</span></div>
+      <div class="as-cli-command-stack">
+        <div class="as-cli-command"><span>&gt;</span><span><strong>as</strong> logbook read</span></div>
+      </div>
     </article>
   </div>
 </div>
@@ -2765,31 +2836,42 @@ class: as-cli-intro-slide dark-slide
 <div class="slide-id">45</div>
 
 <!--
-The previous slide established that pipelines and agents need programmable access to engineering tools. This is the role of as.
+Indtil nu har vi talt om principper og teori.
+CI.
+CD.
+Automatiseret test.
+Pipelines.
 
-as is not the DevOps pipeline. The pipeline decides which operations should run and when they should run. as provides a repeatable way to execute the requested engineering operation.
+Men al den teori hjælper os faktisk ikke ret meget hvis værktøjerne ikke kan automatiseres.
 
-as is also not the AI agent. An agent can decide that it needs to build a project, inspect a variable, or retrieve diagnostics. It still needs a tool to perform the operation.
+Derfor har vi i Danmark arbejdet på as-cli.
+(peger på midten)
 
-This is where DevOps and Agentic Engineering meet. Both depend on the same programmable access to engineering capabilities.
+Det er egentlig ikke en DevOps-platform.
+Det er ikke en AI-agent.
+Og det er heller ikke en erstatning for Automation Studio.
+Det er et programmerbart interface til Automation Studio.
 
-Walk through the five cards as the roadmap for the demonstration:
+Det betyder at den samme engineering-funktionalitet nu kan bruges af:
+- en ingeniør
+- en DevOps pipeline
+- eller en AI agent
 
-1. Build the Automation Studio project.
-2. Write and read runtime variables as part of a test scenario.
-3. Create a Project Installation Package.
-4. Perform a controlled transfer to a target.
-5. Retrieve logbook information for diagnostics and feedback.
+Vi talte om at et menneske bruger en GUI, mens automation kræver en CLI eller API.
+Det er præcis den rolle as-cli udfylder.
 
-Clarify that variable operations and logbook access require a connection to a controller or simulation.
+(peger på capabilities)
 
-Do not describe variable read and write as a complete test framework. They are building blocks that can be used in an automated test scenario.
+For dagens demo er der især 5 capabilities som er interessante.
+Build af projekter.
+Interaktion med runtime variabler.
+Paketering af software.
+Transfer til et target.
+Og diagnostics.
 
-Keep the deployment claim bounded. Programmable transfer does not remove engineering approval, machine validation, commissioning, or safety responsibilities.
+Det er faktisk nok til at bygge en overraskende stor del af en DevOps pipeline.
+Og det er også disse 5 ting vi kommer til at bruge i de næste demoer.
 
-End with:
-
-"Rather than explain every command, let's use these five pipeline needs as our demo roadmap."
 -->
 
 ---
@@ -2797,10 +2879,10 @@ layout: default
 class: as-cli-demo-slide dark-slide
 ---
 
-<div class="status-badge demonstrator">DEMO 1 / 3</div>
+<div class="status-badge demonstradtor">DEMO 1 / 3</div>
 <div class="kicker">AS-CLI DEVELOPMENT · DEVOPS IN PRACTICE</div>
 
-# How <span class="accent">as</span> tests itself
+# How <span class="accent">as CLI</span> tests itself
 
 <div class="as-cli-devops-flow" aria-label="as development test gates">
   <article class="as-cli-devops-gate as-cli-devops-unit">
@@ -2823,25 +2905,25 @@ class: as-cli-demo-slide dark-slide
 <div class="as-cli-devops-result">
   <mdi-shield-check-outline />
   <span>PASS / FAIL</span>
-  <strong>Protects quality. Builds confidence that nothing breaks.</strong>
+  <strong>Protects quality. Builds confidence. Catches issues early.</strong>
 </div>
 
 <div class="slide-id">46</div>
 
 <!--
-Demo 1 shows the DevOps loop used to develop as itself.
+Første demo er fra udviklingsprojektet af as CLI.
 
-Start with the fast gate. run-tests.ps1 locates the .NET Framework csc.exe compiler, compiles a curated
-SDK-free subset of production code with the hand-rolled test harness, and runs it in seconds. This is the
-default check for every change.
+Projektet har nogle simple unit tests so tester meget isoleret logik eks. at et input til en funktion giver et forventet output. 
+Disse tests er meget hurtige og kan køres ofte, men siger ikke meget om hele systemet virker. 
+Til det har vi integration tests hvor vi tester alle as cli commands op imod et Automation Studio test projekt. Lad os åbne projektet og kigge på det.
 
-Then show the real-system gate. run-integration-tests.ps1 rebuilds as unless asked to reuse the binary,
-drives the committed Automation Studio integration fixture through ARsim and PVI, checks design-time and
-online behavior, and cleans up the daemon and simulator. It is slower and local because the B&R SDK is required.
+Start  med at gør as --help i en terminal og vis alle de forskellige commands.
 
-The point is the separation of feedback speed from system fidelity: fast proof first, real-system proof before
-an SDK-bound change is ready for review. Do not imply that the integration runner is hosted CI; the repository
-has no hosted CI because Automation Studio is not available on a runner.
+Herfeter hop ind i projektet og kør unit tests (tager ca. 2s).
+
+Herefter kør integration test (tager 1.5min).
+Lav en fejl "med vilje" og vis herefter at integration test fanger fejlen.
+Forklar at vi har et github workflow som kører disse tests automatisk inden release. Dette vil jeg dog vente med at vise til næste demo hvor vi skal demo en helt CI/CD pipeline. 
 -->
 
 ---
@@ -2868,14 +2950,83 @@ class: machine-demo-slide dark-slide
 <div class="slide-id">47</div>
 
 <!--
-Demo 2 is the handoff into the live full-pipeline demonstration.
+Indtil nu har vi kigget på as CLI som et softwareprojekt.
+Men lad os flytte fokus over på noget der minder mere om det mange af os arbejder med til daglig.
 
-Show the conveyor as the example machine represented by the DevOpsDemo project. It is a visual
-demonstrator, not an official B&R machine template. Let the running animation establish the machine
-context, then Alt+Tab to the repository and show how one push or GitHub tag starts the workflow.
+Det her er vores orange juice machine.
+Det er selvfølgelig et demo-projekt.
+Men idéen er præcis den samme som på en rigtig maskine.
+Vi har et Automation Studio projekt.
+Vi har software.
+Vi har en HMI.
+Og vi har et ønske om at kunne levere ændringer på en reproducerbar måde.
+I stedet for at snakke om det, lad os prøve at gøre det.
 
-Do not explain the workflow from this slide. The live repository view carries the build, test, release,
-package, and deployment sequence.
+[skift til GitHub]
+
+Jeg vil nu lave et release.
+Det eneste jeg gør er at oprette et tag og pushe det til GitHub.
+Og læg mærke til hvad der sker bagefter.
+For her overtager pipelinen arbejdet.
+Ikke mig.
+
+[opret tag og push]
+
+Nu starter GitHub workflowet.
+Hvis vi åbner Actions-fanen kan vi følge det live.
+Det her er vores digitaliserede proces.
+Alle de manuelle trin vi tidligere snakkede om...
+de er nu beskrevet som et workflow.
+
+[vis workflow]
+
+I praksis sker der nu flere ting.
+Projektet bliver bygget.
+Der bliver kørt automatiske tests.
+Der oprettes et release.
+Der genereres artifacts.
+Og til sidst publiceres resultatet.
+Alt sammen uden at jeg skal logge ind på en build-maskine eller huske hvilke trin der skal køres.
+
+[vis .github/workflows]
+
+Det interessante er faktisk ikke GitHub.
+GitHub kunne lige så godt være Gitlab, Azure DevOps, Jenkins eller noget helt tredje.
+Det interessante er at processen nu er beskrevet som kode.
+Hvis en kollega kloner projektet.
+Så får de præcis den samme proces.
+Hvis vi kører den i morgen.
+Så får vi præcis den samme proces.
+Hvis vi kører den om seks måneder.
+Så får vi stadig præcis den samme proces.
+Det er det der gør den reproducerbar.
+
+[vis de enkelte steps mens workflowet kører]
+
+Læg mærke til at vi producerer mere end bare software.
+Vi producerer også evidence.
+Vi kan se hvad der blev bygget.
+Hvilke tests der blev kørt.
+Og om de bestod.
+Det er præcis det CI/CD giver os.
+Ikke bare automation.
+Men sporbarhed.
+Når workflowet er færdigt, ligger resultatet klar på release-serveren.
+Herfra kan et target hente præcis den version vi lige har bygget.
+Det bliver især interessant når man har mange identiske installationer.
+Eller når man skal vide præcis hvilken version der blev installeret hvor.
+For så er der ikke længere tvivl om hvad der kører.
+
+Der findes ét build.
+Ét artifact.
+Én version.
+Og alle ved hvor det kommer fra.
+
+Transition:
+Nu har vi automatiseret build, test og release.
+Men hvad med selve brugeroplevelsen?
+Hvordan tester vi egentlig at HMI'en stadig virker som operatøren forventer?
+
 -->
 
 ---
@@ -2883,9 +3034,10 @@ layout: default
 class: hmi-testing-slide dark-slide
 ---
 
+<div class="status-badge demonstrator">DEMO 3 / 3</div>
 <div class="kicker">HMI VERIFICATION</div>
 
-# Test the HMI <span class="accent">like a user</span>
+# Test the HMI <span class="accent">like an operator</span>
 
 <p class="hmi-testing-subtitle">Automated checks of real operator workflows.</p>
 
@@ -2924,19 +3076,42 @@ class: hmi-testing-slide dark-slide
 <div class="slide-id">W2 · 51</div>
 
 <!--
-This slide makes the concept deliberately simple: an automated check follows the same path as a real operator.
+Den sidste demo handler om noget som traditionelt har været svært at automatisere.
+Nemlig HMI-verifikation.
 
-Walk left to right. The user presses Start, the HMI changes state, the PLC and machine react, and the expected behavior is verified.
+(peger på flowet)
 
-The same pattern applies to starting a machine, changing a recipe, acknowledging an alarm, or verifying a status indication. The point is the repeatable operator workflow, not the test framework.
+Tidligere talte vi om unit tests, integration tests og PLC tests.
+Men i sidste ende er det jo ikke en PLC der bruger maskinen.
+Det er en operatør.
+Og derfor er det også interessant at kunne teste de workflows som operatøren faktisk bruger.
 
-Transition: once an operator workflow can produce evidence, the team can make that check part of the repeatable path from commit to evidence.
+For eksempel:
+- kan maskinen startes?
+- kan en alarm kvitteres?
+- kan en recept ændres?
+- vises den rigtige status på skærmen?
+
+Normalt ville en person skulle klikke sig igennem disse scenarier manuelt.
+
+Men præcis som vi kan automatisere build og test af software, kan vi også automatisere brugerinteraktionen med HMI'et.
+
+Det betyder at hver softwareændring automatisk kan kontrollere at de vigtigste operator-workflows stadig fungerer.
+
+Det er præcis det jeg vil vise nu.
+
+Til dette bruger vi et cli fra microsoft som hedder playwright.
+For demoens skyld åbner jeg browseren og har lagt nogle animationer ind over. I en rigtig pipeline bille den normalt køre headless i en terminal.
+
+npm run test:demo
+Hvis det skulle køre headless kan man bare skrive:
+npm run test:hmi
 -->
 
 
 ---
 layout: default
-class: start-path-slide dark-slide
+class: devops-mountain-slide dark-slide
 ---
 
 <div class="brandbar end-brand">
@@ -2946,59 +3121,78 @@ class: start-path-slide dark-slide
 
 <div class="kicker">THE FIRST LOOP · PRACTICAL START</div>
 
-# Start <span class="accent">Monday Morning</span>
+# DevOps <span class="accent">Mountain</span>
 
-<p class="start-path-lead">One repeatable engineering path is enough</p>
+<p class="mountain-subtitle">Start the journey</p>
 
-<div class="start-path-roadmap" aria-label="Five-step repeatable engineering path">
-  <article class="start-path-step is-version">
-    <div class="start-path-step-head"><span>01</span><mdi-source-branch /></div>
-    <div><small>VERSION</small><strong>Put the project in Git</strong></div>
-  </article>
-  <div class="start-path-connector connector-one" aria-hidden="true"><mdi-arrow-right /></div>
-  <article class="start-path-step is-build">
-    <div class="start-path-step-head"><span>02</span><mdi-hammer-wrench /></div>
-    <div><small>BUILD</small><strong>Create one repeatable build command</strong></div>
-  </article>
-  <div class="start-path-connector connector-two" aria-hidden="true"><mdi-arrow-right /></div>
-  <article class="start-path-step is-test">
-    <div class="start-path-step-head"><span>03</span><mdi-test-tube /></div>
-    <div><small>TEST</small><strong>Automate one meaningful check</strong></div>
-  </article>
-  <div class="start-path-connector connector-three" aria-hidden="true"><mdi-arrow-right /></div>
-  <article class="start-path-step is-evidence">
-    <div class="start-path-step-head"><span>04</span><mdi-file-check-outline /></div>
-    <div><small>EVIDENCE</small><strong>Store test results and build outputs</strong></div>
-  </article>
-  <div class="start-path-connector connector-four" aria-hidden="true"><mdi-arrow-right /></div>
-  <article class="start-path-step is-release">
-    <div class="start-path-step-head"><span>05</span><mdi-account-check-outline /></div>
-    <div><small>RELEASE</small><strong>Make deployment a deliberate decision</strong></div>
-  </article>
-</div>
+<section class="mountain-stage" aria-label="DevOps journey from today's workflow to full CI/CD">
+  <div class="mountain-visual">
+    <div class="mountain-distant" aria-hidden="true"></div>
+    <div class="mountain-main" aria-hidden="true"></div>
+    <div class="mountain-facet" aria-hidden="true"></div>
+    <div class="mountain-grid" aria-hidden="true"></div>
+    <div class="mountain-trail" aria-hidden="true"></div>
+    <div class="mountain-origin">
+      <mdi-account-hard-hat-outline />
+      <strong>TODAY</strong>
+      <small>Current workflow</small>
+    </div>
+    <article class="mountain-checkpoint checkpoint-git">
+      <span class="mountain-checkpoint-marker">01</span>
+      <div class="mountain-checkpoint-label"><strong>GIT</strong><small>versioned project</small></div>
+    </article>
+    <article class="mountain-checkpoint checkpoint-build">
+      <span class="mountain-checkpoint-marker">02</span>
+      <div class="mountain-checkpoint-label"><strong>BUILD</strong><small>one repeatable command</small></div>
+    </article>
+    <article class="mountain-checkpoint checkpoint-test">
+      <span class="mountain-checkpoint-marker">03</span>
+      <div class="mountain-checkpoint-label"><strong>TEST</strong><small>one meaningful check</small></div>
+    </article>
+    <article class="mountain-checkpoint checkpoint-evidence">
+      <span class="mountain-checkpoint-marker">04</span>
+      <div class="mountain-checkpoint-label"><strong>EVIDENCE</strong><small>visible result</small></div>
+    </article>
+    <article class="mountain-checkpoint checkpoint-release">
+      <span class="mountain-checkpoint-marker">05</span>
+      <div class="mountain-checkpoint-label"><strong>RELEASE</strong><small>deliberate decision</small></div>
+    </article>
+    <div class="mountain-summit">
+      <span class="mountain-flag-pole" aria-hidden="true"></span>
+      <span class="mountain-flag-pennant" aria-hidden="true"></span>
+      <div class="mountain-summit-copy">
+        <strong>FULL CI/CD</strong>
+        <small>(not required today)</small>
+        <em>Repeatable and automated delivery</em>
+      </div>
+    </div>
+  </div>
+  <aside class="mountain-statement">
+    <span class="mountain-statement-label">THE POINT IS PROGRESS</span>
+    <strong>Don't automate<br>the whole factory.</strong>
+    <b>Take the next step.</b>
+  </aside>
+</section>
 
-<div class="start-path-takeaway">
-  <strong>Do not automate the whole factory.</strong>
-  <b>Make one change repeatable from commit to evidence.</b>
-</div>
-
-<div class="start-path-footer">
-  <span>Agentic Engineering creates changes faster.</span>
-  <b>DevOps gives every change a repeatable path.</b>
+<div class="mountain-footer">
+  <span>Every organization starts from a different place.</span>
+  <b>Success comes from taking the next step, not from reaching the summit immediately.</b>
 </div>
 
 <div class="slide-id">W2 · 52</div>
 
 <!--
-The goal is not to become a Silicon Valley software company overnight.
+The goal of DevOps is not to build a perfect CI/CD system overnight.
 
-Start with a single engineering workflow.
+The goal is to make one engineering workflow more repeatable than it was yesterday.
 
-One versioned project, one repeatable build, one automated test, one piece of evidence.
+Start with Git.
+Then automate a build.
+Then add one meaningful test.
+Then capture evidence.
+Then automate release activities.
 
-Success is not a perfect pipeline.
-
-Success is eliminating one manual step and being able to reproduce the result tomorrow.
+Every step creates value.
 -->
 
 ---

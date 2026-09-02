@@ -5,6 +5,7 @@
     <Connection Connector="PLK1" TargetModule="X20CP1686X" TargetConnector="IF3">
       <Cable Type="PowerlinkCable" Length="10" Version="1.0.0.3" />
     </Connection>
+    <Parameter ID="ActivateACOPOSSimulationOnPLC" Location="DriveConfiguration/Module" Value="1" />
     <Parameter ID="InterfaceType" Location="DriveConfiguration/Encoder/EncoderX41" Value="EnDat" />
     <Parameter ID="InterfaceType" Location="DriveConfiguration/Encoder/EncoderX42" Value="EnDat" />
     <Parameter ID="InterfaceType" Location="DriveConfiguration/Encoder/EncoderX43" Value="EnDat" />
