@@ -3114,16 +3114,11 @@ layout: default
 class: devops-mountain-slide dark-slide
 ---
 
-<div class="brandbar end-brand">
-  <div class="brandmark">B<span>&amp;</span>R</div>
-  <div class="brandline">Industrial Automation</div>
-</div>
-
 <div class="kicker">THE FIRST LOOP · PRACTICAL START</div>
 
-# DevOps <span class="accent">Mountain</span>
+# How to <span class="accent">get started</span>
 
-<p class="mountain-subtitle">Start the journey</p>
+<p class="mountain-subtitle">One step at a time</p>
 
 <section class="mountain-stage" aria-label="DevOps journey from today's workflow to full CI/CD">
   <div class="mountain-visual">
@@ -3143,33 +3138,32 @@ class: devops-mountain-slide dark-slide
     </article>
     <article class="mountain-checkpoint checkpoint-build">
       <span class="mountain-checkpoint-marker">02</span>
-      <div class="mountain-checkpoint-label"><strong>BUILD</strong><small>one repeatable command</small></div>
+      <div class="mountain-checkpoint-label"><strong>AS CLI</strong><small>Automate engineering tasks</small></div>
     </article>
     <article class="mountain-checkpoint checkpoint-test">
       <span class="mountain-checkpoint-marker">03</span>
-      <div class="mountain-checkpoint-label"><strong>TEST</strong><small>one meaningful check</small></div>
+      <div class="mountain-checkpoint-label"><strong>TEST</strong><small>Start with 1 test</small></div>
     </article>
     <article class="mountain-checkpoint checkpoint-evidence">
       <span class="mountain-checkpoint-marker">04</span>
-      <div class="mountain-checkpoint-label"><strong>EVIDENCE</strong><small>visible result</small></div>
+      <div class="mountain-checkpoint-label"><strong>RELEASE</strong><small>Deployment package (PIP)</small></div>
     </article>
     <article class="mountain-checkpoint checkpoint-release">
       <span class="mountain-checkpoint-marker">05</span>
-      <div class="mountain-checkpoint-label"><strong>RELEASE</strong><small>deliberate decision</small></div>
+      <div class="mountain-checkpoint-label"><strong>Automate</strong><small>Pipeline execution</small></div>
     </article>
     <div class="mountain-summit">
       <span class="mountain-flag-pole" aria-hidden="true"></span>
       <span class="mountain-flag-pennant" aria-hidden="true"></span>
       <div class="mountain-summit-copy">
         <strong>FULL CI/CD</strong>
-        <small>(not required today)</small>
         <em>Repeatable and automated delivery</em>
       </div>
     </div>
   </div>
   <aside class="mountain-statement">
     <span class="mountain-statement-label">THE POINT IS PROGRESS</span>
-    <strong>Don't automate<br>the whole factory.</strong>
+    <strong>Don't start at<br> the summit.</strong>
     <b>Take the next step.</b>
   </aside>
 </section>
@@ -3200,15 +3194,6 @@ layout: default
 class: working-in-progress dark-slide
 ---
 
-<!--
-Make an ending slide about "what we are working on". Be honest about that we have been working on the tooling but we still need experience in using the tool and look forward to how customer use it.
-Mention we currently see 2 big points we are working On:
-- Automation Studio support in Docker
-- Package Manager for Technology Packages, hardware files
-
-Maybe use wording like OT does not become IT in a year.
--->
-
 <div class="status-badge progress">IN PROGRESS</div>
 <div class="kicker">WHAT WE ARE WORKING ON</div>
 
@@ -3234,11 +3219,71 @@ Maybe use wording like OT does not become IT in a year.
 <br/>
 
 <div class="working-principle" v-click>
-  <div class="working-principle-title"><strong>Do you agree?</strong></div>
+  <div class="working-principle-title"><strong>Where should we focus next?</strong></div>
   <p>Do you have suggestions for our next priorities?</p>
 </div>
 
 <div class="slide-id">W2 · 53</div>
+
+<!--
+
+Lad mig slutte af med at være lidt ærlig.
+Vi står ikke her fordi vi synes vi har løst DevOps i industriel automation.
+Vi står her fordi vi synes vi er kommet langt nok til at begynde at bruge det i praksis.
+Vi har tooling.
+Vi har workflows.
+Vi har demoer.
+Vi har kunder som er interesserede.
+Men vi har også lært at nogle ting stadig gør det unødigt svært.
+
+[CLICK]
+
+Den første ting vi arbejder på er Automation Studio i Docker.
+Hvis vi ser på hvordan moderne softwareudvikling foregår i IT-verdenen, så forventer man næsten at kunne starte et nyt miljø med én kommando.
+
+Samme version.
+Samme dependencies.
+Samme setup.
+Hver gang.
+
+Det er ekstremt attraktivt når man arbejder med CI/CD, build-servere og AI-agenter.
+For jo mindre miljøet betyder, desto lettere bliver automation.
+Men det er også et svært problem.
+Automation Studio er ikke designet til at være en cloud-native applikation fra starten.
+Så det her er noget vi aktivt undersøger og arbejder med.
+
+[CLICK]
+
+Den anden ting er package management.
+Hvis vi ser på moderne softwareprojekter, så er dependencies noget man næsten tager for givet.
+Man skriver hvad projektet afhænger af.
+Og systemet finder, henter og installerer det.
+I automation er virkeligheden ofte mere kompliceret.
+Technology packages.
+Hardware beskrivelser.
+Firmware versioner.
+Specialkomponenter.
+Mange af os har prøvet at få et projekt og bruge en halv dag på at finde alt det der mangler før det kan bygge.
+Det er præcis den oplevelse vi gerne vil forbedre.
+
+[CLICK]
+
+Og det er nok faktisk den vigtigste del af sliden.
+Vi tror vi er på den rigtige vej.
+Men vi er mindst lige så interesserede i at høre hvad I synes.
+For kunden bruger systemet på en måde som vi aldrig selv kan simulere.
+Så hvis I skulle vælge:
+Hvad ville skabe mest værdi for jer?
+Hvad er den største barriere for at komme i gang?
+Hvad mangler vi?
+For den næste fase handler ikke kun om at bygge tooling.
+Den handler om at lære hvordan værktøjerne bliver brugt i virkeligheden.
+
+Transition:
+Og med det vil vi meget gerne høre hvad I tænker.
+
+-->
+
 
 ---
 layout: default
