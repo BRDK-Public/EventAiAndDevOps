@@ -2,8 +2,11 @@
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
 const LOOP_DURATION_SECONDS = 9
+const LOOP_DURATION_MS = LOOP_DURATION_SECONDS * 1000
 const BOTTLE_COUNT = 5
-const COUNTER_STEP_MS = (LOOP_DURATION_SECONDS * 1000) / BOTTLE_COUNT
+const COUNTER_STEP_MS = LOOP_DURATION_MS / BOTTLE_COUNT
+// cap-appear reaches full opacity at 64%; add a margin so a fading-in cap never counts as capped.
+const CAP_APPLIED_MS = LOOP_DURATION_MS * 0.66
 type InteractiveMode = 'execute' | 'aborted' | 'stopped'
 
 const props = withDefaults(defineProps<{
@@ -20,7 +23,14 @@ const props = withDefaults(defineProps<{
 
 const interactiveMode = ref<InteractiveMode>('execute')
 const displayCount = ref(props.interactive ? 0 : props.count)
-const bottleRunId = ref(0)
+const rejectedCount = ref(0)
+const bottleRuns = ref<number[]>(Array.from({ length: BOTTLE_COUNT }, () => 0))
+const bottleVisible = ref<boolean[]>(Array.from({ length: BOTTLE_COUNT }, () => true))
+// Run clock in ms that only advances while the machine is executing.
+let runElapsedMs = 0
+let runStartTs: number | undefined
+const bottleStartMs = Array.from({ length: BOTTLE_COUNT }, (_, index) => (index * LOOP_DURATION_MS) / BOTTLE_COUNT)
+const bottleDelayMs = ref<number[]>(Array.from({ length: BOTTLE_COUNT }, (_, index) => (index * LOOP_DURATION_MS) / BOTTLE_COUNT))
 let counterTimer: ReturnType<typeof setInterval> | undefined
 
 const currentState = computed(() => props.interactive ? interactiveMode.value : props.state)
@@ -50,29 +60,36 @@ const faultStatus = computed(() => {
 })
 const counterStatus = computed(() => {
   if (props.interactive) {
-    return interactiveMode.value === 'aborted' ? 'HOLD' : interactiveMode.value === 'stopped' ? 'ZEROED' : 'COUNT'
+    return interactiveMode.value === 'aborted' ? 'HOLD' : interactiveMode.value === 'stopped' ? 'RETAINED' : 'COUNT'
   }
   return props.state === 'fault' ? 'HOLD' : props.state === 'recovered' ? 'EXACT' : 'COUNT'
 })
 const recoveryStatus = computed(() => {
   if (props.interactive) {
-    return interactiveMode.value === 'aborted' ? 'RESET REQUIRED' : interactiveMode.value === 'stopped' ? 'START READY' : 'READY'
+    return interactiveMode.value === 'aborted' ? 'CLEAR REQUIRED' : interactiveMode.value === 'stopped' ? 'START READY' : 'READY'
   }
   return props.state === 'fault' ? 'AWAIT CLEAR' : props.state === 'recovered' ? 'VERIFIED' : 'READY'
 })
 const canEstop = computed(() => props.interactive && interactiveMode.value === 'execute')
-const canReset = computed(() => props.interactive && interactiveMode.value === 'aborted')
+const canClear = computed(() => props.interactive && interactiveMode.value === 'aborted')
 const canStart = computed(() => props.interactive && interactiveMode.value === 'stopped')
 
 const bottleStyle = (bottleIndex: number): Record<string, string> => ({
   '--bottle-delay': props.interactive
-    ? `${(bottleIndex - 1) * LOOP_DURATION_SECONDS / BOTTLE_COUNT}s`
+    ? `${bottleDelayMs.value[bottleIndex - 1] / 1000}s`
     : `${-((bottleIndex - 1) * LOOP_DURATION_SECONDS / BOTTLE_COUNT)}s`,
 })
 
 const bottleKey = (bottleIndex: number) => props.interactive
-  ? `${bottleRunId.value}-${bottleIndex}`
+  ? `${bottleRuns.value[bottleIndex - 1]}-${bottleIndex}`
   : bottleIndex
+
+const runClockMs = () => runElapsedMs + (runStartTs === undefined ? 0 : performance.now() - runStartTs)
+
+const isCapped = (bottleIndex: number) => {
+  const phase = runClockMs() - bottleStartMs[bottleIndex - 1]
+  return phase >= 0 && (phase % LOOP_DURATION_MS) >= CAP_APPLIED_MS
+}
 
 const advanceCounter = () => {
   if (!machineIsRunning.value) return
@@ -83,7 +100,8 @@ const advanceCounter = () => {
   displayCount.value = displayCount.value >= 100 ? 0 : displayCount.value + 1
 }
 
-const handleBottleIteration = () => {
+const handleBottleIteration = (event: AnimationEvent) => {
+  if (event.target !== event.currentTarget) return
   if (props.interactive) advanceCounter()
 }
 
@@ -102,26 +120,79 @@ const startCounter = () => {
 
 const emergencyStop = () => {
   if (!canEstop.value) return
+  if (runStartTs !== undefined) {
+    runElapsedMs += performance.now() - runStartTs
+    runStartTs = undefined
+  }
   interactiveMode.value = 'aborted'
   stopCounter()
 }
 
-const resetMachine = () => {
-  if (!canReset.value) return
+// Clearing rejects every bottle that is not capped yet; capped bottles stay on the belt.
+const clearMachine = () => {
+  if (!canClear.value) return
+  for (let index = 0; index < BOTTLE_COUNT; index += 1) {
+    if (!bottleVisible.value[index] || isCapped(index + 1)) continue
+    bottleVisible.value[index] = false
+    rejectedCount.value += 1
+  }
   interactiveMode.value = 'stopped'
-  displayCount.value = 0
   stopCounter()
+}
+
+const cyclePhase = (bottleIndex: number, clock: number) => {
+  const phase = (clock - bottleStartMs[bottleIndex - 1]) % LOOP_DURATION_MS
+  return phase < 0 ? phase + LOOP_DURATION_MS : phase
+}
+
+const phaseDistance = (a: number, b: number) => {
+  const diff = Math.abs(a - b) % LOOP_DURATION_MS
+  return Math.min(diff, LOOP_DURATION_MS - diff)
+}
+
+// Re-entering bottles take the emptiest slot on the cycle so they never spawn on a bottle still on the belt.
+const pickReentryDelay = (occupiedPhases: number[]) => {
+  let bestDelay = LOOP_DURATION_MS
+  let bestGap = -1
+  for (let slot = 1; slot <= BOTTLE_COUNT; slot += 1) {
+    const delay = (slot * LOOP_DURATION_MS) / BOTTLE_COUNT
+    const phase = (LOOP_DURATION_MS - delay) % LOOP_DURATION_MS
+    const gap = occupiedPhases.length
+      ? Math.min(...occupiedPhases.map(other => phaseDistance(phase, other)))
+      : LOOP_DURATION_MS
+    if (gap > bestGap) {
+      bestGap = gap
+      bestDelay = delay
+    }
+  }
+  return bestDelay
 }
 
 const startMachine = () => {
   if (!canStart.value) return
-  bottleRunId.value += 1
+  const clock = runClockMs()
+  const occupiedPhases = Array.from({ length: BOTTLE_COUNT }, (_, index) => index + 1)
+    .filter(bottleIndex => bottleVisible.value[bottleIndex - 1])
+    .map(bottleIndex => cyclePhase(bottleIndex, clock))
+  for (let index = 0; index < BOTTLE_COUNT; index += 1) {
+    if (bottleVisible.value[index]) continue
+    const delay = pickReentryDelay(occupiedPhases)
+    occupiedPhases.push((LOOP_DURATION_MS - delay) % LOOP_DURATION_MS)
+    bottleRuns.value[index] += 1
+    bottleDelayMs.value[index] = delay
+    bottleStartMs[index] = clock + delay
+    bottleVisible.value[index] = true
+  }
+  runStartTs = performance.now()
   interactiveMode.value = 'execute'
   startCounter()
 }
 
 onMounted(() => {
-  if (props.interactive) displayCount.value = 0
+  if (props.interactive) {
+    displayCount.value = 0
+    runStartTs = performance.now()
+  }
   startCounter()
 })
 onUnmounted(stopCounter)
@@ -140,6 +211,12 @@ watch(() => props.state, (value) => {
 watch(() => props.interactive, (value) => {
   interactiveMode.value = 'execute'
   displayCount.value = value ? 0 : props.count
+  rejectedCount.value = 0
+  bottleVisible.value = bottleVisible.value.map(() => true)
+  bottleDelayMs.value = bottleDelayMs.value.map((_, index) => (index * LOOP_DURATION_MS) / BOTTLE_COUNT)
+  bottleStartMs.forEach((_, index) => { bottleStartMs[index] = (index * LOOP_DURATION_MS) / BOTTLE_COUNT })
+  runElapsedMs = 0
+  runStartTs = value ? performance.now() : undefined
   startCounter()
 })
 </script>
@@ -177,10 +254,9 @@ watch(() => props.interactive, (value) => {
           </div>
         </div>
         <div class="bottles">
-          <template v-if="!interactive || interactiveMode !== 'stopped'">
+          <template v-for="bottleIndex in BOTTLE_COUNT" :key="bottleKey(bottleIndex)">
             <div
-              v-for="bottleIndex in BOTTLE_COUNT"
-              :key="bottleKey(bottleIndex)"
+              v-if="!interactive || bottleVisible[bottleIndex - 1]"
               class="bottle"
               :style="bottleStyle(bottleIndex)"
               @animationiteration="handleBottleIteration"
@@ -203,6 +279,7 @@ watch(() => props.interactive, (value) => {
     <div class="fault-rail">
       <div><span>FAULT</span><b>{{ faultStatus }}</b></div>
       <div><span>COUNTER</span><b>{{ counterStatus }}</b></div>
+      <div v-if="interactive"><span>REJECTED</span><b>{{ rejectedCount }}</b></div>
       <div><span>RECOVERY</span><b>{{ recoveryStatus }}</b></div>
     </div>
 
@@ -211,9 +288,9 @@ watch(() => props.interactive, (value) => {
         <mdi-stop-circle-outline aria-hidden="true" />
         <span>E-STOP</span>
       </button>
-      <button class="conveyor-control" type="button" :disabled="!canReset" @click.stop="resetMachine">
+      <button class="conveyor-control" type="button" :disabled="!canClear" @click.stop="clearMachine">
         <mdi-refresh aria-hidden="true" />
-        <span>RESET</span>
+        <span>CLEAR</span>
       </button>
       <button class="conveyor-control is-start" type="button" :disabled="!canStart" @click.stop="startMachine">
         <mdi-play-circle-outline aria-hidden="true" />
@@ -557,7 +634,8 @@ watch(() => props.interactive, (value) => {
 
 .fault-rail {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
   border-top: 1px solid rgba(255, 255, 255, 0.14);
 }
 
@@ -651,7 +729,7 @@ watch(() => props.interactive, (value) => {
 }
 
 .is-stopped .fault-rail > div:nth-child(2) b,
-.is-stopped .fault-rail > div:nth-child(3) b {
+.is-stopped .fault-rail > div:last-child b {
   color: #b8c0c5;
 }
 
