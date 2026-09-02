@@ -671,7 +671,7 @@ class: takeaway-slide
 
 <div class="why-care-footer" v-click><span>THE PAYOFF</span><strong>More agility. More quality. More resilient profit.</strong></div>
 
-<div class="slide-id">11</div>
+<div class="slide-id">10</div>
 
 <!--
 Hvorfor er det interressant? Hvorfor skal I investere jeres tid i AE?
@@ -714,7 +714,7 @@ class: devops-cover ai-workshop-cover dark-slide
 </div>
 
 
-<div class="slide-id">12</div>
+<div class="slide-id">11</div>
 
 <!--
 Inden vi springer til næste punkt på dagsordenen:
@@ -791,7 +791,7 @@ class: use-case-slide dark-slide
   <strong>Build the workflow</strong>
 </div>
 
-<div class="slide-id">29</div>
+<div class="slide-id">12</div>
 
 <!--
 Dette er den konkrete feature, som resten af workshoppen skal besvare.
@@ -973,7 +973,7 @@ class: mcp-basics-slide dark-slide
 
 <div class="mcp-takeaway" v-click="4"><span>MCP is not the model.</span><strong>It makes capabilities discoverable and callable through a shared semantic contract.</strong></div>
 
-<div class="slide-id">16</div>
+<div class="slide-id">14</div>
 
 <!--
 MCP står for Model Context Protocol. Tænk på det som et semantisk tool-API: en server beskriver sine tools og resources, så en model kan opdage dem og bruge på en standardiseret måde.
@@ -1042,7 +1042,7 @@ class: as-help-boot-slide dark-slide
 
 <div class="as-help-boot-takeaway" v-click><span>THE PRO AND THE CON</span><strong>Only reflect what you have installed locally</strong> </div>
 
-<div class="slide-id">17</div>
+<div class="slide-id">15</div>
 
 <!--
 Første gang AS-Help MCP starter, læser den den lokale Automation Studio help folder og bygger et søgeindeks. Den gemmer ikke kun søgetekst, men også page_id, titel, filsti og breadcrumb, så et hit kan følges tilbage til den rigtige side.
@@ -1206,7 +1206,7 @@ class: demo-slide dark-slide as-cli-slide
 <TerminalCli />
 
 
-<div class="slide-id">20</div>
+<div class="slide-id">16</div>
 
 <!--
 `AS CLI` er et command-line interface der kan bruges af et menneske, et script, en automatisk test, en CI-pipeline og en agent.
@@ -1240,7 +1240,7 @@ class: skills-slide dark-slide
 
 <SkillsEmbed />
 
-<div class="slide-id">21</div>
+<div class="slide-id">17</div>
 
 <!--
 skills.sh viser et åbent katalog af genbrugelige skills til AI-agenter uanset harness.
@@ -1297,7 +1297,7 @@ class: skill-matrix-slide dark-slide
   <figcaption>One line in the frontmatter turns a <b>model-invoked</b> skill into a <b>user-invoked</b> skill</figcaption>
 </figure>
 
-<div class="slide-id">22</div>
+<div class="slide-id">18</div>
 
 <!--
 Skills falder i to uafhængige dimensioner.
@@ -1364,7 +1364,7 @@ class: guardrails-slide dark-slide
   <strong>READ · CHANGE · VERIFY</strong>
 </div>
 
-<div class="slide-id">22</div>
+<div class="slide-id">19</div>
 
 <!--
 Guardrails er de beslutninger, vi vil kunne se igen i kode, tests og review.
@@ -1413,7 +1413,7 @@ class: testing-slide dark-slide
 
 
 
-<div class="slide-id">28</div>
+<div class="slide-id">20</div>
 
 <!--
 På et brownfield-projekt skal vi etablere en baseline for den eksisterende adfærd, før agenten ændrer projektet: bygge relevante konfigurationer, køre eksisterende regressioner og beskytte kritiske maskinflows.
@@ -1475,7 +1475,7 @@ class: enforcement-slide
   <span>CONTEXT</span><i>+</i><span>ACTION</span><i>+</i><span>EVIDENCE</span><i>+</i><span>ACCOUNTABILITY</span><b>= AGENTIC ENGINEERING</b>
 </div>
 
-<div class="slide-id">26</div>
+<div class="slide-id">21</div>
 
 <!--
 Instructions og guardrails styrer en probabilistisk model. De er vigtige, men de er adfærdsvejledning - ikke enforcement.
@@ -1496,7 +1496,7 @@ class: feedback-slide dark-slide
 
 <AutomationStudioAgent />
 
-<div class="slide-id">14</div>
+<div class="slide-id">22</div>
 
 <!--
 Et agentforslag er først værdifuldt, når vi kan lukke loopet. Før loopet kan handle, skal det have domænekontekst: projektstruktur, produkt- og versionsviden, regler og intent. Projektet skal derefter kunne bygges reproducerbart. Vi skal kunne starte en kontrolleret simulation, stimulere en tilstand, observere variable og logbook og sammenligne resultatet med et krav.
@@ -1648,7 +1648,7 @@ class: planning-slide dark-slide
 
 <AgentWorkflow />
 
-<div class="slide-id">30</div>
+<div class="slide-id">24</div>
 
 <!--
 "Recover efter en aksefejl" lyder som en opgave, men det er ikke en specifikation. Agenten kan researche eksisterende states, variable og patterns. Product intent og trade-offs skal tilbage til engineer eller product owner.
@@ -1682,7 +1682,7 @@ class: devops-cover ai-workshop-cover dark-slide
   <div><span>04</span><b>RELEASE</b><small>reviewable change</small></div>
 </div>
 
-<div class="slide-id">36</div>
+<div class="slide-id">25</div>
 
 <!--
 "Jeg hedder Mads Andersen og har arbejdet næsten 8 år hos B&R.
@@ -1746,7 +1746,7 @@ class: agenda-slide dark-slide devops-agenda-slide
   </div>
 </div>
 
-<div class="slide-id">37</div>
+<div class="slide-id">26</div>
 
 <!--
 Lad os lige hurtigt kigge på dagens rejse.
@@ -1824,7 +1824,7 @@ class: devops-intro-slide dark-slide
 <div class="devops-intro-note">DevOps covers many practices and disciplines.
 Today we focus on the software delivery flow: <strong>Code → Build → Test → Deploy.</strong></div>
 
-<div class="slide-id">37</div>
+<div class="slide-id">27</div>
 <!--
 Title: What is DevOps
 Før vi går videre, lad os lige blive enige om hvad vi mener med DevOps i dag.
@@ -1898,7 +1898,7 @@ class: why-devops-slide dark-slide
   <strong>AI helps us create software faster. DevOps helps us deliver it safely.</strong>
 </div>
 
-<div class="slide-id">38</div>
+<div class="slide-id">28</div>
 
 <!--
 Lars har været inde på dette i starten, men for at gentage kort:
@@ -1998,7 +1998,7 @@ class: old-way-slide dark-slide
   <blockquote><strong>If AI helps us create 10&times; more changes, we need a way to verify 10&times; more changes.</strong></blockquote>
 </div>
 
-<div class="slide-id">39</div>
+<div class="slide-id">29</div>
 
 <!--
 Lad os prøve at kigge på hvordan softwarelevering ofte har fungeret historisk.
@@ -2075,7 +2075,7 @@ class: why-devops-matters-slide dark-slide
   </section>
 </div>
 
-<div class="slide-id">40</div>
+<div class="slide-id">30</div>
 
 <!--
 Økonomien ved at skrive tests har også ændret sig med Agentic Engineering. 
@@ -2144,7 +2144,7 @@ class: devops-tooling dark-slide
   <small>Fast feedback keeps the change easy to understand and easy to fix.</small>
 </div>
 
-<div class="slide-id">41</div>
+<div class="slide-id">31</div>
 
 <!--
 På den forrige slide talte vi om at økonomien ved test og verifikation har ændret sig.
@@ -2237,7 +2237,7 @@ class: where-agentic-fits dark-slide
   <small>Automation prepares the release; people own the decision.</small>
 </div>
 
-<div class="slide-id">42</div>
+<div class="slide-id">32</div>
 -->
 <!--
 
@@ -2342,7 +2342,7 @@ class: devops-pipeline dark-slide
   <strong>Monitor what happened. Feed the next change.</strong>
 </div>
 
-<div class="slide-id">43</div>
+<div class="slide-id">33</div>
 
 <!--
 Når vi så sætter det sammen med CD kalder vi det CI/CD.
@@ -2424,7 +2424,7 @@ class: tooling-matters-slide dark-slide
   <small>The capability must also be exposed programmatically.</small>
 </div>
 
-<div class="slide-id">44</div>
+<div class="slide-id">34</div>
 
 <!--
 Vi har nu snakket om CI og CD.
@@ -2575,7 +2575,7 @@ class: as-cli-intro-slide dark-slide
   </div>
 </div>
 
-<div class="slide-id">45</div>
+<div class="slide-id">35</div>
 
 <!--
 Indtil nu har vi talt om principper og teori.
@@ -2650,7 +2650,7 @@ class: as-cli-demo-slide dark-slide
   <strong>Protects quality. Builds confidence. Catches issues early.</strong>
 </div>
 
-<div class="slide-id">46</div>
+<div class="slide-id">36</div>
 
 <!--
 Første demo er fra udviklingsprojektet af as CLI.
@@ -2689,7 +2689,7 @@ class: machine-demo-slide dark-slide
   <BottleConveyor state="running" :count="42" />
 </div>
 
-<div class="slide-id">47</div>
+<div class="slide-id">37</div>
 
 <!--
 Indtil nu har vi kigget på as CLI som et softwareprojekt.
@@ -2815,7 +2815,7 @@ class: hmi-testing-slide dark-slide
   <p>Start machine &bull; Change recipe &bull; Acknowledge alarm &bull; Verify status indication</p>
 </div>
 
-<div class="slide-id">W2 · 51</div>
+<div class="slide-id">38</div>
 
 <!--
 Den sidste demo handler om noget som traditionelt har været svært at automatisere.
@@ -2921,7 +2921,7 @@ class: devops-mountain-slide dark-slide
   <b>Success comes from taking the next step, not from reaching the summit immediately.</b>
 </div>
 
-<div class="slide-id">W2 · 52</div>
+<div class="slide-id">39</div>
 
 <!--
 The goal of DevOps is not to build a perfect CI/CD system overnight.
@@ -2980,7 +2980,7 @@ Maybe use wording like OT does not become IT in a year.
   <p>Do you have suggestions for our next priorities?</p>
 </div>
 
-<div class="slide-id">W2 · 53</div>
+<div class="slide-id">40</div>
 
 ---
 layout: default
@@ -3002,4 +3002,4 @@ class: questions-slide dark-slide
 
 <div class="questions-footer"><span>THANK YOU</span><i></i><b>B&amp;R INDUSTRIAL AUTOMATION &middot; AGENTIC ENGINEERING + DEVOPS</b></div>
 
-<div class="slide-id">W2 · 54</div>
+<div class="slide-id">41</div>
