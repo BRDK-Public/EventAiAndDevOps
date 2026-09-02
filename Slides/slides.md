@@ -603,7 +603,7 @@ class: agent-loop-slide
   </div>
 
   <section class="strategy-shift-side open-platform" v-click>
-    <div class="strategy-shift-label"><span>NOW</span><strong>INTEGRATION OF YOUR CHOISE</strong></div>
+    <div class="strategy-shift-label"><span>NOW</span><strong>INTEGRATION OF YOUR CHOICE</strong></div>
     <h2>Open platform <span>any LLM / harness / IDE</span></h2>
     <div class="strategy-shift-stack">
       <div><span>CONTEXT ENGINEERING</span><small>current B&amp;R and customer knowledge</small></div>
@@ -701,7 +701,7 @@ class: devops-cover ai-workshop-cover dark-slide
 
 # It's all about<br><span class="accent">the workflow</span>
 
-<p class="devops-cover-copy">The model proposes. The harnes provides context and feedback. The workflow governs.</p>
+<p class="devops-cover-copy">The model proposes. The harness provides context and feedback. The workflow governs.</p>
 
 <div class="devops-spine" v-motion :initial="{ opacity: 0, y: 18 }" :enter="{ opacity: 1, y: 0, transition: { delay: 300 } }">
   <div><span>01</span><b>PLAN</b><small>What and how</small></div>
@@ -753,6 +753,56 @@ Når vi sætter det op imod "Agentic Engineering", så er det for at synliggøre
 På en maskine er "det ser rigtigt ud" ikke et successkriterie.
 
 Hvis man ikke styrer processen så mister man overblikket.
+-->
+
+---
+layout: default
+class: use-case-slide dark-slide
+---
+
+<div class="status-badge direction">USE CASE · BOUNDED FEATURE</div>
+<div class="kicker">FEATURE REQUEST · 03 MIN</div>
+
+# Recover the axis fault.<br><span class="accent">Resume the batch.</span>
+
+<div class="use-case-layout">
+  <div class="use-case-brief">
+    <div class="use-case-intent">
+      <span>FEATURE REQUEST</span>
+      <p>When the conveyor axis faults, stop cleanly, clear every uncapped bottle off the conveyor as reject, keep the produced count, and resume the same 100-bottle batch.</p>
+    </div>
+    <div class="use-case-contract">
+      <div><span>01</span><b>OBSERVE</b><small>Abort is visible and the counter holds its value.</small></div>
+      <div><span>02</span><b>CLEAR</b><small>Reject every uncapped bottle, empty or filled.</small></div>
+      <div><span>03</span><b>RESUME</b><small>Start again and resume counting from the held value.</small></div>
+      <div><span>04</span><b>PROVE</b><small>Complete the 100 batch with state and logbook evidence.</small></div>
+    </div>
+  </div>
+
+  <div class="use-case-machine">
+    <BottleConveyor interactive />
+    <div class="use-case-machine-caption"><span>INTERACTIVE CONTROLLER</span><b>E-STOP → CLEAR → START</b></div>
+  </div>
+</div>
+
+<div class="use-case-bridge" v-click>
+  <div><span>THE WORKSHOP QUESTION</span><b>How can an agent implement this without becoming the spec, tester, and approver?</b></div>
+  <mdi-arrow-right />
+  <strong>Build the workflow</strong>
+</div>
+
+<div class="slide-id">29</div>
+
+<!--
+Dette er den konkrete feature, som resten af workshoppen skal besvare.
+
+Feature request: Når conveyor-aksen fejler, skal maskinen stoppe kontrolleret. Clear skal rydde alle flasker, der endnu ikke er cappet - uanset om de er tomme eller fyldte - og de tæller som reject. Counteren beholder sin værdi, og batchen fortsætter fra samme tal ved start, indtil de 100 flasker er færdige.
+
+Vis fejlen og det ønskede resultat, men forklar ikke løsningen endnu. Stil i stedet workshop-spørgsmålet: Hvordan kan vi delegere implementeringen til en agent, uden at agenten samtidig bliver specifikation, tester og godkender?
+
+Resten af workshoppen bygger svaret: MCP leverer viden, AS CLI udfører og observerer, skills og guardrails styrer arbejdet, tests leverer evidens, og mennesker samt gates afgør, om ændringen må fortsætte.
+
+Transition: Først skal agenten have en bro til Automation Studio, domæneviden og de værktøjer, der kan lukke feedback-loopet.
 -->
 
 ---
@@ -1361,9 +1411,7 @@ class: testing-slide dark-slide
   </div>
 </div>
 
-<div class="oracle-warning" v-click>
-  <mdi-account-search-outline /> TDD fits agents. Keep SDD <strong>living</strong>, and never make the agent the sole author and judge of its own test oracle.
-</div>
+
 
 <div class="slide-id">28</div>
 
@@ -1373,6 +1421,12 @@ På et brownfield-projekt skal vi etablere en baseline for den eksisterende adf�
 Test er ikke kun den sidste kvalitetskontrol. For en agent er test og simulation sensorer i feedback-loopet.
 
 Unit tests kan bevise lokal logik. Integrationstest kan bevise interfaces. ARsim og smoke tests kan bevise defineret applikationsadfærd i et kontrolleret miljø. HIL og fysisk validering tilføjes, hvor risiko og fidelity kræver det.
+
+De to bokse til højre måler to forskellige ting. <b>Product tests</b> spørger, om maskinens faktiske adfærd opfylder kravet: Stopper den kontrolleret, bliver de rigtige flasker afvist, bevares tælleren, og kan batchen fortsætte korrekt? Det er produktets output og den observerbare maskinadfærd, vi validerer.
+
+<b>Agent evaluations</b> spørger i stedet, om agenten fulgte den aftalte arbejdsform: Brugte den de rigtige tools, overholdt den permissions og guardrails, bad den om hjælp ved tvetydighed, og stoppede den før en handling, som krævede menneskelig godkendelse? Her evaluerer vi altså processen og agentens adfærd, ikke selve maskinfunktionen.
+
+Vi har brug for begge dele. En agent kan følge processen korrekt og stadig implementere en forkert løsning. Omvendt kan en ændring tilfældigvis virke, selv om agenten brød reglerne undervejs. Derfor skal både produktet og workflowet kunne bestå deres egne tests.
 
 Agenten kan hjælpe med at skrive test, men den må ikke alene definere sin egen sandhed. Acceptance criteria eller reference behavior skal reviewes uafhængigt.
 -->
@@ -1452,52 +1506,6 @@ På sliden ses guardrails via instructions og skills, derefter research via AS-H
 DevOps udfører en kendt sekvens deterministisk. Agenten vælger næste afgrænsede handling ud fra feedback. Det er derfor vigtigt, at det samme command contract kan anvendes af en engineer, en test, en pipeline og en agent.
 
 Transition: Det er præcis den rejse, B&R selv har været igennem.
--->
-
----
-layout: default
-class: use-case-slide dark-slide
----
-
-<div class="status-badge direction">USE CASE · BOUNDED FEATURE</div>
-<div class="kicker">FEATURE REQUEST · 03 MIN</div>
-
-# Recover the axis fault.<br><span class="accent">Resume the batch.</span>
-
-<div class="use-case-layout">
-  <div class="use-case-brief">
-    <div class="use-case-intent">
-      <span>FEATURE REQUEST</span>
-      <p>When the conveyor axis faults, stop cleanly, clear every uncapped bottle off the conveyor as reject, keep the produced count, and resume the same 100-bottle batch.</p>
-    </div>
-    <div class="use-case-contract">
-      <div><span>01</span><b>OBSERVE</b><small>Abort is visible and the counter holds its value.</small></div>
-      <div><span>02</span><b>CLEAR</b><small>Reject every uncapped bottle, empty or filled.</small></div>
-      <div><span>03</span><b>RESUME</b><small>Start again and resume counting from the held value.</small></div>
-      <div><span>04</span><b>PROVE</b><small>Complete the 100 batch with state and logbook evidence.</small></div>
-    </div>
-  </div>
-
-  <div class="use-case-machine">
-    <BottleConveyor interactive />
-    <div class="use-case-machine-caption"><span>INTERACTIVE CONTROLLER</span><b>E-STOP → CLEAR → START</b></div>
-  </div>
-</div>
-
-<div class="use-case-bridge" v-click>
-  <div><span>ONE FEATURE · THREE WORKFLOWS</span><b>Spec → tickets → implementation → test → validation → PR</b></div>
-  <mdi-arrow-right />
-  <strong>Next: the workflow</strong>
-</div>
-
-<div class="slide-id">29</div>
-
-<!--
-Dette er den konkrete feature, som vi bruger på næste slide til at gøre workflows håndgribelige.
-
-Feature request: Når conveyor-aksen fejler, skal maskinen stoppe kontrolleret. Clear skal rydde alle flasker, der endnu ikke er cappet - uanset om de er tomme eller fyldte - og de tæller som reject. Counteren beholder sin værdi, og batchen fortsætter fra samme tal ved start, indtil de 100 flasker er færdige. 
-
-Nu kan vi vise, hvordan den samme feature først bliver afklaret, derefter implementeret og til sidst gjort reviewable gennem forskellige agent workflows.
 -->
 
 ---
@@ -1584,6 +1592,49 @@ En agent kan holde en afgrænset feature på tværs af lag i sin working context
 Matt Pococks TDD-skill beskriver horizontal slicing som anti-patternet: skriv ikke alle tests først og al implementation bagefter. Arbejd i vertical slices: én test, én minimal implementation, gentag. Hver test er en tracer bullet, der bruger feedback fra den forrige cyklus. Red før green; refactor hører til reviewfasen.
 
 Kilde: https://github.com/mattpocock/skills/blob/main/skills/engineering/tdd/SKILL.md
+-->
+
+---
+layout: default
+class: feature-recap-slide dark-slide
+---
+
+<div class="kicker">BACK TO THE MACHINE · 01 MIN</div>
+
+# One feature.<br><span class="accent">Now we have the pieces.</span>
+
+<div class="feature-recap-layout">
+  <div class="feature-recap-machine">
+    <BottleConveyor state="fault" :count="42" compact />
+  </div>
+
+  <div class="feature-recap-story">
+    <div class="feature-recap-sequence" aria-label="Feature outcome sequence">
+      <div><span>01</span><b>FAULT</b></div><i></i>
+      <div><span>02</span><b>STOP</b></div><i></i>
+      <div><span>03</span><b>REJECT</b></div><i></i>
+      <div><span>04</span><b>RETAIN</b></div><i></i>
+      <div><span>05</span><b>RESUME</b></div><i></i>
+      <div><span>06</span><b>PROVE</b></div>
+    </div>
+    <div class="feature-recap-capabilities" v-click>
+      <span>KNOWLEDGE</span><i>+</i><span>TOOLS</span><i>+</i><span>GUARDRAILS</span><i>+</i><span>TESTS</span><i>+</i><span>GATES</span>
+    </div>
+    <div class="feature-recap-question" v-click>
+      <span>NOW ASSEMBLE THE SYSTEM</span>
+      <strong>Which workflows turn these pieces into an accountable engineering change?</strong>
+    </div>
+  </div>
+</div>
+
+<!--
+Det er den samme maskinopgave, vi startede workshoppen med: fejl, kontrolleret stop, reject af ikke-cappede flasker, fastholdt tæller, genstart af batchen og evidens for det færdige resultat.
+
+Nu har vi byggestenene: domæneviden, tools til at handle og observere, guardrails, tests og deterministiske gates.
+
+Brug kun 30-45 sekunder på denne slide. Formålet er ikke at demonstrere maskinen igen, men at genaktivere opgaven i publikums hukommelse.
+
+Transition: Lad os samle byggestenene i de tre workflows, der gør ændringen afgrænset, verificerbar og ansvarlig.
 -->
 
 ---

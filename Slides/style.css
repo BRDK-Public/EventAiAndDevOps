@@ -5059,6 +5059,102 @@ ul {
   font: 600 9px/1 'IBM Plex Mono', monospace;
 }
 
+.feature-recap-slide h1 {
+  margin-top: 24px;
+}
+
+.feature-recap-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 42px;
+  align-items: center;
+  margin-top: 46px;
+}
+
+.feature-recap-machine,
+.feature-recap-story {
+  min-width: 0;
+}
+
+.feature-recap-machine {
+  padding: 18px;
+  border-left: 4px solid var(--br-orange);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.feature-recap-machine .bottle-conveyor {
+  width: 100%;
+}
+
+.feature-recap-sequence {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.feature-recap-sequence > div {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 13px 8px;
+  border-top: 2px solid var(--br-orange);
+  background: rgba(255, 255, 255, 0.065);
+  text-align: center;
+}
+
+.feature-recap-sequence span,
+.feature-recap-question span {
+  display: block;
+  color: var(--br-orange);
+  font: 600 8px/1 'IBM Plex Mono', monospace;
+}
+
+.feature-recap-sequence b {
+  display: block;
+  margin-top: 8px;
+  color: #edf1f2;
+  font: 600 9px/1 'IBM Plex Mono', monospace;
+}
+
+.feature-recap-sequence > i {
+  width: 10px;
+  height: 1px;
+  flex: 0 0 10px;
+  background: #657076;
+}
+
+.feature-recap-capabilities {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 22px;
+  padding: 14px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  color: #d7dddf;
+  font: 600 8px/1 'IBM Plex Mono', monospace;
+}
+
+.feature-recap-capabilities i {
+  color: var(--br-orange);
+  font-style: normal;
+}
+
+.feature-recap-question {
+  margin-top: 22px;
+  padding: 17px 18px;
+  border-left: 4px solid #54ad78;
+  background: rgba(84, 173, 120, 0.1);
+}
+
+.feature-recap-question strong {
+  display: block;
+  margin-top: 10px;
+  color: #edf1f2;
+  font-size: 17px;
+  line-height: 1.25;
+}
+
 .use-case-bridge {
   display: flex;
   align-items: center;
