@@ -12,6 +12,8 @@
       --panel: #202326;
       --steel: #737c82;
       --steel-light: #c0c7cb;
+      --green: #65c18c;
+      --blue: #5b8def;
       --line: rgba(255, 255, 255, 0.16);
     }
 
@@ -21,16 +23,15 @@
 
     html,
     body {
-      width: 900px;
+      width: 1220px;
       height: 360px;
-      min-width: 900px;
+      min-width: 1220px;
       min-height: 360px;
       margin: 0;
     }
 
     body {
-      display: grid;
-      place-items: center;
+      position: relative;
       overflow: hidden;
       background: rgb(51, 51, 51);
       color: #fff;
@@ -38,9 +39,144 @@
     }
 
     .conveyor {
-      width: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 900px;
       height: 100%;
       padding: clamp(18px, 3vw, 34px);
+    }
+
+    .demo-panel {
+      position: absolute;
+      top: clamp(18px, 3vw, 34px);
+      left: 24px;
+      width: 270px;
+      color: var(--steel-light);
+    }
+
+    .demo-chart {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    @property --filled-end {
+      syntax: "<percentage>";
+      inherits: false;
+      initial-value: 46%;
+    }
+
+    @property --capped-end {
+      syntax: "<percentage>";
+      inherits: false;
+      initial-value: 80%;
+    }
+
+    .pie-chart {
+      --filled-end: 46%;
+      --capped-end: 80%;
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+      background: conic-gradient(
+        var(--orange) 0 var(--filled-end),
+        var(--green) var(--filled-end) var(--capped-end),
+        var(--blue) var(--capped-end) 100%
+      );
+      transition: --filled-end 700ms ease, --capped-end 700ms ease;
+    }
+
+    .chart-copy {
+      display: grid;
+      gap: 9px;
+      width: 100%;
+    }
+
+    .panel-label {
+      text-align: center;
+    }
+
+    .chart-key {
+      width: max-content;
+      margin: 0 auto;
+    }
+
+    .panel-label,
+    .chart-key-row,
+    .counter-label,
+    .counter-unit {
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .panel-label {
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .chart-key {
+      display: grid;
+      gap: 6px;
+    }
+
+    .chart-key-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 9px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .chart-key-row i {
+      width: 8px;
+      height: 8px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    .chart-key-row:nth-child(2) i {
+      background: var(--green);
+    }
+
+    .chart-key-row:nth-child(3) i {
+      background: var(--blue);
+    }
+
+    .counter-box {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      height: 72px;
+      margin-top: 15px;
+      padding: 11px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-left: 4px solid var(--orange);
+      background: rgba(16, 18, 20, 0.72);
+    }
+
+    .counter-label {
+      color: var(--steel-light);
+      font-size: 10px;
+      line-height: 1.35;
+    }
+
+    .counter-value {
+      color: var(--orange);
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .counter-unit {
+      color: var(--steel);
+      font-size: 9px;
+      line-height: 1;
     }
 
     .station-track {
@@ -286,6 +422,24 @@
   </style>
 </head>
 <body>
+  <aside class="demo-panel" aria-label="Demo production information">
+    <div class="demo-chart">
+      <div class="pie-chart" role="img" aria-label="Demo mix: 46 percent filled, 34 percent capped, 20 percent queued"></div>
+      <div class="chart-copy">
+        <span class="panel-label">DEMO MIX</span>
+        <div class="chart-key">
+          <div class="chart-key-row"><i></i><span>FILLED <span data-chart-value="filled">46%</span></span></div>
+          <div class="chart-key-row"><i></i><span>CAPPED <span data-chart-value="capped">34%</span></span></div>
+          <div class="chart-key-row"><i></i><span>QUEUED <span data-chart-value="queued">20%</span></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="counter-box" aria-label="Bottle count">
+      <span class="counter-label">COUNT</span>
+      <strong id="bottle-counter" class="counter-value" aria-live="polite">0</strong>
+      <span class="counter-unit">BOTTLES</span>
+    </div>
+  </aside>
   <main class="conveyor" aria-label="Orange juice conveyor with filler and capper stations">
     <div class="station-track">
       <div class="station filler-station">
@@ -315,7 +469,43 @@
   </main>
   <script>
     const executeStateUrl = 'orangeJuiceState.cgi';
+    const bottleCounterElement = document.querySelector('#bottle-counter');
+    const pieChartElement = document.querySelector('.pie-chart');
+    const chartValueElements = {
+      filled: document.querySelector('[data-chart-value="filled"]'),
+      capped: document.querySelector('[data-chart-value="capped"]'),
+      queued: document.querySelector('[data-chart-value="queued"]')
+    };
+    let completedBottleCount = 0;
     let hasEnteredExecute = false;
+
+    const updateDemoMix = () => {
+      const phase = completedBottleCount % 8;
+      const filled = 46 + phase * 2;
+      const capped = 34 - phase;
+      const queued = 20 - phase;
+      const cappedEnd = filled + capped;
+
+      pieChartElement.style.setProperty('--filled-end', `${filled}%`);
+      pieChartElement.style.setProperty('--capped-end', `${cappedEnd}%`);
+      chartValueElements.filled.textContent = `${filled}%`;
+      chartValueElements.capped.textContent = `${capped}%`;
+      chartValueElements.queued.textContent = `${queued}%`;
+      pieChartElement.setAttribute(
+        'aria-label',
+        `Demo mix: ${filled} percent filled, ${capped} percent capped, ${queued} percent queued`
+      );
+    };
+
+    document.querySelectorAll('.bottle').forEach((bottle) => {
+      bottle.addEventListener('animationiteration', (event) => {
+        if (event.animationName !== 'bottle-flow') return;
+
+        completedBottleCount += 1;
+        bottleCounterElement.textContent = String(completedBottleCount);
+        updateDemoMix();
+      });
+    });
 
     const setExecuteState = (isExecute) => {
       if (isExecute && !hasEnteredExecute) {

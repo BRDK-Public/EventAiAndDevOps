@@ -4,7 +4,7 @@ import { computed, ref } from 'vue'
 const FLEXIBLE_TIME_UNITS = 62
 const BASE_GOVERN_UNITS = 9
 const MAX_GOVERN_UNITS = FLEXIBLE_TIME_UNITS - BASE_GOVERN_UNITS
-const FIXED_STAGE_UNITS = 38
+const FIXED_STAGE_UNITS = 49
 
 const qualityInvestment = ref(0)
 const governUnits = computed(() => 9 + (qualityInvestment.value / 100) * 44)

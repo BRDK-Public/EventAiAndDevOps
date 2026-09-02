@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=1260, height=720, initial-scale=1">
+	<meta name="theme-color" content="#171b1d">
+	<title>Alarm Command Center</title>
+	<style>
+		:root {
+			--bg: #171b1d;
+			--panel: rgba(30, 36, 39, 0.95);
+			--line: rgba(193, 204, 207, 0.18);
+			--line-strong: rgba(193, 204, 207, 0.34);
+			--text: #f4f2eb;
+			--muted: #aeb9bb;
+			--faint: #748084;
+			--orange: #ff7a00;
+			--green: #68d391;
+			--blue: #75a8ff;
+			--amber: #f0b65b;
+			--red: #ff7474;
+			--red-soft: rgba(255, 116, 116, 0.13);
+			--amber-soft: rgba(240, 182, 91, 0.13);
+			--green-soft: rgba(104, 211, 145, 0.13);
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		html,
+		body {
+			width: 1260px;
+			height: 720px;
+			min-width: 1260px;
+			min-height: 720px;
+			margin: 0;
+		}
+
+		body {
+			overflow: hidden;
+			color: var(--text);
+			font-family: "Bahnschrift", "Cascadia Code", Consolas, monospace;
+			background:
+				linear-gradient(135deg, rgba(255, 116, 116, 0.06), transparent 32%),
+				repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 5px),
+				var(--bg);
+		}
+
+		button {
+			border: 0;
+			color: inherit;
+			font: inherit;
+			cursor: pointer;
+		}
+
+		.shell {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			height: 100%;
+			padding: 22px 28px 24px;
+			gap: 14px;
+		}
+
+		.topbar {
+			display: flex;
+			align-items: center;
+			min-height: 58px;
+			gap: 18px;
+			border-bottom: 1px solid var(--line);
+		}
+
+		.brand-mark {
+			display: grid;
+			place-items: center;
+			width: 52px;
+			height: 52px;
+			border: 1px solid rgba(255, 116, 116, 0.65);
+			color: var(--red);
+			font-size: 13px;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			background: var(--red-soft);
+		}
+
+		.heading {
+			flex: 1;
+			min-width: 0;
+		}
+
+		.eyebrow,
+		.section-kicker,
+		.summary-label,
+		.filter-button,
+		.action-button,
+		.severity,
+		.state-label,
+		.demo-mark {
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+		}
+
+		.eyebrow {
+			color: var(--red);
+			font-size: 10px;
+			font-weight: 700;
+		}
+
+		h1,
+		h2,
+		p {
+			margin: 0;
+		}
+
+		h1 {
+			margin-top: 4px;
+			font-family: "Bahnschrift", "Trebuchet MS", sans-serif;
+			font-size: 25px;
+			font-weight: 600;
+			letter-spacing: 0.02em;
+		}
+
+		.topbar-tools,
+		.toolbar-actions,
+		.filters {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		.demo-mark {
+			display: inline-flex;
+			align-items: center;
+			height: 30px;
+			padding: 0 11px;
+			border: 1px solid rgba(117, 168, 255, 0.4);
+			color: var(--blue);
+			font-size: 9px;
+			font-weight: 700;
+			background: rgba(117, 168, 255, 0.1);
+		}
+
+		.action-button,
+		.filter-button {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			height: 34px;
+			padding: 0 12px;
+			font-size: 9px;
+			font-weight: 800;
+		}
+
+		.action-button {
+			gap: 7px;
+			color: #151719;
+			background: var(--orange);
+			transition: background 160ms ease, transform 160ms ease;
+		}
+
+		.action-button:hover {
+			background: #ff9c3d;
+			transform: translateY(-1px);
+		}
+
+		.action-button.secondary,
+		.filter-button {
+			border: 1px solid var(--line-strong);
+			color: var(--muted);
+			background: transparent;
+		}
+
+		.action-button.secondary:hover,
+		.filter-button:hover,
+		.filter-button.selected {
+			color: var(--text);
+			border-color: rgba(255, 122, 0, 0.62);
+			background: rgba(255, 122, 0, 0.12);
+		}
+
+		.summary-grid {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 10px;
+		}
+
+		.summary-item {
+			min-height: 82px;
+			padding: 14px 17px;
+			border: 1px solid var(--line);
+			background: linear-gradient(130deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.018));
+		}
+
+		.summary-item.critical {
+			border-top: 2px solid var(--red);
+		}
+
+		.summary-item.warning {
+			border-top: 2px solid var(--amber);
+		}
+
+		.summary-item.acknowledged {
+			border-top: 2px solid var(--green);
+		}
+
+		.summary-item.event {
+			border-top: 2px solid var(--blue);
+		}
+
+		.summary-label {
+			color: var(--muted);
+			font-size: 9px;
+			font-weight: 700;
+		}
+
+		.summary-value {
+			display: block;
+			margin-top: 8px;
+			color: var(--text);
+			font-size: 25px;
+			font-weight: 700;
+			line-height: 1;
+			font-variant-numeric: tabular-nums;
+		}
+
+		.summary-value.small {
+			font-size: 15px;
+		}
+
+		.alarm-panel {
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+			min-height: 0;
+			border: 1px solid var(--line);
+			background: var(--panel);
+		}
+
+		.panel-header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			min-height: 52px;
+			padding: 0 17px;
+			border-bottom: 1px solid var(--line);
+		}
+
+		.section-kicker {
+			color: var(--muted);
+			font-size: 10px;
+			font-weight: 700;
+		}
+
+		.table-wrap {
+			flex: 1;
+			min-height: 0;
+			overflow: hidden;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			table-layout: fixed;
+		}
+
+		th {
+			height: 34px;
+			padding: 0 17px;
+			color: var(--faint);
+			font-size: 9px;
+			font-weight: 700;
+			letter-spacing: 0.1em;
+			text-align: left;
+			text-transform: uppercase;
+			background: rgba(255, 255, 255, 0.035);
+		}
+
+		td {
+			height: 62px;
+			padding: 8px 17px;
+			border-top: 1px solid var(--line);
+			color: var(--muted);
+			font-size: 10px;
+			vertical-align: middle;
+		}
+
+		th:nth-child(1),
+		td:nth-child(1) { width: 112px; }
+
+		th:nth-child(2),
+		td:nth-child(2) { width: 130px; }
+
+		th:nth-child(3),
+		td:nth-child(3) { width: 132px; }
+
+		th:nth-child(5),
+		td:nth-child(5) { width: 138px; }
+
+		th:nth-child(6),
+		td:nth-child(6) { width: 116px; }
+
+		.alarm-id,
+		.alarm-message {
+			color: var(--text);
+			font-weight: 700;
+		}
+
+		.alarm-message {
+			display: block;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.alarm-source,
+		.alarm-time {
+			color: var(--muted);
+		}
+
+		.severity,
+		.state-label {
+			display: inline-flex;
+			align-items: center;
+			height: 22px;
+			padding: 0 8px;
+			font-size: 8px;
+			font-weight: 800;
+		}
+
+		.severity.critical {
+			color: var(--red);
+			background: var(--red-soft);
+		}
+
+		.severity.warning {
+			color: var(--amber);
+			background: var(--amber-soft);
+		}
+
+		.severity.info {
+			color: var(--blue);
+			background: rgba(117, 168, 255, 0.12);
+		}
+
+		.state-label.active {
+			color: var(--red);
+			background: var(--red-soft);
+		}
+
+		.state-label.acknowledged,
+		.state-label.cleared {
+			color: var(--green);
+			background: var(--green-soft);
+		}
+
+		.row-action {
+			min-width: 85px;
+			height: 28px;
+			padding: 0 8px;
+			border: 1px solid var(--line-strong);
+			color: var(--muted);
+			background: transparent;
+			font-size: 8px;
+			font-weight: 800;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.row-action:hover {
+			border-color: var(--orange);
+			color: var(--orange);
+		}
+
+		.empty-row td {
+			height: 100px;
+			color: var(--faint);
+			text-align: center;
+		}
+
+		.footer {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			min-height: 20px;
+			color: var(--faint);
+			font-size: 9px;
+		}
+
+		.footer strong {
+			color: var(--muted);
+			font-weight: 500;
+		}
+
+		@media (max-width: 900px) {
+			html,
+			body {
+				width: 100vw;
+				min-width: 0;
+			}
+
+			.shell {
+				min-width: 760px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<main class="shell" aria-label="Orange juice alarm command center">
+		<header class="topbar">
+			<div class="brand-mark" aria-hidden="true">OJ/01</div>
+			<div class="heading">
+				<div class="eyebrow">LINE 01 / EVENT MONITOR</div>
+				<h1>Alarm command center</h1>
+			</div>
+			<div class="topbar-tools">
+				<span class="demo-mark">DEMO MODE</span>
+				<button id="alarm-reset-demo" class="action-button secondary" type="button"><span aria-hidden="true">&#8635;</span> RESET</button>
+			</div>
+		</header>
+
+		<section class="summary-grid" aria-label="Alarm summary">
+			<article class="summary-item critical">
+				<span class="summary-label">Active alarms</span>
+				<strong id="alarm-active-count" class="summary-value">0</strong>
+			</article>
+			<article class="summary-item warning">
+				<span class="summary-label">Unacknowledged</span>
+				<strong id="alarm-unacknowledged-count" class="summary-value">0</strong>
+			</article>
+			<article class="summary-item acknowledged">
+				<span class="summary-label">Highest severity</span>
+				<strong id="alarm-highest-severity" class="summary-value small">NONE</strong>
+			</article>
+			<article class="summary-item event">
+				<span class="summary-label">Last event</span>
+				<strong id="alarm-last-event" class="summary-value small">--:--:--</strong>
+			</article>
+		</section>
+
+		<section class="alarm-panel" aria-labelledby="alarm-list-title">
+			<header class="panel-header">
+				<h2 id="alarm-list-title" class="section-kicker">Event register</h2>
+				<div class="toolbar-actions">
+					<div class="filters" role="group" aria-label="Alarm filters">
+						<button class="filter-button selected" type="button" data-filter="all" aria-pressed="true">ALL</button>
+						<button class="filter-button" type="button" data-filter="active" aria-pressed="false">ACTIVE</button>
+						<button class="filter-button" type="button" data-filter="acknowledged" aria-pressed="false">ACKNOWLEDGED</button>
+						<button class="filter-button" type="button" data-filter="critical" aria-pressed="false">CRITICAL</button>
+						<button class="filter-button" type="button" data-filter="warning" aria-pressed="false">WARNING</button>
+					</div>
+					<button id="alarm-acknowledge-all" class="action-button" type="button"><span aria-hidden="true">&#10003;</span> ACK ALL</button>
+					<button id="alarm-trigger-demo" class="action-button secondary" type="button"><span aria-hidden="true">+</span> TRIGGER</button>
+				</div>
+			</header>
+			<div class="table-wrap">
+				<table aria-label="Alarm event register">
+					<thead>
+						<tr>
+							<th scope="col">Alarm ID</th>
+							<th scope="col">Severity</th>
+							<th scope="col">Source</th>
+							<th scope="col">Message</th>
+							<th scope="col">Time</th>
+							<th scope="col">State</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody id="alarm-table-body"></tbody>
+				</table>
+			</div>
+		</section>
+
+		<footer class="footer">
+			<span>EVENT MONITOR / <strong>SIMULATION DATASET 01</strong></span>
+			<span id="alarm-status-message" aria-live="polite">Alarm history loaded</span>
+		</footer>
+	</main>
+	<script>
+		const storageKey = 'orange-juice-alarm-demo-v1';
+		const seedAlarms = [
+			{ id: 'ALM-001', severity: 'CRITICAL', source: 'CAPPER', message: 'Capper pressure below setpoint', time: '10:14:22', acknowledged: false, state: 'ACTIVE' },
+			{ id: 'ALM-002', severity: 'WARNING', source: 'FILLER', message: 'Filler level approaching refill threshold', time: '10:08:06', acknowledged: false, state: 'ACTIVE' },
+			{ id: 'ALM-003', severity: 'INFO', source: 'CONVEYOR', message: 'Batch changeover complete', time: '09:52:41', acknowledged: true, state: 'CLEARED' }
+		];
+		const severityRank = { INFO: 1, WARNING: 2, CRITICAL: 3 };
+		let demoState = loadState();
+		let activeFilter = 'all';
+
+		function copySeedAlarms() {
+			return seedAlarms.map((alarm) => ({ ...alarm }));
+		}
+
+		function loadState() {
+			try {
+				const stored = JSON.parse(localStorage.getItem(storageKey));
+				if (!stored || !Array.isArray(stored.alarms)) return { alarms: copySeedAlarms(), nextId: 4, lastEvent: '10:14:22' };
+				return { alarms: stored.alarms, nextId: stored.nextId || 4, lastEvent: stored.lastEvent || '10:14:22' };
+			} catch {
+				return { alarms: copySeedAlarms(), nextId: 4, lastEvent: '10:14:22' };
+			}
+		}
+
+		function saveState() {
+			localStorage.setItem(storageKey, JSON.stringify(demoState));
+		}
+
+		function getActiveAlarms() {
+			return demoState.alarms.filter((alarm) => alarm.state === 'ACTIVE');
+		}
+
+		function filterAlarms() {
+			return demoState.alarms.filter((alarm) => {
+				if (activeFilter === 'active') return alarm.state === 'ACTIVE';
+				if (activeFilter === 'acknowledged') return alarm.acknowledged;
+				if (activeFilter === 'critical') return alarm.severity === 'CRITICAL';
+				if (activeFilter === 'warning') return alarm.severity === 'WARNING';
+				return true;
+			});
+		}
+
+		function renderSummary() {
+			const activeAlarms = getActiveAlarms();
+			const unacknowledged = activeAlarms.filter((alarm) => !alarm.acknowledged).length;
+			const highest = activeAlarms.slice().sort((left, right) => severityRank[right.severity] - severityRank[left.severity])[0];
+			document.querySelector('#alarm-active-count').textContent = String(activeAlarms.length);
+			document.querySelector('#alarm-unacknowledged-count').textContent = String(unacknowledged);
+			document.querySelector('#alarm-highest-severity').textContent = highest ? highest.severity : 'NONE';
+			document.querySelector('#alarm-last-event').textContent = demoState.lastEvent;
+		}
+
+		function renderTable() {
+			const body = document.querySelector('#alarm-table-body');
+			const alarms = filterAlarms();
+			if (alarms.length === 0) {
+				body.innerHTML = '<tr class="empty-row"><td colspan="7">No events match this filter</td></tr>';
+				return;
+			}
+
+			body.innerHTML = alarms.map((alarm) => {
+				const stateClass = alarm.state === 'CLEARED' ? 'cleared' : alarm.acknowledged ? 'acknowledged' : 'active';
+				const action = alarm.state === 'ACTIVE' && !alarm.acknowledged
+					? `<button id="alarm-ack-${alarm.id}" class="row-action" type="button" data-action="acknowledge" data-alarm-id="${alarm.id}">ACKNOWLEDGE</button>`
+					: '<span class="state-label cleared">NO ACTION</span>';
+				return `
+					<tr id="alarm-row-${alarm.id}" data-alarm-id="${alarm.id}">
+						<td><span class="alarm-id">${alarm.id}</span></td>
+						<td><span class="severity ${alarm.severity.toLowerCase()}">${alarm.severity}</span></td>
+						<td><span class="alarm-source">${alarm.source}</span></td>
+						<td><span class="alarm-message">${alarm.message}</span></td>
+						<td><span class="alarm-time">${alarm.time}</span></td>
+						<td><span class="state-label ${stateClass}">${alarm.state === 'CLEARED' ? 'CLEARED' : alarm.acknowledged ? 'ACKNOWLEDGED' : 'ACTIVE'}</span></td>
+						<td>${action}</td>
+					</tr>
+				`;
+			}).join('');
+		}
+
+		function render() {
+			renderSummary();
+			renderTable();
+		}
+
+		function acknowledgeAlarm(alarmId) {
+			const alarm = demoState.alarms.find((candidate) => candidate.id === alarmId);
+			if (!alarm) return;
+			alarm.acknowledged = true;
+			demoState.lastEvent = alarm.time;
+			document.querySelector('#alarm-status-message').textContent = `${alarmId} acknowledged`;
+			saveState();
+			render();
+		}
+
+		function acknowledgeAll() {
+			getActiveAlarms().forEach((alarm) => { alarm.acknowledged = true; });
+			demoState.lastEvent = 'NOW / ACK ALL';
+			document.querySelector('#alarm-status-message').textContent = 'All active alarms acknowledged';
+			saveState();
+			render();
+		}
+
+		function triggerDemoAlarm() {
+			const alarmNumber = demoState.nextId;
+			const alarm = {
+				id: `ALM-${String(alarmNumber).padStart(3, '0')}`,
+				severity: 'WARNING',
+				source: 'CONVEYOR',
+				message: 'Demo photoeye blocked for 2.0 seconds',
+				time: `DEMO 10:${String(15 + alarmNumber).padStart(2, '0')}:00`,
+				acknowledged: false,
+				state: 'ACTIVE'
+			};
+			demoState.alarms.unshift(alarm);
+			demoState.nextId += 1;
+			demoState.lastEvent = alarm.time;
+			document.querySelector('#alarm-status-message').textContent = `${alarm.id} created`;
+			saveState();
+			render();
+		}
+
+		function resetDemo() {
+			demoState = { alarms: copySeedAlarms(), nextId: 4, lastEvent: '10:14:22' };
+			activeFilter = 'all';
+			document.querySelectorAll('.filter-button').forEach((button) => {
+				const selected = button.dataset.filter === activeFilter;
+				button.classList.toggle('selected', selected);
+				button.setAttribute('aria-pressed', String(selected));
+			});
+			document.querySelector('#alarm-status-message').textContent = 'Alarm history reset';
+			saveState();
+			render();
+		}
+
+		document.querySelectorAll('.filter-button').forEach((button) => {
+			button.addEventListener('click', () => {
+				activeFilter = button.dataset.filter;
+				document.querySelectorAll('.filter-button').forEach((filterButton) => {
+					const selected = filterButton === button;
+					filterButton.classList.toggle('selected', selected);
+					filterButton.setAttribute('aria-pressed', String(selected));
+				});
+				renderTable();
+			});
+		});
+
+		document.querySelector('#alarm-table-body').addEventListener('click', (event) => {
+			const button = event.target.closest('[data-action="acknowledge"]');
+			if (button) acknowledgeAlarm(button.dataset.alarmId);
+		});
+		document.querySelector('#alarm-acknowledge-all').addEventListener('click', acknowledgeAll);
+		document.querySelector('#alarm-trigger-demo').addEventListener('click', triggerDemoAlarm);
+		document.querySelector('#alarm-reset-demo').addEventListener('click', resetDemo);
+		render();
+	</script>
+</body>
+</html>

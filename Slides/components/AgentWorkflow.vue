@@ -163,8 +163,8 @@ const workflows: WorkflowDefinition[] = [
         optional: true,
         spec: {
           intent: 'Recover from an axis fault without losing the batch.',
-          flow: 'Clear the fault, then resume the current batch.',
-          acceptance: 'Batch counting continues after recovery.',
+          flow: 'Stop, reject every uncapped bottle, then resume the batch.',
+          acceptance: 'Count holds and the 100-bottle batch completes.',
         },
       },
       {
@@ -181,9 +181,9 @@ const workflows: WorkflowDefinition[] = [
         evidence: 'tickets + dependency map',
         handoff: 'individual tickets',
         kanban: [
-          { title: 'BACKLOG', tickets: [{ id: 'T-01', title: 'Axis fault reset' }] },
-          { title: 'READY', tickets: [{ id: 'T-02', title: 'Resume the batch' }] },
-          { title: 'REVIEW', tickets: [{ id: 'T-03', title: 'Check count continuity' }] },
+          { title: 'BACKLOG', tickets: [{ id: 'T-01', title: 'Stop and show the fault' }] },
+          { title: 'READY', tickets: [{ id: 'T-02', title: 'Reject uncapped bottles' }] },
+          { title: 'REVIEW', tickets: [{ id: 'T-03', title: 'Resume the same batch' }] },
         ],
       },
       {
@@ -201,8 +201,8 @@ const workflows: WorkflowDefinition[] = [
         handoff: 'ready > implementation',
         signoff: {
           id: 'T-03',
-          title: 'Check count continuity',
-          detail: 'Batch counting continues after recovery.',
+          title: 'Resume the same batch',
+          detail: 'Counting continues from the held value to 100.',
         },
       },
     ],
@@ -241,9 +241,9 @@ const workflows: WorkflowDefinition[] = [
         evidence: 'plan + branch + handoff',
         handoff: 'commit + issue',
         kanban: [
-          { title: 'OPEN', tickets: [{ id: 'ISSUE-14', title: 'Axis fault recovery' }] },
-          { title: 'READY', tickets: [{ id: 'ISSUE-15', title: 'Preserve batch count' }] },
-          { title: 'SELECTED', tickets: [{ id: 'ISSUE-16', title: 'Resume after fault', selected: true }] },
+          { title: 'OPEN', tickets: [{ id: 'ISSUE-14', title: 'Stop and show the fault' }] },
+          { title: 'READY', tickets: [{ id: 'ISSUE-15', title: 'Reject uncapped bottles' }] },
+          { title: 'SELECTED', tickets: [{ id: 'ISSUE-16', title: 'Resume the same batch', selected: true }] },
         ],
       },
       {
@@ -905,8 +905,8 @@ function feedbackLoopIsActive() {
               </div>
               <ul class="coverage-list">
                 <li><span class="coverage-mark" aria-hidden="true">✓</span><span class="coverage-item-label">Axis fault recovery</span><b>PASS</b></li>
-                <li><span class="coverage-mark" aria-hidden="true">✓</span><span class="coverage-item-label">Batch count continuity</span><b>PASS</b></li>
-                <li><span class="coverage-mark" aria-hidden="true">✓</span><span class="coverage-item-label">Resume after clear</span><b>PASS</b></li>
+                <li><span class="coverage-mark" aria-hidden="true">✓</span><span class="coverage-item-label">Uncapped bottles rejected</span><b>PASS</b></li>
+                <li><span class="coverage-mark" aria-hidden="true">✓</span><span class="coverage-item-label">Batch resumes to 100</span><b>PASS</b></li>
               </ul>
               <div class="coverage-foot"><span>CRITERIA</span><b>3 / 3 VERIFIED</b></div>
             </div>

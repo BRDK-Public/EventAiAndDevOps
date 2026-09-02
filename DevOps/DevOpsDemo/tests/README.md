@@ -2,37 +2,34 @@
 
 These Playwright tests check the running DevOpsDemo HMI.
 
-## Before you start
+## Get started
 
-- Start the HMI at `http://127.0.0.1:81`.
-- Make sure PVI Manager and the running PLC/ARsim are available.
-- The running Main task must contain the `Reboot` BOOL variable.
-
-The test first writes `Main:Reboot` to `TRUE` and waits for the PLC to return to `Run`.
-It does not build, transfer, or start the project.
-
-## Install
-
-From this directory, run once:
+From this directory, install the dependencies once:
 
 ```powershell
 npm install
 ```
 
-## Run
+Before running a test:
 
-Headless:
+- Start the HMI at `http://127.0.0.1:81`.
+- Make sure PVI Manager and the PLC/ARsim are available.
+- Make sure the running Main task contains the `Reboot` BOOL variable.
+
+If the HMI reports that the maximum number of clients has been reached, close other HMI browser sessions and try again.
+
+## Run the tests
+
+For a visible demo, open Chrome and watch the workflow:
+
+```powershell
+npm run test:demo
+```
+
+For a normal or CI check, run the same workflow headlessly:
 
 ```powershell
 npm run test:hmi
 ```
 
-Show the browser while the test runs:
-
-```powershell
-npm run test:hmi -- --headed --reporter=line
-```
-
-The test logs in as `operator`, `maintenance`, and `engineer`, closes the user menu, then simulates ten production batches and checks the visible counter.
-
-If the HMI reports that the maximum number of clients has been reached, close other HMI browser sessions and run the test again.
+Both commands test the same HMI workflow. The only difference is that `test:demo` shows the browser and presentation feedback, while `test:hmi` runs without a visible browser.
