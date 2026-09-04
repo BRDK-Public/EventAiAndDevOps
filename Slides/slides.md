@@ -22,6 +22,38 @@ defaults:
   layout: default
 ---
 
+<div class="materials-slide">
+<div class="materials-intro">
+  <div class="eyebrow">EVENT RESOURCES</div>
+  <h1>Materials <span class="accent">&amp; Links</span></h1>
+  <p>Everything from today's AI and DevOps event, in one place.</p>
+</div>
+
+<div class="materials-links">
+  <a class="materials-link" href="https://github.com/BRDK-Public/EventAiAndDevOps" target="_blank" rel="noreferrer">
+    <span class="materials-link-number">01</span>
+    <span class="materials-link-main">
+      <strong>BRDK-Public/EventAiAndDevOps</strong>
+      <small>Event repository</small>
+    </span>
+    <span class="materials-link-action">OPEN</span>
+  </a>
+  <a class="materials-link" href="http://localhost:3030/21?clicks=8" target="_blank" rel="noreferrer">
+    <span class="materials-link-number">02</span>
+    <span class="materials-link-main">
+      <strong>The future of automation</strong>
+      <small>MCP server overview</small>
+    </span>
+    <span class="materials-link-action">OPEN</span>
+  </a>
+</div>
+</div>
+
+---
+layout: default
+class: reference-slide
+---
+
 # Welcome!
 
 <div class="welcome-grid">
