@@ -22,6 +22,12 @@ defaults:
   layout: default
 ---
 
+<script setup>
+const materialsLink = import.meta.env.BASE_URL === '/'
+  ? '/21?clicks=8'
+  : `${import.meta.env.BASE_URL}#/21?clicks=8`
+</script>
+
 <div class="materials-slide">
 <div class="materials-intro">
   <div class="eyebrow">EVENT RESOURCES</div>
@@ -38,7 +44,7 @@ defaults:
     </span>
     <span class="materials-link-action">OPEN</span>
   </a>
-  <a class="materials-link" href="http://localhost:3030/21?clicks=8" target="_blank" rel="noreferrer">
+  <a class="materials-link" :href="materialsLink" target="_blank" rel="noreferrer">
     <span class="materials-link-number">02</span>
     <span class="materials-link-main">
       <strong>MCP SERVER OVERVIEW</strong>
