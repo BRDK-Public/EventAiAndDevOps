@@ -41,8 +41,8 @@ defaults:
   <a class="materials-link" href="http://localhost:3030/21?clicks=8" target="_blank" rel="noreferrer">
     <span class="materials-link-number">02</span>
     <span class="materials-link-main">
-      <strong>The future of automation</strong>
-      <small>MCP server overview</small>
+      <strong>MCP SERVER OVERVIEW</strong>
+      <small>SLIDE 21</small>
     </span>
     <span class="materials-link-action">OPEN</span>
   </a>
