@@ -1,5 +1,16 @@
 # HMI tests
 
+## Python integration tests
+
+These pytest tests run the same ARsim and PLC integration workflow as `run-integration-tests.ps1`.
+Run them from this directory:
+
+```powershell
+pytest -q -s test_machine_sim.py -rA
+```
+
+The `-s` option shows the parsed build, ARsim, PLC, and runtime logbook responses while the tests run.
+
 These Playwright tests check the running DevOpsDemo HMI.
 
 ## Get started

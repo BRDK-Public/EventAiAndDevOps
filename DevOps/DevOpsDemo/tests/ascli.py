@@ -10,7 +10,7 @@ from typing import Any, Iterable
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_AS_CLI = PROJECT_ROOT / "as-cli.exe"
+DEFAULT_AS_CLI = PROJECT_ROOT / "as.exe"
 DEFAULT_PROJECT = PROJECT_ROOT / "DevOpsDemo.apj"
 
 
@@ -50,15 +50,15 @@ class AsCli:
         parsed = _parse_json(completed.stdout)
         result = AsCliResult(tuple(args), completed.returncode, completed.stdout, completed.stderr, parsed)
         if check and completed.returncode != 0:
-            raise AssertionError(f"as-cli {' '.join(args)} failed with {completed.returncode}:\n{result.text}")
+            raise AssertionError(f"{self.exe.name} {' '.join(args)} failed with {completed.returncode}:\n{result.text}")
         return result
 
-    def connect(self) -> None:
+    def connect(self, timeout: int | None = None) -> AsCliResult:
         args = ["plc", "connect", "--ip", os.environ.get("AS_PLC_IP", "127.0.0.1")]
         port = os.environ.get("AS_PLC_PORT")
         if port:
             args.extend(["--port", port])
-        self.run(*args)
+        return self.run(*args, timeout=timeout)
 
     def sim_state(self) -> str:
         result = self.run("sim", "status", check=False)
