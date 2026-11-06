@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHEV → EV: Is switching a good investment?</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>PHEV → EV investment calculator</h1>
+    <p>Compare keeping your plug-in hybrid with switching to a full electric car. All amounts in DKK.</p>
+  </header>
+
+  <main>
+    <form id="calc-form" novalidate>
+      <fieldset>
+        <legend>Driving &amp; prices</legend>
+        <label>Comparison period (years)<input type="number" name="years" min="1" max="30" step="1"></label>
+        <label>Kilometres per year<input type="number" name="annualKm" min="0" step="500"></label>
+        <label>Home charging share (%)<input type="number" name="homeChargingShare" min="0" max="100" step="1"></label>
+        <label>Home electricity price (DKK/kWh)<input type="number" name="homeElectricityPrice" min="0" step="0.05"></label>
+        <label>Public charging price (DKK/kWh)<input type="number" name="publicChargingPrice" min="0" step="0.05"></label>
+        <label>Electricity price increase (%/year)<input type="number" name="electricityPriceIncrease" min="0" step="0.5"></label>
+        <label>Petrol price (DKK/L)<input type="number" name="petrolPrice" min="0" step="0.1"></label>
+        <label>Petrol price increase (%/year)<input type="number" name="petrolPriceIncrease" min="0" step="0.5"></label>
+        <label>Alternative investment return (%/year)
+          <input type="number" name="opportunityReturn" min="0" step="0.5">
+          <small>Opportunity cost of the money. 0 = ignore.</small>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Your current PHEV</legend>
+        <label>Current resale / trade-in value (DKK)<input type="number" name="phevValue" min="0" step="1000"></label>
+        <label>Remaining loan (DKK)<input type="number" name="phevLoan" min="0" step="1000"></label>
+        <label>Share of km driven on electricity (%)<input type="number" name="phevElectricShare" min="0" max="100" step="1"></label>
+        <label>Petrol use (L/100 km)<input type="number" name="phevPetrolPer100" min="0" step="0.1"></label>
+        <label>Electricity use (kWh/100 km)<input type="number" name="phevKwhPer100" min="0" step="0.5"></label>
+        <label>Insurance (DKK/year)<input type="number" name="phevInsurance" min="0" step="100"></label>
+        <label>Road / green owner tax (DKK/year)<input type="number" name="phevTax" min="0" step="100"></label>
+        <label>Service &amp; maintenance (DKK/year)<input type="number" name="phevService" min="0" step="100"></label>
+        <label>Depreciation (%/year)<input type="number" name="phevDepreciation" min="0" max="100" step="0.5"></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>The EV you are considering</legend>
+        <label>Purchase price (DKK)<input type="number" name="evPrice" min="0" step="1000"></label>
+        <label>Electricity use (kWh/100 km)<input type="number" name="evKwhPer100" min="0" step="0.5"></label>
+        <label>Insurance (DKK/year)<input type="number" name="evInsurance" min="0" step="100"></label>
+        <label>Road / green owner tax (DKK/year)<input type="number" name="evTax" min="0" step="100"></label>
+        <label>Service &amp; maintenance (DKK/year)<input type="number" name="evService" min="0" step="100"></label>
+        <label>Depreciation (%/year)<input type="number" name="evDepreciation" min="0" max="100" step="0.5"></label>
+        <label>Home charger incl. installation (DKK)<input type="number" name="chargerCost" min="0" step="500"></label>
+        <label>Subsidies / discounts (DKK)<input type="number" name="subsidy" min="0" step="500"></label>
+      </fieldset>
+
+      <div class="actions">
+        <button type="button" id="reset-btn">Reset to defaults</button>
+      </div>
+    </form>
+
+    <section id="results" aria-live="polite">
+      <div id="errors" class="errors" hidden></div>
+      <div id="verdict" class="verdict"></div>
+      <dl class="kpis">
+        <div><dt>Total cost – keep PHEV</dt><dd id="kpi-keep"></dd></div>
+        <div><dt>Total cost – switch to EV</dt><dd id="kpi-switch"></dd></div>
+        <div><dt>Savings by switching</dt><dd id="kpi-savings"></dd></div>
+        <div><dt>Running-cost savings, year 1</dt><dd id="kpi-annual"></dd></div>
+        <div><dt>Extra capital tied up</dt><dd id="kpi-extra"></dd></div>
+        <div><dt>Cash needed today</dt><dd id="kpi-cash"></dd></div>
+        <div><dt>Return on extra capital</dt><dd id="kpi-roi"></dd></div>
+        <div><dt>Break-even</dt><dd id="kpi-breakeven"></dd></div>
+      </dl>
+
+      <h2>Cumulative cost over time</h2>
+      <div id="chart" class="chart"></div>
+
+      <h2>Year by year</h2>
+      <div class="table-wrap">
+        <table id="year-table">
+          <thead>
+            <tr><th>Year</th><th>PHEV running cost</th><th>EV running cost</th><th>Cumulative – keep</th><th>Cumulative – switch</th><th>Difference</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <p class="note">
+        Total cost = depreciation (value lost) + energy + insurance + tax + service. Switching also includes
+        the charger minus subsidies. The PHEV loan has to be paid off in both cases, so it only changes the
+        cash needed today. With an alternative investment return above 0 %, all amounts are shown in
+        today's money.
+      </p>
+    </section>
+  </main>
+
+  <script src="calc.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "phev-to-ev-calculator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static website that estimates whether swapping a PHEV for an EV is a good investment",
+  "scripts": {
+    "test": "node --test"
+  },
+  "license": "MIT"
+}

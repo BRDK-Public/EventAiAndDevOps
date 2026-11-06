@@ -29,3 +29,19 @@ Run the Playwright HMI test with the simulator already running:
 cd .\EventAiAndDevOps\DevOps\DevOpsDemo\tests
 npm run test:demo
 ```
+
+## PHEV → EV investment calculator
+
+Static website (no build step) that estimates whether swapping a plug-in hybrid for an EV pays off.
+
+Open `PhevToEvCalculator/index.html` in a browser, or serve the folder:
+```bash
+cd PhevToEvCalculator
+python3 -m http.server 8000
+```
+
+Run the calculation unit tests (Node 18+):
+```bash
+cd PhevToEvCalculator
+npm test
+```
