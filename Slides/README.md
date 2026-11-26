@@ -1,6 +1,6 @@
 # Agentic Engineering Slides
 
-A B&R Industrial Automation themed Slidev event deck: a 30-minute introduction, a 60-minute Agentic Engineering workshop, and a 75-minute DevOps in industry workshop. The rendered source deck contains 67 pages: 60 numbered presentation slides (`01-60`) and 7 unnumbered utility or reference pages. The numbered sequence follows source order: introduction `02-11`, Agentic Engineering `12-34`, the workshop handoff `35`, and Workshop Two `36-60`.
+A B&R Industrial Automation themed Slidev event deck for the 2 December 2026 event in Odense (12.15–14.45): a 20-minute introduction, a 40-minute Agentic Engineering workshop, a 15-minute break, a 45-minute DevOps in industry workshop, 15 minutes of questions, and a final break before the next session. The rendered deck contains 47 pages: 36 numbered presentation slides (`01-36`), an unnumbered break slide and Materials & Links page, and a backup appendix (divider plus slides `B1-B8`) for deep-dive questions. Slide IDs follow source order.
 
 ## Run
 
@@ -55,4 +55,4 @@ Export requires the Playwright Chromium browser. In this environment, its automa
 - Confirm every component status against approved product communication before presenting.
 - Verify that no credentials, customer paths, or project-sensitive data are visible.
 
-`slides.md` is the source of truth for the current slide order. The 27 Agentic Engineering content sections remain documented in `agentic-engineering-customer-slide-plan.md`; the cover, D1 handoff, and D2 Workshop 2 intro are retained framing slides. Workshop 2 uses the checked-in bottle-conveyor project as a demonstrator and labels general principles, repository observations, and event-verified functionality separately.
+`slides.md` is the source of truth for the current slide order. The Materials page links to the MCP connectors slide through its `routeAlias` (`/mcp-overview`), so the link survives reordering. The 27 Agentic Engineering content sections remain documented in `agentic-engineering-customer-slide-plan.md`; the cover, D1 handoff, and D2 Workshop 2 intro are retained framing slides. Workshop 2 uses the checked-in bottle-conveyor project as a demonstrator and labels general principles, repository observations, and event-verified functionality separately.

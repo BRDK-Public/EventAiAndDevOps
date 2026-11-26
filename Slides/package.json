@@ -10,9 +10,12 @@
   "devDependencies": {
     "@iconify-json/mdi": "latest",
     "@iconify-json/simple-icons": "^1.2.93",
-    "@slidev/cli": "latest",
+    "@slidev/cli": "^52.18.0",
     "@slidev/theme-default": "latest",
     "playwright-chromium": "latest",
     "vue": "latest"
+  },
+  "allowScripts": {
+    "playwright-chromium@1.62.1": true
   }
 }

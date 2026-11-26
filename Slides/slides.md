@@ -7,7 +7,7 @@ colorSchema: light
 aspectRatio: 16/9
 canvasWidth: 1280
 transition: slide-left
-duration: 90min
+duration: 150min
 timer: countdown
 drawings:
   enabled: true
@@ -20,96 +20,6 @@ fonts:
 exportFilename: agentic-engineering
 defaults:
   layout: default
----
-
-<script setup>
-const materialsLink = import.meta.env.BASE_URL === '/'
-  ? '/21?clicks=8'
-  : `${import.meta.env.BASE_URL}#/21?clicks=8`
-</script>
-
-<div class="materials-slide">
-<div class="materials-intro">
-  <div class="eyebrow">EVENT RESOURCES</div>
-  <h1>Materials <span class="accent">&amp; Links</span></h1>
-  <p>Everything from today's AI and DevOps event, in one place.</p>
-</div>
-
-<div class="materials-links">
-  <a class="materials-link" href="https://github.com/BRDK-Public/EventAiAndDevOps" target="_blank" rel="noreferrer">
-    <span class="materials-link-number">01</span>
-    <span class="materials-link-main">
-      <strong>BRDK-Public/EventAiAndDevOps</strong>
-      <small>Event repository</small>
-    </span>
-    <span class="materials-link-action">OPEN</span>
-  </a>
-  <a class="materials-link" :href="materialsLink" target="_blank" rel="noreferrer">
-    <span class="materials-link-number">02</span>
-    <span class="materials-link-main">
-      <strong>MCP SERVER OVERVIEW</strong>
-      <small>SLIDE 21</small>
-    </span>
-    <span class="materials-link-action">OPEN</span>
-  </a>
-</div>
-</div>
-
----
-layout: default
-class: reference-slide
----
-
-# Welcome!
-
-<div class="welcome-grid">
-  <div class="reference-photo welcome-photo-foodtruck"><img src="/welcome-foodtruck.jpg" alt="Foodtruck at the event"></div>
-  <div class="reference-copy welcome-copy-feedback">
-    <h2>Feedback</h2>
-    <p>We value your feedback. Please complete the survey at the end of the day.</p>
-  </div>
-  <div class="reference-photo welcome-photo-audience"><img src="/welcome-audience.jpeg" alt="Audience at the event"></div>
-  <div class="reference-copy welcome-copy-stay">
-    <h2>Stay afterward</h2>
-    <p>The event officially ends at 13:00, but you are welcome to stay if you have additional questions.</p>
-  </div>
-  <div class="reference-copy welcome-copy-lunch">
-    <h2>Lunch</h2>
-    <p>Foodtruck from Original Pita will be ready with lunch at 12.15.</p>
-  </div>
-  <div class="reference-photo welcome-photo-collaboration"><img src="/welcome-collaboration.jpeg" alt="People collaborating"></div>
-  <div class="reference-copy welcome-copy-slides">
-    <h2>Slides</h2>
-    <p>All slides will be available after the event. Complete the survey to receive a link.</p>
-  </div>
-  <div class="reference-photo welcome-photo-networking"><img src="/welcome-networking.jpg" alt="People networking at the event"></div>
-</div>
-
-<img class="reference-brand" src="/br-logo.svg" alt="B&R Industrial Automation">
-
----
-layout: default
-class: reference-slide events-reference
----
-
-# Upcoming Events<br><span class="accent">2026</span>
-
-<div class="event-grid">
-  <article class="event-card">
-    <img src="/upcoming-adaptive.jpeg" alt="Adaptive automation robot and conveyor">
-    <h2>Passion4AdaptiveAutomationDays 2026</h2>
-    <p>Date: 6.-7. October 2026<br>Location: Orange Point, Malmö Sweden</p>
-  </article>
-  <article class="event-card">
-    <img src="/upcoming-rugged.png" alt="Rugged automation controller in a field">
-    <h2>Passion4RuggedAutomationDays 2026</h2>
-    <p>Date: 10.-11. November 2026<br>Location: Orange Point, Malmö Sweden</p>
-  </article>
-</div>
-
-<img class="reference-brand" src="/br-logo.svg" alt="B&R Industrial Automation">
-
----
 layout: cover
 ---
 
@@ -121,7 +31,7 @@ layout: cover
 </div>
 
 <div class="cover-event" v-motion :initial="{ opacity: 0, x: -30 }" :enter="{ opacity: 1, x: 0, transition: { delay: 280 } }">
-  <span>03 SEP 2026</span><span>ODENSE</span><span>08.30–13.00</span>
+  <span>02 DEC 2026</span><span>ODENSE</span><span>12.15–14.45</span>
 </div>
 
 # The future of<br><span class="accent">automation</span>
@@ -135,6 +45,7 @@ layout: cover
   <div class="bridge-track"><i></i><i></i><i></i><i></i><i></i></div>
   <div class="bridge-node is-proof"><span>02</span> DEPLOYMENT</div>
 </div>
+
 <div class="slide-id">01</div>
 
 <!--
@@ -163,29 +74,29 @@ class: agenda-slide dark-slide
     <h1>AI & DevOps<br><span class="accent">A shared vision.</span></h1>
     <p class="agenda-lead">A practical path from why this matters to how we build trustworthy agentic workflows for industrial engineering.</p>
     <div class="agenda-event-mark">
-      <span>03</span>
-      <div><b>SEPTEMBER 2026</b><small>ODENSE · B&R INDUSTRIAL AUTOMATION</small></div>
+      <span>02</span>
+      <div><b>DECEMBER 2026</b><small>ODENSE · B&R INDUSTRIAL AUTOMATION</small></div>
     </div>
   </div>
 
   <div class="agenda-timeline" v-motion :initial="{ opacity: 0, x: 28 }" :enter="{ opacity: 1, x: 0, transition: { delay: 220 } }">
     <div class="agenda-row">
-      <time datetime="08:30">08.30</time><i aria-hidden="true"></i><div><b>Arrival and breakfast</b><small>Settle in</small></div>
-    </div>
-    <div class="agenda-row">
-      <time datetime="09:00">09.00</time><i aria-hidden="true"></i><div><b>Welcome and introduction</b><small>Why DevOps + Agentic Engineering</small></div>
+      <time datetime="12:15">12.15</time><i aria-hidden="true"></i><div><b>Welcome and introduction</b><small>Why DevOps + Agentic Engineering</small></div>
     </div>
     <div class="agenda-row is-session">
-      <time datetime="09:30">09.30</time><i aria-hidden="true"></i><div><b>Agentic Engineering</b><small>Definitions · bridge · constraints</small></div>
+      <time datetime="12:35">12.35</time><i aria-hidden="true"></i><div><b>Agentic Engineering</b><small>Knowledge · tools · guardrails · workflows</small></div>
     </div>
     <div class="agenda-row">
-      <time datetime="10:30">10.30</time><i aria-hidden="true"></i><div><b>Break and networking</b><small>30 minutes</small></div>
+      <time datetime="13:15">13.15</time><i aria-hidden="true"></i><div><b>Break</b><small>15 minutes</small></div>
     </div>
     <div class="agenda-row is-session">
-      <time datetime="11:00">11.00</time><i aria-hidden="true"></i><div><b>DevOps in industry</b><small>Version · build · test · release</small></div>
+      <time datetime="13:30">13.30</time><i aria-hidden="true"></i><div><b>DevOps in industry</b><small>Version · build · test · release</small></div>
     </div>
     <div class="agenda-row">
-      <time datetime="12:15">12.15</time><i aria-hidden="true"></i><div><b>Questions, lunch and networking</b><small>Until 13.00</small></div>
+      <time datetime="14:15">14.15</time><i aria-hidden="true"></i><div><b>Questions and discussion</b><small>Open floor</small></div>
+    </div>
+    <div class="agenda-row">
+      <time datetime="14:30">14.30</time><i aria-hidden="true"></i><div><b>Break</b><small>Next session at 14.45</small></div>
     </div>
   </div>
 </div>
@@ -207,6 +118,8 @@ Så har Mads en session om DevOps:
 Han vil forklare om hvad der er muligt med B&R platformen.
 Give nogle fede demoer af automatisk test og deployment.
 
+Pause kl. 13.15–13.30 mellem de to workshops. Spørgsmål og diskussion kl. 14.15. Næste oplægsholder starter kl. 14.45.
+
 -->
 
 ---
@@ -214,7 +127,7 @@ layout: default
 class: light-grid
 ---
 
-<div class="kicker">WHY THIS EVENT · 04 MIN</div>
+<div class="kicker">WHY THIS EVENT · 03 MIN</div>
 
 # Just another<br><span class="accent">AI Event?</span>
 
@@ -278,7 +191,7 @@ layout: default
 class: dark-slide loop-slide
 ---
 
-<div class="kicker">COMPLEMENTARY SYSTEMS · 03 MIN</div>
+<div class="kicker">COMPLEMENTARY SYSTEMS · 02 MIN</div>
 
 # DevOps + Agentic<br><span class="accent">Engineering</span>
 
@@ -330,6 +243,7 @@ class: dark-slide loop-slide
   <div class="signal-pulse"></div>
   <p>DevOps gives agents rails.<br><strong>Agents make the rails more useful.</strong></p>
 </div>
+
 <div class="slide-id">04</div>
 
 <!--
@@ -424,7 +338,7 @@ layout: default
 class: stack-slide dark-slide
 ---
 
-<div class="kicker">DEFINITION · 04 MIN</div>
+<div class="kicker">DEFINITION · 03 MIN</div>
 
 # What is an<br><span class="accent">agent?</span>
 
@@ -462,7 +376,6 @@ class: stack-slide dark-slide
   <span>AN AGENT IS A MODEL IN A HARNESS</span>
   <small>THINKING, PLANNING & ACTING</small>
 </div>
-
 
 <div class="slide-id">06</div>
 
@@ -510,7 +423,8 @@ Transition: Hvorfor er dette sket hurtigere i IT end i OT? Hvorfor findes der ik
 layout: default
 class: process-slide
 ---
-<div class="kicker">FOUNDATION · 04 MIN</div>
+
+<div class="kicker">FOUNDATION · 02 MIN</div>
 
 # IT & OT are<br><span class="accent">converging</span>
 
@@ -574,9 +488,9 @@ layout: default
 class: foundation-slide dark-slide
 ---
 
-<div class="kicker">OT ENABLEMENT · 04 MIN</div>
+<div class="kicker">OT ENABLEMENT · 02 MIN</div>
 
-# what is needed to<br><span class="accent">close the gap</span>
+# What is needed to<br><span class="accent">close the gap</span>
 
 <div class="foundation-layout">
   <div class="foundation-stack">
@@ -678,7 +592,7 @@ layout: default
 class: agent-loop-slide
 ---
 
-<div class="kicker">JOURNEY · 04 MIN</div>
+<div class="kicker">JOURNEY · 03 MIN</div>
 
 # The path<br><span class="accent">Going forward</span>
 
@@ -823,7 +737,7 @@ class: devops-cover ai-workshop-cover dark-slide
 
 <div class="devops-chapter">01</div>
 
-<div class="kicker">WORKSHOP 01 · 60 MIN</div>
+<div class="kicker">WORKSHOP 01 · 40 MIN</div>
 <div class="part-label">LARS JENSEN · AUTOMATION ENGINEER</div>
 
 # It's all about<br><span class="accent">the workflow</span>
@@ -839,7 +753,6 @@ class: devops-cover ai-workshop-cover dark-slide
   <i></i>
   <div><span>04</span><b>APPROVE</b><small>What is being deployed</small></div>
 </div>
-
 
 <div class="slide-id">11</div>
 
@@ -867,6 +780,8 @@ class: maturity-compare-slide dark-slide
 <figure class="vibe-coder-visual">
   <img src="/vibe-coder.png" alt="Vibe coder working at an unpredictable bottle line">
 </figure>
+
+<div class="slide-id">12</div>
 
 <!--
 Hvor gammelt er Vibe-coding begrebet? (februar 25)
@@ -922,7 +837,7 @@ class: use-case-slide dark-slide
   <strong>Build the workflow</strong>
 </div>
 
-<div class="slide-id">12</div>
+<div class="slide-id">13</div>
 
 <!--
 Lad os prøve at kigge på et konkret eksempel, som resten af workshoppen skal besvare.
@@ -995,7 +910,7 @@ class: bridge-slide dark-slide
   </div>
 </div>
 
-<div class="slide-id">13</div>
+<div class="slide-id">14</div>
 
 <!--
 Så hvad kan vi tilbyde for at svare på spørgsmålet?
@@ -1025,7 +940,7 @@ layout: default
 class: mcp-basics-slide dark-slide
 ---
 
-<div class="kicker">MODEL CONTEXT PROTOCOL · 04 MIN</div>
+<div class="kicker">MODEL CONTEXT PROTOCOL · 03 MIN</div>
 
 # MCP - the semantic<br><span class="accent">tool API for Agents</span>
 
@@ -1111,14 +1026,14 @@ class: mcp-basics-slide dark-slide
 
 <div class="mcp-takeaway" v-click="4"><span>MCP is not the model.</span><strong>It makes capabilities discoverable and callable through a shared semantic contract.</strong></div>
 
-<div class="slide-id">14</div>
+<div class="slide-id">15</div>
 
 <!--
 MCP står for Model Context Protocol. Tænk på det som et semantisk tool-API: en server beskriver sine tools og resources, så en model kan opdage dem og bruge på en standardiseret måde.
 
 [CLICK]
 <b>Et eksempel kunne være den officielle GitHub MCP server.</b>
-Den har omkring 47 tools til alt lige fra at oprette issues og PR, læse repositories, merge branches osv. 
+Den har en lang række tools til alt lige fra at oprette issues og PR, læse repositories, merge branches osv. 
 
 
 <b>Som andet eksempel har vi vores egen AS-Help MCP</b>. Det er en lokal server, der via stdio, stiller funktioner til rådighed for at søge i B&R Automation Studio help: search_help, get_categories, browse_section og get_page_by_id. 
@@ -1128,91 +1043,6 @@ Manifestet er ikke selve dataene eller udførelsen. Det giver modellen et katalo
 
 [CLICK]
 En MCP server gør altså sine funktioner tilgængelige over et standard interface som en agent kan forstå
--->
-
----
-layout: default
-class: as-help-boot-slide dark-slide
----
-
-<div class="kicker">AS-HELP MCP · FIRST BOOT · 03 MIN</div>
-
-# AS-Help MCP:<br><span class="accent">index once, serve locally</span>
-
-<div class="as-help-boot-grid">
-  <figure class="as-help-boot-visual" v-click>
-    <div class="as-help-image-frame"><img src="/as-help-mcp.png" alt="AS-Help MCP GitHub quick-start configuration for a local server"></div>
-    <figcaption><span>LOCAL KNOWLEDGE CONNECTOR</span><b>br-automation-community/as-help-mcp</b><small>Rust server · installed Automation Studio help · LanceDB</small></figcaption>
-  </figure>
-  <section class="as-help-boot-process">
-    <div class="as-help-process-heading"><span>FIRST BOOT</span><small>BUILD THE INDEX · THEN SERVE QUERIES</small></div>
-    <div class="as-help-stage-list">
-      <div class="as-help-stage" v-click>
-        <span class="as-help-stage-number">01</span><mdi-file-tree-outline />
-        <div><b>READ LOCAL HELP</b><small>Walk the installed AS Help HTML tree.</small></div>
-        <strong>INGEST</strong>
-      </div>
-      <div class="as-help-stage" v-click>
-        <span class="as-help-stage-number">02</span><mdi-database-search-outline />
-        <div><b>BUILD FTS INDEX</b><small>Tokenize titles and content for keyword ranking.</small></div>
-        <strong>RANK</strong>
-      </div>
-      <div class="as-help-stage" v-click>
-        <span class="as-help-stage-number">03</span><mdi-map-marker-path />
-        <div><b>PERSIST METADATA</b><small>Keep page_id, title, file_path, and breadcrumb_path.</small></div>
-        <strong>ANCHOR</strong>
-      </div>
-      <div class="as-help-stage ready" v-click>
-        <span class="as-help-stage-number">04</span><mdi-check-circle-outline />
-        <div><b>FTS READY</b><small>Keyword search works while optional semantic loading continues.</small></div>
-        <strong>SERVE</strong>
-      </div>
-    </div>
-    <div class="as-help-index-record" v-click>
-      <div class="as-help-record-heading"><span>SEARCH RECORD</span><small>metadata stays attached to the hit</small></div>
-      <div class="as-help-record-grid"><code>page_id</code><b>&lt;returned page id&gt;</b><code>breadcrumb</code><span>Motion &gt; ... &gt; MC_BR_MoveAbsolute</span><code>preview</code><span>short desciption of the context</span></div>
-    </div>
-    <div class="as-help-query-flow">
-      <div class="as-help-query-heading"><span>AGENT QUERY</span><strong>FTS · KEYWORD RANKING</strong></div>
-      <div class="as-help-query-line"><code>search_help</code><span>query: "MC_BR_MoveAbsolute"</span></div>
-      <div class="as-help-top-result"><b>#1</b><span>highest-ranked match</span><strong>page_id + breadcrumb + preview</strong></div>
-      <div class="as-help-retrieve"><code>get_page_by_id</code><span>page_id</span><b>-&gt; full text + metadata + online URL</b></div>
-    </div>
-  </section>
-</div>
-
-<div class="as-help-boot-takeaway" v-click><span>THE PRO AND THE CON</span><strong>Only reflect what you have installed locally</strong> </div>
-
-<div class="slide-id">15</div>
-
-<!--
-Vi vil gerne reklamere lidt for vores egen AS-Help MCP der ligger tilgængelig på GitHub. Vi synes selv den er MEGA god!
-Første gang AS-Help MCP starter, læser den den lokale Automation Studio help folder og bygger et søgeindeks. Den gemmer ikke kun søgetekst, men også page_id, titel, filsti og breadcrumb, så et hit kan følges tilbage til den rigtige side.
-
-[CLICK]
-[CLICK]
-[CLICK]
-[CLICK]
-[CLICK]
-
-FTS, full-text search, er klar. <b>Semantisk søgning kan være et senere, valgfrit lag.</b> 
-
-Vi synes at FTS virker så godt, at vi ikke rigtigt har brugt embedding modeller og vector-databasen, men man kan nemt smide sin egen embedding model på, og så få semantisk søgning sammen med FTS. Det kan spare på tokens og give mere akkurate søgninger, da hele konteksten indgår i søgningen, og ikke kun keywords.
-
-Det vigtige i agent-flowet er, at search_help ikke foregiver at være hele svaret: den returnerer et rangeret hit med page_id, breadcrumb og en kort preview.
-
-[CLICK]
-
-
-Agenten bruger derefter page_id i get_page_by_id for at hente den fulde tekst, metadata og eventuelt online-help URL. Det er en enkel, sporbar to-trins kontrakt: find den bedste adresse, hent derefter evidensen.
-
-[CLICK]
-
-Da <b>projektet er opensource</b>, kan det nemt kopieres til andre hjælpesystemer fra f.eks en tredjepart. Det skal i være velkomne til!
-
-Til mange ting synes vi at det er en fordel, at MCP-serveren KUN har adgang til din lokale hjælp, og derfor ikke til teknologier du ikke har installeret eller nyere versioner du ikke bruger. Den kan selvfølgelig ikke bruge hele B&Rs katalog som data, men hvis den kun skal forholde sig til din maskine, så er det jo også tit det bedste. 
-
-transition: Hvis man har brug for overkomplete viden kan man bruge den officielle B&R MCP-server
 -->
 
 ---
@@ -1231,6 +1061,8 @@ class: mcp-image-pair-slide dark-slide
 <div class="mcp-image-link">
   <mdi-link-variant /><a href="https://community.br-automation.com/t/release-2026-use-b-r-mcp-server-with-any-ai-assistant-using-jwt-from-as-code-6-7-github-copilot-continue-dev-more/11705" target="_blank">community.br-automation.com — Use B&amp;R MCP Server with any AI assistant (JWT from AS Code 6.7)</a>
 </div>
+
+<div class="slide-id">16</div>
 
 <!--
 Official B&R MCP
@@ -1252,6 +1084,7 @@ transition: Hvad er der ellers af brugbare MCP-Servere?
 ---
 layout: default
 class: br-role-slide
+routeAlias: mcp-overview
 ---
 
 <div class="kicker">COMMUNITY CONNECTORS · 03 MIN</div>
@@ -1259,49 +1092,49 @@ class: br-role-slide
 # Practical knowledge<br><span class="accent">connectors</span>
 
 <div class="br-role-stack">
-  <a class="role-layer" href="https://github.com/br-automation-community/as-help-mcp" target="_blank" rel="noopener noreferrer" aria-label="Open AS-Help MCP on GitHub" v-click>
+  <a class="role-layer" href="https://github.com/br-automation-community/as-help-mcp" target="_blank" rel="noopener noreferrer" aria-label="Open AS-Help MCP on GitHub">
     <div class="role-number">01</div>
     <mdi-book-open-page-variant-outline />
     <div><span>B&amp;R COMMUNITY · GITHUB</span><b>AS-HELP MCP</b><small>search installed Automation Studio help</small></div>
     <div class="micro-status community role-link">GH REPO <mdi-open-in-new aria-hidden="true" /></div>
   </a>
-  <a class="role-layer" href="https://github.com/br-automation-community/br-community-mcp" target="_blank" rel="noopener noreferrer" aria-label="Open B&amp;R Community MCP on GitHub" v-click>
+  <a class="role-layer" href="https://github.com/br-automation-community/br-community-mcp" target="_blank" rel="noopener noreferrer" aria-label="Open B&amp;R Community MCP on GitHub">
     <div class="role-number">02</div>
     <mdi-forum-outline />
     <div><span>B&amp;R COMMUNITY · GITHUB</span><b>BR-COMMUNITY MCP</b><small>research B&amp;R community discussions</small></div>
     <div class="micro-status community role-link">GH REPO <mdi-open-in-new aria-hidden="true" /></div>
   </a>
-  <a class="role-layer" href="https://learn.microsoft.com/microsoft-365/copilot/extensibility/work-iq/mcp/overview" target="_blank" rel="noopener noreferrer" aria-label="Open Work IQ MCP documentation on Microsoft Learn" v-click>
+  <a class="role-layer" href="https://learn.microsoft.com/microsoft-365/copilot/extensibility/work-iq/mcp/overview" target="_blank" rel="noopener noreferrer" aria-label="Open Work IQ MCP documentation on Microsoft Learn">
     <div class="role-number">03</div>
     <mdi-account-network-outline />
     <div><span>MICROSOFT · LEARN</span><b>WORK IQ</b><small>ground Microsoft 365 work context</small></div>
     <div class="micro-status direction role-link">MS LEARN <mdi-open-in-new aria-hidden="true" /></div>
   </a>
-  <a class="role-layer" href="https://github.com/atlassian/atlassian-mcp-server" target="_blank" rel="noopener noreferrer" aria-label="Open the Atlassian MCP server on GitHub" v-click>
+  <a class="role-layer" href="https://github.com/atlassian/atlassian-mcp-server" target="_blank" rel="noopener noreferrer" aria-label="Open the Atlassian MCP server on GitHub">
     <div class="role-number">04</div>
     <mdi-view-grid-outline />
     <div><span>ATLASSIAN · GITHUB</span><b>ATLASSIAN MCP</b><small>connect Jira and Confluence context</small></div>
     <div class="micro-status community role-link">GH REPO <mdi-open-in-new aria-hidden="true" /></div>
   </a>
-  <a class="role-layer" href="https://github.com/github/github-mcp-server" target="_blank" rel="noopener noreferrer" aria-label="Open the official GitHub MCP server on GitHub" v-click>
+  <a class="role-layer" href="https://github.com/github/github-mcp-server" target="_blank" rel="noopener noreferrer" aria-label="Open the official GitHub MCP server on GitHub">
     <div class="role-number">05</div>
     <simple-icons-github />
     <div><span>OFFICIAL · GITHUB</span><b>GITHUB MCP</b><small>read repos, issues, and pull requests</small></div>
     <div class="micro-status community role-link">GH REPO <mdi-open-in-new aria-hidden="true" /></div>
   </a>
-  <a class="role-layer" href="https://github.com/figma/mcp-server-guide" target="_blank" rel="noopener noreferrer" aria-label="Open the Figma MCP server guide on GitHub" v-click>
+  <a class="role-layer" href="https://github.com/figma/mcp-server-guide" target="_blank" rel="noopener noreferrer" aria-label="Open the Figma MCP server guide on GitHub">
     <div class="role-number">06</div>
     <mdi-vector-square />
     <div><span>FIGMA · GITHUB</span><b>FIGMA MCP</b><small>bring design context into engineering</small></div>
     <div class="micro-status community role-link">GH REPO <mdi-open-in-new aria-hidden="true" /></div>
   </a>
-  <a class="role-layer" href="https://github.com/microsoft/playwright-mcp" target="_blank" rel="noopener noreferrer" aria-label="Open the Playwright MCP server on GitHub" v-click>
+  <a class="role-layer" href="https://github.com/microsoft/playwright-mcp" target="_blank" rel="noopener noreferrer" aria-label="Open the Playwright MCP server on GitHub">
     <div class="role-number">07</div>
     <mdi-web-check />
     <div><span>MICROSOFT · GITHUB</span><b>PLAYWRIGHT MCP</b><small>drive and verify HMI in a real browser</small></div>
     <div class="micro-status community role-link">GH REPO <mdi-open-in-new aria-hidden="true" /></div>
   </a>
-  <a class="role-layer" href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem" target="_blank" rel="noopener noreferrer" aria-label="Open the Filesystem MCP server on GitHub" v-click>
+  <a class="role-layer" href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem" target="_blank" rel="noopener noreferrer" aria-label="Open the Filesystem MCP server on GitHub">
     <div class="role-number">08</div>
     <mdi-folder-open-outline />
     <div><span>MCP REFERENCE · GITHUB</span><b>FILESYSTEM MCP</b><small>read and write project files under policy</small></div>
@@ -1309,7 +1142,7 @@ class: br-role-slide
   </a>
 </div>
 
-
+<div class="slide-id">17</div>
 
 <!--
 Eksempler på relevante MCP servere:
@@ -1327,6 +1160,9 @@ class: support-agent-sequence-slide
   <img class="support-agent-frame" src="/support-agent-chat.png" alt="B&R Support Agent chat response" v-click="1">
   <img class="support-agent-frame" src="/online-help.png" alt="B&R Automation Help documentation page" v-click="2">
 </div>
+
+<div class="slide-id">18</div>
+
 <!--
 <b>Et eksempel på en application som vi har lavet - B&R Support Agent</b>
 
@@ -1365,8 +1201,6 @@ Der er mange usecases hvor vi har sparet enormt meget tid med sådan et værktø
 
 
 transition: Det er hvad man kan med den rette domæneviden. Men hvad hvis vi rent faktisk skal løse noget på en maskine?
-
-<b>Hvis pause så NU!</b>
 -->
 
 ---
@@ -1393,12 +1227,9 @@ class: demo-slide dark-slide as-cli-slide
 
 <TerminalCli />
 
-
-<div class="slide-id">16</div>
+<div class="slide-id">19</div>
 
 <!--
-<b>Hvis pause så NU!</b>
-
 `AS CLI` er et command-line interface der kan bruges af et menneske, et script, en automatisk test, en CI-pipeline og en agent.
 
 AS CLI er selve rygraden i Agentic Bridge og er noget <b>vi har udviklet her i DK</b>. Det er et mere eller mindre komplet interface til Automation Studio 6 og kan mange af de samme ting som man ellers manuelt skal udføre i automation studio. <b>Ud over selve runtime funktionerne som vi kigger på om lidt, så kan det også tilføje libraries, hardware, tasks, hmi, konfigurationer osv.</b> Selvom det selvfølgelig bare er text, så er det mere pålideligt at bruge den existerende scripting engine bag AS, så alt bliver indsat rigtigt og konfigureret med valide parametre.
@@ -1442,7 +1273,7 @@ Læse logbøger
 
 Lave en PIP pakke. ProjectInstallationPackage PIP (Deployment artifact)
 
-transsition: Nu har vi alt toolingen på plads, så mangler vi bare instruktioner og skills
+transition: Nu har vi alt toolingen på plads, så mangler vi bare instruktioner og skills
 -->
 
 ---
@@ -1457,7 +1288,7 @@ class: skills-slide dark-slide
 
 <SkillsEmbed />
 
-<div class="slide-id">17</div>
+<div class="slide-id">20</div>
 
 <!--
 Hvis man kender skills.sh lavet af vercel, så ved man at der findes rigtig mange skills og at de er tilgængelige for langt de fleste agenter. 
@@ -1470,91 +1301,6 @@ De mest populære skils er:
 vis <b>grill-with-docs</b>
 
 transition: Men man slipper ikke for at lave sine egne skills. Man har sine egne krav, sine egne principper og sine egne standarder.
--->
-
----
-layout: default
-class: skill-matrix-slide dark-slide
----
-
-<div class="kicker">SKILL DESIGN · 02 MIN</div>
-
-# The four categories of<br><span class="accent">skills</span>
-
-<div class="skill-axes">
-  <div class="skill-axis"><mdi-lightbulb-auto-outline /><b>MODEL-INVOKED</b><small>discoverable — the agent loads it when the task needs it</small></div>
-  <div class="skill-axis"><mdi-play-box-outline /><b>USER-INVOKED</b><small>invoked — you call it deliberately, like a saved prompt</small></div>
-  <div class="skill-axis"><mdi-database-off-outline /><b>STATELESS</b><small>one shot, no memory between runs</small></div>
-  <div class="skill-axis"><mdi-database-sync-outline /><b>STATEFUL</b><small>carries progress across turns and files</small></div>
-</div>
-
-<div class="skill-matrix">
-  <article class="skill-quadrant" v-click>
-    <span class="skill-tags">MODEL-INVOKED <i>·</i> STATELESS</span>
-    <b>event-script skill for mappView</b>
-    <small>Picked up automatically when writing HMI scripts for mappView.</small>
-  </article>
-  <article class="skill-quadrant" v-click>
-    <span class="skill-tags">MODEL-INVOKED <i>·</i> STATEFUL</span>
-    <b>domain-modeling skill</b>
-    <small>Picked up automatically when discussing codebase terminology, consuming and editing a CONTEXT.md</small>
-  </article>
-  <article class="skill-quadrant" v-click>
-    <span class="skill-tags">USER-INVOKED <i>·</i> STATELESS</span>
-    <b>triage skill for GitHub issues</b>
-    <small>You invoke it on a ticket. Same procedure every time, nothing carried over.</small>
-  </article>
-  <article class="skill-quadrant" v-click>
-    <span class="skill-tags">USER-INVOKED <i>·</i> STATEFUL</span>
-    <b>grill-with-docs skill</b>
-    <small>You start it when describing a new feature. A CONTEXT.md and ADR.md is stored to document decisions for future runs.</small>
-  </article>
-</div>
-
-<div class="skill-matrix-takeaway" v-click>
-  <mdi-set-split /> <b>Model-invoked vs user-invoked</b> is about <i>how it is triggered</i><span>·</span><b>stateless vs stateful</b> is about <i>what it remembers</i>
-</div>
-
-<figure class="skill-invocation-shot" v-click>
-  <img src="/skill-invocation.png" alt="SKILL.md frontmatter with disable-model-invocation set to true">
-  <figcaption>One line in the frontmatter turns a <b>model-invoked</b> skill into a <b>user-invoked</b> skill</figcaption>
-</figure>
-
-<div class="slide-id">18</div>
-
-<!--
-Skills falder i to uafhængige dimensioner.
-
-<b>Første dimension</b> er, hvordan de aktiveres. 
-
-<b>Et model-invoked skill</b> ligger fremme og bliver loadet af agenten selv, når agenten mener at indholdet er relevant for den arbejde. 
-
-<b>Et user-invoked skill</b> kalder du bevidst, som en gemt prompt for at udføre en bestemt handling eller rutine.
-
-
-<b>Anden dimension</b> er, om de husker noget fra gang til gang. Et stateless skill kører én gang og glemmer. Et stateful skill bygger op og genbruger tidligere outputs i fremtidige sessioner.
-
-
-De to dimensioner kombineres frit, så du får fire typer af skills. Vælg bevidst, når du designer et nyt skill. Her er et par eksempler:
-
-[CLICK]
-Event script skill til MappView. Det er <b>model-invoked</b>, fordi agenten selv skal kunne fremkalde information om eventscripts hvis den skal rette eller lave nye scripts. Det er <b>stateless</b> fordi det ikke producerer noget information til fremtidige kald.
-
-[CLICK]
-Domain-modelling skillet er også <b>model-invoked</b>. Agenten kalder det når der diskuteres domæne-specifikke termer. Agenten skal forstå jargonen og dokumentere den <b>(statefull)</b>, så den i fremtiden ikke bliver forviret. Hvis et issue f.eks indeholder ordet "filler" fra eksemplet, så vil skillet undersøge om det er en del af context.md filen og hvad det i så fald er. Hvis det ikke er det, så vil den undersøge / spørge for derefter at putte det i ccontext.md filen. 
-
-[CLICK]
-Triage skill. Dette er <b>user-invoked</b> fordi det udelukkende er os der bestemmer om et GitHub issue skal igennem en omskrivning. Det kan være at vi har fået indrapporteret en bug. Brugeren har oprettet et GH-issue, men han har glemt vigtige detaljer som en agent skal bruge, for at kunne arbejde videre med det. Det kunne være at brugeren havde skrevet, "Jeg får ingen alarmer når servoaksen fejler". Men hvad for en alarm vil vi gerne have? hvad skal den sige?. Vi laver derfor triage på den for at få den op på et niveau hvor vi kan uddellegere den til en agent.
-
-[CLICK]
-grill-with-docs. Et af de mest populære skills. Bliver ved med at diskutere med brugeren indtil der er en fælles forståelse. Indeholder det termonologi eller særlige designkrav bliver det noteret ned for fremtidige sessioner.
-
-[CLICK]
-Hvordan bliver skillet loaded ind og gemmer det information til sig selv i fremtiden.
-
-[CLICK]
-
-transition: Hvorfor skal vi selv lave skills?
 -->
 
 ---
@@ -1606,7 +1352,7 @@ class: guardrails-slide dark-slide
   <strong>READ · CHANGE · VERIFY</strong>
 </div>
 
-<div class="slide-id">19</div>
+<div class="slide-id">21</div>
 
 <!--
 Når man er blevet dygtig til at skrive skills og instruktioner (Der findes selvfølgelig skills der er gode til at skrive skills eller agent.md filer) så kan man begynde at designe sine guardrails.
@@ -1629,70 +1375,7 @@ HMI og GUI design
 Safety principper
 
 [CLICK]
-transition: Guradrailes er med til at guide agenten når den specificerer, implementere og reviewer. Men hvad med tests?
--->
-
----
-layout: default
-class: testing-slide dark-slide
----
-
-<div class="kicker">TDD + EVALUATION · 03 MIN</div>
-
-# Tests are the<br><span class="accent">sensor system</span>
-
-<div class="baseline-banner" >
-  <mdi-radar /> <span>TEST-DRIVEN RULE</span>
-  <b>Clear acceptance criteria give agents a fast signal. Establish the regression baseline <strong>before</strong> delegating feature work.</b>
-</div>
-
-<div class="test-pyramid">
-  <div class="test-level hil" ><span>04</span><b>HIL / PHYSICAL</b><small>where risk + fidelity require it</small></div>
-  <div class="test-level arsim" ><span>03</span><b>ARSIM / SMOKE</b><small>controlled application behavior</small></div>
-  <div class="test-level integration" ><span>02</span><b>INTEGRATION</b><small>interfaces + module behavior</small></div>
-  <div class="test-level unit" ><span>01</span><b>UNIT</b><small>local logic</small></div>
-</div>
-
-<div class="two-oracles">
-  <div v-click>
-    <mdi-check-circle-outline />
-    <span>PRODUCT TESTS</span>
-    <b>Does machine behavior satisfy the requirement?</b>
-  </div>
-  <div v-click>
-    <mdi-robot-confused-outline />
-    <span>AGENT EVALUATIONS</span>
-    <b>Did it use tools, obey policy, escalate, and stop?</b>
-  </div>
-</div>
-
-
-
-<div class="slide-id">20</div>
-
-<!--
-Jeg vil ikke sige så meget om tests. Det kommer Mads meget mere ind på om lidt. 
-
-Det er dog vigtigt at sige, at test er uundværlige når man koder med Agenter. AI er ikke deterministikse, så vi har brug for pålidelige gates der kan validere vores software. Tests virker både som feedback til agenten, men ligeså meget som dokumentation til os der skal godkende en ændring.
-
-Det er blevet uendeligt meget nemmere at skrive test i dag, end det var før AI. Men AI agenten kan ikke bare teste sig selv.
-
-[CLICK]
-
-Product tests:
-En test af softwaren / maskinen:
-Virker tingene rent faktisk som vi gerne vil have det? 
-
-[CLICK]
-
-Agent Evaluering: 
-En test af workflowet / systemet:
-Gjorde agenten som aftalt?
-
-Vi har brug for begge dele. En agent kan følge processen korrekt, men stadig lave fejl. Omvendt kan ændringerne tilfældigvis virke, selvom agenten brød reglerne undervejs.
-
-transition:
-
+transition: Guardrails er med til at guide agenten når den specificerer, implementere og reviewer. Men hvad med tests?
 -->
 
 ---
@@ -1700,7 +1383,7 @@ layout: default
 class: enforcement-slide
 ---
 
-<div class="kicker">TRUST · 02 MIN</div>
+<div class="kicker">TRUST · 03 MIN</div>
 
 # Steering guides.<br><span class="accent">Gates decide.</span>
 
@@ -1739,7 +1422,7 @@ class: enforcement-slide
   <span>CONTEXT</span><i>+</i><span>ACTION</span><i>+</i><span>EVIDENCE</span><i>+</i><span>ACCOUNTABILITY</span><b>= AGENTIC ENGINEERING</b>
 </div>
 
-<div class="slide-id">21</div>
+<div class="slide-id">22</div>
 
 <!--
 Jeg tror alle har forstået at guardrails styrer og guider workflowet, mens tests er deterministiske fixpunkter (gates) der holder agenten igang indtil de er opfyldt.
@@ -1749,6 +1432,10 @@ Instructions og guardrails styrer en probabilistisk model. De er vigtige, men de
 Deterministiske tools kører uafhængigt af agentens opmærksomhed: compiler, schemas, permissions, architecture checks og blocking tests. Det betyder ikke, at checket er komplet eller at testen nødvendigvis er rigtig. Mennesker skal stadig reviewe test-oraklet.
 
 Pull requesten samler requirement, diff, testresultater, assumptions, unresolved risk og reproduktionskommandoer. Build, static checks og behavior tests blokerer. En kompetent person accepterer de strategiske valg og release.
+
+Tests er agentens sensorsystem - Mads går i dybden efter pausen. Husk to typer: <b>produkt-tests</b> (virker maskinen som krævet?) og <b>agent-evaluering</b> (fulgte agenten workflowet, brugte den de rigtige tools, stoppede den ved usikkerhed?). Vi har brug for begge.
+
+Transition: Lad os se, hvordan det hele hænger sammen i ét loop.
 -->
 
 ---
@@ -1762,151 +1449,16 @@ class: feedback-slide dark-slide
 
 <AutomationStudioAgent />
 
-<div class="slide-id">22</div>
+<div class="slide-id">23</div>
 
 <!--
 Et agentforslag er først værdifuldt, når vi kan lukke loopet helt. Før loopet kan handle, skal det have domænekontekst: projektstruktur, produkt- og versionsviden, regler og intent. Projektet skal derefter kunne bygges reproducerbart. Vi skal kunne starte en kontrolleret simulation, stimulere en tilstand, observere variable og logbook og sammenligne resultatet med et krav.
 
-På sliden ses guardrails via instructions og skills, derefter research via AS-HELP, BR-COMMUNITY, GitHub og den cloud-baserede AS-COPILOT MCP. Automation Studio læser og skriver kode gennem Main.st-editoren, mens as bygger, simulerer, læser variable og læser logbook.
+På sliden ses guardrails via instructions og skills, derefter research via AS-HELP, BR-COMMUNITY, GitHub og den officielle, cloud-baserede B&R MCP. Automation Studio læser og skriver kode gennem Main.st-editoren, mens as bygger, simulerer, læser variable og læser logbook.
 
 DevOps udfører en kendt sekvens deterministisk. Agenten vælger næste afgrænsede handling ud fra feedback. Det er derfor vigtigt, at det samme command contract kan anvendes af en engineer, en test, en pipeline og en agent.
 
-Transition: Det er præcis den rejse, B&R selv har været igennem.
--->
-
----
-layout: default
-class: vertical-modules-slide dark-slide
----
-
-<div class="kicker">AGENTIC METHOD · VERTICAL SLICES</div>
-
-# Build features<br><span class="accent">through the stack</span>
-
-<p class="vertical-modules-lead">Humans optimize for focus. Agents can optimize for feedback.</p>
-
-<div class="kanban-compare">
-  <section class="kanban-panel horizontal-panel" v-click>
-    <div class="kanban-panel-head">
-      <div><span>HUMAN DEFAULT</span><b>Discipline lanes</b></div>
-      <mdi-view-column-outline />
-    </div>
-    <p class="kanban-panel-note">Specialists stay focused. The feature waits at the integration boundary.</p>
-    <div class="kanban-board category-board">
-      <div class="kanban-columns"><span></span><b>BACKLOG</b><b>IN PROGRESS</b><b>PROVEN</b></div>
-      <div class="kanban-lanes">
-        <div class="kanban-lane category-lane"><span class="kanban-lane-label">HMI</span><div class="kanban-cell"><span class="kanban-card">fault + reset screen</span></div><div class="kanban-cell"><span class="kanban-card muted-card">needs state names</span></div><div class="kanban-cell"></div></div>
-        <div class="kanban-lane category-lane"><span class="kanban-lane-label">SAFETY</span><div class="kanban-cell"><span class="kanban-card amber-card">safe stop on fault</span></div><div class="kanban-cell"><span class="kanban-card muted-card">needs reset rule</span></div><div class="kanban-cell"></div></div>
-        <div class="kanban-lane category-lane"><span class="kanban-lane-label">CONTROL</span><div class="kanban-cell"><span class="kanban-card">abort + clear states</span></div><div class="kanban-cell"><span class="kanban-card muted-card">needs reject logic</span></div><div class="kanban-cell"></div></div>
-        <div class="kanban-lane category-lane"><span class="kanban-lane-label">I/O + HW</span><div class="kanban-cell"><span class="kanban-card">axis error handling</span></div><div class="kanban-cell"><span class="kanban-card muted-card">needs sim rig</span></div><div class="kanban-cell"></div></div>
-      </div>
-    </div>
-    <div class="kanban-result blocked">
-      <mdi-clock-alert-outline />
-      <div><span>INTEGRATION DAY</span><b>No complete feature to test</b></div>
-    </div>
-  </section>
-
-  <div class="kanban-contrast" v-click>
-    <span>SAME BOARD<br><strong>NEW UNIT</strong></span>
-    <mdi-arrow-right />
-  </div>
-
-  <section class="kanban-panel vertical-panel" v-click>
-    <div class="kanban-panel-head">
-      <div><span>AGENT + TDD</span><b>Feature lanes</b></div>
-      <mdi-view-column-outline />
-    </div>
-    <p class="kanban-panel-note">Keep one behavior in context. Cross every boundary, then prove it.</p>
-    <div class="kanban-board feature-board">
-      <div class="kanban-columns"><span></span><b>BACKLOG</b><b>IN PROGRESS</b><b>PROVEN</b></div>
-      <div class="kanban-lanes">
-        <div class="kanban-lane feature-lane"><span class="kanban-lane-label">OBSERVE<br>FAULT</span><div class="kanban-cell"><span class="kanban-card red-card">abort is visible</span></div><div class="kanban-cell"><span class="kanban-card">HMI + state + axis</span></div><div class="kanban-cell"><span class="kanban-card done-card">count holds</span></div></div>
-        <div class="kanban-lane feature-lane"><span class="kanban-lane-label">CLEAR<br>CONVEYOR</span><div class="kanban-cell"><span class="kanban-card red-card">uncapped stay on</span></div><div class="kanban-cell"><span class="kanban-card">reject logic + safety</span></div><div class="kanban-cell"><span class="kanban-card done-card">conveyor empty</span></div></div>
-        <div class="kanban-lane feature-lane"><span class="kanban-lane-label">RESUME<br>BATCH</span><div class="kanban-cell"><span class="kanban-card red-card">restart resets count</span></div><div class="kanban-cell"><span class="kanban-card">reset + sequence</span></div><div class="kanban-cell"><span class="kanban-card done-card">continues from held</span></div></div>
-        <div class="kanban-lane feature-lane"><span class="kanban-lane-label">PROVE<br>100 BATCH</span><div class="kanban-cell"><span class="kanban-card red-card">no evidence</span></div><div class="kanban-cell"><span class="kanban-card">sim run + logbook</span></div><div class="kanban-cell"><span class="kanban-card done-card">100 bottles done</span></div></div>
-      </div>
-    </div>
-    <div class="kanban-result ready">
-      <mdi-test-tube />
-      <div><span>EVERY MOVE HAS A SIGNAL</span><b>A working feature at every step</b></div>
-    </div>
-  </section>
-</div>
-
-<div class="tdd-loop" v-click>
-  <div class="tdd-loop-label"><span>THE AGENT'S RHYTHM</span><b>One slice at a time</b></div>
-  <div class="tdd-step red"><span>01</span><strong>RED</strong><small>write failing test</small></div>
-  <mdi-arrow-right />
-  <div class="tdd-step green"><span>02</span><strong>GREEN</strong><small>make the smallest change</small></div>
-  <mdi-arrow-right />
-  <div class="tdd-step refactor"><span>03</span><strong>REFACTOR</strong><small>review, then repeat</small></div>
-</div>
-
-<div class="vertical-modules-takeaway" v-click>
-  <span>THINK IN BEHAVIORS, NOT LAYERS</span>
-  <strong>One narrow outcome. One fast feedback loop.</strong>
-</div>
-
-<div class="slide-id">23</div>
-
-<!--
-[CLICK]
-Mennesker organiserer sig ofte i kanban-swimlanes efter fagdisciplin: HMI, safety, control og hardware. <b>horizontal slices</b> Det er en rationel arbejdsform, når fokus er begrænset, og når forskellige personer ejer forskellige fagligheder. Det er en begrænsning vi har som mennesker. En lille kortidshukommelse og vi er dårlige til at multitaske / context switche.
-Som mennesker laver vi derfor typisk en disciplin ad gangen. Det er der vi er mest produktive, men det skaber udfordringer ved test. Hvordan tester man HMI uden logik? Der er ingen feedback!
-
-[CLICK]
-
-
-[CLICK]
-En agent har ikke de begrænsninger og den kan bare starte subagenter op til at tage sig af andre ekspertiser, eller for at isolerer og delegerer konteksten fra. Derfor kan den arbejde vertikalt (<b>vertical slices</b>): feature-swimlanes med HMI-state, safety contract, control logic, I/O eller simulation og acceptance test i samme korte loop. Det er en kæmpe fordel ift. test. Hver feature kan testes uafhængigt fordi de indeholder alle ellementerne.
-
-[CLICK]
-Matt Pococks TDD-skill beskriver horizontal slicing som anti-patternet: skriv ikke alle tests først og al implementation bagefter. Arbejd i vertical slices: én test, én minimal implementation, gentag. Hver test er en tracer bullet, der bruger feedback fra den forrige cyklus. Red før green; refactor hører til reviewfasen.
-
-Kilde: https://github.com/mattpocock/skills/blob/main/skills/engineering/tdd/SKILL.md
--->
-
----
-layout: default
-class: feature-recap-slide dark-slide
----
-
-<div class="kicker">BACK TO THE MACHINE · 01 MIN</div>
-
-# One feature to build.<br><span class="accent">Now we have all the pieces.</span>
-
-<div class="feature-recap-layout">
-  <div class="feature-recap-machine">
-    <BottleConveyor state="fault" :count="42" compact />
-  </div>
-
-  <div class="feature-recap-story">
-    <div class="feature-recap-sequence" aria-label="Feature outcome sequence">
-      <div><span>01</span><b>FAULT</b></div><i></i>
-      <div><span>02</span><b>STOP</b></div><i></i>
-      <div><span>03</span><b>REJECT</b></div><i></i>
-      <div><span>04</span><b>RETAIN</b></div><i></i>
-      <div><span>05</span><b>RESUME</b></div><i></i>
-      <div><span>06</span><b>PROVE</b></div>
-    </div>
-    <div class="feature-recap-capabilities" v-click>
-      <span>KNOWLEDGE</span><i>+</i><span>TOOLS</span><i>+</i><span>GUARDRAILS</span><i>+</i><span>TESTS</span><i>+</i><span>GATES</span>
-    </div>
-    <div class="feature-recap-question" v-click>
-      <span>NOW ASSEMBLE THE SYSTEM</span>
-      <strong>Which workflows turn these pieces into an accountable engineering change?</strong>
-    </div>
-  </div>
-</div>
-
-<!--
-Det er den samme maskinopgave, vi startede workshoppen med: fejl, kontrolleret stop, reject af ikke-cappede flasker, fastholdt tæller, genstart af batchen og evidens for det færdige resultat.
-
-Nu har vi byggestenene: domæneviden, tools til at handle og observere, guardrails, tests og deterministiske gates.
-
-
-Transition: Lad os samle byggestenene i de tre workflows, der gør ændringen afgrænset og verificerbar.
+Transition: Tilbage til vores feature request - lad os samle byggestenene i tre workflows, der gør ændringen afgrænset og verificerbar.
 -->
 
 ---
@@ -1933,7 +1485,29 @@ Den anden kan være fuldt ud aftomatisk, når den er afgrænset, isoleret og har
 
 Den sidste handler om validering og optimering af systemet.
 
-transition: SPØRGSMÅL
+transition: Korte spørgsmål - derefter PAUSE 13.15-13.30.
+-->
+
+---
+layout: default
+class: questions-slide break-slide dark-slide
+---
+
+<div class="kicker">BREAK · 15 MIN</div>
+
+# Break
+<br />
+<div class="questions-hero">
+  <div class="questions-mark" aria-hidden="true"><span>BACK AT</span><b>13.30</b></div>
+  <div class="questions-hero-copy">
+    <span>UP NEXT</span>
+    <strong>DevOps in industry</strong>
+    <p>Version · build · test · release</p>
+  </div>
+</div>
+
+<!--
+PAUSE 13.15-13.30. Mads gør demo-miljøet klar (ARsim, GitHub, release-server, Playwright).
 -->
 
 ---
@@ -1943,7 +1517,7 @@ class: devops-cover ai-workshop-cover dark-slide
 
 <div class="devops-chapter">02</div>
 
-<div class="kicker">WORKSHOP 02</div>
+<div class="kicker">WORKSHOP 02 · 45 MIN</div>
 <div class="part-label">MADS ANDERSEN · AUTOMATION ENGINEER</div>
 
 # DevOps in<br><span class="accent">industry</span>
@@ -1984,65 +1558,6 @@ Hvordan vi kan bygge, teste og levere software på en reproducerbar måde.
 Og det er det vi skal kigge nærmere på nu."
 
 -->
-
----
-layout: default
-class: agenda-slide dark-slide devops-agenda-slide
----
-
-<div class="kicker">WORKSHOP 02 · AGENDA</div>
-
-<div class="agenda-layout">
-  <div class="agenda-intro" v-motion :initial="{ opacity: 0, x: -24 }" :enter="{ opacity: 1, x: 0 }">
-    <h1>DevOps in<br><span class="accent">industry.</span></h1>
-    <p class="agenda-lead">The engineering path from a project in Git to a tested, reviewable release.</p>
-    <div class="agenda-event-mark">
-      <span>02</span>
-      <div><b>DEVOPS IN INDUSTRY</b><small>VERSION · BUILD · TEST · RELEASE</small></div>
-    </div>
-  </div>
-
-  <div class="agenda-timeline" v-motion :initial="{ opacity: 0, x: 28 }" :enter="{ opacity: 1, x: 0, transition: { delay: 220 } }" aria-label="DevOps in industry agenda shown as a Git commit history">
-    <div class="agenda-row is-session">
-      <time datetime="commit-01">01</time><i aria-hidden="true"></i><div><b>What is DevOps?</b><small>Development · operations · feedback</small></div>
-    </div>
-    <div class="agenda-row">
-      <time datetime="commit-02">02</time><i aria-hidden="true"></i><div><b>Why DevOps?</b><small>Make change visible and repeatable</small></div>
-    </div>
-    <div class="agenda-row">
-      <time datetime="commit-03">03</time><i aria-hidden="true"></i><div><b>CI / CD</b><small>Build, test, verify, deploy</small></div>
-    </div>
-    <div class="agenda-row">
-      <time datetime="commit-04">04</time><i aria-hidden="true"></i><div><b>Tooling + as CLI</b><small>Make engineering actions programmable</small></div>
-    </div>
-    <div class="agenda-row is-session">
-      <time datetime="commit-05">05</time><i aria-hidden="true"></i><div><b>Demos: as cli, Orange Juice Machine and HMI testing</b><small>Prove expected machine behavior</small></div>
-    </div>
-    <div class="agenda-row">
-      <time datetime="commit-06">06</time><i aria-hidden="true"></i><div><b>Start Monday</b><small>One bounded, repeatable workflow</small></div>
-    </div>
-  </div>
-</div>
-
-<div class="slide-id">26</div>
-
-<!--
-Lad os lige hurtigt kigge på dagens rejse.
-
-Først skal vi blive enige om hvad vi egentlig mener med DevOps.
-
-Derefter skal vi snakke om hvorfor det bliver mere relevant end nogensinde i en verden med AI og Agentic Engineering.
-
-Så kigger vi på CI/CD og de grundlæggende principper bag automatiseret levering af software.
-
-Derefter skal vi se hvorfor tooling er så vigtigt, og hvordan as-cli passer ind i det billede.
-
-Men størstedelen af tiden kommer faktisk til at være demoer, hvor vi ser det hele i praksis.
-
-Til sidst samler vi det hele i spørgsmålet:
-
-Hvad kan man realistisk begynde på allerede på mandag?
- -->
 
 ---
 layout: default
@@ -2102,7 +1617,8 @@ class: devops-intro-slide dark-slide
 <div class="devops-intro-note">DevOps covers many practices and disciplines.
 Today we focus on the software delivery flow: <strong>Code → Build → Test → Deploy.</strong></div>
 
-<div class="slide-id">27</div>
+<div class="slide-id">26</div>
+
 <!--
 Title: What is DevOps
 Før vi går videre, lad os lige blive enige om hvad vi mener med DevOps i dag.
@@ -2126,65 +1642,6 @@ Så når jeg siger DevOps i resten af præsentationen, så mener jeg primært de
 Hvordan vi går fra kode til en verificeret release gennem Build, Test og Deploy.
 
 Og det er især interessant i en verden hvor AI hjælper os med at skabe flere ændringer end nogensinde før.
-
--->
-
----
-layout: default
-class: why-devops-slide dark-slide
----
-
-<div class="kicker">WORKSHOP 02 · WHY DEVOPS?</div>
-
-# Why <span class="accent">DevOps?</span>
-
-<div class="why-devops-flow" aria-label="Agentic Engineering connected to DevOps">
-  <section class="why-devops-panel agentic">
-    <div class="why-devops-panel-label">01 · ACCELERATE CREATION</div>
-    <div class="why-devops-panel-title"><mdi-robot-outline /><b>AGENTS</b></div>
-    <ul>
-      <li>Generates code faster</li>
-      <li>Makes automated tests easier to create</li>
-      <li>Turns ideas into prototypes quickly</li>
-    </ul>
-  </section>
-
-  <div class="why-devops-bridge" aria-label="Needs guardrails">
-    <span class="why-devops-bridge-line"></span>
-    <div class="why-devops-bridge-core"><mdi-shield-check-outline /><b>NEEDS<br>GUARDRAILS</b></div>
-    <span class="why-devops-bridge-line"></span>
-  </div>
-
-  <section class="why-devops-panel devops">
-    <div class="why-devops-panel-label">02 · DELIVER RELIABLY</div>
-    <div class="why-devops-panel-title"><mdi-source-branch /><b>DEVOPS</b></div>
-    <div class="why-devops-practices">
-      <div><mdi-hammer-wrench /><span>AUTOMATED BUILD + TEST</span></div>
-      <div><mdi-shield-check-outline /><span>QUALITY CHECKS</span></div>
-      <div><mdi-source-branch /><span>CONTROLLED DEPLOYMENT</span></div>
-      <div><mdi-chart-timeline-variant-shimmer /><span>CONTINUOUS FEEDBACK</span></div>
-    </div>
-  </section>
-</div>
-
-<br />
-<br />
-<br />
-<br />
-
-<div class="why-devops-takeaway">
-  <strong>AI helps us create software faster. DevOps helps us deliver it safely.</strong>
-</div>
-
-<div class="slide-id">28</div>
-
-<!--
-Lars har været inde på dette i starten, men for at gentage kort:
-
-Agentic Engineering gør at vi kan generere kode hurtigt, skrive automatiske tests hurtigt, lave en idé til en prototype på rekordtid.
-... Men agenten har brug for "Guardrails" og det er her DevOps kommre ind i billedet med build,test, kontroleret deployment, kvalitetstjek.
-
-AI hjælper os med at lave software hurtigere. DevOps hjælper os med at levere det på en kontrolleret måde.
 
 -->
 
@@ -2267,7 +1724,7 @@ class: old-way-slide dark-slide
   <blockquote><strong>If AI helps us create 10&times; more changes, we need a way to verify 10&times; more changes.</strong></blockquote>
 </div>
 
-<div class="slide-id">29</div>
+<div class="slide-id">27</div>
 
 <!--
 Lad os prøve at kigge på hvordan softwarelevering ofte har fungeret historisk.
@@ -2304,210 +1761,10 @@ Derfor bliver vi nødt til at automatisere dele af build-, test- og release-proc
 Ikke fordi mennesker gør noget forkert.
 <b>Men fordi mennesker ikke skalerer lige så godt som software</b>.
 
-Og det er præcis det problem Continuous Integration forsøger at løse.
+Samtidig har økonomien ved test ændret sig: når agenten hjælper med både kode og tests, bliver automatiseret test langt nemmere at retfærdiggøre - også i mindre OT-projekter.
 
--->
+Og det er præcis det problem CI/CD forsøger at løse.
 
----
-layout: default
-class: why-devops-matters-slide dark-slide
----
-
-<div class="status-badge general">GENERAL PRINCIPLE</div>
-<div class="kicker">WORKSHOP 02 · THE CASE FOR DEVOPS</div>
-
-# Why Testing<br><span class="accent">Becomes Affordable</span>
-
-<div class="why-devops-matters-grid" aria-label="Why DevOps matters more as software creation accelerates">
-  <section class="why-devops-matters-panel historical" aria-label="Historically">
-    <div class="why-devops-matters-head">
-      <div><span>01</span><b>HISTORICALLY</b></div>
-      <mdi-account-hard-hat-outline />
-    </div>
-    <div class="why-devops-matters-items">
-      <div class="why-devops-matters-item"><mdi-file-edit-outline /><b>Engineer writes code</b></div>
-      <div class="why-devops-matters-item"><mdi-test-tube /><b>Engineer writes tests</b></div>
-      <div class="why-devops-matters-item"><mdi-clock-alert-outline /><b>Testing feels expensive</b></div>
-    </div>
-  </section>
-
-  <section class="why-devops-matters-panel agentic" aria-label="Agentic Engineering">
-    <div class="why-devops-matters-head">
-      <div><span>02</span><b>AGENTIC ENGINEERING</b></div>
-      <mdi-robot-outline />
-    </div>
-    <div class="why-devops-matters-items">
-      <div class="why-devops-matters-item"><mdi-robot-outline /><b>Agent helps create code</b></div>
-      <div class="why-devops-matters-item"><mdi-robot-outline /><b>Agent helps create tests</b></div>
-      <div class="why-devops-matters-item"><mdi-shield-check-outline /><b>Testing becomes easier to justify</b></div>
-    </div>
-  </section>
-</div>
-
-<div class="slide-id">30</div>
-
-<!--
-Økonomien ved at skrive tests har også ændret sig med Agentic Engineering. 
-
-Historisk set har automatiseret test været svært at retfærdiggøre i mange automationsprojekter.
-
-Det er ikke fordi ingen kan lide tests. Problemet er, at tests også skal udvikles, vedligeholdes og opdateres. For mindre projekter har indsatsen ofte virket større end gevinsten.
-
-Men Agentic Engineering ændrer lidt på den ligning.
-
-Hvis tiden til at producere software falder markant, så falder omkostningen til at producere tests også. AI kan hjælpe os med både at implementere funktionalitet og oprette de test cases, der skal verificere funktionaliteten.
-
-Samtidig ser vi ofte, at moderne agent workflows selv genererer og kører tests som en del af deres arbejdsproces. Verifikation bliver derfor en langt mere naturlig del af udviklingsflowet.
-
-Af den grund er det blevet mere rentabelt at skrive tests og nemmere at retfærdiggøre i et OT projekt.
--->
-
----
-layout: default
-class: devops-tooling dark-slide
----
-
-<div class="kicker">WORKSHOP 02 · DEVOPS</div>
-
-<div class="delivery-heading">
-  <div>
-    <h1>Continuous<br><span class="accent">Integration</span></h1>
-    <p>Every change is built and checked while it is still small.</p>
-  </div>
-  <div class="delivery-definition-mark"><span>CI</span><small>FAST FEEDBACK<br>BEFORE RELEASE</small></div>
-</div>
-
-<div class="delivery-flow ci-flow" aria-label="Continuous Integration stages">
-  <section class="delivery-flow-stage is-code" aria-label="Code">
-    <span class="delivery-flow-number">01</span>
-    <mdi-source-commit />
-    <b>CODE</b>
-    <small>change is versioned</small>
-  </section>
-  <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
-  <section class="delivery-flow-stage is-ci" aria-label="Build">
-    <span class="delivery-flow-number">02</span>
-    <mdi-hammer-wrench />
-    <b>BUILD</b>
-    <small>repeatable output</small>
-  </section>
-  <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
-  <section class="delivery-flow-stage is-ci" aria-label="Test">
-    <span class="delivery-flow-number">03</span>
-    <mdi-test-tube />
-    <b>TEST</b>
-    <small>expected behavior</small>
-  </section>
-  <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
-  <section class="delivery-flow-stage is-verify" aria-label="Verify">
-    <span class="delivery-flow-number">04</span>
-    <mdi-shield-check-outline />
-    <b>VERIFY</b>
-    <small>evidence recorded</small>
-  </section>
-</div>
-
-<div class="delivery-footer">
-  <div class="delivery-footer-label"><mdi-check-circle-outline /><span>CI QUESTION</span></div>
-  <strong>Does this change still behave as expected?</strong>
-  <small>Fast feedback keeps the change easy to understand and easy to fix.</small>
-</div>
-
-<div class="slide-id">31</div>
-
-
-
-<!-- Comment out CD - slide . It felt a bit too repetitive
----
-layout: default
-class: where-agentic-fits dark-slide
----
-
-<div class="kicker">WORKSHOP 02 · DEVOPS</div>
-
-<div class="delivery-heading">
-  <div>
-    <h1>Continuous<br><span class="accent">Delivery</span></h1>
-    <p>Verified software becomes a traceable candidate for controlled release.</p>
-  </div>
-  <div class="delivery-definition-mark"><span>CD</span><small>READY TO RELEASE<br>WHEN APPROVED</small></div>
-</div>
-
-<div class="delivery-handoff">
-  <mdi-check-circle-outline />
-  <span>FROM CI</span>
-  <strong>VERIFIED ARTIFACT</strong>
-  <small>same bits, named and traceable</small>
-</div>
-
-<div class="delivery-flow cd-flow" aria-label="Continuous Delivery stages">
-  <section class="delivery-flow-stage is-package">
-    <span class="delivery-flow-number">05</span>
-    <mdi-package-variant-closed />
-    <b>PACKAGE</b>
-    <small>traceable artifact</small>
-  </section>
-  <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
-  <section class="delivery-flow-stage is-cd">
-    <span class="delivery-flow-number">06</span>
-    <mdi-clipboard-check-outline />
-    <b>RELEASE CANDIDATE</b>
-    <small>ready for decision</small>
-  </section>
-  <div class="delivery-gate-slot">
-    <div class="delivery-gate-arrow" aria-hidden="true"><mdi-arrow-right /></div>
-    <div class="delivery-gate">
-      <mdi-account-check-outline />
-      <span>HUMAN GATE</span>
-      <b>release decision</b>
-    </div>
-  </div>
-  <section class="delivery-flow-stage is-deploy">
-    <span class="delivery-flow-number">07</span>
-    <mdi-upload-network-outline />
-    <b>DEPLOY</b>
-    <small>controlled target</small>
-  </section>
-  <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
-  <section class="delivery-flow-stage is-monitor">
-    <span class="delivery-flow-number">08</span>
-    <mdi-chart-timeline-variant-shimmer />
-    <b>MONITOR</b>
-    <small>feeds the next change</small>
-  </section>
-</div>
-
-<div class="delivery-footer">
-  <div class="delivery-footer-label"><mdi-shield-check-outline /><span>CD QUESTION</span></div>
-  <strong>Can we move this verified artifact safely to its target?</strong>
-  <small>Automation prepares the release; people own the decision.</small>
-</div>
-
-<div class="slide-id">32</div>
--->
-<!--
-På den forrige slide talte vi om at økonomien ved test og verifikation har ændret sig.
-
-Hvis vi kan producere flere softwareændringer, så bliver vi også nødt til at verificere flere softwareændringer.
-Det er præcis det problem Continuous Integration forsøger at løse.
-
-Når en ændring bliver lavet, stopper arbejdet ikke ved at koden er skrevet.
-Ændringen skal kunne bygges.
-Den skal kunne testes.
-Og den skal kunne verificeres.
-
-Det vigtige er ikke at alle ændringer er perfekte.
-Det vigtige er at vi får feedback mens ændringen stadig er lille.
-Hvis noget går galt efter 5 minutters arbejde, er det nemt at forstå og rette.
-Hvis noget går galt efter 3 ugers udvikling, er det ofte langt dyrere at finde årsagen.
-
-Continuous Integration handler derfor om at flytte feedback så tæt på ændringen som muligt.
-
-Hvis en agent producerer 20 ændringer på en dag, vil I så manuelt gennemgå dem alle sammen?
-Sandsynligvis ikke.
-Derfor bliver automatiseret verifikation så vigtig.
-
-CI skalerer feedback på samme måde som Agentic Engineering skalerer softwareudvikling.
 -->
 
 ---
@@ -2609,14 +1866,16 @@ class: devops-pipeline dark-slide
   <strong>Monitor what happened. Feed the next change.</strong>
 </div>
 
-<div class="slide-id">33</div>
+<div class="slide-id">28</div>
 
 <!--
-Når vi så sætter det sammen med CD kalder vi det CI/CD.
+Continuous Integration: hver ændring bygges, testes og verificeres, mens den stadig er lille. Hvis en agent laver 20 ændringer om dagen, gennemgår vi dem ikke manuelt - feedback skal ligge tæt på ændringen.
+
+Sætter vi det sammen med Continuous Delivery, kalder vi det CI/CD.
 
 CI verificerer vores ændringer. 
 
-Continours Delivery (CD) pakker og releaser (f.eks. github),
+Continuous Delivery (CD) pakker og releaser (f.eks. github),
 Deployer til PLC, men næsten altid med et mennesker som godkender hvornår. I IT verdenen er det meget normalt at opdateringen kommer automatisk uden et mennesker godkender (eks. dette slide show til github pages. Opdateres auto ved et push til github). Dette passer ikke got i OT hvor det skal passe ind i produktionsplanlægning.
 Til sidst har vi monitor delen som feeder de næste ændringer tilbage til vores CI og så får vi igen den her "timeglas effekt" som vi snakkede om i starten. 
 
@@ -2691,7 +1950,7 @@ class: tooling-matters-slide dark-slide
   <small>The capability must also be exposed programmatically.</small>
 </div>
 
-<div class="slide-id">34</div>
+<div class="slide-id">29</div>
 
 <!--
 Vi har nu snakket om CI og CD.
@@ -2841,45 +2100,17 @@ class: as-cli-intro-slide dark-slide
   </div>
 </div>
 
-<div class="slide-id">35</div>
+<div class="slide-id">30</div>
 
 <!--
-Indtil nu har vi talt om principper og teori.
-CI.
-CD.
-Automatiseret test.
-Pipelines.
+KORT (ca. 1 min) - Lars viste as CLI fra agentens side. Det er præcis det samme værktøj, pipelinen bruger.
 
-Men al den teori hjælper os faktisk ikke ret meget hvis værktøjerne ikke kan automatiseres.
-
-Derfor har vi i Danmark arbejdet på as-cli.
-(peger på midten)
-
-Det er egentlig ikke en DevOps-platform.
-Det er ikke en AI-agent.
-Og det er heller ikke en erstatning for Automation Studio.
-Det er et programmerbart interface til Automation Studio.
-
-Det betyder at den samme engineering-funktionalitet nu kan bruges af:
-- en ingeniør
-- en DevOps pipeline
-- eller en AI agent
-
-Vi talte om at et menneske bruger en GUI, mens automation kræver en CLI eller API.
-Det er præcis den rolle as-cli udfylder.
+Et programmerbart interface til Automation Studio. Ikke en DevOps-platform, ikke en agent, ikke en erstatning for AS.
+Den samme funktionalitet kan bruges af en ingeniør, en pipeline og en AI-agent.
 
 (peger på capabilities)
-
-For dagens demo er der især 5 capabilities som er interessante.
-Build af projekter.
-Interaktion med runtime variabler.
-Paketering af software.
-Transfer til et target.
-Og diagnostics.
-
-Det er faktisk nok til at bygge en overraskende stor del af en DevOps pipeline.
-Og det er også disse 5 ting vi kommer til at bruge i de næste demoer.
-
+Build · var read/write · PIP-pakke · transfer · logbook.
+Det er nok til en overraskende stor del af en DevOps pipeline - og det er det, vi bruger i demoerne nu.
 -->
 
 ---
@@ -2887,7 +2118,7 @@ layout: default
 class: as-cli-demo-slide dark-slide
 ---
 
-<div class="status-badge demonstradtor">DEMO 1 / 3</div>
+<div class="status-badge demonstrator">DEMO 1 / 3</div>
 <div class="kicker">AS-CLI DEVELOPMENT · DEVOPS IN PRACTICE</div>
 
 # How <span class="accent">as CLI</span> tests itself
@@ -2916,22 +2147,18 @@ class: as-cli-demo-slide dark-slide
   <strong>Protects quality. Builds confidence. Catches issues early.</strong>
 </div>
 
-<div class="slide-id">36</div>
+<div class="slide-id">31</div>
 
 <!--
-Første demo er fra udviklingsprojektet af as CLI.
+KORT VERSION (ca. 3 min)
 
-Projektet har nogle simple unit tests so tester meget isoleret logik eks. at et input til en funktion giver et forventet output. 
-Disse tests er meget hurtige og kan køres ofte, men siger ikke meget om hele systemet virker. 
-Til det har vi integration tests hvor vi tester alle as cli commands op imod et Automation Studio test projekt. Lad os åbne projektet og kigge på det.
+Første demo er fra udviklingen af as CLI selv.
 
-Start  med at gør as --help i en terminal og vis alle de forskellige commands.
+Unit tests: hurtige tests af isoleret logik (ca. 2 s). Kør dem live.
 
-Herfeter hop ind i projektet og kør unit tests (tager ca. 2s).
+Integration tests: alle as-kommandoer mod et Automation Studio testprojekt (ca. 1,5 min). Kør dem IKKE live - vis resultatet fra seneste kørsel.
 
-Herefter kør integration test (tager 1.5min).
-Lav en fejl "med vilje" og vis herefter at integration test fanger fejlen.
-Forklar at vi har et github workflow som kører disse tests automatisk inden release. Dette vil jeg dog vente med at vise til næste demo hvor vi skal demo en helt CI/CD pipeline. 
+Pointe: hurtige gates først, langsomme gates bagefter. Et GitHub workflow kører dem automatisk før release - det ser vi i næste demo.
 -->
 
 ---
@@ -2955,7 +2182,7 @@ class: machine-demo-slide dark-slide
   <BottleConveyor state="running" :count="42" />
 </div>
 
-<div class="slide-id">37</div>
+<div class="slide-id">32</div>
 
 <!--
 Indtil nu har vi kigget på as CLI som et softwareprojekt.
@@ -3081,7 +2308,7 @@ class: hmi-testing-slide dark-slide
   <p>Start machine &bull; Change recipe &bull; Acknowledge alarm &bull; Verify status indication</p>
 </div>
 
-<div class="slide-id">38</div>
+<div class="slide-id">33</div>
 
 <!--
 Den sidste demo handler om noget som traditionelt har været svært at automatisere.
@@ -3115,7 +2342,6 @@ npm run test:demo
 Hvis det skulle køre headless kan man bare skrive:
 npm run test:hmi
 -->
-
 
 ---
 layout: default
@@ -3181,7 +2407,7 @@ class: devops-mountain-slide dark-slide
   <b>Success comes from taking the next step, not from reaching the summit immediately.</b>
 </div>
 
-<div class="slide-id">39</div>
+<div class="slide-id">34</div>
 
 <!--
 The goal of DevOps is not to build a perfect CI/CD system overnight.
@@ -3231,7 +2457,7 @@ class: working-in-progress dark-slide
   <p>Do you have suggestions for our next priorities?</p>
 </div>
 
-<div class="slide-id">40</div>
+<div class="slide-id">35</div>
 
 <!--
 
@@ -3292,7 +2518,6 @@ Og med det vil vi meget gerne høre hvad I tænker.
 
 -->
 
-
 ---
 layout: default
 class: questions-slide dark-slide
@@ -3313,4 +2538,613 @@ class: questions-slide dark-slide
 
 <div class="questions-footer"><span>THANK YOU</span><i></i><b>B&amp;R INDUSTRIAL AUTOMATION &middot; AGENTIC ENGINEERING + DEVOPS</b></div>
 
-<div class="slide-id">41</div>
+<div class="slide-id">36</div>
+
+---
+layout: default
+---
+
+<script setup>
+const materialsLink = import.meta.env.BASE_URL === '/'
+  ? '/mcp-overview'
+  : `${import.meta.env.BASE_URL}#/mcp-overview`
+</script>
+
+<div class="materials-slide">
+<div class="materials-intro">
+  <div class="eyebrow">EVENT RESOURCES</div>
+  <h1>Materials <span class="accent">&amp; Links</span></h1>
+  <p>Everything from today's AI and DevOps event, in one place.</p>
+</div>
+
+<div class="materials-links">
+  <a class="materials-link" href="https://github.com/BRDK-Public/EventAiAndDevOps" target="_blank" rel="noreferrer">
+    <span class="materials-link-number">01</span>
+    <span class="materials-link-main">
+      <strong>BRDK-Public/EventAiAndDevOps</strong>
+      <small>Event repository</small>
+    </span>
+    <span class="materials-link-action">OPEN</span>
+  </a>
+  <a class="materials-link" :href="materialsLink" target="_blank" rel="noreferrer">
+    <span class="materials-link-number">02</span>
+    <span class="materials-link-main">
+      <strong>MCP SERVER OVERVIEW</strong>
+      <small>SLIDE 17</small>
+    </span>
+    <span class="materials-link-action">OPEN</span>
+  </a>
+</div>
+</div>
+
+---
+layout: default
+class: devops-cover ai-workshop-cover dark-slide
+---
+
+<div class="devops-chapter">B</div>
+
+<div class="kicker">APPENDIX</div>
+
+# Backup<br><span class="accent">slides</span>
+
+<p class="devops-cover-copy">Deep dives for questions. Not part of the main flow.</p>
+
+---
+layout: default
+class: as-help-boot-slide dark-slide
+---
+
+<div class="kicker">AS-HELP MCP · FIRST BOOT · 03 MIN</div>
+
+# AS-Help MCP:<br><span class="accent">index once, serve locally</span>
+
+<div class="as-help-boot-grid">
+  <figure class="as-help-boot-visual" v-click>
+    <div class="as-help-image-frame"><img src="/as-help-mcp.png" alt="AS-Help MCP GitHub quick-start configuration for a local server"></div>
+    <figcaption><span>LOCAL KNOWLEDGE CONNECTOR</span><b>br-automation-community/as-help-mcp</b><small>Rust server · installed Automation Studio help · LanceDB</small></figcaption>
+  </figure>
+  <section class="as-help-boot-process">
+    <div class="as-help-process-heading"><span>FIRST BOOT</span><small>BUILD THE INDEX · THEN SERVE QUERIES</small></div>
+    <div class="as-help-stage-list">
+      <div class="as-help-stage" v-click>
+        <span class="as-help-stage-number">01</span><mdi-file-tree-outline />
+        <div><b>READ LOCAL HELP</b><small>Walk the installed AS Help HTML tree.</small></div>
+        <strong>INGEST</strong>
+      </div>
+      <div class="as-help-stage" v-click>
+        <span class="as-help-stage-number">02</span><mdi-database-search-outline />
+        <div><b>BUILD FTS INDEX</b><small>Tokenize titles and content for keyword ranking.</small></div>
+        <strong>RANK</strong>
+      </div>
+      <div class="as-help-stage" v-click>
+        <span class="as-help-stage-number">03</span><mdi-map-marker-path />
+        <div><b>PERSIST METADATA</b><small>Keep page_id, title, file_path, and breadcrumb_path.</small></div>
+        <strong>ANCHOR</strong>
+      </div>
+      <div class="as-help-stage ready" v-click>
+        <span class="as-help-stage-number">04</span><mdi-check-circle-outline />
+        <div><b>FTS READY</b><small>Keyword search works while optional semantic loading continues.</small></div>
+        <strong>SERVE</strong>
+      </div>
+    </div>
+    <div class="as-help-index-record" v-click>
+      <div class="as-help-record-heading"><span>SEARCH RECORD</span><small>metadata stays attached to the hit</small></div>
+      <div class="as-help-record-grid"><code>page_id</code><b>&lt;returned page id&gt;</b><code>breadcrumb</code><span>Motion &gt; ... &gt; MC_BR_MoveAbsolute</span><code>preview</code><span>short description of the context</span></div>
+    </div>
+    <div class="as-help-query-flow">
+      <div class="as-help-query-heading"><span>AGENT QUERY</span><strong>FTS · KEYWORD RANKING</strong></div>
+      <div class="as-help-query-line"><code>search_help</code><span>query: "MC_BR_MoveAbsolute"</span></div>
+      <div class="as-help-top-result"><b>#1</b><span>highest-ranked match</span><strong>page_id + breadcrumb + preview</strong></div>
+      <div class="as-help-retrieve"><code>get_page_by_id</code><span>page_id</span><b>-&gt; full text + metadata + online URL</b></div>
+    </div>
+  </section>
+</div>
+
+<div class="as-help-boot-takeaway" v-click><span>THE PRO AND THE CON</span><strong>Only reflect what you have installed locally</strong> </div>
+
+<div class="slide-id">B1</div>
+
+<!--
+Vi vil gerne reklamere lidt for vores egen AS-Help MCP der ligger tilgængelig på GitHub. Vi synes selv den er MEGA god!
+Første gang AS-Help MCP starter, læser den den lokale Automation Studio help folder og bygger et søgeindeks. Den gemmer ikke kun søgetekst, men også page_id, titel, filsti og breadcrumb, så et hit kan følges tilbage til den rigtige side.
+
+[CLICK]
+[CLICK]
+[CLICK]
+[CLICK]
+[CLICK]
+
+FTS, full-text search, er klar. <b>Semantisk søgning kan være et senere, valgfrit lag.</b> 
+
+Vi synes at FTS virker så godt, at vi ikke rigtigt har brugt embedding modeller og vector-databasen, men man kan nemt smide sin egen embedding model på, og så få semantisk søgning sammen med FTS. Det kan spare på tokens og give mere akkurate søgninger, da hele konteksten indgår i søgningen, og ikke kun keywords.
+
+Det vigtige i agent-flowet er, at search_help ikke foregiver at være hele svaret: den returnerer et rangeret hit med page_id, breadcrumb og en kort preview.
+
+[CLICK]
+
+
+Agenten bruger derefter page_id i get_page_by_id for at hente den fulde tekst, metadata og eventuelt online-help URL. Det er en enkel, sporbar to-trins kontrakt: find den bedste adresse, hent derefter evidensen.
+
+[CLICK]
+
+Da <b>projektet er opensource</b>, kan det nemt kopieres til andre hjælpesystemer fra f.eks en tredjepart. Det skal i være velkomne til!
+
+Til mange ting synes vi at det er en fordel, at MCP-serveren KUN har adgang til din lokale hjælp, og derfor ikke til teknologier du ikke har installeret eller nyere versioner du ikke bruger. Den kan selvfølgelig ikke bruge hele B&Rs katalog som data, men hvis den kun skal forholde sig til din maskine, så er det jo også tit det bedste. 
+
+transition: Hvis man har brug for overkomplete viden kan man bruge den officielle B&R MCP-server
+-->
+
+---
+layout: default
+class: skill-matrix-slide dark-slide
+---
+
+<div class="kicker">SKILL DESIGN · 02 MIN</div>
+
+# The four categories of<br><span class="accent">skills</span>
+
+<div class="skill-axes">
+  <div class="skill-axis"><mdi-lightbulb-auto-outline /><b>MODEL-INVOKED</b><small>discoverable — the agent loads it when the task needs it</small></div>
+  <div class="skill-axis"><mdi-play-box-outline /><b>USER-INVOKED</b><small>invoked — you call it deliberately, like a saved prompt</small></div>
+  <div class="skill-axis"><mdi-database-off-outline /><b>STATELESS</b><small>one shot, no memory between runs</small></div>
+  <div class="skill-axis"><mdi-database-sync-outline /><b>STATEFUL</b><small>carries progress across turns and files</small></div>
+</div>
+
+<div class="skill-matrix">
+  <article class="skill-quadrant" v-click>
+    <span class="skill-tags">MODEL-INVOKED <i>·</i> STATELESS</span>
+    <b>event-script skill for mappView</b>
+    <small>Picked up automatically when writing HMI scripts for mappView.</small>
+  </article>
+  <article class="skill-quadrant" v-click>
+    <span class="skill-tags">MODEL-INVOKED <i>·</i> STATEFUL</span>
+    <b>domain-modeling skill</b>
+    <small>Picked up automatically when discussing codebase terminology, consuming and editing a CONTEXT.md</small>
+  </article>
+  <article class="skill-quadrant" v-click>
+    <span class="skill-tags">USER-INVOKED <i>·</i> STATELESS</span>
+    <b>triage skill for GitHub issues</b>
+    <small>You invoke it on a ticket. Same procedure every time, nothing carried over.</small>
+  </article>
+  <article class="skill-quadrant" v-click>
+    <span class="skill-tags">USER-INVOKED <i>·</i> STATEFUL</span>
+    <b>grill-with-docs skill</b>
+    <small>You start it when describing a new feature. A CONTEXT.md and ADR.md is stored to document decisions for future runs.</small>
+  </article>
+</div>
+
+<div class="skill-matrix-takeaway" v-click>
+  <mdi-set-split /> <b>Model-invoked vs user-invoked</b> is about <i>how it is triggered</i><span>·</span><b>stateless vs stateful</b> is about <i>what it remembers</i>
+</div>
+
+<figure class="skill-invocation-shot" v-click>
+  <img src="/skill-invocation.png" alt="SKILL.md frontmatter with disable-model-invocation set to true">
+  <figcaption>One line in the frontmatter turns a <b>model-invoked</b> skill into a <b>user-invoked</b> skill</figcaption>
+</figure>
+
+<div class="slide-id">B2</div>
+
+<!--
+Skills falder i to uafhængige dimensioner.
+
+<b>Første dimension</b> er, hvordan de aktiveres. 
+
+<b>Et model-invoked skill</b> ligger fremme og bliver loadet af agenten selv, når agenten mener at indholdet er relevant for den arbejde. 
+
+<b>Et user-invoked skill</b> kalder du bevidst, som en gemt prompt for at udføre en bestemt handling eller rutine.
+
+
+<b>Anden dimension</b> er, om de husker noget fra gang til gang. Et stateless skill kører én gang og glemmer. Et stateful skill bygger op og genbruger tidligere outputs i fremtidige sessioner.
+
+
+De to dimensioner kombineres frit, så du får fire typer af skills. Vælg bevidst, når du designer et nyt skill. Her er et par eksempler:
+
+[CLICK]
+Event script skill til MappView. Det er <b>model-invoked</b>, fordi agenten selv skal kunne fremkalde information om eventscripts hvis den skal rette eller lave nye scripts. Det er <b>stateless</b> fordi det ikke producerer noget information til fremtidige kald.
+
+[CLICK]
+Domain-modelling skillet er også <b>model-invoked</b>. Agenten kalder det når der diskuteres domæne-specifikke termer. Agenten skal forstå jargonen og dokumentere den <b>(statefull)</b>, så den i fremtiden ikke bliver forviret. Hvis et issue f.eks indeholder ordet "filler" fra eksemplet, så vil skillet undersøge om det er en del af context.md filen og hvad det i så fald er. Hvis det ikke er det, så vil den undersøge / spørge for derefter at putte det i ccontext.md filen. 
+
+[CLICK]
+Triage skill. Dette er <b>user-invoked</b> fordi det udelukkende er os der bestemmer om et GitHub issue skal igennem en omskrivning. Det kan være at vi har fået indrapporteret en bug. Brugeren har oprettet et GH-issue, men han har glemt vigtige detaljer som en agent skal bruge, for at kunne arbejde videre med det. Det kunne være at brugeren havde skrevet, "Jeg får ingen alarmer når servoaksen fejler". Men hvad for en alarm vil vi gerne have? hvad skal den sige?. Vi laver derfor triage på den for at få den op på et niveau hvor vi kan uddellegere den til en agent.
+
+[CLICK]
+grill-with-docs. Et af de mest populære skills. Bliver ved med at diskutere med brugeren indtil der er en fælles forståelse. Indeholder det termonologi eller særlige designkrav bliver det noteret ned for fremtidige sessioner.
+
+[CLICK]
+Hvordan bliver skillet loaded ind og gemmer det information til sig selv i fremtiden.
+
+[CLICK]
+
+transition: Hvorfor skal vi selv lave skills?
+-->
+
+---
+layout: default
+class: testing-slide dark-slide
+---
+
+<div class="kicker">TDD + EVALUATION · 03 MIN</div>
+
+# Tests are the<br><span class="accent">sensor system</span>
+
+<div class="baseline-banner" >
+  <mdi-radar /> <span>TEST-DRIVEN RULE</span>
+  <b>Clear acceptance criteria give agents a fast signal. Establish the regression baseline <strong>before</strong> delegating feature work.</b>
+</div>
+
+<div class="test-pyramid">
+  <div class="test-level hil" ><span>04</span><b>HIL / PHYSICAL</b><small>where risk + fidelity require it</small></div>
+  <div class="test-level arsim" ><span>03</span><b>ARSIM / SMOKE</b><small>controlled application behavior</small></div>
+  <div class="test-level integration" ><span>02</span><b>INTEGRATION</b><small>interfaces + module behavior</small></div>
+  <div class="test-level unit" ><span>01</span><b>UNIT</b><small>local logic</small></div>
+</div>
+
+<div class="two-oracles">
+  <div v-click>
+    <mdi-check-circle-outline />
+    <span>PRODUCT TESTS</span>
+    <b>Does machine behavior satisfy the requirement?</b>
+  </div>
+  <div v-click>
+    <mdi-robot-confused-outline />
+    <span>AGENT EVALUATIONS</span>
+    <b>Did it use tools, obey policy, escalate, and stop?</b>
+  </div>
+</div>
+
+<div class="slide-id">B3</div>
+
+<!--
+Jeg vil ikke sige så meget om tests. Det kommer Mads meget mere ind på om lidt. 
+
+Det er dog vigtigt at sige, at test er uundværlige når man koder med Agenter. AI er ikke deterministikse, så vi har brug for pålidelige gates der kan validere vores software. Tests virker både som feedback til agenten, men ligeså meget som dokumentation til os der skal godkende en ændring.
+
+Det er blevet uendeligt meget nemmere at skrive test i dag, end det var før AI. Men AI agenten kan ikke bare teste sig selv.
+
+[CLICK]
+
+Product tests:
+En test af softwaren / maskinen:
+Virker tingene rent faktisk som vi gerne vil have det? 
+
+[CLICK]
+
+Agent Evaluering: 
+En test af workflowet / systemet:
+Gjorde agenten som aftalt?
+
+Vi har brug for begge dele. En agent kan følge processen korrekt, men stadig lave fejl. Omvendt kan ændringerne tilfældigvis virke, selvom agenten brød reglerne undervejs.
+
+transition:
+
+-->
+
+---
+layout: default
+class: vertical-modules-slide dark-slide
+---
+
+<div class="kicker">AGENTIC METHOD · VERTICAL SLICES</div>
+
+# Build features<br><span class="accent">through the stack</span>
+
+<p class="vertical-modules-lead">Humans optimize for focus. Agents can optimize for feedback.</p>
+
+<div class="kanban-compare">
+  <section class="kanban-panel horizontal-panel" v-click>
+    <div class="kanban-panel-head">
+      <div><span>HUMAN DEFAULT</span><b>Discipline lanes</b></div>
+      <mdi-view-column-outline />
+    </div>
+    <p class="kanban-panel-note">Specialists stay focused. The feature waits at the integration boundary.</p>
+    <div class="kanban-board category-board">
+      <div class="kanban-columns"><span></span><b>BACKLOG</b><b>IN PROGRESS</b><b>PROVEN</b></div>
+      <div class="kanban-lanes">
+        <div class="kanban-lane category-lane"><span class="kanban-lane-label">HMI</span><div class="kanban-cell"><span class="kanban-card">fault + reset screen</span></div><div class="kanban-cell"><span class="kanban-card muted-card">needs state names</span></div><div class="kanban-cell"></div></div>
+        <div class="kanban-lane category-lane"><span class="kanban-lane-label">SAFETY</span><div class="kanban-cell"><span class="kanban-card amber-card">safe stop on fault</span></div><div class="kanban-cell"><span class="kanban-card muted-card">needs reset rule</span></div><div class="kanban-cell"></div></div>
+        <div class="kanban-lane category-lane"><span class="kanban-lane-label">CONTROL</span><div class="kanban-cell"><span class="kanban-card">abort + clear states</span></div><div class="kanban-cell"><span class="kanban-card muted-card">needs reject logic</span></div><div class="kanban-cell"></div></div>
+        <div class="kanban-lane category-lane"><span class="kanban-lane-label">I/O + HW</span><div class="kanban-cell"><span class="kanban-card">axis error handling</span></div><div class="kanban-cell"><span class="kanban-card muted-card">needs sim rig</span></div><div class="kanban-cell"></div></div>
+      </div>
+    </div>
+    <div class="kanban-result blocked">
+      <mdi-clock-alert-outline />
+      <div><span>INTEGRATION DAY</span><b>No complete feature to test</b></div>
+    </div>
+  </section>
+
+  <div class="kanban-contrast" v-click>
+    <span>SAME BOARD<br><strong>NEW UNIT</strong></span>
+    <mdi-arrow-right />
+  </div>
+
+  <section class="kanban-panel vertical-panel" v-click>
+    <div class="kanban-panel-head">
+      <div><span>AGENT + TDD</span><b>Feature lanes</b></div>
+      <mdi-view-column-outline />
+    </div>
+    <p class="kanban-panel-note">Keep one behavior in context. Cross every boundary, then prove it.</p>
+    <div class="kanban-board feature-board">
+      <div class="kanban-columns"><span></span><b>BACKLOG</b><b>IN PROGRESS</b><b>PROVEN</b></div>
+      <div class="kanban-lanes">
+        <div class="kanban-lane feature-lane"><span class="kanban-lane-label">OBSERVE<br>FAULT</span><div class="kanban-cell"><span class="kanban-card red-card">abort is visible</span></div><div class="kanban-cell"><span class="kanban-card">HMI + state + axis</span></div><div class="kanban-cell"><span class="kanban-card done-card">count holds</span></div></div>
+        <div class="kanban-lane feature-lane"><span class="kanban-lane-label">CLEAR<br>CONVEYOR</span><div class="kanban-cell"><span class="kanban-card red-card">uncapped stay on</span></div><div class="kanban-cell"><span class="kanban-card">reject logic + safety</span></div><div class="kanban-cell"><span class="kanban-card done-card">conveyor empty</span></div></div>
+        <div class="kanban-lane feature-lane"><span class="kanban-lane-label">RESUME<br>BATCH</span><div class="kanban-cell"><span class="kanban-card red-card">restart resets count</span></div><div class="kanban-cell"><span class="kanban-card">reset + sequence</span></div><div class="kanban-cell"><span class="kanban-card done-card">continues from held</span></div></div>
+        <div class="kanban-lane feature-lane"><span class="kanban-lane-label">PROVE<br>100 BATCH</span><div class="kanban-cell"><span class="kanban-card red-card">no evidence</span></div><div class="kanban-cell"><span class="kanban-card">sim run + logbook</span></div><div class="kanban-cell"><span class="kanban-card done-card">100 bottles done</span></div></div>
+      </div>
+    </div>
+    <div class="kanban-result ready">
+      <mdi-test-tube />
+      <div><span>EVERY MOVE HAS A SIGNAL</span><b>A working feature at every step</b></div>
+    </div>
+  </section>
+</div>
+
+<div class="tdd-loop" v-click>
+  <div class="tdd-loop-label"><span>THE AGENT'S RHYTHM</span><b>One slice at a time</b></div>
+  <div class="tdd-step red"><span>01</span><strong>RED</strong><small>write failing test</small></div>
+  <mdi-arrow-right />
+  <div class="tdd-step green"><span>02</span><strong>GREEN</strong><small>make the smallest change</small></div>
+  <mdi-arrow-right />
+  <div class="tdd-step refactor"><span>03</span><strong>REFACTOR</strong><small>review, then repeat</small></div>
+</div>
+
+<div class="vertical-modules-takeaway" v-click>
+  <span>THINK IN BEHAVIORS, NOT LAYERS</span>
+  <strong>One narrow outcome. One fast feedback loop.</strong>
+</div>
+
+<div class="slide-id">B4</div>
+
+<!--
+[CLICK]
+Mennesker organiserer sig ofte i kanban-swimlanes efter fagdisciplin: HMI, safety, control og hardware. <b>horizontal slices</b> Det er en rationel arbejdsform, når fokus er begrænset, og når forskellige personer ejer forskellige fagligheder. Det er en begrænsning vi har som mennesker. En lille kortidshukommelse og vi er dårlige til at multitaske / context switche.
+Som mennesker laver vi derfor typisk en disciplin ad gangen. Det er der vi er mest produktive, men det skaber udfordringer ved test. Hvordan tester man HMI uden logik? Der er ingen feedback!
+
+[CLICK]
+
+
+[CLICK]
+En agent har ikke de begrænsninger og den kan bare starte subagenter op til at tage sig af andre ekspertiser, eller for at isolerer og delegerer konteksten fra. Derfor kan den arbejde vertikalt (<b>vertical slices</b>): feature-swimlanes med HMI-state, safety contract, control logic, I/O eller simulation og acceptance test i samme korte loop. Det er en kæmpe fordel ift. test. Hver feature kan testes uafhængigt fordi de indeholder alle ellementerne.
+
+[CLICK]
+Matt Pococks TDD-skill beskriver horizontal slicing som anti-patternet: skriv ikke alle tests først og al implementation bagefter. Arbejd i vertical slices: én test, én minimal implementation, gentag. Hver test er en tracer bullet, der bruger feedback fra den forrige cyklus. Red før green; refactor hører til reviewfasen.
+
+Kilde: https://github.com/mattpocock/skills/blob/main/skills/engineering/tdd/SKILL.md
+-->
+
+---
+layout: default
+class: feature-recap-slide dark-slide
+---
+
+<div class="kicker">BACK TO THE MACHINE · 01 MIN</div>
+
+# One feature to build.<br><span class="accent">Now we have all the pieces.</span>
+
+<div class="feature-recap-layout">
+  <div class="feature-recap-machine">
+    <BottleConveyor state="fault" :count="42" compact />
+  </div>
+
+  <div class="feature-recap-story">
+    <div class="feature-recap-sequence" aria-label="Feature outcome sequence">
+      <div><span>01</span><b>FAULT</b></div><i></i>
+      <div><span>02</span><b>STOP</b></div><i></i>
+      <div><span>03</span><b>REJECT</b></div><i></i>
+      <div><span>04</span><b>RETAIN</b></div><i></i>
+      <div><span>05</span><b>RESUME</b></div><i></i>
+      <div><span>06</span><b>PROVE</b></div>
+    </div>
+    <div class="feature-recap-capabilities" v-click>
+      <span>KNOWLEDGE</span><i>+</i><span>TOOLS</span><i>+</i><span>GUARDRAILS</span><i>+</i><span>TESTS</span><i>+</i><span>GATES</span>
+    </div>
+    <div class="feature-recap-question" v-click>
+      <span>NOW ASSEMBLE THE SYSTEM</span>
+      <strong>Which workflows turn these pieces into an accountable engineering change?</strong>
+    </div>
+  </div>
+</div>
+
+<div class="slide-id">B5</div>
+
+<!--
+Det er den samme maskinopgave, vi startede workshoppen med: fejl, kontrolleret stop, reject af ikke-cappede flasker, fastholdt tæller, genstart af batchen og evidens for det færdige resultat.
+
+Nu har vi byggestenene: domæneviden, tools til at handle og observere, guardrails, tests og deterministiske gates.
+
+
+Transition: Lad os samle byggestenene i de tre workflows, der gør ændringen afgrænset og verificerbar.
+-->
+
+---
+layout: default
+class: why-devops-slide dark-slide
+---
+
+<div class="kicker">WORKSHOP 02 · WHY DEVOPS?</div>
+
+# Why <span class="accent">DevOps?</span>
+
+<div class="why-devops-flow" aria-label="Agentic Engineering connected to DevOps">
+  <section class="why-devops-panel agentic">
+    <div class="why-devops-panel-label">01 · ACCELERATE CREATION</div>
+    <div class="why-devops-panel-title"><mdi-robot-outline /><b>AGENTS</b></div>
+    <ul>
+      <li>Generates code faster</li>
+      <li>Makes automated tests easier to create</li>
+      <li>Turns ideas into prototypes quickly</li>
+    </ul>
+  </section>
+
+  <div class="why-devops-bridge" aria-label="Needs guardrails">
+    <span class="why-devops-bridge-line"></span>
+    <div class="why-devops-bridge-core"><mdi-shield-check-outline /><b>NEEDS<br>GUARDRAILS</b></div>
+    <span class="why-devops-bridge-line"></span>
+  </div>
+
+  <section class="why-devops-panel devops">
+    <div class="why-devops-panel-label">02 · DELIVER RELIABLY</div>
+    <div class="why-devops-panel-title"><mdi-source-branch /><b>DEVOPS</b></div>
+    <div class="why-devops-practices">
+      <div><mdi-hammer-wrench /><span>AUTOMATED BUILD + TEST</span></div>
+      <div><mdi-shield-check-outline /><span>QUALITY CHECKS</span></div>
+      <div><mdi-source-branch /><span>CONTROLLED DEPLOYMENT</span></div>
+      <div><mdi-chart-timeline-variant-shimmer /><span>CONTINUOUS FEEDBACK</span></div>
+    </div>
+  </section>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+
+<div class="why-devops-takeaway">
+  <strong>AI helps us create software faster. DevOps helps us deliver it safely.</strong>
+</div>
+
+<div class="slide-id">B6</div>
+
+<!--
+Lars har været inde på dette i starten, men for at gentage kort:
+
+Agentic Engineering gør at vi kan generere kode hurtigt, skrive automatiske tests hurtigt, lave en idé til en prototype på rekordtid.
+... Men agenten har brug for "Guardrails" og det er her DevOps kommre ind i billedet med build,test, kontroleret deployment, kvalitetstjek.
+
+AI hjælper os med at lave software hurtigere. DevOps hjælper os med at levere det på en kontrolleret måde.
+
+-->
+
+---
+layout: default
+class: why-devops-matters-slide dark-slide
+---
+
+<div class="status-badge general">GENERAL PRINCIPLE</div>
+<div class="kicker">WORKSHOP 02 · THE CASE FOR DEVOPS</div>
+
+# Why Testing<br><span class="accent">Becomes Affordable</span>
+
+<div class="why-devops-matters-grid" aria-label="Why DevOps matters more as software creation accelerates">
+  <section class="why-devops-matters-panel historical" aria-label="Historically">
+    <div class="why-devops-matters-head">
+      <div><span>01</span><b>HISTORICALLY</b></div>
+      <mdi-account-hard-hat-outline />
+    </div>
+    <div class="why-devops-matters-items">
+      <div class="why-devops-matters-item"><mdi-file-edit-outline /><b>Engineer writes code</b></div>
+      <div class="why-devops-matters-item"><mdi-test-tube /><b>Engineer writes tests</b></div>
+      <div class="why-devops-matters-item"><mdi-clock-alert-outline /><b>Testing feels expensive</b></div>
+    </div>
+  </section>
+
+  <section class="why-devops-matters-panel agentic" aria-label="Agentic Engineering">
+    <div class="why-devops-matters-head">
+      <div><span>02</span><b>AGENTIC ENGINEERING</b></div>
+      <mdi-robot-outline />
+    </div>
+    <div class="why-devops-matters-items">
+      <div class="why-devops-matters-item"><mdi-robot-outline /><b>Agent helps create code</b></div>
+      <div class="why-devops-matters-item"><mdi-robot-outline /><b>Agent helps create tests</b></div>
+      <div class="why-devops-matters-item"><mdi-shield-check-outline /><b>Testing becomes easier to justify</b></div>
+    </div>
+  </section>
+</div>
+
+<div class="slide-id">B7</div>
+
+<!--
+Økonomien ved at skrive tests har også ændret sig med Agentic Engineering. 
+
+Historisk set har automatiseret test været svært at retfærdiggøre i mange automationsprojekter.
+
+Det er ikke fordi ingen kan lide tests. Problemet er, at tests også skal udvikles, vedligeholdes og opdateres. For mindre projekter har indsatsen ofte virket større end gevinsten.
+
+Men Agentic Engineering ændrer lidt på den ligning.
+
+Hvis tiden til at producere software falder markant, så falder omkostningen til at producere tests også. AI kan hjælpe os med både at implementere funktionalitet og oprette de test cases, der skal verificere funktionaliteten.
+
+Samtidig ser vi ofte, at moderne agent workflows selv genererer og kører tests som en del af deres arbejdsproces. Verifikation bliver derfor en langt mere naturlig del af udviklingsflowet.
+
+Af den grund er det blevet mere rentabelt at skrive tests og nemmere at retfærdiggøre i et OT projekt.
+-->
+
+---
+layout: default
+class: devops-tooling dark-slide
+---
+
+<div class="kicker">WORKSHOP 02 · DEVOPS</div>
+
+<div class="delivery-heading">
+  <div>
+    <h1>Continuous<br><span class="accent">Integration</span></h1>
+    <p>Every change is built and checked while it is still small.</p>
+  </div>
+  <div class="delivery-definition-mark"><span>CI</span><small>FAST FEEDBACK<br>BEFORE RELEASE</small></div>
+</div>
+
+<div class="delivery-flow ci-flow" aria-label="Continuous Integration stages">
+  <section class="delivery-flow-stage is-code" aria-label="Code">
+    <span class="delivery-flow-number">01</span>
+    <mdi-source-commit />
+    <b>CODE</b>
+    <small>change is versioned</small>
+  </section>
+  <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <section class="delivery-flow-stage is-ci" aria-label="Build">
+    <span class="delivery-flow-number">02</span>
+    <mdi-hammer-wrench />
+    <b>BUILD</b>
+    <small>repeatable output</small>
+  </section>
+  <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <section class="delivery-flow-stage is-ci" aria-label="Test">
+    <span class="delivery-flow-number">03</span>
+    <mdi-test-tube />
+    <b>TEST</b>
+    <small>expected behavior</small>
+  </section>
+  <div class="delivery-flow-arrow" aria-hidden="true"><mdi-arrow-right /></div>
+  <section class="delivery-flow-stage is-verify" aria-label="Verify">
+    <span class="delivery-flow-number">04</span>
+    <mdi-shield-check-outline />
+    <b>VERIFY</b>
+    <small>evidence recorded</small>
+  </section>
+</div>
+
+<div class="delivery-footer">
+  <div class="delivery-footer-label"><mdi-check-circle-outline /><span>CI QUESTION</span></div>
+  <strong>Does this change still behave as expected?</strong>
+  <small>Fast feedback keeps the change easy to understand and easy to fix.</small>
+</div>
+
+<div class="slide-id">B8</div>
+
+<!--
+På den forrige slide talte vi om at økonomien ved test og verifikation har ændret sig.
+
+Hvis vi kan producere flere softwareændringer, så bliver vi også nødt til at verificere flere softwareændringer.
+Det er præcis det problem Continuous Integration forsøger at løse.
+
+Når en ændring bliver lavet, stopper arbejdet ikke ved at koden er skrevet.
+Ændringen skal kunne bygges.
+Den skal kunne testes.
+Og den skal kunne verificeres.
+
+Det vigtige er ikke at alle ændringer er perfekte.
+Det vigtige er at vi får feedback mens ændringen stadig er lille.
+Hvis noget går galt efter 5 minutters arbejde, er det nemt at forstå og rette.
+Hvis noget går galt efter 3 ugers udvikling, er det ofte langt dyrere at finde årsagen.
+
+Continuous Integration handler derfor om at flytte feedback så tæt på ændringen som muligt.
+
+Hvis en agent producerer 20 ændringer på en dag, vil I så manuelt gennemgå dem alle sammen?
+Sandsynligvis ikke.
+Derfor bliver automatiseret verifikation så vigtig.
+
+CI skalerer feedback på samme måde som Agentic Engineering skalerer softwareudvikling.
+-->
