@@ -1,4 +1,3 @@
-
 name: Test Runner
 
 on:
@@ -6,29 +5,10 @@ on:
 
 jobs:
   test:
-    runs-on:
-        - self-hosted
-        - brdk-public
+    runs-on: self-hosted
 
     steps:
-      - name: Echo message
-        run: echo "Hello from BRDK-Public self-hosted runner!"
-
-      - name: Diagnose and restart RDP
-        shell: pwsh
+      - name: Test
         run: |
+          echo "Hello from %COMPUTERNAME%"
           whoami
-          Get-Date
-          Get-Service TermService | Format-List *
-          Get-NetTCPConnection -LocalPort 3389 -ErrorAction SilentlyContinue
-          Get-ChildItem 'Cert:\LocalMachine\Remote Desktop' | Format-List Subject,Thumbprint,NotBefore,NotAfter
-          Get-WinEvent -FilterHashtable @{
-            LogName = 'System'
-            StartTime = (Get-Date).AddDays(-2)
-          } | Where-Object ProviderName -eq 'Schannel' |
-            Select-Object -First 30 TimeCreated, Id, LevelDisplayName, Message |
-            Format-List
-          Restart-Service TermService -Force
-
-      
-
