@@ -1,0 +1,10 @@
+name: Runner Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: [self-hosted, brdk-public]
+    steps:
+      - run: echo "HELLO FROM %COMPUTERNAME%"
